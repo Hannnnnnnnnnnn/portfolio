@@ -4,12 +4,11 @@
 
 ## Goal
 
-One site at `https://hannnnnnnnnnnn.github.io/portfolio/` with nav **Home / Product / Visual / About**.
+One site at `https://hannnnnnnnnnnn.github.io/portfolio/` with nav **Product / Visual / About** (no Home: the site root is the Product list).
 
 - **Product** — the three case studies from `Hannnnnnnnnnnn.github.io` (PDP Revamp, PLP Revamp, Pre-order).
 - **Visual** — the five projects from this repo (KITS Black Friday, KITS Investors Deck, God of War, Generative AI, Others).
-- **Home** — hero + featured mix: the 3 Product cases, then KITS Black Friday, Generative AI, Packaging/3D/Others.
-- **About** — the two About pages merged into one, with the résumé PDF linked.
+- **About** — product-first: root About text, one bridge paragraph to Visual, skills rows, résumé PDF, then the personal "Right now I am..." block.
 
 ## Fixed constraints
 
@@ -24,8 +23,7 @@ One site at `https://hannnnnnnnnnnn.github.io/portfolio/` with nav **Home / Prod
 
 | New | From |
 |---|---|
-| `/portfolio/` | home (rebuilt) |
-| `/portfolio/product/` | new list page |
+| `/portfolio/` | Product list (site root) |
 | `/portfolio/product/pdp/` | root `work-1.html` |
 | `/portfolio/product/plp/` | root `work-2.html` |
 | `/portfolio/product/preorder/` | root `work-3.html` |
@@ -66,5 +64,6 @@ Merge both About texts (Han picks what stays), link `Hanbyoul-Kim-Resume.pdf`.
 ## Status
 
 - 2026-10-03: work email removed from the history of the 4 existing commits (filter-branch, trees unchanged, force-pushed).
-- Phase 1 built on `merge`: 4-item nav on all pages, `product/`, `visual/`, home mix. sitecheck clean except the 3 case links (phase 2). **Awaiting review.**
+- Phase 1 built on `merge`, then revised (Han): Home dropped, root = Product list, nav Product / Visual / About. About drafted product-first (phase 3 pulled forward). sitecheck clean except the 3 case links (phase 2); no horizontal overflow on any page at 375/800/1280/1440. **Awaiting review.**
+- Fixed along the way: About's sr-only h1 stretched to 100% width (`.about > *`); AI step titles were a fixed 700px on mobile and cut off (live on `main` too).
 - Pre-order card has a grey placeholder — no media in the root repo for it.

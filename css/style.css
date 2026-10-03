@@ -147,19 +147,15 @@ ul { list-style: none; margin: 0; padding: 0; }
 .card__sub { font-weight: 300; font-size: 16px; line-height: 20px; letter-spacing: -0.72px; }
 .card__media { flex: 1 1 0; min-width: 0; aspect-ratio: 1; }
 
-.home-outro { display: flex; flex-direction: column; align-items: flex-start; gap: 50px; padding: 30px 0 120px; max-width: 1500px; width: 100%; }
 
 @media (min-width: 800px) {
   .home-hero { padding: 200px 80px 80px 0; }
   .card__sub { font-weight: 400; font-size: var(--title); line-height: var(--title-lh); letter-spacing: -1.08px; }
-  .home-outro { padding: 30px 80px 120px 0; }
 }
 @media (min-width: 1280px) {
   /* Figma frame is a fixed 308px tall, which lifts the 60px title 16px into the top padding */
   .home-hero { flex-direction: row; justify-content: space-between; align-items: center; padding: 184px 0 64px; }
   .home-hero h1 { white-space: nowrap; }
-  .home-outro { padding: 30px 120px 120px 0; }
-  .home-outro p { max-width: 855px; }
 }
 
 /* ---------- case study ---------- */
@@ -308,7 +304,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 .ai-step { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding: 30px 0 50px; }
 .ai-step > .frame, .ai-step > .cs-caption { width: 100%; }
-.ai-step__title { width: 700px; flex-shrink: 0; padding: 30px 100px 30px 0; display: flex; flex-direction: column; gap: 19px; }
+.ai-step__title { width: 100%; flex-shrink: 0; padding: 30px 0; display: flex; flex-direction: column; gap: 19px; }
 .ai-row3, .ai-row2 { width: 100%; display: flex; align-items: flex-start; gap: 24px; }
 .ai-row3 > .frame, .ai-row2 > .frame { flex: 1 1 0; min-width: 0; }
 .frame--fill { position: absolute; inset: 0; }
@@ -347,6 +343,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   .ai-group__row > .frame:last-child { flex: 0 0 275.7px; }
   .ai-cap-sm { font-size: 14.459px; line-height: 18.0737px; letter-spacing: -0.6507px; text-align: left; }
   .ai-step { padding: 30px 0 80px; }
+  .ai-step__title { width: 700px; padding-right: 100px; }
   .ai-grid2 { row-gap: 50px; height: 415px; }
   .ai-ch2 { padding-top: 80px; align-items: center; }
   .ai-ch2__wrap { padding-top: 0; }
@@ -465,7 +462,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 /* ---------- about ---------- */
 .about { display: flex; flex-direction: column; align-items: flex-start; }
-.about > * { width: 100%; }
+.about > :not(.sr-only) { width: 100%; }
 .about-bio { padding: 30px 0 100px; }
 .about-gap { font-size: 24px; line-height: 36.48px; } /* blank line kept as in Figma (zero-width-space paragraph) */
 .about-bio a { text-decoration: underline from-font; text-underline-position: from-font; }
@@ -503,3 +500,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   .link-fade { transition: none; }
 }
 .card__media--empty { background: var(--paper-alt); }
+/* Skills block: same rows as "Right now I am...", but content-height and wrapping values */
+.about-now--work .about-row p:last-child { white-space: normal; }
+.about-now--work a { text-decoration: underline from-font; text-underline-position: from-font; }
+@media (min-width: 800px) { .about-now--work, .about-now--work .about-now__title { height: auto; } }
