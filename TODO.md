@@ -1,6 +1,12 @@
 # TODO
 
-Live: https://hannnnnnnnnnnn.github.io/visual/ (GitHub Pages, `main` / root)
+Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; repo renamed from `visual`). Merge work: see `MERGE-PLAN.md`.
+
+## Merge (branch `merge`)
+
+- [ ] **Product card preview media — Han will send new ones.** Replace `assets/video/card-pdp.mp4`, `card-plp.mp4` (temporary: the root site's mobile hero clips, square-cropped, PDP cuts off "LOW STOCK") and the grey placeholder on the Pre-order card (`.card__media--empty`, delete that CSS rule once it is gone). Cards are square (`aspect-ratio: 1`).
+- [ ] Write `/portfolio/llms.txt` (phase 4) — the Claude / ChatGPT / Grok buttons on Product and Visual already point at it.
+- [ ] Old Grok prompt in git history mentioned `/visual/`; nothing live points there after cutover — check with a grep before merging.
 
 ## Before deploying to GitHub Pages (`*.github.io`)
 
