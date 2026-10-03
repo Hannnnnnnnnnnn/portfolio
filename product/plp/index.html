@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PLP Revamp &mdash; Hanbyoul Kim</title>
+<meta name="description" content="Half our paid visitors never see the homepage. Redesigning the page that greets them instead &mdash; and learning that my A/B test split the whole store&rsquo;s traffic to measure a change on a single page in it.">
+<link rel="canonical" href="https://hannnnnnnnnnnn.github.io/portfolio/product/plp/">
+
+<!-- 공유 카드 — 링크를 붙여넣는 모든 곳에서 쓰인다 / Share card, used wherever the link is pasted -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Han Kim">
+<meta property="og:url" content="https://hannnnnnnnnnnn.github.io/portfolio/product/plp/">
+<meta property="og:title" content="PLP Revamp — Han Kim">
+<meta property="og:description" content="Redesigning a collection page for visitors who never see the homepage.">
+<meta property="og:image" content="https://hannnnnnnnnnnn.github.io/portfolio/assets/case/og/work-2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Case 02: PLP Revamp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../../assets/img/favicon.png">
+<link rel="preload" href="../../assets/fonts/source-serif-pro-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/source-code-pro.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/case.css">
+<link rel="stylesheet" href="../../css/case-skin.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="../../js/main.js" defer></script>
+<script src="../../js/case.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="page">
+  <nav class="nav">
+    <a class="nav__home" href="../../">
+      <span class="nav__avatar"><video src="../../assets/video/avatar.mp4" data-autoplay loop muted playsinline preload="metadata" aria-hidden="true"></video></span>
+      <span class="nav__name">Han Kim</span>
+    </a>
+    <div class="nav__links t-mono">
+      <a class="link-fade" href="../../">Product</a>
+      <a class="link-fade" href="../../visual/">Visual</a>
+      <a class="link-fade" href="../../about/">About</a>
+    </div>
+  </nav>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<main id="main" class="section case">
+  <nav class="toc label" aria-label="On this page">
+    <ol>
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#decisions">Decisions</a>
+        <ol class="toc__nums">
+          <li><a class="toc__num" href="#decision-1">01</a></li>
+          <li><a class="toc__num" href="#decision-2">02</a></li>
+          <li><a class="toc__num" href="#decision-3">03</a></li>
+          <li><a class="toc__num" href="#decision-4">04</a></li>
+        </ol>
+      </li>
+      <li><a href="#outcome">Outcome</a></li>
+      <li><a href="#next">Next</a></li>
+    </ol>
+  </nav>
+  <div class="prose">
+
+    <p class="label muted">02 &middot; PLP Revamp</p>
+    <h1>Making a product grid introduce the brand</h1>
+    <p class="lead">Redesigning a collection page for visitors who never see the homepage &mdash; and learning that my A/B test split the whole store&rsquo;s traffic to measure a change on a single page in it.</p>
+
+    <ul class="tags label">
+      <li>Product Strategy</li>
+      <li>UX Research</li>
+      <li>Information Architecture</li>
+      <li>UI Design</li>
+      <li>Front-end Implementation</li>
+      <li>Experimentation</li>
+    </ul>
+
+    <ul class="metrics">
+      <li><span class="metric-value">+9.4%</span><span class="metric-label label muted">actual scroll distance</span></li>
+      <li><span class="metric-value">+8.2%</span><span class="metric-label label muted">product click-through</span></li>
+      <li><span class="metric-value">58%</span><span class="metric-label label muted">badge exposure, first row</span></li>
+    </ul>
+    <p class="caveat">43-day split test, 70,716 visits assigned; click-through moved 9.05% &rarr; 9.80%. The result lands inside the predicted range, but only 2,327 visitors ever reached the redesigned page &mdash; the split was store-wide, the change was not. That gap is the finding.</p>
+
+    <dl class="meta">
+      <dt>Client</dt><dd>Atacz</dd>
+      <dt>Role</dt><dd>Sole designer &mdash; research, UI, Liquid implementation, test design and analysis</dd>
+      <dt>Timeline</dt><dd>Jun &ndash; Aug 2026 &middot; proposal to A/B report</dd>
+      <dt>Tools</dt><dd>Shopify split testing, Microsoft Clarity, Shopify Analytics, Liquid, Figma</dd>
+    </dl>
+
+    <div class="snaps snaps--pair">
+      <figure class="snap snap--mobile">
+        <div class="snap__scroll snap__scroll--video">
+          <video class="snap__video" src="../../assets/case/02-plp/hero-mobile.mp4" poster="../../assets/case/02-plp/hero-mobile-poster.jpg"
+                 width="720" height="1472" autoplay muted loop playsinline preload="metadata"
+                 aria-label="Screen recording: scrolling the redesigned collection page on mobile"></video>
+        </div>
+      </figure>
+      <figure class="snap snap--desktop">
+        <div class="snap__scroll snap__scroll--video">
+          <video class="snap__video" src="../../assets/case/02-plp/hero-desktop.mp4" poster="../../assets/case/02-plp/hero-desktop-poster.jpg"
+                 width="1280" height="706" autoplay muted loop playsinline preload="metadata"
+                 aria-label="Screen recording: the same collection page on desktop"></video>
+        </div>
+      </figure>
+    </div>
+
+    <h2 id="problem">1 &middot; The problem</h2>
+    <h3>Half our paid visitors never see the homepage.</h3>
+    <p><strong>51% of paid-social sessions land directly on a collection page.</strong> Only 20% start at the homepage. For most of the people we pay to acquire, a product grid is doing the homepage&rsquo;s job &mdash; and it says nothing about who we are.</p>
+    <p><strong>57% of all traffic is cold paid social</strong>, converting at roughly 0.1%. They arrive knowing nothing about the brand, land on a grid of bags at a premium price point, and the page offers no reason for it.</p>
+
+    <figure class="figure figure--diagram">
+      <div class="dist">
+        <div class="dist__row dist__row--lead">
+          <span class="dist__name">Collection (PLP)</span>
+          <span class="dist__pct">51%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 51%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Homepage</span>
+          <span class="dist__pct">20%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 20%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Other</span>
+          <span class="dist__pct">19.5%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 19.5%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Product (PDP)</span>
+          <span class="dist__pct">9.5%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 9.5%"></span></span>
+        </div>
+      </div>
+      <figcaption class="label muted">Entry page for paid-social sessions, last six months. The page we pay to land on is not the one built to introduce the brand.</figcaption>
+    </figure>
+
+    <p><strong>What the page was missing wasn&rsquo;t features. It was context.</strong> No upcycling story at the point of decision. No explanation of the premium. And mix-and-match &mdash; the brand&rsquo;s biggest differentiator and an AOV lever &mdash; invisible on a grid.</p>
+
+    <h2 id="research">2 &middot; Ruling out the wrong problems</h2>
+    <p>A grid that converts badly invites two obvious diagnoses: it is leaking conversions, or it is hard to browse. Both turned out to be wrong, and ruling them out is what set the scope of the redesign.</p>
+
+    <h3>It is not the conversion bottleneck</h3>
+    <p>Before proposing anything I checked whether the PLP was where the money was being lost. It wasn&rsquo;t.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">PLP metric</th><th scope="col">Paid social</th><th scope="col">Organic search</th></tr></thead>
+        <tbody>
+          <tr><td>Scroll depth (median)</td><td>56%</td><td>53%</td></tr>
+          <tr><td>PLP &rarr; PDP</td><td>27.3%</td><td>28.0%</td></tr>
+          <tr><td>Time on page (median)</td><td>14s</td><td>14s</td></tr>
+          <tr><td><strong>Purchase conversion</strong></td><td><strong>~0.1%</strong></td><td><strong>0.9%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Behaviour on the page is nearly identical across channels, yet conversion differs by 9&times;. <strong>Whatever loses a paid visitor happens after they leave this page, not on it.</strong> No PLP redesign reaches that, so the proposal ruled conversion out of scope and committed instead to the two things this page genuinely controls: brand presence, and click-through into products.</p>
+    <p>Fixing the target metrics in writing, before building anything, is what kept the report honest later &mdash; when results came in I couldn&rsquo;t quietly promote whichever number happened to look good.</p>
+
+    <h3>It is not a browsing problem</h3>
+    <p>With 60 SKUs across collections that are already categorised, scrolling the whole grid costs less than opening a filter panel. Better browsing tools would have solved a problem this page does not have.</p>
+
+    <p><strong>What that leaves is a brief, not a bug list.</strong> Nothing on the page is broken. The page simply has nothing to say to someone who has never heard of the brand and is looking at a $163 bag. So the work became: add brand context without adding an exit, and without pushing product further down the page. Every decision below is that brief applied.</p>
+
+    <h2 id="decisions">3 &middot; Decisions</h2>
+
+    <section class="decision" id="decision-1">
+      <span class="label muted">Decision 01</span>
+      <h3>Taking space back before adding anything</h3>
+      <p><strong>Quick view was desktop-only, and this store is 97% mobile.</strong> Not by intent &mdash; by CSS. Both of its triggers were revealed on <code>:hover</code>, inside an <code>@media (hover: hover)</code> block, so on a phone neither ever appeared. Usage rounded to nothing because almost nobody was on a device that could reach it. Meanwhile it still cost the card two things: the circular button in the top-right corner, and a second call to action laid over every photo.</p>
+      <p>I turned it off. One section setting removes both triggers at once, and the theme keeps the markup, so it is reversible rather than deleted. The top-right it held is still empty; the PET badge went to the top-left, which was free. The point wasn&rsquo;t to swap one mark for another in the same spot &mdash; it was that the card now carries one always-visible mark where it used to carry two that a phone could never reveal.</p>
+      <p><strong>The filter got smaller, not removed.</strong> The whole catalogue is 60 products &mdash; bags, accessories and straps together &mdash; so not many people were ever going to need a filter to get through it. It went from a full-width button with an icon to plain underlined text with a plus after it: still there for anyone who wants it, but no longer sized like a catalogue you have to narrow down before you can shop.</p>
+      <p><strong>The card&rsquo;s own hierarchy got re-cut too.</strong> The old card opened with a row that paired the vendor &mdash; &ldquo;Atacz&rdquo;, on an Atacz-only store &mdash; with the colour swatches pushed to its far right, then the title at 15px, the price at 18px, and a star rating under it. Every product said the same brand name. And most products have no reviews at all, so a rating row on a grid is mostly an empty slot pretending to be information &mdash; it belongs on the product page, shown only for the products that actually have one.</p>
+      <p>So the vendor and the rating came off, the title went to 12px and the price to 14px, and the swatches moved out of that row to sit beneath the price. On a grid where the photo is doing the selling, the name and the price are what should be read next &mdash; not a brand line that never varies, and not a row of dots you can&rsquo;t act on until the bag has already interested you.</p>
+      <div class="demo" data-demo-card>
+        <span class="demo__label label">Try it</span>
+        <p class="demo__caption">The two versions side by side, both lifted from the themes that ran them. Hover either photo. On the left,
+          the circular quick-view button appears in the top-right and <em>Choose options</em> slides over the photo &mdash; both only on
+          hover, inside an <code>@media (hover: hover)</code> block, so a phone got neither. On the right the top-right stays empty,
+          the PET badge is always visible, and the photo carries one button instead of two. Below the photo the card is retuned too: the vendor line and the star rating come off, the title drops from the theme&rsquo;s default 15px to 12px and the price from 18px to 14px, and the colour swatches leave the vendor&rsquo;s row to sit under the price &mdash; so name and price read first.</p>
+        <p class="demo__caption">Pick a colour on either card: the photo swaps in place and hovering it reveals that colour&rsquo;s second shot.
+          Only on the right does that raise <em>Add to cart</em> &mdash; on the live page the button does not exist until a variant is chosen,
+          because a card with several colours has nothing specific to add yet.</p>
+        <div class="demo__pair">
+        <div class="demo__col demo__col--before">
+          <p class="demo__colhead label">Before</p>
+          <p class="demo__colsub">Quick view on &middot; vendor and swatches share a row &middot; ratings on &middot; title 15px, price 18px &middot; filter as a full-width button</p>
+          <div class="fbar">
+            <span class="fbar__count label muted">60 products</span>
+            <button class="fbar__btn" type="button" tabindex="-1">
+              <svg class="fbar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/></svg>
+              <span class="fbar__txt">Filter</span>
+            </button>
+          </div>
+          <figure class="pcard">
+            <div class="pcard__media">
+              <img class="pcard__photo" src="../../assets/case/01-pdp/twist-bag-peach-jelly.jpg" alt="Twist Bag" width="480" height="600" loading="lazy" data-card-photo>
+              <img class="pcard__photo pcard__photo--hover" src="../../assets/case/02-plp/twist-bag-peach-jelly-2.jpg" alt="" width="480" height="600" loading="lazy" data-card-photo-hover>
+              <span class="pcard__qv" aria-hidden="true">
+                <svg viewBox="0 0 15 17" fill="none" aria-hidden="true"><circle cx="7.11113" cy="7.11113" r="6.56113" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M11.078 12.3282L13.8878 16.0009" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" fill="none"/></svg>
+              </span>
+              <div class="pcard__buy pcard__buy--before" data-buy-before aria-hidden="true">
+                <button class="pcard__atc" type="button" tabindex="-1">Choose options
+                  <svg class="pcard__cart" viewBox="0 0 18 19" fill="none" aria-hidden="true"><path d="M3.09333 5.87954L16.2853 5.87945C16.3948 5.8795 16.4836 5.96831 16.4836 6.07785V11.4909C16.4836 11.974 16.1363 12.389 15.6603 12.4714C11.3279 13.2209 9.49656 13.2033 5.25251 13.9258C4.68216 14.0229 4.14294 13.6285 4.0774 13.0537C3.77443 10.3963 2.99795 3.58502 2.88887 2.62142C2.75288 1.42015 0.905376 1.51528 0.283581 1.51478" stroke="currentColor"/><path d="M13.3143 16.8554C13.3143 17.6005 13.9183 18.2045 14.6634 18.2045C15.4085 18.2045 16.0125 17.6005 16.0125 16.8554C16.0125 16.1104 15.4085 15.5063 14.6634 15.5063C13.9183 15.5063 13.3143 16.1104 13.3143 16.8554Z" fill="currentColor"/><path d="M3.72831 16.8554C3.72831 17.6005 4.33233 18.2045 5.07741 18.2045C5.8225 18.2045 6.42651 17.6005 6.42651 16.8554C6.42651 16.1104 5.8225 15.5063 5.07741 15.5063C4.33233 15.5063 3.72831 16.1104 3.72831 16.8554Z" fill="currentColor"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="pcard__top">
+              <span class="pcard__vendor">Atacz</span>
+            <div class="pcard__colors" role="group" aria-label="Colour">
+            <button class="pcard__swatch is-active" type="button" style="--chip: #F2BAAD" data-photo="../../assets/case/01-pdp/twist-bag-peach-jelly.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-peach-jelly-2.jpg" aria-pressed="true" aria-label="Peach Jelly"></button>
+            <button class="pcard__swatch" type="button" style="--chip: #85843F" data-photo="../../assets/case/01-pdp/twist-bag-russian-green.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-russian-green-2.jpg" aria-pressed="false" aria-label="Russian Green"></button>
+            <button class="pcard__swatch" type="button" style="--chip: #5299B2" data-photo="../../assets/case/01-pdp/twist-bag-steel-blue.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-steel-blue-2.jpg" aria-pressed="false" aria-label="Steel Blue"></button>
+            <button class="pcard__swatch" type="button" style="--chip: #764D2A" data-photo="../../assets/case/01-pdp/twist-bag-coffee-bean.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-coffee-bean-2.jpg" aria-pressed="false" aria-label="Coffee Bean"></button>
+            <button class="pcard__swatch" type="button" style="--chip: #206363" data-photo="../../assets/case/01-pdp/twist-bag-forest-green.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-forest-green-2.jpg" aria-pressed="false" aria-label="Forest Green"></button>
+            <button class="pcard__swatch" type="button" style="--chip: #83A4A7" data-photo="../../assets/case/01-pdp/twist-bag-mist-grey.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-mist-grey-2.jpg" aria-pressed="false" aria-label="Mist Grey"></button>
+            <a class="pcard__more" href="#" tabindex="-1" aria-hidden="true"><small>+20</small></a>
+            </div>
+            </div>
+            <p class="pcard__title">Twist Bag<small data-variant-label>&nbsp;&ndash;&nbsp;Peach Jelly</small></p>
+            <p class="pcard__price"><span class="pcard__cur">$</span>163<span class="pcard__cents">.00</span></p>
+            <div class="pcard__rating">
+              <span class="pcard__stars" role="img" aria-label="4.38 out of 5.0 stars, 8 reviews"></span>
+            </div>
+          </figure>
+        </div>
+        <div class="demo__col demo__col--after">
+          <p class="demo__colhead label">After</p>
+          <p class="demo__colsub">Quick view off &middot; no vendor, no ratings &middot; swatches below the price &middot; title 12px, price 14px &middot; filter as underlined text</p>
+          <div class="fbar">
+            <span class="fbar__count label muted">60 products</span>
+            <button class="fbar__btn" type="button" tabindex="-1">
+              <svg class="fbar__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/></svg>
+              <span class="fbar__txt">Filter</span>
+            </button>
+          </div>
+          <figure class="pcard">
+            <div class="pcard__media">
+              <img class="pcard__photo" src="../../assets/case/01-pdp/twist-bag-peach-jelly.jpg" alt="Twist Bag" width="480" height="600" loading="lazy" data-card-photo>
+              <img class="pcard__photo pcard__photo--hover" src="../../assets/case/02-plp/twist-bag-peach-jelly-2.jpg" alt="" width="480" height="600" loading="lazy" data-card-photo-hover>
+              <label class="pet-badge pet-badge--card">
+                <input class="pet-badge__toggle" type="checkbox" aria-label="Expand the bottle count badge">
+                <span class="pet-badge__default"><svg class="pet-badge__icon" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M7.80194 1.53055L5.27853 2.02425C4.9714 2.08434 4.77113 2.38204 4.83122 2.68918L5.06379 3.87789C5.12388 4.18503 5.42158 4.3853 5.72871 4.32521L8.25212 3.83151C8.55926 3.77142 8.75953 3.47372 8.69944 3.16658L8.46687 1.97787C8.40678 1.67073 8.10908 1.47046 7.80194 1.53055Z"/><path d="M12.1477 12.502L11.5811 9.76076C11.5598 9.66867 9.93775 8.18117 9.93775 8.18117C10.1998 8.13159 10.1928 6.96284 10.1573 6.77159L9.79608 4.93701C9.76067 4.75284 7.95442 3.88867 7.95442 3.88867L5.84358 4.29951C5.84358 4.29951 4.604 5.75159 4.63942 5.94284L5.00067 7.77742C5.02192 7.90492 5.61692 8.56367 6.19067 8.93909C5.84358 9.36409 5.46108 10.1362 5.48942 10.2778L5.85067 12.1124"/><path d="M2.00464 12.5941C2.00464 12.5941 4.27839 11.5316 6.38214 12.3816C8.25214 13.1395 11.978 13.777 15.0451 12.4737"/><path d="M2.00464 14.9813C2.00464 14.9813 4.20756 13.9188 6.25464 14.7688C7.61464 15.3355 9.98756 15.8384 12.3463 15.5055"/></svg><span>6</span></span>
+                <span class="pet-badge__hover" aria-hidden="true">6 Bottles Upcycled</span>
+              </label>
+              <div class="pcard__buy"><button class="pcard__atc" type="button">Add to cart</button></div>
+            </div>
+            <p class="pcard__title">Twist Bag</p>
+            <p class="pcard__price"><span class="pcard__cur">$</span>163<span class="pcard__cents">.00</span></p>
+            <div class="pcard__colors" role="group" aria-label="Colour">
+            <button class="pcard__swatch is-active" type="button" style="--chip: #F2BAAD" data-photo="../../assets/case/01-pdp/twist-bag-peach-jelly.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-peach-jelly-2.jpg" aria-pressed="true" aria-label="Peach Jelly"></button>
+            <button class="pcard__swatch" type="button" style="--chip: #85843F" data-photo="../../assets/case/01-pdp/twist-bag-russian-green.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-russian-green-2.jpg" aria-pressed="false" aria-label="Russian Green"></button>
+            <button class="pcard__swatch" type="button" style="--chip: #5299B2" data-photo="../../assets/case/01-pdp/twist-bag-steel-blue.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-steel-blue-2.jpg" aria-pressed="false" aria-label="Steel Blue"></button>
+            <button class="pcard__swatch" type="button" style="--chip: #764D2A" data-photo="../../assets/case/01-pdp/twist-bag-coffee-bean.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-coffee-bean-2.jpg" aria-pressed="false" aria-label="Coffee Bean"></button>
+            <button class="pcard__swatch" type="button" style="--chip: #206363" data-photo="../../assets/case/01-pdp/twist-bag-forest-green.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-forest-green-2.jpg" aria-pressed="false" aria-label="Forest Green"></button>
+            <button class="pcard__swatch" type="button" style="--chip: #83A4A7" data-photo="../../assets/case/01-pdp/twist-bag-mist-grey.jpg" data-photo-hover="../../assets/case/02-plp/twist-bag-mist-grey-2.jpg" aria-pressed="false" aria-label="Mist Grey"></button>
+            </div>
+          </figure>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="decision" id="decision-2">
+      <span class="label muted">Decision 02</span>
+      <h3>One metafield, two surfaces</h3>
+      <p>Between the top banner and the product grid sits the brand slogan &mdash; <em>knit to care</em> &mdash; and a live count of every PET bottle the brand has upcycled to date.</p>
+      <p>Each product carries a <code>pet_bottle_badge2</code> metafield, and it drives both scales at once:</p>
+      <ul>
+        <li><strong>On a product card</strong>, it renders as a badge &mdash; <em>this bag = N bottles</em></li>
+        <li><strong>On the collection page</strong>, it feeds a running total, computed by reading orders across all channels and summing the count for every item sold</li>
+      </ul>
+      <p><strong>Nobody updates that number.</strong> It isn&rsquo;t a claim about the brand; it&rsquo;s an accumulating fact, and it goes up whether or not anyone remembers to maintain it. The same field powers the individual story and the cumulative one, so the two can never contradict each other.</p>
+      <p><strong>Placement.</strong> Between the banner and the grid is the one point every scrolling visitor passes before seeing a single product. Brand context arrives before the shopping starts, without a section anyone has to choose to read.</p>
+      <figure class="figure figure--diagram">
+        <div class="mfd">
+          <div class="mfd__col">
+            <p class="mfd__head label">In Shopify admin</p>
+            <ul class="mfd__list">
+              <li><code>custom.pet_bottle_badge2</code><span class="mfd__type">number_decimal</span></li>
+            </ul>
+            <p class="mfd__was">Set once, on the product. There is no second field for the total.</p>
+          </div>
+          <div class="mfd__col mfd__col--spine">
+            <p class="mfd__head label">One source</p>
+            <p class="mfd__template">The same field, read at two scales</p>
+            <p class="mfd__was">No separate total to keep in sync, so the two can never disagree</p>
+          </div>
+          <div class="mfd__col">
+            <p class="mfd__head label">On the page</p>
+            <ul class="mfd__list mfd__list--plain">
+              <li>Badge on the product card &mdash; <em>this bag = N bottles</em></li>
+              <li>Running total above the grid, summed across every item sold</li>
+            </ul>
+          </div>
+        </div>
+        <p class="mfd__note">The total is derived, not stored: it is read from orders across all channels and summed. Nobody updates it, so it cannot fall out of date.</p>
+        <figcaption class="label muted">One <code>pet_bottle_badge2</code> metafield driving both the card badge and the page counter</figcaption>
+      </figure>
+      <div class="demo">
+        <span class="demo__label label">Try it</span>
+        <p class="demo__caption">One value, every place it surfaces. Hover or tap either badge &mdash; the card size and the product-media size
+          are the same component at different dimensions, reading the same field. Below them is that field read at the other
+          scale: every badge in the store, summed across orders. Nobody types any of these numbers in.</p>
+        <div class="demo__stage demo__stage--pair">
+          <figure class="pet">
+            <div class="pet__photo">
+              <img src="../../assets/case/01-pdp/twist-bag-peach-jelly.jpg" alt="Twist Bag in peach jelly" width="480" height="600" loading="lazy">
+              <label class="pet-badge pet-badge--card">
+              <input class="pet-badge__toggle" type="checkbox" aria-label="Expand the bottle count badge, card size">
+              <span class="pet-badge__default">
+                <svg class="pet-badge__icon" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M7.80194 1.53055L5.27853 2.02425C4.9714 2.08434 4.77113 2.38204 4.83122 2.68918L5.06379 3.87789C5.12388 4.18503 5.42158 4.3853 5.72871 4.32521L8.25212 3.83151C8.55926 3.77142 8.75953 3.47372 8.69944 3.16658L8.46687 1.97787C8.40678 1.67073 8.10908 1.47046 7.80194 1.53055Z"/><path d="M12.1477 12.502L11.5811 9.76076C11.5598 9.66867 9.93775 8.18117 9.93775 8.18117C10.1998 8.13159 10.1928 6.96284 10.1573 6.77159L9.79608 4.93701C9.76067 4.75284 7.95442 3.88867 7.95442 3.88867L5.84358 4.29951C5.84358 4.29951 4.604 5.75159 4.63942 5.94284L5.00067 7.77742C5.02192 7.90492 5.61692 8.56367 6.19067 8.93909C5.84358 9.36409 5.46108 10.1362 5.48942 10.2778L5.85067 12.1124"/><path d="M2.00464 12.5941C2.00464 12.5941 4.27839 11.5316 6.38214 12.3816C8.25214 13.1395 11.978 13.777 15.0451 12.4737"/><path d="M2.00464 14.9813C2.00464 14.9813 4.20756 13.9188 6.25464 14.7688C7.61464 15.3355 9.98756 15.8384 12.3463 15.5055"/></svg>
+                <span>6</span>
+              </span>
+              <span class="pet-badge__hover" aria-hidden="true">6 Bottles Upcycled</span>
+              </label>
+            </div>
+            <figcaption class="label muted">On a product card</figcaption>
+          </figure>
+          <figure class="pet">
+            <div class="pet__photo">
+              <img src="../../assets/case/01-pdp/twist-bag-peach-jelly.jpg" alt="Twist Bag in peach jelly" width="480" height="600" loading="lazy">
+              <label class="pet-badge pet-badge--media">
+              <input class="pet-badge__toggle" type="checkbox" aria-label="Expand the bottle count badge, product media size">
+              <span class="pet-badge__default">
+                <svg class="pet-badge__icon" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M7.80194 1.53055L5.27853 2.02425C4.9714 2.08434 4.77113 2.38204 4.83122 2.68918L5.06379 3.87789C5.12388 4.18503 5.42158 4.3853 5.72871 4.32521L8.25212 3.83151C8.55926 3.77142 8.75953 3.47372 8.69944 3.16658L8.46687 1.97787C8.40678 1.67073 8.10908 1.47046 7.80194 1.53055Z"/><path d="M12.1477 12.502L11.5811 9.76076C11.5598 9.66867 9.93775 8.18117 9.93775 8.18117C10.1998 8.13159 10.1928 6.96284 10.1573 6.77159L9.79608 4.93701C9.76067 4.75284 7.95442 3.88867 7.95442 3.88867L5.84358 4.29951C5.84358 4.29951 4.604 5.75159 4.63942 5.94284L5.00067 7.77742C5.02192 7.90492 5.61692 8.56367 6.19067 8.93909C5.84358 9.36409 5.46108 10.1362 5.48942 10.2778L5.85067 12.1124"/><path d="M2.00464 12.5941C2.00464 12.5941 4.27839 11.5316 6.38214 12.3816C8.25214 13.1395 11.978 13.777 15.0451 12.4737"/><path d="M2.00464 14.9813C2.00464 14.9813 4.20756 13.9188 6.25464 14.7688C7.61464 15.3355 9.98756 15.8384 12.3463 15.5055"/></svg>
+                <span>&times; 6</span>
+              </span>
+              <span class="pet-badge__hover" aria-hidden="true">6 Bottles Upcycled</span>
+              </label>
+            </div>
+            <figcaption class="label muted">On product media</figcaption>
+          </figure>
+        </div>
+        <div class="demo__stage">
+          <div class="icount">
+            <p class="icount__num">
+              <span class="icount__value" data-icount-value>124,866</span>
+              <span class="icount__suffix">bottles upcycled</span>
+            </p>
+            <p class="icount__desc">Knit to care - Made into bags that matter</p>
+          </div>
+        </div>
+        <details>
+          <summary class="label">The badge in Liquid</summary>
+<pre><code>{%- assign bottles = card_product.metafields.custom.pet_bottle_badge2.value -%}
+{%- if bottles &gt; 0 -%}
+  &lt;pet-bottles-badge class="pet-bottles-badge pet-bottles-badge--top-left"
+    style="--pet-badge-bg: {{ s.pet_badge_bg | color_modify: 'alpha', 0.5 }};
+           --pet-badge-bg-hover: {{ s.pet_badge_bg_hover }};"&gt;
+    &lt;span class="pet-bottles-badge__default"&gt;
+      {{ s.pet_badge_icon | image_url: width: 96 | image_tag }}
+      &lt;span&gt;{{ bottles }}&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="pet-bottles-badge__hover"&gt;
+      {{ bottles }} {{ s.pet_badge_hover_text }}
+    &lt;/span&gt;
+  &lt;/pet-bottles-badge&gt;
+{%- endif -%}</code></pre>
+        </details>
+      </div>
+    </section>
+
+    <section class="decision" id="decision-3">
+      <span class="label muted">Decision 03</span>
+      <h3>Deliberately unclickable</h3>
+      <p>Every brand element on the page &mdash; badge, counter, slogan &mdash; is visible and leads nowhere.</p>
+      <p>That sounds like an oversight. It&rsquo;s the constraint the whole layer was designed around. Sales is this page&rsquo;s job, and a story link at the decision moment is just a well-designed exit. The proposal committed to a layer that gets <strong>seen, not clicked</strong>, and holding that line in execution meant refusing the obvious follow-up &mdash; a sustainability page, a &ldquo;learn more.&rdquo;</p>
+      <p><strong>The badge does take a click, though &mdash; it just doesn&rsquo;t navigate.</strong> Expanding it in the demo above is the
+        entire interaction: it opens in place, says its one sentence, and leaves you where you were. The compact form keeps
+        the card layout intact; the expanded form serves the smaller group who want the detail. Progressive disclosure
+        resolved inside the card rather than on another page &mdash; and, deliberately, with nothing at the end of it to click
+        through to.</p>
+      <p><strong>What the test showed.</strong> I expected adding a non-navigating element to <em>raise</em> dead clicks &mdash; people tapping something that appears interactive and going nowhere. The opposite happened: dead clicks fell 14% and quick bounce-backs 9% on the redesigned page.</p>
+    </section>
+
+    <section class="decision" id="decision-4">
+      <span class="label muted">Decision 04</span>
+      <h3>The proposal assumed one kind of PLP. There were two.</h3>
+      <p>The June proposal called for combo banners that cross-sell accessories and straps. In execution the rule had to split:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">PLP type</th><th scope="col">Banner content</th></tr></thead>
+          <tbody>
+            <tr><td>Bag collection</td><td>Accessories, straps &rarr; cross-sell</td></tr>
+            <tr><td>Ad landing page (bags + accessories together)</td><td>Promotion, or best sellers</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>On a mixed collection, a cross-sell banner surfaces products already visible a few rows down. The page we ended up testing &mdash; a Miffy-only collection &mdash; was exactly that case: bags and straps already sat side by side, so the cross-sell version would have been redundant. We used steady sellers from outside the collection instead.</p>
+      <p><strong>Consequence, stated plainly.</strong> Combo banners were the proposal&rsquo;s AOV lever, targeting +16&ndash;24%. On this page that lever couldn&rsquo;t operate, so the AOV track dropped out of scope. That&rsquo;s a scoping consequence, not a measurement failure &mdash; but it does mean the AOV hypothesis remains untested rather than disproven.</p>
+      <div class="cmp">
+        <figure class="cmp__side">
+          <p class="cmp__label label">Bag collection &mdash; cross-sell</p>
+          <div class="cmp__window">
+            <img src="../../assets/case/02-plp/04-cross-sell.jpg" alt="In-grid banner reading What&rsquo;s Your Miffy Mood?, Style it your way, beside a tote styled with a charm and a cord strap" width="1280" height="960" loading="lazy">
+          </div>
+          <figcaption class="label muted">Straps and charms, shown on the bag they attach to.</figcaption>
+        </figure>
+        <figure class="cmp__side">
+          <p class="cmp__label label">Ad landing page &mdash; promotion</p>
+          <div class="cmp__window">
+            <img src="../../assets/case/02-plp/04-promotion.jpg" alt="In-grid banner reading A New Wave for Summer, Meet the Nami Collection, beside a model carrying a Nami tote by the sea" width="1280" height="960" loading="lazy">
+          </div>
+          <figcaption class="label muted">A collection outside this page, not products already a few rows down.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <h2>4 &middot; What shipped</h2>
+    <p>Top banner &rarr; <strong>slogan + live bottle counter</strong> &rarr; product grid with simplified cards and PET badges &rarr; up to 3 contextual banners, one per 2&ndash;3 rows</p>
+    <p>Configured 50/50 in Shopify&rsquo;s built-in rollout feature. Assignment came out 49.8 : 50.2 across 70,716 visits &mdash; matching the configuration, which I checked before trusting anything else in the test.</p>
+
+    <h2 id="outcome">5 &middot; Outcome</h2>
+
+    <p><strong>Test window</strong> Jul 7 &ndash; Aug 18, 2026 (43 days). <strong>Decision market</strong> US mobile only &mdash; Canadian and desktop volume were too small to read (desktop: 7 sessions vs 11). 2,327 visitors saw the redesigned page.</p>
+
+    <h4>Primary metric: product click-through</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col"></th><th scope="col">Original</th><th scope="col">Redesign</th><th scope="col">Change</th></tr></thead>
+        <tbody>
+          <tr><td>PLP &rarr; PDP click-through (US)</td><td>9.05%</td><td>9.80%</td><td><strong>+8.2%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The June proposal predicted +5&ndash;15% relative. The result landed inside it &mdash; direction and magnitude both match.</p>
+    <p><strong>That match is not proof &mdash; and the reason is a decision I made, not a weak result.</strong> The 95% confidence interval is <strong>[&minus;18%, +35%]</strong>. Resolving a lift this size on a 9% baseline needs roughly 24,000 exposed visitors per arm. I had 2,327.</p>
+    <p><strong>The shortfall was not a traffic problem. It was an aim problem.</strong> The rollout split the whole store &mdash; 70,716 visits &mdash; but the redesign existed on <em>one</em> collection, so the overwhelming majority of the traffic being divided never met the thing being tested. Applied at the PLP template level instead, across every collection, the same change would have been in front of the 51% of paid entries that land on a collection page &mdash; and the same 43 days would have cleared the threshold. The instrument was right for the job; I aimed it at a fraction of the traffic it was dividing.</p>
+    <p>One more caveat I can&rsquo;t tidy away: the baseline halved between July and August for reasons I couldn&rsquo;t confirm, so the combined figure is indicative rather than precise. What I can say is that nothing points the other way &mdash; the redesign never trailed in either period, and the friction metrics move with it.</p>
+
+    <h4>Scroll: the result the data could settle</h4>
+    <p>Raw average scroll was effectively identical between versions &mdash; 37.74% vs 37.76%. That looks like nothing happened.</p>
+    <p><strong>But scroll depth is a percentage of page length, and the redesigned page is 9.5% longer</strong> with the counter and banners added. The same percentage of a longer page means more actual scrolling. Corrected for length, <strong>actual scroll distance rose 9.4%</strong>, at a 0.06% noise probability. Scroll accumulates on every session, not only on the ones that click, so it is the metric this exposure level had enough data to settle &mdash; and it settles in the same direction as the click-through result.</p>
+
+    <div class="cmp">
+      <figure class="cmp__side">
+        <p class="cmp__label label">Measured</p>
+        <div class="cmp__window">
+          <div class="cmp__scroll">
+            <img src="../../assets/case/02-plp/05.jpg" alt="Microsoft Clarity scroll heatmaps for the two versions side by side: the original collection page beside the redesigned one, which runs longer" width="652" height="4252" loading="lazy">
+          </div>
+        </div>
+        <figcaption class="label muted">Clarity scroll heatmaps, original beside redesign. Scroll the frame.</figcaption>
+      </figure>
+      <div class="cmp__side">
+        <p class="cmp__label label">Read two ways &mdash; try it</p>
+        <div class="demo" data-demo-scroll>
+          <p class="demo__caption">Same number, two conclusions. Toggle the view.</p>
+          <div class="demo__stage">
+            <div class="bars">
+              <div class="bars__pair">
+                <div class="bars__col">
+                  <span class="bars__track"><span class="bars__bar" data-bar-old style="height: 99.9%"></span></span>
+                  <span class="bars__value" data-val-old>37.74%</span>
+                  <span class="bars__name label muted">Original</span>
+                </div>
+                <div class="bars__col">
+                  <span class="bars__track"><span class="bars__bar bars__bar--new" data-bar-new style="height: 100%"></span></span>
+                  <span class="bars__value" data-val-new>37.76%</span>
+                  <span class="bars__name label muted">Redesign<br>page 9.5% longer</span>
+                </div>
+              </div>
+              <p class="bars__note" data-note>Scroll depth is a share of page length. Nothing appears to have changed.</p>
+            </div>
+          </div>
+          <div class="demo__controls">
+            <p class="demo__field">
+              <span class="label">View as</span>
+              <span class="demo__seg">
+                <label><input type="radio" name="scrollview" value="pct" checked><span>Percentage</span></label>
+                <label><input type="radio" name="scrollview" value="abs"><span>Actual distance</span></label>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>The same trap runs the other way in the PDP case: that page got about 4&times; shorter, which inflates scroll depth mechanically. In both cases the number is only readable once you ask what the page length was doing underneath it.</p>
+    <p>Against the goal of exposing the brand story passively, deeper exploration means more exposure. We gained reach at the back of the page without losing anything at the front.</p>
+
+    <h4>Did the brand layer work as designed?</h4>
+    <p><strong>Seen.</strong> The counter sits on the first screen, reaching effectively everyone who loaded the page. Badges reached 58% exposure at the first product row.</p>
+    <p><strong>Not clicked.</strong> No exit path was created, and no friction was added &mdash; dead clicks and quick bounce-backs were both lower on the redesign.</p>
+
+    <h4>The banners performed normally. I recommended scaling them back anyway.</h4>
+    <p>Banner click-through came in at <strong>1.6%</strong>, inside the 0.5&ndash;3% benchmark for informational banners with no offer behind them. That&rsquo;s normal performance, not a failure.</p>
+    <p>But in the same screen space, product cards generate <strong>six times</strong> the clicks (9.8% vs 1.6%). And designing, producing and maintaining a banner set per collection costs more than a contribution that size justifies.</p>
+    <p><strong>So the recommendation is cost-versus-return, not performance.</strong> Banners earn their space when there&rsquo;s an offer behind them &mdash; a promotion or a launch clears that benchmark comfortably. Tie them to campaigns rather than running them evergreen.</p>
+
+    <h3>What I can&rsquo;t claim</h3>
+    <p><strong>The headline goal is unproven</strong> &mdash; not disproven. At the exposure this test actually reached, no result in the realistic range could have come back significant. That is a verdict on how I scoped the test, not on the redesign.</p>
+    <p><strong>AOV was never tested.</strong> The lever that would have moved it wasn&rsquo;t deployed on this page.</p>
+    <p><strong>Two of the friction metrics sit within chance individually</strong> (dead clicks and quick bounce-backs, at 64% and 49% noise probability). I cite them only as a consistent direction &mdash; the redesign led in all four measured periods &mdash; not as findings.</p>
+    <p><strong>Canada is a blank.</strong> 55 vs 57 clickers in July, 9 vs 14 in August. Nothing can be read from that.</p>
+
+    <h2 id="next">6 &middot; What&rsquo;s next</h2>
+    <p><strong>Shipped.</strong> The redesign went into the main deploy. Hero copy came down from nine lines to three, restoring first-screen product visibility across every collection.</p>
+    <p><strong>A bug the test found that the redesign didn&rsquo;t cause.</strong> Banner 1 used an absolute URL that sent Canadian visitors to the US site. Nothing in the test was designed to catch it &mdash; it surfaced because measuring the page meant looking at it closely. Fixed.</p>
+    <p><strong>Banners applied selectively</strong> &mdash; ad landing pages, collections with 20+ products, seasonal campaigns.</p>
+    <p><strong>And the real conclusion: test the template, not the page.</strong> The split was store-wide and the change was not, so the test spent 70,716 assignments to observe 2,327 people. The fix isn&rsquo;t to abandon A/B testing here &mdash; it is to make the treatment as wide as the split. The same redesign rolled out across the PLP template puts it in front of every collection entry, which is where half our paid traffic lands, and the volume problem disappears without waiting for the store to grow.</p>
+    <p><strong>Where the volume still isn&rsquo;t there, say so before starting.</strong> A single collection or a seasonal drop can&rsquo;t carry a split test to significance, and running one anyway produces a number nobody can act on. Before/after over the full traffic answers those faster. The proposal had listed it as an option; what the test taught me was how to tell in advance which of the two a question needs.</p>
+    <p>The instrument was never the problem. Matching its scope to the question is the part I&rsquo;d do differently.</p>
+
+    <nav class="case-nav" aria-label="More work">
+      <a class="case-nav__back label" href="../../">&larr; All work</a>
+      <a class="case-nav__next" href="../preorder/">
+        <span class="case-nav__eyebrow label muted">Next case &mdash; 03</span>
+        <span class="case-nav__title">Pre-order Experience</span>
+        <span class="case-nav__sub">Designing an honest &ldquo;later&rdquo;</span>
+      </a>
+    </nav>
+  </div>
+</main>
+
+  <footer class="footer">
+    <div class="footer__links">
+      <a class="link-fade" href="mailto:hanbyoul.kim91@gmail.com">Email</a>
+      <a class="link-fade" href="https://www.linkedin.com/in/hanbyoul-kim/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="footer__copy">© Han Kim 2026 All Rights Reserved</p>
+  </footer>
+</div>
+</body>
+</html>

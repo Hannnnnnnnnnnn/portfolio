@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-order Experience &mdash; Hanbyoul Kim</title>
+<meta name="description" content="A self-initiated system that turned stockouts into pre-orders &mdash; and taught me that measurement is part of the design.">
+<link rel="canonical" href="https://hannnnnnnnnnnn.github.io/portfolio/product/preorder/">
+
+<!-- 공유 카드 — 링크를 붙여넣는 모든 곳에서 쓰인다 / Share card, used wherever the link is pasted -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Han Kim">
+<meta property="og:url" content="https://hannnnnnnnnnnn.github.io/portfolio/product/preorder/">
+<meta property="og:title" content="Pre-order Experience — Han Kim">
+<meta property="og:description" content="Turning stockouts into pre-orders without losing customer trust.">
+<meta property="og:image" content="https://hannnnnnnnnnnn.github.io/portfolio/assets/case/og/work-3.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Case 03: Pre-order Experience">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../../assets/img/favicon.png">
+<link rel="preload" href="../../assets/fonts/source-serif-pro-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/source-code-pro.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/case.css">
+<link rel="stylesheet" href="../../css/case-skin.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="../../js/main.js" defer></script>
+<script src="../../js/case.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="page">
+  <nav class="nav">
+    <a class="nav__home" href="../../">
+      <span class="nav__avatar"><video src="../../assets/video/avatar.mp4" data-autoplay loop muted playsinline preload="metadata" aria-hidden="true"></video></span>
+      <span class="nav__name">Han Kim</span>
+    </a>
+    <div class="nav__links t-mono">
+      <a class="link-fade" href="../../">Product</a>
+      <a class="link-fade" href="../../visual/">Visual</a>
+      <a class="link-fade" href="../../about/">About</a>
+    </div>
+  </nav>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<main id="main" class="section case">
+  <nav class="toc label" aria-label="On this page">
+    <ol>
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#decisions">Decisions</a>
+        <ol class="toc__nums">
+          <li><a class="toc__num" href="#decision-1">01</a></li>
+          <li><a class="toc__num" href="#decision-2">02</a></li>
+          <li><a class="toc__num" href="#decision-3">03</a></li>
+          <li><a class="toc__num" href="#decision-4">04</a></li>
+          <li><a class="toc__num" href="#decision-5">05</a></li>
+        </ol>
+      </li>
+      <li><a href="#outcome">Outcome</a></li>
+      <li><a href="#next">Next</a></li>
+    </ol>
+  </nav>
+  <div class="prose">
+
+    <p class="label muted">03 &middot; Pre-order Experience</p>
+    <h1>Designing an honest &ldquo;later&rdquo;</h1>
+    <p class="lead">Turning stockouts into pre-orders without losing customer trust.</p>
+
+    <ul class="tags label">
+      <li>Self-initiated</li>
+      <li>Systems Design</li>
+      <li>Interaction Design</li>
+      <li>UX Writing</li>
+      <li>Front-end Implementation</li>
+      <li>Lifecycle Comms</li>
+    </ul>
+
+    <p class="caveat">Shipped solo, from problem discovery to production. No clean before/after data &mdash; and that&rsquo;s part of the case.</p>
+
+    <dl class="meta">
+      <dt>Client</dt><dd>Atacz</dd>
+      <dt>Role</dt><dd>Sole designer and developer &mdash; problem discovery to production</dd>
+      <dt>Timeline</dt><dd>Feb &ndash; Mar 2026 &middot; audited and hardened Sept 2026</dd>
+      <dt>Tools</dt><dd>Liquid, Shopify Flow, Klaviyo, Shopify metafields</dd>
+    </dl>
+
+    <p class="hero-type">Pre-order today. Your order is reserved and will ship within 2&ndash;3 weeks.</p>
+
+    <h2 id="problem">1 &middot; The problem</h2>
+    <h3>Nobody assigned this.</h3>
+    <p>Months before I joined, a collection launch sold far beyond forecast and shipping slipped badly. I read the aftermath in my first weeks &mdash; support threads asking the same question in different words: <em>when is this actually arriving?</em></p>
+    <p>Store-wide reversals peaked at <strong>9.4% of gross sales in October 2025</strong>, the month after that launch, and the highest point in the twelve months I could see.</p>
+
+    <figure class="figure figure--diagram">
+      <div class="dist dist--months">
+        <div class="dist__row">
+          <span class="dist__name">Sep 2025</span>
+          <span class="dist__pct">4.7%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 50.4%"></span></span>
+        </div>
+        <div class="dist__row dist__row--lead">
+          <span class="dist__name">Oct 2025</span>
+          <span class="dist__pct">9.4%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 100.0%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Nov 2025</span>
+          <span class="dist__pct">6.3%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 67.2%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Dec 2025</span>
+          <span class="dist__pct">5.3%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 57.0%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Jan 2026</span>
+          <span class="dist__pct">7.7%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 82.4%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Feb 2026</span>
+          <span class="dist__pct">5.1%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 54.2%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Mar 2026</span>
+          <span class="dist__pct">5.0%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 53.4%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Apr 2026</span>
+          <span class="dist__pct">5.3%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 56.6%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">May 2026</span>
+          <span class="dist__pct">4.7%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 49.7%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Jun 2026</span>
+          <span class="dist__pct">3.8%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 41.1%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Jul 2026</span>
+          <span class="dist__pct">5.2%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 55.4%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Aug 2026</span>
+          <span class="dist__pct">4.1%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 43.4%"></span></span>
+        </div>
+      </div>
+      <figcaption class="label muted">Monthly sales reversal rate, September 2025 to August 2026. October is the month after the launch that started this, and the highest point in the window.</figcaption>
+    </figure>
+
+    <h3>The store had no way to say &ldquo;later.&rdquo;</h3>
+    <p>When inventory hit zero the page offered two states: buy now, or nothing. There was no third option for a product that genuinely existed, was genuinely coming, and that customers were willing to wait for.</p>
+    <p>Demand arriving during a stockout simply disappeared. Demand arriving <em>before</em> one turned into weeks of silence, which customers read as bad news.</p>
+
+    <h2 id="research">2 &middot; What I found</h2>
+    <p><strong>The capability was already there.</strong> Shopify variants carry an inventory policy that allows selling past zero. Turning it on lets an out-of-stock item be purchased &mdash; but the storefront doesn&rsquo;t change. The button still says Add to Cart, the page still behaves like a normal purchase, and the customer finds out about the wait after paying, if at all.</p>
+    <p>The gap wasn&rsquo;t a missing feature. <strong>The backend already knew this was a pre-order. The front-end never said so.</strong></p>
+    <p>Which meant this could be built without an app &mdash; no subscription, no separate checkout, no data leaving Shopify. Just the theme reading state that already existed.</p>
+
+    <h2 id="decisions">3 &middot; Decisions</h2>
+
+    <section class="decision" id="decision-1">
+      <span class="label muted">Decision 01</span>
+      <h3>Deciding what a promise is made of</h3>
+      <p>Two conditions have to agree before the page will promise anything:</p>
+      <ol>
+        <li><strong>Its inventory policy allows selling past zero.</strong> Shopify has to accept the order at all.</li>
+        <li><strong>This market, specifically, is out of stock.</strong> There is nothing to promise if it can ship today &mdash; and Canada and the US answer that differently.</li>
+      </ol>
+      <p><strong>It&rsquo;s per variant, not per product.</strong> A bag might be pre-orderable in one colourway and simply sold out in another. Promising at the product level would have made the page lie about half its own options.</p>
+      <p><strong>It&rsquo;s per market.</strong> The same variant can be a pre-order in Canada while it ships today in the US, because the two markets are served by different locations holding different stock. A delivery promise that ignores where the customer is standing isn&rsquo;t a promise; it&rsquo;s an average.</p>
+      <p><strong>Which is why the second condition needs a metafield.</strong> Liquid is handed one inventory number for the whole store, so the page cannot tell whether <em>this</em> market is out &mdash; the only number within its reach is the wrong one. So the answer is worked out where the per-location stock is visible, by a workflow that recomputes it on every inventory change and writes it per variant, per market. The metafield isn&rsquo;t a note somebody leaves for the page. It is the market-aware stock level the page is otherwise blind to.</p>
+      <p><strong>Selling past zero stays a decision, though.</strong> It is a per-variant setting someone turns on deliberately, product by product, and nothing is promised without it. The simpler rule &mdash; <em>out of stock means pre-order</em> &mdash; needs no configuration at all, and promises things nobody agreed to ship. Making someone say yes per item is slower to operate and correct.</p>
+      <p><strong>Resulting states.</strong> Out of stock here, selling past zero &rarr; <strong>Pre-order</strong>. In stock here &rarr; <strong>Add to Cart</strong>. Out of stock with selling past zero off &rarr; <strong>Sold out</strong>, disabled.</p>
+      <div class="demo" data-demo-resolver>
+        <span class="demo__label label">Try it</span>
+        <p class="demo__caption">Two conditions decide what this button can promise. Change them &mdash; and change the market, because the same variant resolves differently in each one.</p>
+        <div class="demo__stage">
+          <div class="resolver">
+            <button class="resolver__cta" type="button" data-cta>Pre-order now</button>
+            <p class="resolver__copy" data-copy>Pre-order today. Your order is reserved and will ship within 2&ndash;3 weeks.</p>
+            <p class="resolver__why" data-why></p>
+          </div>
+        </div>
+        <div class="demo__controls">
+          <p class="demo__field">
+            <span class="label">Sell when out of stock</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="policy" value="deny"><span>Off</span></label>
+              <label><input type="radio" name="policy" value="continue" checked><span>On</span></label>
+            </span>
+          </p>
+          <p class="demo__field">
+            <span class="label">Market</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="market" value="CA" checked><span>CA</span></label>
+              <label><input type="radio" name="market" value="US"><span>US</span></label>
+            </span>
+          </p>
+          <p class="demo__field">
+            <span class="label">Stock</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="stock" value="0" checked><span>0</span></label>
+              <label><input type="radio" name="stock" value="3"><span>3</span></label>
+            </span>
+          </p>
+          <p class="demo__field">
+            <span class="label">Pre-order in Canada</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="preorder_ca" value="true" checked><span>True</span></label>
+              <label><input type="radio" name="preorder_ca" value="false"><span>False</span></label>
+            </span>
+          </p>
+          <p class="demo__field">
+            <span class="label">Pre-order in US</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="preorder_us" value="true"><span>True</span></label>
+              <label><input type="radio" name="preorder_us" value="false" checked><span>False</span></label>
+            </span>
+          </p>
+        </div>
+        <details>
+          <summary class="label">The conditional in Liquid, simplified</summary>
+<pre><code>{%- liquid
+  # Market decides which per-market stock flag to read
+  assign market_code = localization.market.handle
+  assign key = 'preorder_' | append: market_code
+  assign preorder_here = variant.metafields.custom[key].value
+
+  if variant.inventory_quantity &gt; 0
+    echo 'products.product.add_to_cart' | t
+  elsif variant.inventory_policy == 'continue' and preorder_here == true
+    echo 'products.product.preorder' | t
+  else
+    echo 'products.product.sold_out' | t
+  endif
+-%}</code></pre>
+        </details>
+      </div>
+    </section>
+
+    <section class="decision" id="decision-2">
+      <span class="label muted">Decision 02</span>
+      <h3>Changing the button, not adding a note</h3>
+      <p><strong>The smaller change was available:</strong> leave the CTA as Add to Cart and put a line of explanation underneath.</p>
+      <p><strong>Why I didn&rsquo;t.</strong> The button is where the commitment happens. Someone who taps <em>Add to Cart</em> has understood they&rsquo;re buying something. Someone who taps <strong>Pre-order</strong> has understood they&rsquo;re agreeing to wait. Explanatory text below the button arrives after the decision it&rsquo;s meant to inform &mdash; and on mobile it&rsquo;s often below the fold entirely.</p>
+      <p>Changing the label changes the contract before the click, not after it. If the wait was going to become a complaint, this is where it gets prevented.</p>
+      <p><strong>Trade-off.</strong> A word other than &ldquo;Add to Cart&rdquo; costs some conversions; some people stop at the change. That&rsquo;s the intended cost. A purchase that happens because someone didn&rsquo;t realise they were waiting three weeks isn&rsquo;t a purchase worth keeping &mdash; it&rsquo;s a refund with a delay attached.</p>
+    </section>
+
+    <section class="decision" id="decision-3">
+      <span class="label muted">Decision 03</span>
+      <h3>Three jobs, one line</h3>
+      <p>The line breaks into three clauses, and each one does a single job: name the action, remove the fear, set the expectation.</p>
+      <p><strong>&ldquo;Reserved&rdquo; is the word doing the most work.</strong> It reframes the wait as something the customer has <em>secured</em> rather than something they&rsquo;re <em>missing</em>. The item isn&rsquo;t unavailable to them; it&rsquo;s held for them.</p>
+      <p><strong>A range, not a date.</strong> A specific date reads as more reassuring, and it would have been a promise made on top of a supply chain that had just proven unpredictable. A date that slips costs more trust than a range ever earns. So: a conservative window, deliberately wide enough to absorb ordinary variance &mdash; under-promising in the one place where over-promising had already been expensive.</p>
+      <p><strong>Trade-off.</strong> It&rsquo;s the same range on every product, regardless of what we actually know about that item. That&rsquo;s the honest limit of a static string, and it&rsquo;s the first thing I&rsquo;d replace.</p>
+      <figure class="figure figure--diagram">
+        <div class="anno">
+          <p class="anno__line">
+            <span class="anno__seg"><span class="anno__text">Pre-order today.</span><span class="anno__job label">Name the action</span></span>
+            <span class="anno__seg"><span class="anno__text">Your order is reserved</span><span class="anno__job label">Remove the fear</span></span>
+            <span class="anno__seg"><span class="anno__text">and will ship within 2&ndash;3 weeks.</span><span class="anno__job label">Set the expectation</span></span>
+          </p>
+        </div>
+        <figcaption class="label muted">The line as shipped, split into its three clauses. The same string runs on every pre-order product, which is its honest limit.</figcaption>
+      </figure>
+    </section>
+
+    <section class="decision" id="decision-4">
+      <span class="label muted">Decision 04</span>
+      <h3>Saying it again, separately</h3>
+      <p>Shopify&rsquo;s own order confirmation fires automatically, so the pre-order email has one job: state again, in its own message, that this item is a pre-order and that it ships when stock arrives. It sends immediately after checkout, while the decision is still fresh. Silence is what turns a wait into a complaint, and the first silence starts the moment the confirmation arrives.</p>
+      <p><strong>How it fires.</strong> The theme writes a hidden line item property when a pre-order is added to cart. Shopify Flow reads that property, tags the order, and hands off to Klaviyo, which sends the email.</p>
+      <p><strong>Four systems, one signal</strong> &mdash; and that signal is the thing I didn&rsquo;t make durable. More on that below.</p>
+      <p><strong>One implementation note.</strong> The property is rendered conditionally rather than always-rendered-and-disabled, because <code>disabled</code> inputs still leak into the theme&rsquo;s JavaScript form collection. I found that the hard way, and left the reasoning in a comment for whoever reads it next.</p>
+      <figure class="figure figure--diagram">
+        <div class="mfd mfd--chain">
+          <div class="mfd__col">
+            <p class="mfd__head label">Theme</p>
+            <ul class="mfd__list">
+              <li><code>properties[_pre_order]</code><span class="mfd__type">Hidden line item property</span></li>
+            </ul>
+            <p class="mfd__was">Rendered only when the variant resolves to pre-order, not rendered-and-disabled.</p>
+          </div>
+          <div class="mfd__col">
+            <p class="mfd__head label">Checkout</p>
+            <p class="mfd__template">The property rides along on the line item</p>
+            <p class="mfd__was">Nothing is added at checkout; the signal is whatever the cart carried in.</p>
+          </div>
+          <div class="mfd__col">
+            <p class="mfd__head label">Shopify Flow</p>
+            <ul class="mfd__list">
+              <li><code>Pre-order</code><span class="mfd__type">Order tag</span></li>
+            </ul>
+            <p class="mfd__was">Reads the property on order creation, re-reads the live metafield for the market the order ships to, and tags only when both agree. See Decision 05.</p>
+          </div>
+          <div class="mfd__col mfd__col--spine">
+            <p class="mfd__head label">Klaviyo</p>
+            <p class="mfd__template">Sends the pre-order confirmation</p>
+            <p class="mfd__was">Immediately after checkout, while the decision is still fresh.</p>
+          </div>
+        </div>
+        <p class="mfd__note">As shipped, each hand-off read the one before it and nothing wrote the fact down anywhere queryable &mdash; which is why section 4 cannot say how much this changed. The order tag closed that gap later. Decision 05 is what it took to make the tag worth trusting.</p>
+        <figcaption class="label muted">The chain that fires the email.</figcaption>
+      </figure>
+    </section>
+
+    <section class="decision" id="decision-5">
+      <span class="label muted">Decision 05</span>
+      <h3>Deciding when a promise expires</h3>
+
+      <p>Six months after launch, an order came through tagged <strong>Pre-order</strong> for an item that was in stock and shipped the same day. The customer was told to wait for something already on its way to them.</p>
+
+      <p><strong>Where it came from.</strong> The theme writes the hidden property at add-to-cart, and that property never changes afterwards. It is a snapshot of what the customer saw in that moment. This cart had been sitting in the Shop app for thirteen days, from before the variant stopped being a pre-order. The theme does carry a cleanup script that strips stale properties &mdash; but it only runs when the theme renders, and a Shop app checkout never loads the theme.</p>
+
+      <p><strong>What I decided.</strong> The property says what the customer was shown. The metafield says whether the item is a pre-order now. The tag requires both. That is Decision 01&rsquo;s rule asked a second time, at the moment the promise turns into a commitment.</p>
+
+      <p><strong>Trade-off.</strong> Re-checking live state can disagree with the page the customer actually saw. I took the stricter side deliberately: someone shown &ldquo;Pre-order&rdquo; for an item that turns out to be in stock gets it early, and early is a good surprise. The other direction is the one that costs trust.</p>
+
+      <p><strong>Then my own gate produced a new false positive.</strong> I wrote it to accept either market&rsquo;s flag &mdash; the property is already market-filtered, I reasoned, so checking either one is enough. An order placed on the US site and shipped to Canada showed that was wrong. The US flag was true, so the property was attached, the gate agreed with it, and the order then shipped from Canadian stock within days. The property is filtered by the market at <em>add-to-cart</em> time; fulfilment is decided by where the order ships. Those are two different markets, and Decision 01 had only ever named one of them. The fix is one line &mdash; let the shipping country choose which flag to read.</p>
+
+      <p><strong>The shape of the mistake is the part worth keeping.</strong> Adding a condition to a gate only tightens it when the conditions are <code>AND</code>ed. Mine were <code>OR</code>ed, so &ldquo;check both flags to be safe&rdquo; made the gate looser than checking one. I did not find it by reading the code. The reasoning behind it was written down at the time and reading it back revealed nothing. I found it by deliberately ordering the awkward combination.</p>
+
+      <figure class="figure figure--diagram">
+        <div class="flows">
+          <div class="flows__item">
+            <p class="flows__name label">Flow &middot; <code>Pre-order setting for CA and US</code></p>
+            <div class="mfd">
+              <div class="mfd__col">
+                <p class="mfd__head label">Trigger</p>
+                <p class="mfd__template">Variant inventory quantity changed</p>
+                <p class="mfd__was">Every stock movement, in either market.</p>
+              </div>
+              <div class="mfd__col">
+                <p class="mfd__head label">Run code</p>
+                <p class="mfd__template">Reads stock per location, one market at a time</p>
+                <p class="mfd__was">Out of stock here with selling past zero on &rarr; pre-order. Out of stock with it off &rarr; hide the variant in that market.</p>
+              </div>
+              <div class="mfd__col">
+                <p class="mfd__head label">Writes</p>
+                <ul class="mfd__list">
+                  <li><code>custom.preorder_ca</code> / <code>_us</code><span class="mfd__type">Per variant, per market</span></li>
+                  <li><code>custom.hide_variant_ca</code> / <code>_us</code><span class="mfd__type">Per variant, per market</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p class="flows__link">The first workflow is the only thing that knows the per-market stock. The second is the only thing that reads it back &mdash; and until Decision 05 it never did.</p>
+          <div class="flows__item">
+            <p class="flows__name label">Flow &middot; <code>pre-order</code></p>
+            <div class="mfd">
+              <div class="mfd__col">
+                <p class="mfd__head label">Trigger</p>
+                <p class="mfd__template">Order created</p>
+                <p class="mfd__was">Carries the line item property the theme wrote at add-to-cart.</p>
+              </div>
+              <div class="mfd__col mfd__col--spine">
+                <p class="mfd__head label">Run code &mdash; the gate</p>
+                <ul class="mfd__list">
+                  <li>Property present<span class="mfd__type">What the customer was shown</span></li>
+                  <li><strong>and</strong> the live flag for the <strong>shipping</strong> market<span class="mfd__type">Whether it is a pre-order now</span></li>
+                </ul>
+                <p class="mfd__was">Both, or no tag. Written as <code>or</code> the first time, which made it looser rather than stricter.</p>
+              </div>
+              <div class="mfd__col">
+                <p class="mfd__head label">Actions</p>
+                <ul class="mfd__list">
+                  <li><code>Pre-order</code><span class="mfd__type">Order tag</span></li>
+                  <li>Klaviyo event<span class="mfd__type">Sends the confirmation</span></li>
+                </ul>
+                <p class="mfd__was">The tag is first so a failed send is still findable by tag.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="label muted">The two workflows behind the feature: one keeps the per-market flag current, the other spends it at order time. Neither is visible to the Admin API, so both were read out of the Flow editor.</figcaption>
+      </figure>
+
+      <details>
+        <summary class="label">The gate in the Flow&rsquo;s Run Code, simplified</summary>
+<pre><code>// Where the order ships decides which market's flag to read.
+// Computed once per order, not inside the line item loop.
+const ship = order.shippingAddress || {};
+const shipCountry = ship.countryCodeV2 || ship.country || '';
+const marketKey = shipCountry === 'CA' ? 'preorder_ca' : 'preorder_us';
+
+const isPreOrder = lineItems.some(function (li) {
+  if (!hasPreOrderProperty(li)) return false;           // what the customer saw
+  return li.variant.metafields.some(function (mf) {     // what is true now
+    return mf.key === marketKey &amp;&amp; mf.value === 'true';
+  });
+});</code></pre>
+      </details>
+
+      <p><strong>How I know it works now.</strong> Five test orders covering both markets and both cross-market directions, plus one real customer order carrying no property at all as the negative control.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Scenario</th><th scope="col">Property</th><th scope="col">Flag the gate read</th><th scope="col">Tag</th><th scope="col">Verdict</th></tr></thead>
+          <tbody>
+            <tr><td>Real customer, ordinary items</td><td>none</td><td>&mdash;</td><td>none</td><td>Negative control</td></tr>
+            <tr><td>CA site &rarr; Canada</td><td>present</td><td><code>preorder_ca</code> true</td><td>tagged</td><td>Correct</td></tr>
+            <tr><td>US site &rarr; United States</td><td>present</td><td><code>preorder_us</code> true</td><td>tagged</td><td>Correct</td></tr>
+            <tr><td>US site &rarr; Canada, before the fix</td><td>present</td><td>either flag</td><td>tagged</td><td>False positive</td></tr>
+            <tr><td>US site &rarr; Canada, after the fix</td><td>present</td><td><code>preorder_ca</code> false</td><td>none</td><td>Fixed</td></tr>
+            <tr><td>US site &rarr; United States, after the fix</td><td>present</td><td><code>preorder_us</code> true</td><td>tagged</td><td>Still passes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The last row is the one that mattered. A gate that filters correctly and a gate that blocks everything look identical from the negative side &mdash; &ldquo;no tag&rdquo; proves nothing on its own. Confirming that an ordinary US order still tags is what separated them.</p>
+
+    </section>
+
+    <h2 id="outcome">4 &middot; What I can and can&rsquo;t claim</h2>
+    <p><strong>What I can say.</strong> After launch, the &ldquo;where is my order&rdquo; thread that prompted this work stopped being a recurring conversation. Pre-orders became something the store could sell rather than something it had to apologise for.</p>
+    <p><strong>What I can&rsquo;t say is how much.</strong></p>
+    <p>The flow shipped without a reliable way to identify a pre-order at the order level. The storefront logic and the email trigger both worked, so I stopped there. Months later, when I went back to ask what this had actually changed, I couldn&rsquo;t separate pre-order orders from the rest. Store-wide reversal rates did fall across the period, but that data covers a window including a holiday season and pre-orders were a small share of volume. Attributing that movement to this feature would be a claim I can&rsquo;t support, so I don&rsquo;t make it.</p>
+    <p><strong>Why it happened.</strong> This was one of the first features I built directly in the theme rather than specified for someone else, and I was measuring success by whether it worked. It didn&rsquo;t occur to me that <em>&ldquo;did this work?&rdquo;</em> is a question you have to build the answer to in advance &mdash; that instrumentation is part of the design, not a reporting task that comes later.</p>
+    <p><strong>What changed because of it.</strong> Order-level identification exists now, added months after launch &mdash; and Decision 05 is what happened when I finally checked whether it was correct. It wasn&rsquo;t. More usefully, the habit changed too: on the PLP redesign that followed, success criteria and measurement method were written into the proposal before anything shipped, and the report was judged against them rather than against whatever looked good afterwards.</p>
+
+    <p><strong>Still open.</strong> Two orders from August carry the tag with no property at all. The flow as written cannot produce that, so either it was edited after those orders or something else also applies the tag. Until I know which, the gate can be bypassed without anyone noticing. I would rather write that down here than describe the fix as finished.</p>
+
+    <h2 id="next">5 &middot; What&rsquo;s next</h2>
+    <p><strong>Per-product delivery windows.</strong> Replace the static 2&ndash;3 weeks with a metafield holding each item&rsquo;s expected arrival, so the page says what we actually know instead of the same hedge everywhere.</p>
+    <p><strong>Tell them when it slips.</strong> A delayed restock currently reaches nobody until they ask. Once the date is data, the notification should follow from it.</p>
+    <p><strong>Mixed carts.</strong> A cart holding one in-stock item and one pre-order has no stated behaviour &mdash; split the shipment, or hold everything? Either is defensible. Neither is decided, and that ambiguity currently belongs to the customer.</p>
+    <p><strong>Expire the snapshot outside the theme.</strong> The cleanup script that strips stale properties only runs when the theme renders. The Shop app, POS and any headless path never load it, so a stale property can survive there indefinitely. Decision 05 catches the consequence at the order. Nothing yet clears the cause.</p>
+    <p><strong>Consolidate the two code paths.</strong> An earlier per-product template approach still exists alongside the metafield logic. One implementation, one source of truth.</p>
+
+    <nav class="case-nav" aria-label="More work">
+      <a class="case-nav__back label" href="../../">&larr; All work</a>
+      <a class="case-nav__next" href="../pdp/">
+        <span class="case-nav__eyebrow label muted">Next case &mdash; 01</span>
+        <span class="case-nav__title">PDP Revamp</span>
+        <span class="case-nav__sub">Rebuilding a product page around purchase confidence</span>
+      </a>
+    </nav>
+  </div>
+</main>
+
+  <footer class="footer">
+    <div class="footer__links">
+      <a class="link-fade" href="mailto:hanbyoul.kim91@gmail.com">Email</a>
+      <a class="link-fade" href="https://www.linkedin.com/in/hanbyoul-kim/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="footer__copy">© Han Kim 2026 All Rights Reserved</p>
+  </footer>
+</div>
+</body>
+</html>

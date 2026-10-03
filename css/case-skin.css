@@ -1,0 +1,43 @@
+/* Visual-site skin for the ported case studies (product/*).
+   case.css is the original, unchanged; this file only re-types it in the visual site's language:
+   Source Serif for text, Source Code Pro for labels, black ink, no uppercase or heavy grotesk.
+   Store components inside .demo keep Poppins (they reproduce the live theme). */
+
+:root { --fg: var(--ink); }
+
+main.case { font-family: var(--serif); font-size: 17px; line-height: 1.55; }
+@media (min-width: 800px) { main.case { font-size: 18px; } }
+
+/* ---- labels: mono, sentence case (t-label without the underline) ---- */
+main.case :is(.label, .prose h2, .meta dt, .table-wrap thead th, .mfd__type) {
+  font-family: var(--mono); font-weight: 500; font-size: var(--label);
+  text-transform: none; letter-spacing: -0.3px;
+}
+main.case .toc__num { font-size: calc(var(--label) - 1px); }
+main.case code { font-family: var(--mono); }
+
+/* ---- display type: serif regular, as .t-display / .t-title ---- */
+main.case .prose h1 {
+  font-weight: 400; text-transform: none;
+  font-size: var(--display); line-height: var(--display-lh); letter-spacing: -2.25px;
+}
+main.case :is(.prose h3, .hero-type, .case-nav__title) {
+  font-weight: 400; text-transform: none;
+  font-size: calc(var(--title) * 1.4); line-height: 1.2; letter-spacing: -1.08px;
+}
+main.case .metric-value { font-weight: 400; letter-spacing: -2.25px; }
+main.case .lead { font-size: var(--title); line-height: var(--title-lh); letter-spacing: -1.08px; }
+
+/* ---- the visual nav is fixed from 800px: clear it ---- */
+@media (min-width: 800px) {
+  main.case > .prose { padding-top: 200px; }
+  main.case .prose h2[id], main.case .decision[id] { scroll-margin-top: 140px; }
+}
+@media (min-width: 1200px) {
+  main.case .toc { top: 140px; padding-top: 0; }  /* hidden until the body is reached (.is-live), so no hero alignment needed */
+}
+/* progress bar must sit above the fixed nav (z-index 9999) */
+.progress { z-index: 10000; }
+
+/* tags pills sit flush with the text (the original's .prose ul padding overrode .tags { padding: 0 }) */
+main.case .prose .tags { padding-left: 0; }

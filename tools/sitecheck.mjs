@@ -5,7 +5,10 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname);
-const pages = ['index.html', ...readdirSync(ROOT, { withFileTypes: true }).filter(d => d.isDirectory() && !d.name.startsWith('.') && d.name !== 'tools' && existsSync(join(ROOT, d.name, 'index.html'))).map(d => `${d.name}/index.html`)];
+// every */index.html at any depth, skipping dot-dirs, tools/ and node_modules
+const walk = d => readdirSync(join(ROOT, d), { withFileTypes: true }).filter(e => e.isDirectory() && !e.name.startsWith('.') && !['tools', 'node_modules'].includes(e.name))
+  .flatMap(e => { const sub = d ? `${d}/${e.name}` : e.name; return [...(existsSync(join(ROOT, sub, 'index.html')) ? [`${sub}/index.html`] : []), ...walk(sub)]; });
+const pages = ['index.html', ...walk('')];
 let problems = 0; const say = (ok, msg) => { if (!ok) problems++; console.log(`${ok ? '  ok ' : '  !! '} ${msg}`); };
 
 // 1. every local href/src/srcset resolves to a file
