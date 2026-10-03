@@ -61,7 +61,7 @@ Merge both About texts (Han picks what stays), link `Hanbyoul-Kim-Resume.pdf`.
 - Link/asset check across all pages (page HTML, `srcset`, CSS `url()`, JS) — including a self-test with one deliberately broken URL.
 - Text diff of the cases (phase 2 check, re-run).
 - Real screens locally at 4 widths; motion and demos by hand.
-- Han renames the repo → merge `merge` into `main` → confirm the Pages build (`pages/builds`), byte-compare a live file with local, check a new-only marker.
+- Merge `merge` into `main` → confirm the Pages build (`pages/builds`), byte-compare a live file with local, check a new-only marker.
 
 ## Status
 
