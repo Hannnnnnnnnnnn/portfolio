@@ -1,0 +1,224 @@
+# Han Kim (Hanbyoul Kim) — Product Designer, Vancouver BC
+
+> Product designer at Atacz, a small upcycled bag brand, where he owns the
+> product experience end to end: research, interface, Liquid front-end, and
+> the measurement afterwards. Three case studies, all shipped on the same
+> live Shopify store, plus earlier visual work: brand campaigns, event
+> identity, game interface, packaging, and generative AI.
+
+Site: https://hannnnnnnnnnnn.github.io/portfolio/
+
+## How to read this portfolio
+
+Each case reports what the data could and could not prove, in its own
+section. Metrics that turned out to be confounded are named as confounded
+rather than dropped quietly; one case ends by explaining why its own impact
+is unmeasurable. If you are assessing him, the "What I can't claim" sections
+are the ones worth reading.
+
+## Case studies
+
+### 01 — PDP Revamp
+https://hannnnnnnnnnnn.github.io/portfolio/product/pdp/
+Mar–May 2026 · sole designer: research, UI, Liquid implementation, measurement
+
+Atacz product pages drew steady search demand over four months but
+converted at 1.0–1.7% click-through, about half the ecommerce benchmark,
+with 74% of clicks landing on mobile from a desktop-first page. He rebuilt
+the page around what earned its space.
+
+Decisions worth reading:
+- Removed the review section, then shipped a conditional version instead.
+  Most products had no reviews, so the same template rendered as a healthy
+  block on some pages and an empty shell on others. Marketing pushed back
+  that removing reviews removed trust. His counter: displaying the absence
+  of proof is not the same as removing proof. He also writes that the
+  conditional version is what should have shipped first.
+- Cut the page to roughly a quarter of its length, keeping the collapsed
+  description server-rendered so crawlers still saw it, verified in Search
+  Console before shipping.
+- Put "Pairs Well With" directly under Add to Cart — the placement is the
+  argument — with add-to-cart on each pairing card, extended to every PDP.
+  This forced a migration from one theme template per product to a single
+  metafield-driven template.
+- Badges designed so they cannot become lies: low stock set at 2 units
+  because that is where "low" is simply a fact, and a New badge that expires
+  itself after three months via Shopify Flow.
+
+Results (two five-week windows, pre/post, not a controlled experiment):
+mobile search CTR 7.47% → 9.97%; dead click rate 1.5% → 0.7%; overall
+conversion 0.284% → 0.349%. The conversion gain came from completion, not
+volume — cart sessions finishing checkout went 20.8% → 25.3%.
+
+What he refuses to claim: add-to-cart. The same metric reads +26%, +7%, or
+−44% depending on the window, because product drops drive it far harder than
+page design does, so he attributes no movement to the redesign in either
+direction. AOV fell 9% while orders rose 9%; the cross-sell explanation
+stays a hypothesis because he could not confirm it at line-item level. And
+scroll depth rose 51% on a page that had become about 4× shorter — he states
+the pair rather than the number alone. He also notes he ran no formal
+usability sessions on this project.
+
+### 02 — PLP Revamp
+https://hannnnnnnnnnnn.github.io/portfolio/product/plp/
+Jun–Aug 2026 · sole designer: research, UI, Liquid, test design and analysis
+
+51% of paid-social sessions land directly on a collection page and only 20%
+on the homepage, so for most paid visitors a product grid was doing the
+homepage's job. Before proposing anything he checked whether the PLP was the
+conversion bottleneck — behaviour was near-identical across channels while
+conversion differed 9×, so the gap sat downstream. The proposal ruled
+conversion out of scope in writing, which is what stopped him promoting a
+convenient metric later.
+
+Decisions worth reading:
+- Turned off quick view before adding anything. It was desktop-only not by
+  intent but by CSS — both triggers sat behind :hover inside an
+  @media (hover: hover) block, so on a 97%-mobile store neither could ever
+  appear. The top-right it held stays empty; the PET badge took the free
+  top-left. He also re-cut the card below the photo: vendor and star rating
+  off (one brand on the whole store, and most products have no reviews, so
+  ratings moved to the product page), title 15px to 12px, price 18px to
+  14px, swatches out of the vendor's row to under the price. The filter
+  shrank rather than went, because 60 products is not a catalogue people
+  need to filter.
+- One metafield rendering at two scales: a per-card bottle badge and a live
+  store-wide counter derived from orders, so the individual and cumulative
+  claims cannot contradict each other and nobody has to maintain the total.
+- Made the entire brand layer deliberately unclickable. A story link at the
+  decision moment is a well-designed exit, so he refused the obvious
+  follow-up sustainability page.
+- The proposal's combo banners could not run on the page that got tested (a
+  single-brand collection where bags and straps already sat together), so
+  the AOV lever — the proposal's +16–24% target — dropped out of scope. He
+  records it as untested rather than disproven.
+
+Results (43-day split test, 70,716 visits assigned, US mobile only):
+product click-through 9.05% → 9.80%, inside the +5–15% the proposal
+predicted. Actual scroll distance +9.4% at 0.06% noise probability. Badges
+reached 58% exposure at the first product row; dead clicks and quick
+bounce-backs both fell.
+
+What he refuses to claim: the headline result. The 95% confidence interval
+was [−18%, +35%], and he traces that to his own scoping rather than to a
+weak effect — the rollout split 70,716 store-wide visits while the redesign
+existed on one collection, so only 2,327 visitors ever reached it, against
+the ~24,000 per arm the comparison needed. Two friction metrics sit within
+chance individually and are cited only as direction. Canada is called a
+blank. The scroll result only exists after correcting for the redesigned
+page being 9.5% longer — raw scroll looked flat at 37.74% vs 37.76%. He also
+recommended scaling back the banners despite their performance being normal,
+on cost-versus-return. His stated conclusion is that the A/B test was the
+right instrument aimed too narrowly: roll the treatment out at the PLP
+template level so it is as wide as the split, and reserve before/after for
+questions whose traffic genuinely cannot carry a split test.
+
+### 03 — Pre-order Experience
+https://hannnnnnnnnnnn.github.io/portfolio/product/preorder/
+Feb–Mar 2026, audited and hardened Sept 2026 · self-initiated, sole
+designer and developer
+
+Nobody assigned this. A launch before he joined had oversold and shipped
+late; store-wide sales reversals peaked at 9.4% of gross sales that October.
+The store had no way to say "later" — inventory at zero offered buy now or
+nothing. Shopify could already sell past zero, but the storefront never said
+so, meaning the customer learned about the wait after paying. He built the
+pre-order state into the existing theme: no app, no separate checkout, no
+data leaving Shopify.
+
+Decisions worth reading:
+- Two conditions must agree before the page promises anything, resolved
+  per variant and per market. Liquid is handed one inventory number for the
+  whole store, so the page cannot tell whether a given market is out; the
+  answer is computed where per-location stock is visible and written to a
+  per-variant, per-market metafield. Selling past zero stays a deliberate
+  per-variant setting — the simpler rule, out of stock means pre-order,
+  needs no configuration and also promises things nobody agreed to ship.
+- Changed the button label rather than adding a note under it, accepting
+  that some conversions stop at the change: a purchase made without
+  realising there is a three-week wait is a refund with a delay attached.
+- A range, not a date, on a supply chain that had just proven unpredictable.
+- A confirmation email fired through a hidden line item property → Shopify
+  Flow tag → Klaviyo.
+- Deciding when a promise expires. The property is a snapshot of what the
+  customer was shown and never changes; the order tag now requires the live
+  metafield to agree with it. His own first version of that gate OR'd the
+  two markets' flags, which made it looser rather than stricter — adding a
+  condition only tightens a gate when the conditions are ANDed.
+
+What he cannot claim, and why it is the point of the case: the flow shipped
+without order-level identification of pre-orders, so months later he could
+not separate pre-order orders from the rest and cannot say how much anything
+changed. Reversal rates fell across the period; he declines to attribute it.
+His stated diagnosis is that he was measuring success by whether the feature
+worked, and that instrumentation is part of the design rather than a
+reporting task that comes later. Order-level identification exists now — and
+when he finally checked whether it was correct, it was not: one order had
+been tagged for an item already shipping, and his fix for it introduced a
+second case of its own. Two August orders carry the tag with no property at
+all, which the flow as written cannot produce; he leaves that written down
+as open rather than describing the fix as finished. The habit carried into
+the PLP project, where success criteria and method were written into the
+proposal before anything shipped.
+
+## Visual work
+
+Earlier work as a graphic designer and UX/UI designer. These pages are
+image-led; each line below is what its page states.
+Listed at: https://hannnnnnnnnnnn.github.io/portfolio/visual/
+
+- KITS Black Friday 2025 Campaign — https://hannnnnnnnnnnn.github.io/portfolio/kits-bf/
+  Graphic designer at KITS Eyecare. Visual direction for the Black Friday &
+  Cyber Monday campaign, built on a high-contrast "Cyberpunk" motion concept
+  across website banners, emails and ads. The page ties it to a record
+  $5.8M week and over 16,900 glasses orders.
+- 2024 KITS Investor Day — https://hannnnnnnnnnnn.github.io/portfolio/kits-invest/
+  Event identity for KITS' annual stakeholder event: logo, presentation deck,
+  large-format signage and attendee credentials, from concept to print.
+- God of War: Console-to-Mobile Interface System — https://hannnnnnnnnnnn.github.io/portfolio/god-of-war/
+  Self-directed, July 2022 (2 weeks). Rebuilt the armour and inventory system
+  for mobile, treating the port as an interface problem rather than a
+  resizing exercise.
+- Generative AI for Commercial Campaigns — https://hannnnnnnnnnnn.github.io/portfolio/ai/
+  A virtual brand ambassador (persona, consistency control, product
+  application, image-to-video with Veo 3.1) and AI visuals for KITS colour
+  contact lens paid ads.
+- Packaging, 3D, and Others — https://hannnnnnnnnnnn.github.io/portfolio/others/
+  AI banner video for Black Friday; packaging systems for Drby Pet Co and
+  Focus Works.
+
+## What he works with
+
+Design: Figma, prototyping, design systems
+Build: Liquid, HTML, CSS, JavaScript, Shopify metafields, Shopify Flow,
+Klaviyo
+Measure: Microsoft Clarity, GA4, Google Search Console, Shopify Analytics
+
+He builds the front-end for what he designs, so he works in components,
+states and edge cases from the first sketch rather than discovering them at
+handoff.
+
+## Honest gaps
+
+The first three are stated on the site. The last is an observation across
+all three cases rather than a line any one page states:
+
+- No formal usability testing on the PDP project — behavioural data at scale
+  located where people stopped, but not why.
+- No component library built. There was no design system when he joined; he
+  set up type and colour foundations, but components were defined directly
+  in Shopify sections while he built them, with Figma as a working reference
+  rather than a handoff artifact. He states that on a product team with
+  engineers he would expect Figma to carry much more weight.
+- One case shipped without the instrumentation needed to evaluate it, which
+  he could only fix months later.
+- All three cases are one store, one brand, one category, at small sample
+  sizes. Only one was a controlled experiment, and it was underpowered by
+  the page's traffic volume — which he documents rather than hides.
+
+## Contact
+
+- Email: hanbyoul.kim91@gmail.com
+- LinkedIn: https://www.linkedin.com/in/hanbyoul-kim/
+- Résumé: https://hannnnnnnnnnnn.github.io/portfolio/assets/Hanbyoul-Kim-Resume.pdf
+- About: https://hannnnnnnnnnnn.github.io/portfolio/about/
