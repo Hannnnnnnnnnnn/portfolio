@@ -1,0 +1,504 @@
+/* Han Kim portfolio — rebuilt from portfolio-han.figma.site.
+   Mobile first. Breakpoints match the original: 0–799, 800–1279, 1280+. */
+
+@font-face { font-family: 'Source Serif Pro'; font-weight: 300; font-display: swap; src: url(../assets/fonts/source-serif-pro-300.woff2) format('woff2'); }
+@font-face { font-family: 'Source Serif Pro'; font-weight: 400; font-display: swap; src: url(../assets/fonts/source-serif-pro-400.woff2) format('woff2'); }
+@font-face { font-family: 'Source Serif Pro'; font-weight: 700; font-display: swap; src: url(../assets/fonts/source-serif-pro-700.woff2) format('woff2'); }
+@font-face { font-family: 'Source Code Pro'; font-weight: 200 900; font-display: swap; src: url(../assets/fonts/source-code-pro.woff2) format('woff2'); }
+
+:root {
+  --serif: 'Source Serif Pro', serif;
+  --mono: 'Source Code Pro', monospace;
+  --ink: #000;
+  --ink-soft: #313131;
+  --rule: #4f4f4f;
+  --paper: #fff;
+  --paper-alt: #f2f2f2;
+  /* Figma 'OUT_CUBIC' is played by the runtime as motion's easeOut = CSS ease-out (0,0,.58,1) */
+
+  --gutter: 20px;
+  --display: 28px;  --display-lh: 33.6px;
+  --title: 20px;    --title-lh: 1.52;
+  --label: 12px;
+  --meta-ls: -0.18px;
+}
+@media (min-width: 800px) {
+  :root { --gutter: 50px; --display: 36px; --display-lh: 43.2px; --title: 22px; --label: 14px; --meta-ls: -0.2178px; }
+}
+@media (min-width: 1280px) {
+  :root { --display: 50px; --display-lh: 60px; --title: 24px; --label: 16px; --meta-ls: -0.2592px; }
+}
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; font-synthesis: none; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); overflow-x: hidden; word-break: break-word; /* as Figma renders text */ }
+h1, h2, h3, p, figure, blockquote { margin: 0; font: inherit; }
+/* Figma text keeps its spaces (double spaces, NBSPs); our text elements are single-line in source, so this is safe */
+p, h1, h2, h3, figcaption, cite { white-space: pre-wrap; }
+a { color: inherit; text-decoration: none; }
+img, video { display: block; max-width: 100%; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 10000; background: var(--paper); padding: 8px 12px; font: 16px/1 var(--mono); }
+.skip-link:focus { left: 8px; top: 8px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- type ---------- */
+.t-display { font-size: var(--display); line-height: var(--display-lh); letter-spacing: -2.25px; }
+.t-title   { font-size: var(--title); line-height: var(--title-lh); letter-spacing: -1.08px; }
+.t-meta    { font-size: var(--title); line-height: var(--title-lh); letter-spacing: var(--meta-ls); }
+.t-body    { font-weight: 300; font-size: 16px; line-height: 20px; letter-spacing: -0.72px; }
+.t-body strong, .t-bold { font-weight: 700; }
+.t-label   { font: 500 var(--label)/1.03 var(--mono); letter-spacing: -0.72px; text-decoration: underline from-font; text-underline-position: from-font; }
+.t-mono    { font: 400 16px/1.03 var(--mono); letter-spacing: -0.72px; }
+
+/* ---------- page shell ---------- */
+.page { display: flex; flex-direction: column; align-items: center; padding: 0 var(--gutter); }
+.page > * { width: 100%; }
+.content { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* ---------- nav ---------- */
+.nav {
+  position: relative; display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 20px 20px 59px; /* 60px minus the 1px border Figma draws inside */
+  border-bottom: 1px solid var(--rule);
+  background: linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,0));
+}
+.nav__home { display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 20px; }
+.nav__name { font-size: var(--title); line-height: var(--title-lh); letter-spacing: -1.08px; white-space: nowrap; }
+.nav__avatar {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; overflow: hidden;
+  box-shadow: 0 2.667px 2.667px rgba(0,0,0,.25);
+  will-change: transform;
+}
+.nav__avatar video { width: 100%; height: 100%; object-fit: cover; }
+.nav__links { display: flex; flex-direction: column; align-items: flex-end; gap: 30px; }
+
+@media (min-width: 800px) {
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    align-items: center; padding: 30px 50px 100px; border-bottom: 0;
+  }
+  .nav__home { flex-direction: row; align-items: center; }
+  .nav__avatar { width: 50px; height: 50px; box-shadow: 0 4px 4px rgba(0,0,0,.25); }
+  .nav__links { flex-direction: row; align-items: center; gap: 10px; }
+}
+
+/* ---------- links & buttons ---------- */
+.link-fade { transition: opacity .3s ease-out; }
+.link-fade:hover { opacity: .7; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 3px 9px 6px; border: 1px solid var(--ink); /* Figma draws borders inside the box */
+  font: 400 16px/1.03 var(--mono); letter-spacing: -0.72px; white-space: nowrap;
+  --btn-pad: 9px;
+}
+/* Figma appends -letter-spacing after single-line text (adjustLetterSpacing); match its widths. */
+.btn, .nav__links a { padding-right: calc(var(--btn-pad, 0px) + 0.72px); }
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn svg { width: 24px; height: 23.04px; fill: currentColor; flex-shrink: 0; }
+
+/* ---------- footer ---------- */
+.footer { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; padding-bottom: 80px; }
+.footer__links {
+  width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 40px;
+  padding: 29px 0 150px; border-top: 1px solid var(--rule);
+}
+.footer__links a { font-size: 28px; line-height: 37.8px; letter-spacing: -0.0084em; white-space: nowrap; text-decoration: underline from-font; text-underline-position: from-font; }
+.footer__copy { font-size: var(--display); line-height: var(--display-lh); letter-spacing: -2.25px; }
+@media (min-width: 800px) {
+  .footer__links { flex-direction: row; gap: 19px; }
+  .footer__links a { font-size: 36px; line-height: 45px; letter-spacing: -0.0108em; }
+}
+@media (min-width: 1280px) {
+  .footer__links a { font-size: 50px; line-height: 60px; letter-spacing: -1.125px; padding-right: 1.125px; }
+}
+
+/* ---------- media crop helper ----------
+   Figma places some media larger than its frame and clips it.
+   --top/--bottom (% of frame height) and --left/--right (% of width) hold that offset so it scales at every breakpoint. */
+.frame { position: relative; overflow: hidden; }
+.frame > img, .frame > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.frame[style*="--top"] > :is(img, video), .frame[style*="--bottom"] > :is(img, video),
+.frame[style*="--left"] > :is(img, video), .frame[style*="--right"] > :is(img, video) {
+  top: var(--top, 0%); left: var(--left, 0%); bottom: auto; right: auto; object-fit: fill; max-width: none;
+  width: calc(100% - var(--left, 0%) - var(--right, 0%)); height: calc(100% - var(--top, 0%) - var(--bottom, 0%));
+}
+
+/* ---------- home ---------- */
+.home-hero { display: flex; flex-direction: column; align-items: flex-start; gap: 19px; padding: 80px 0; max-width: 1500px; width: 100%; }
+
+.card {
+  position: relative; width: 100%; display: flex; align-items: flex-start; gap: 50px;
+  padding: 49px 0 50px; border-top: 1px solid var(--ink);
+  transition: opacity .3s ease-out;
+}
+.card:hover { opacity: .75; }
+/* Desktop: only the media fades (that is where the original puts the hover). */
+@media (min-width: 1280px) {
+  .card:hover { opacity: 1; }
+  .card__media { transition: opacity .3s ease-out; }
+  .card__media:hover { opacity: .75; }
+}
+.card--soft { border-top-color: var(--rule); }
+.card__text { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 19px; }
+.card__sub { font-weight: 300; font-size: 16px; line-height: 20px; letter-spacing: -0.72px; }
+.card__media { flex: 1 1 0; min-width: 0; aspect-ratio: 1; }
+
+.home-outro { display: flex; flex-direction: column; align-items: flex-start; gap: 50px; padding: 30px 0 120px; max-width: 1500px; width: 100%; }
+
+@media (min-width: 800px) {
+  .home-hero { padding: 200px 80px 80px 0; }
+  .card__sub { font-weight: 400; font-size: var(--title); line-height: var(--title-lh); letter-spacing: -1.08px; }
+  .home-outro { padding: 30px 80px 120px 0; }
+}
+@media (min-width: 1280px) {
+  /* Figma frame is a fixed 308px tall, which lifts the 60px title 16px into the top padding */
+  .home-hero { flex-direction: row; justify-content: space-between; align-items: center; padding: 184px 0 64px; }
+  .home-hero h1 { white-space: nowrap; }
+  .home-outro { padding: 30px 120px 120px 0; }
+  .home-outro p { max-width: 855px; }
+}
+
+/* ---------- case study ---------- */
+.cs-hero {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 19px;
+  padding: 72px 100px 39px 0; border-bottom: 1px solid var(--ink); /* 40px bottom minus the inside border */
+}
+.cs-hero__titles { display: flex; flex-direction: column; align-items: flex-start; gap: 19px; width: 100%; }
+.cs-hero__meta { width: 100%; }
+.cs-main { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+
+.cs-text { width: 100%; max-width: 700px; display: flex; flex-direction: column; align-items: flex-start; gap: 19px; padding: 30px 0 0; }
+.cs-text--pad-b { padding-bottom: 30px; }
+.cs-text-col { display: flex; flex-direction: column; align-items: flex-start; gap: 19px; }
+
+.cs-figure { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.cs-figure > .frame { width: 100%; }
+.cs-caption { font-weight: 300; font-size: 16px; line-height: 20px; letter-spacing: -0.72px; color: var(--ink-soft); text-align: center; }
+
+.cs-split { width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 24px; }
+.cs-split > .frame { width: 100%; }
+.cs-stats { display: flex; flex-direction: column; }
+
+.cs-quote { width: 100%; max-width: 1180px; display: flex; flex-direction: column; align-items: center; gap: 19px; padding: 30px 30px 0; text-align: center; }
+.cs-quote cite { font-style: normal; }
+
+.cs-grid { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-bottom: 80px; }
+.cs-thirds { width: 100%; display: flex; align-items: center; gap: 24px; padding-bottom: 80px; }
+.cs-thirds > * { flex: 1 1 0; min-width: 0; }
+
+.cs-text--keep { padding-right: 100px; } /* kits-invest keeps the 100px inset on mobile */
+
+/* logo figure: fixed 876x492 frame on desktop, 16:9 below */
+.cs-logo { width: 100%; max-width: 1180px; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 30px 0 50px; }
+.cs-logo > .frame { width: 100%; aspect-ratio: 3840 / 2160; }
+/* three posters: stacked below 1280, a row on desktop */
+.cs-triple { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 30px 0 50px; }
+.cs-triple__row { width: 100%; display: flex; flex-direction: column; justify-content: center; gap: 14.526px; }
+.cs-triple__row > .frame { width: 100%; }
+/* grey presentation panel: 2-column grid */
+.cs-panel { width: 100%; max-width: 1180px; display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 30px 8px 50px; background: var(--paper-alt); }
+.cs-panel__grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+/* badge pairs: stacked on mobile, side by side from tablet up; caption under each pair */
+.cs-pairs { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 30px 0 80px; }
+.cs-pair { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.cs-pair__row { width: 100%; display: flex; align-items: center; gap: 8px; }
+.cs-pair--a .cs-pair__row { gap: 6px; }
+.cs-pair__row > .frame { flex: 1 1 0; min-width: 0; }
+/* 4-column signage grid with caption */
+.cs-grid4 { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.cs-grid4 .cs-caption { grid-column: 1 / -1; margin-top: 8px; }
+
+/* full-width image stack + bordered "studies" section (god-of-war) */
+.cs-main > .frame { width: 100%; }
+.cs-studies { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding: 29px 0 80px; border-top: 1px solid var(--ink); }
+.cs-studies > .frame { width: 100%; }
+
+/* more projects */
+.more { width: 100%; max-width: 1180px; display: flex; flex-direction: column; align-items: flex-start; gap: 48px; padding: 29px 0 30px; border-top: 1px solid var(--rule); }
+.more__title { font: 500 12px/1.03 var(--mono); letter-spacing: -0.72px; text-decoration: underline from-font; text-underline-position: from-font; } /* underlined on mobile only */
+.more__list { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 48px; }
+.more-card {
+  width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 50px;
+  padding: 49px 0 50px; border-top: 1px solid var(--ink);
+  transition: opacity .3s ease-out;
+}
+.more-card:hover { opacity: .75; }
+.more-card__text { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 19px; }
+.more-card__title { font-size: var(--display); line-height: var(--display-lh); letter-spacing: -2.25px; }
+.more-card__media { width: 100%; aspect-ratio: 1; }
+.btn--sm { padding-bottom: 3px; line-height: 20px; }
+
+@media (min-width: 800px) {
+  .cs-hero { padding: 200px 100px 39px 0; }
+  .cs-text { padding-right: 100px; }
+  .cs-studies__title { padding: 30px 100px 30px 0; }
+  .cs-logo, .cs-triple { gap: 16px; padding-bottom: 80px; }
+  .cs-panel { gap: 16px; padding: 30px 16px 80px; }
+  .cs-panel__grid { gap: 16px; }
+  .cs-pairs { flex-direction: row; justify-content: center; gap: 24px; }
+  .cs-pair, .cs-pair--a { flex: 1 1 0; min-width: 0; gap: 24px; align-items: center; }
+  .cs-split { flex-direction: row; align-items: center; }
+  .cs-split > .frame { flex: 1 1 0; min-width: 0; }
+  .cs-stats { flex: 0 0 239px; }
+  .cs-quote { padding: 30px 80px 0; }
+  .cs-grid { gap: 16px; }
+  .more__title { font-weight: 400; font-size: 14px; text-decoration: none; }
+  .more-card { flex-direction: row; }
+  .more-card--soft { border-top-color: var(--rule); } /* tablet only, as on the original */
+  .more-card__text, .more-card__media { flex: 1 1 0; min-width: 0; }
+}
+@media (min-width: 1280px) {
+  .cs-hero { padding-bottom: 49px; }
+  .cs-main { padding-top: 50px; }
+  .cs-stats { flex-basis: 255px; gap: 20px; }
+  .cs-quote { padding: 30px 100px 0; }
+  .cs-logo { align-items: flex-start; }
+  .cs-logo > .frame, .cs-logo > .cs-caption { width: 876px; }
+  .cs-logo > .frame { aspect-ratio: 876 / 492; }
+  .cs-triple { align-items: center; }
+  .cs-triple__row { flex-direction: row; }
+  .cs-triple__row > .frame { flex: 1 1 0; min-width: 0; }
+  .cs-panel { padding: 30px 30px 80px; gap: 24px; }
+  .cs-panel__grid { gap: 24px; }
+  .more__title { font-size: 16px; color: var(--rule); }
+  .more__list { flex-direction: row; height: 476.13px; }
+  .more-card:nth-child(3), .more-card:nth-child(5) { height: 476.59px; } /* these two Figma cards overhang the row by .46px */
+  /* Figma row is a fixed 476.13px; tall titles overflow into the section padding, as on the original */
+  .more-card--soft { border-top-color: var(--ink); }
+  .more-card { flex: 1 1 0; min-width: 0; height: 476.13px; flex-direction: column; justify-content: space-between; gap: 0; }
+  .more-card__text, .more-card__media { flex: none; width: 100%; }
+  .more-card__title { font-size: var(--title); line-height: var(--title-lh); letter-spacing: -1.08px; }
+  .more-card .btn--sm { padding-bottom: 6px; line-height: 1.03; }
+  /* desktop: only the media fades, as on the home cards */
+  .more-card:hover { opacity: 1; }
+  .more-card__media { transition: opacity .3s ease-out; }
+  .more-card__media:hover { opacity: .75; }
+}
+
+/* ---------- ai page (bespoke Figma layout; fixed widths per breakpoint, some overflow as on the original) ---------- */
+.cs-hero--ai { border-bottom: 0; padding-bottom: 80px; }
+.ai-titles { width: 100%; }
+.ai-sub { width: 100%; font-size: var(--title); line-height: var(--title-lh); letter-spacing: var(--meta-ls); }
+.ai-meta { font-size: var(--title); line-height: var(--title-lh); letter-spacing: -1.08px; }
+.ai-main { gap: 0; align-items: center; padding-top: 0; }
+.ai-main > * { width: 100%; }
+.ai-chapter { font-size: 36px; line-height: 43.2px; letter-spacing: -1.62px; }
+.ai-main > .ai-chapter { padding-bottom: 30px; }
+.ai-fig { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: none; }
+.ai-fig > .frame { width: 100%; }
+.ai-duo .frame, .ai-pair2__a .frame { aspect-ratio: 576 / 1024; }
+.ai-pair2__b .frame { aspect-ratio: 4 / 5; }
+.ai-cap-sm { font-weight: 300; font-size: 16px; line-height: 20px; letter-spacing: -0.72px; color: var(--ink-soft); text-align: center; }
+.cs-caption--left { text-align: left; }
+
+.ai-duo { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding: 30px 0 50px; }
+.ai-duo .ai-fig { width: 100%; gap: 16px; }
+.ai-duo .ai-duo__a { gap: 24px; }
+
+.ai-step1 { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 24px; padding: 30px 0 50px; }
+.ai-step1__text { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding: 30px 0; }
+.ai-step1__groups { width: 100%; display: flex; flex-direction: column; gap: 24px; }
+.ai-group { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: none; width: 100%; }
+.ai-group__row { width: 100%; display: flex; align-items: center; gap: 19.952px; }
+.ai-group__row > .frame { flex: 1 1 0; min-width: 0; }
+
+.ai-step { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding: 30px 0 50px; }
+.ai-step > .frame, .ai-step > .cs-caption { width: 100%; }
+.ai-step__title { width: 700px; flex-shrink: 0; padding: 30px 100px 30px 0; display: flex; flex-direction: column; gap: 19px; }
+.ai-row3, .ai-row2 { width: 100%; display: flex; align-items: flex-start; gap: 24px; }
+.ai-row3 > .frame, .ai-row2 > .frame { flex: 1 1 0; min-width: 0; }
+.frame--fill { position: absolute; inset: 0; }
+.ai-grid2 { width: 100%; display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; row-gap: 34px; align-content: start; height: 200px; }
+
+.ai-ch2 { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding-top: 40px; }
+.ai-ch2 > * { width: 100%; }
+.ai-ch2__wrap { padding-top: 30px; }
+.ai-ch2__head { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding: 30px 240px 0 0; }
+.ai-ch2__head .ai-chapter { width: 335px; flex-shrink: 0; }
+.ai-ch2__sub { white-space: nowrap; }
+.ai-pair2 { display: flex; justify-content: flex-end; align-items: flex-end; gap: 37.842px; padding: 30px 0 20px; }
+.ai-pair2__a { width: 134.78px; }
+.ai-pair2__b { width: 162.36px; }
+.ai-trio { display: flex; justify-content: flex-end; align-items: flex-start; gap: 20px; padding: 30px 0 50px; }
+.ai-trio__col { width: 142.06px; flex: none; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.ai-trio__col .ai-fig { width: 100%; }
+.ai-trio__big { width: 173px; }
+.ai-ch2__h { padding-top: 30px; }
+.ai-i2v { display: flex; flex-direction: column; align-items: flex-end; gap: 24px; padding: 30px 0 50px; }
+.ai-i2v > * { width: 100%; }
+.ai-i2v__row { display: flex; flex-direction: column; align-items: flex-start; gap: 33.527px; }
+.ai-i2v__img { width: 222.38px; flex: none; }
+.ai-i2v__vid { width: 100%; }
+
+@media (min-width: 800px) {
+  .ai-titles { width: 631px; flex-shrink: 0; }
+  .ai-duo { flex-direction: row; justify-content: center; align-items: center; gap: 24px; padding: 30px 100px 80px; }
+  .ai-duo .ai-fig { width: 336.59px; gap: 16px; }
+  .ai-step1 { padding: 30px 0 80px; }
+  .ai-step1__text { padding: 30px 100px 30px 0; }
+  .ai-step1__groups { width: 561px; flex: none; }
+  .ai-group { gap: 16px; }
+  .ai-group__row { gap: 18.031px; }
+  .ai-group__row > .frame:first-child { flex: 0 0 267.25px; }
+  .ai-group__row > .frame:last-child { flex: 0 0 275.7px; }
+  .ai-cap-sm { font-size: 14.459px; line-height: 18.0737px; letter-spacing: -0.6507px; text-align: left; }
+  .ai-step { padding: 30px 0 80px; }
+  .ai-grid2 { row-gap: 50px; height: 415px; }
+  .ai-ch2 { padding-top: 80px; align-items: center; }
+  .ai-ch2__wrap { padding-top: 0; }
+  .ai-ch2__head .ai-chapter { width: auto; }
+  .ai-pair2 { gap: 50px; padding: 30px 0 50px; }
+  .ai-pair2__a { width: 362.28px; gap: 20.739px; }
+  .ai-pair2__b { width: 301.77px; gap: 11.887px; }
+  .ai-trio { justify-content: flex-start; align-items: center; gap: 80px; padding: 30px 0 80px; }
+  .ai-trio__col { width: 279.59px; gap: 80px; }
+  .ai-trio__col .ai-fig { gap: 16px; }
+  .ai-trio__big { width: 343.59px; gap: 55px; }
+  .ai-ch2__h { padding: 30px 100px 0 0; }
+  .ai-i2v { padding: 30px 0 80px; }
+  .ai-i2v__row { flex-direction: row; justify-content: center; gap: 39.716px; }
+  .ai-i2v__img { width: 263.42px; }
+  .ai-i2v__vid { width: 396.84px; flex: none; }
+}
+@media (min-width: 1280px) {
+  .ai-titles { width: 845px; }
+  /* at 1440 every ai block except the Chapter 1 heading stays 1180px and is centred (More projects included) */
+  .ai-main > *:not(.ai-chapter) { max-width: 1180px; }
+  .ai-sub { letter-spacing: -1.08px; }
+  .ai-duo { padding: 30px 240px 80px; }
+  .ai-duo .ai-fig { width: 406px; }
+  .ai-duo .frame, .ai-pair2__a .frame { aspect-ratio: 406 / 722; }
+  .ai-pair2__b .frame { aspect-ratio: 406 / 507; }
+  .ai-step1 { padding: 30px 300px 80px 0; }
+  .ai-step1__groups { width: 1146px; flex-direction: row; }
+  .ai-group { width: 561px; gap: 21.689px; }
+  .ai-grid2 { row-gap: 23px; height: 600px; }
+  .ai-ch2__head { padding: 30px 240px 0 0; }
+  .ai-pair2 { gap: 150px; padding: 30px 0 80px; }
+  .ai-pair2__a, .ai-pair2__b { width: 406px; gap: 16px; }
+  .ai-trio { gap: 150px; }
+  .ai-trio__col { width: 355.17px; gap: 150px; }
+  .ai-trio__big { width: 501.41px; gap: 19.76px; }
+  .ai-cap-lg { font-size: 19.76px; line-height: 24.7px; letter-spacing: -0.8892px; }
+  .ai-ch2__h { padding: 30px 240px 0 0; }
+  .ai-i2v__row { width: auto; justify-content: center; gap: 60px; } /* hugs its content and sits right, as on the original */
+  .ai-i2v__img { width: 398px; }
+  .ai-i2v__vid { width: 599.52px; }
+}
+
+/* ---------- others page (Figma collage: fixed sizes per breakpoint) ---------- */
+.ot-titles { width: auto; }
+.ot-titles h1 { white-space: nowrap; }
+.ot-video { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 30px 0 80px; }
+.ot-video > .frame { width: 100%; }
+.ot-sec { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 24px; padding: 30px 0 50px; }
+.ot-sec > * { width: 100%; flex: none; }
+.ot-sec__title { padding: 30px 0; }
+.ot-drby { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 24px; padding: 30px 0 50px; }
+.ot-drby > :where(.frame) { width: 100%; }
+.ot-c1 { display: flex; flex-direction: column; align-items: flex-start; gap: 80px; padding: 30px 0 50px; }
+.ot-c1__l, .ot-c1__r { width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 41.6px; }
+.ot-c1__r { gap: 24px; }
+.ot-c1__l > :where(.frame), .ot-c1__d { width: 100%; }
+.ot-c1__c { width: 292px; order: 1; }
+.ot-c2 { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 24px; padding: 30px 0 50px; }
+.ot-c2 > :where(.frame) { width: 100%; }
+.ot-c3 { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 30px 0 50px; }
+.ot-c3__l { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 33.511px; order: 1; }
+.ot-c3__l > :where(.frame), .ot-c3__c { width: 100%; }
+.ot-fw { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.ot-fw > .frame { width: 100%; }
+.ot-fw__top { width: 100%; display: flex; flex-direction: column; gap: 8px; }
+.ot-quad { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8px; grid-template-rows: 165px auto; height: 322px; } /* mobile Figma frame: 80% opacity, fixed 322px box, 2nd row at 165px */
+.ot-fw__row { width: 100%; display: flex; align-items: flex-start; gap: 24px; }
+.ot-fw__row > :where(.frame) { flex: 1 1 0; min-width: 0; }
+
+@media (min-width: 800px) {
+  .ot-sec { padding: 30px 0 80px; }
+  .ot-sec__title { padding: 30px 100px 30px 0; }
+  .ot-drby { flex-direction: row; padding: 30px 0; }
+  .ot-drby__a { width: 211px; }
+  .ot-drby__b { width: 465px; }
+  .ot-c1 { flex-direction: row; align-items: center; justify-content: space-between; gap: 0; padding: 30px 0 80px; }
+  .ot-c1__l { width: 314px; gap: 42.137px; }
+  .ot-c1__r { width: 286px; gap: 17.782px; }
+  .ot-c1__c { width: 100%; order: 0; }
+  .ot-c2 { flex-direction: row; align-items: flex-end; padding: 30px 0 80px; }
+  .ot-c2__a { width: 392px; }
+  .ot-c2__b { width: 284px; }
+  .ot-c3 { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: 0; padding: 30px 0 80px; }
+  .ot-c3__l { width: 239px; gap: 21.077px; order: 0; }
+  .ot-c3__a { width: 183px; }
+  .ot-c3__b { width: 247px; flex: none; }
+  .ot-c3__c { width: 461px; }
+  .ot-fw__top { flex-direction: row; gap: 16px; }
+  .ot-fw__top > * { flex: 1 1 0; min-width: 0; }
+  .ot-quad { gap: 16px; align-content: start; grid-template-rows: none; height: auto; }
+}
+@media (min-width: 1280px) {
+  .ot-sec { padding: 30px 300px 80px 0; }
+  /* collages span the full 1180px row although the section keeps a 300px right inset */
+  .ot-drby, .ot-c1, .ot-c2, .ot-c3 { width: calc(100% + 300px); }
+  .ot-drby__a { width: 254px; }
+  .ot-drby__b { width: 375px; }
+  /* the Figma frame is a fixed 959px: its 912px row plus padding overflows by 63px, as on the original */
+  .ot-c1 { height: 959px; padding-bottom: 17px; } /* 959 = 30 + 912 + 17: the row starts at the top padding */
+  .ot-c1__l { width: 506px; gap: 57.829px; }
+  .ot-c1__b { width: 474px; }
+  .ot-c1__r { width: 462px; gap: 29.647px; }
+  .ot-c1__c { width: 361px; }
+  .ot-c2__a { width: 576px; }
+  .ot-c2__b { width: 520px; }
+  .ot-c2 { justify-content: center; }
+  .ot-c3__l { width: 392px; gap: 33.511px; }
+  .ot-c3__a { width: 292px; }
+  .ot-c3__b { width: 392px; }
+  .ot-c3__c { width: 561px; }
+  .ot-fw { width: 1147.21px; }
+  .ot-fw__a { flex: 0 0 424px; }
+  .ot-fw__b { flex: 0 0 699px; }
+}
+
+/* ---------- about ---------- */
+.about { display: flex; flex-direction: column; align-items: flex-start; }
+.about > * { width: 100%; }
+.about-bio { padding: 30px 0 100px; }
+.about-gap { font-size: 24px; line-height: 36.48px; } /* blank line kept as in Figma (zero-width-space paragraph) */
+.about-bio a { text-decoration: underline from-font; text-underline-position: from-font; }
+.about-now { display: flex; flex-direction: column; align-items: flex-start; gap: 50px; padding-bottom: 100px; }
+.about-now > * { width: 100%; }
+.about-now__title, .about-row p { font: 400 var(--label)/1.03 var(--mono); letter-spacing: -0.72px; white-space: nowrap; }
+.about-now__title { padding: 39px 0 40px; border-top: 1px solid var(--rule); }
+.about-row { display: flex; align-items: flex-start; gap: 19px; padding: 29px 0 30px; border-top: 1px solid var(--rule); }
+.about-row p:first-child { padding-right: 0.72px; } /* Figma's trailing letter-spacing compensation */
+.about-photo { box-shadow: 0 4px 4px rgba(0, 0, 0, .25); transition: transform .3s ease-out; }
+.about-photo:hover { transform: rotate(2deg); }
+@media (min-width: 800px) {
+  .about-bio { padding: 200px 0 100px; }
+}
+@media (min-width: 1280px) {
+  .about-now { flex-direction: row; height: 966.61px; } /* fixed in Figma (866.61 + 100 padding); at 1440 the wider photo column overhangs it */
+  .about-now > * { flex: 1 1 0; min-width: 0; }
+  .about-now__title { flex: 0 0 565px; height: 866.61px; } /* fixed 565px column, fixed height in Figma; the list + photo take the rest (wider at 1440) */
+}
+
+/* ---------- motion ----------
+   Appear (from the original's behaviour data + runtime): out of view = translateY(50px),
+   entering view = slide up with ease-out — 0.35s for images, 0.6s + fade-in for home text.
+   Replays each time it re-enters. Leaving happens off-screen, so it resets instantly. */
+.js [data-appear] { transform: translateY(50px); }
+.js [data-appear].is-in { transform: none; transition: transform .35s ease-out; }
+.js [data-appear="text"] { opacity: 0; }
+.js [data-appear="text"].is-in { opacity: 1; transition: transform .6s ease-out, opacity .6s ease-out; }
+.js .no-anim, .js .no-anim * { transition: none !important; }
+@media (min-width: 800px) { .js [data-appear="mobile"] { transform: none; } }
+@media (max-width: 799px) { .js [data-appear="wide"] { transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-appear] { transform: none; opacity: 1; transition: none; }
+  .link-fade { transition: none; }
+}
