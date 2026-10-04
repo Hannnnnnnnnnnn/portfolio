@@ -175,10 +175,6 @@ Listed at: https://hannnnnnnnnnnn.github.io/portfolio/visual/
 - 2024 KITS Investor Day — https://hannnnnnnnnnnn.github.io/portfolio/kits-invest/
   Event identity for KITS' annual stakeholder event: logo, presentation deck,
   large-format signage and attendee credentials, from concept to print.
-- God of War: Console-to-Mobile Interface System — https://hannnnnnnnnnnn.github.io/portfolio/god-of-war/
-  Self-directed, July 2022 (2 weeks). Rebuilt the armour and inventory system
-  for mobile, treating the port as an interface problem rather than a
-  resizing exercise.
 - Generative AI for Commercial Campaigns — https://hannnnnnnnnnnn.github.io/portfolio/ai/
   A virtual brand ambassador (persona, consistency control, product
   application, image-to-video with Veo 3.1) and AI visuals for KITS colour
@@ -186,6 +182,10 @@ Listed at: https://hannnnnnnnnnnn.github.io/portfolio/visual/
 - Packaging, 3D, and Others — https://hannnnnnnnnnnn.github.io/portfolio/others/
   AI banner video for Black Friday; packaging systems for Drby Pet Co and
   Focus Works.
+- God of War: Console-to-Mobile Interface System — https://hannnnnnnnnnnn.github.io/portfolio/god-of-war/
+  Self-directed, July 2022 (2 weeks). Rebuilt the armour and inventory system
+  for mobile, treating the port as an interface problem rather than a
+  resizing exercise.
 
 ## What he works with
 
