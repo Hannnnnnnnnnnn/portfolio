@@ -3,18 +3,24 @@
    Source Serif for text, Source Code Pro for labels, black ink, no uppercase or heavy grotesk.
    Store components inside .demo keep Poppins (they reproduce the live theme). */
 
-:root { --fg: var(--ink); --tint: var(--paper-alt); }
+:root { --fg: var(--ink); --tint: var(--paper-alt); --muted: var(--ink-soft); }  /* one grey for secondary text site-wide */
 
 main.case { font-family: var(--serif); font-size: 17px; line-height: 1.55; }
 @media (min-width: 800px) { main.case { font-size: 18px; } }
 
 /* ---- labels: mono, sentence case (t-label without the underline) ---- */
-main.case :is(.label, .prose h2, .meta dt, .table-wrap thead th, .mfd__type) {
+main.case :is(.label, .prose h2, .meta dt, .table-wrap thead th, .mfd__type, .cmp__side figcaption) {
   font-family: var(--mono); font-weight: 500; font-size: var(--label);
   text-transform: none; letter-spacing: -0.72px;
 }
 main.case .toc__num { font-size: calc(var(--label) - 1px); }
 main.case code { font-family: var(--mono); }
+
+/* one small size for secondary and diagram text (was 0.8–0.9rem / 0.82–0.9em, five values) */
+main.case :is(.case-nav__sub, .caveat, .table-wrap table, pre, .mfd__list li, .mfd__was, .mfd__note, .flows__link, .dist__name, .dist__pct, code) {
+  font-size: 14px; line-height: 1.55;
+}
+main.case :is(.mfd__list, .flows__name, .prose p, .prose li) code { font-size: 14px; }
 
 /* ---- display type: serif regular, as .t-display / .t-title ---- */
 main.case .prose h1 {

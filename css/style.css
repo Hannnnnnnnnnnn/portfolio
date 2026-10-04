@@ -86,7 +86,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   }
   .nav__home { flex-direction: row; align-items: center; }
   .nav__avatar { width: 50px; height: 50px; box-shadow: 0 4px 4px rgba(0,0,0,.25); }
-  .nav__links { flex-direction: row; align-items: center; gap: 10px; }
+  .nav__links { flex-direction: row; align-items: center; gap: 28px; }
 }
 
 /* ---------- links & buttons ---------- */
@@ -266,7 +266,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   .cs-triple__row > .frame { flex: 1 1 0; min-width: 0; }
   .cs-panel { padding: 30px 30px 80px; gap: 24px; }
   .cs-panel__grid { gap: 24px; }
-  .more__title { font-size: 16px; color: var(--rule); }
+  .more__title { font-size: 16px; color: var(--ink-soft); }
   .more__list { flex-direction: row; height: 476.13px; }
   .more-card:nth-child(3), .more-card:nth-child(5) { height: 476.59px; } /* these two Figma cards overhang the row by .46px */
   /* Figma row is a fixed 476.13px; tall titles overflow into the section padding, as on the original */
