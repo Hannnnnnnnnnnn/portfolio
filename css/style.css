@@ -1,13 +1,13 @@
 /* Han Kim portfolio — rebuilt from portfolio-han.figma.site.
    Mobile first. Breakpoints match the original: 0–799, 800–1279, 1280+. */
 
-@font-face { font-family: 'Source Serif Pro'; font-weight: 300; font-display: swap; src: url(../assets/fonts/source-serif-pro-300.woff2) format('woff2'); }
-@font-face { font-family: 'Source Serif Pro'; font-weight: 400; font-display: swap; src: url(../assets/fonts/source-serif-pro-400.woff2) format('woff2'); }
-@font-face { font-family: 'Source Serif Pro'; font-weight: 700; font-display: swap; src: url(../assets/fonts/source-serif-pro-700.woff2) format('woff2'); }
+/* Source Serif 4, Adobe's official variable build (unmodified, OFL: assets/fonts/LICENSE-SourceSerif4.md).
+   Optical size follows font-size automatically (opsz 8–60): text sizes get the text cut, 36–50px headlines the display cut. */
+@font-face { font-family: 'Source Serif 4'; font-weight: 200 900; font-display: swap; src: url(../assets/fonts/SourceSerif4Variable-Roman.ttf.woff2) format('woff2'); }
 @font-face { font-family: 'Source Code Pro'; font-weight: 200 900; font-display: swap; src: url(../assets/fonts/source-code-pro.woff2) format('woff2'); }
 
 :root {
-  --serif: 'Source Serif Pro', serif;
+  --serif: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
   --mono: 'Source Code Pro', monospace;
   --ink: #000;
   --ink-soft: #313131;

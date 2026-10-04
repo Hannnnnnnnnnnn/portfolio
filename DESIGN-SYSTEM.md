@@ -6,7 +6,7 @@
 ## Principles
 
 - **Quiet, editorial.** Black serif on white, a monospace voice for labels and controls, hairline rules. No colour except in reproduced store components.
-- **Two type families, one job each.** Source Serif Pro carries reading text and headlines; Source Code Pro carries labels, buttons and navigation.
+- **Two type families, one job each.** Source Serif 4 carries reading text and headlines; Source Code Pro carries labels, buttons and navigation.
 - **Few values.** Two text colours, three type roles that scale with breakpoints, one underline, one focus ring. New values need a reason in a comment.
 - **Content first, motion second.** Everything is readable with JS off or with *Reduce motion* on.
 
@@ -40,7 +40,8 @@ Case diagrams also use `#dedede` (case `--line`, light borders inside figures) a
 
 ### Type
 
-Families: `--serif` Source Serif Pro (300 / 400 / 700) · `--mono` Source Code Pro (variable 200–900). Self-hosted in `assets/fonts/`.
+Families: `--serif` **Source Serif 4** (variable, weight 200–900, optical size 8–60) · `--mono` Source Code Pro (variable 200–900). Self-hosted in `assets/fonts/`.
+Source Serif 4 is Adobe's official variable WOFF2, **unmodified** (OFL with Reserved Font Name "Source": a subset would count as a modified version and would have to be renamed). Licence: `assets/fonts/LICENSE-SourceSerif4.md`. Optical size follows `font-size` on its own, so 36–50px headlines get the display cut and text sizes the text cut; don't set `font-variation-settings` by hand. Chosen 2026-10-03 over Newsreader + Geist Mono and Instrument Serif + Geist (comparison page: https://claude.ai/artifact/HscWoArFH9mQHyRgz6kTyg, private).
 
 | Role | Class | 0–799 | 800–1279 | 1280+ | Notes |
 |---|---|---|---|---|---|
