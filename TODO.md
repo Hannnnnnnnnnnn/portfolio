@@ -10,6 +10,14 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 - [x] Write `/portfolio/llms.txt` (phase 4).
 - [x] No `/visual/` URL left in the site (grepped before cutover).
 
+## Waiting on Han (asked 2026-10-03, not answered yet)
+
+- [ ] KITS BF "PLP Banners": the second paragraph ("Transformed static assets into dynamic video using Veo 3.1… uncanny valley") is the AI page's Step 4 text — delete or replace?
+- [ ] Résumé says the PLP revamp was "validated through a 43-day A/B test"; the PLP case says the test could not confirm the effect (CI −18% to +35%). Suggested: "tested in a 43-day A/B test (product CTR 9.05% → 9.80%, not significant)".
+- [ ] Résumé title is "Multidisciplinary Designer — Brand, Interface, and Generative AI"; the site says "Product Designer" (root title, OG card, llms.txt). Align, or keep on purpose?
+- [ ] "Top section height differs between Visual and Product": the two list pages measured identical. If it meant case vs Visual project pages: label sits 18px higher on case pages on phones, label→title gap 38–41 vs 33–35px. Align to the Visual project pages?
+- [ ] Dropick case study (`~/dropick/docs/portfolio/README.md`): import after Han's research, usability test and iPhone recordings (draft has `[ ]` gaps, no visuals, private repo links, live-app link). Built with its existing `build.py`.
+
 ## Before deploying to GitHub Pages (`*.github.io`)
 
 - [x] Grok button prompt still points to `https://han-kiim-xai.figma.site/` (kept on purpose for now) — switch it to the github.io URL once the site is live. It is URL-encoded in the `href` of the "Read with Grok" button in `index.html`.
