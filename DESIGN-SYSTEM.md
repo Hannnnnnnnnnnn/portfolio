@@ -95,6 +95,7 @@ Focus ring, site-wide: `outline: 2px solid var(--ink); outline-offset: 3px` on `
 
 - **Nav** — avatar (40px, 50px from 800) + name, links Product / Visual / About. Stacked on mobile; fixed with a white-to-transparent gradient from 800, so pages start ~200px down.
 - **Button** `.btn` — mono 16, 1px border, `3px 9px 6px` padding. Optional 24px icon (Grok/Claude/ChatGPT marks; the Claude mark keeps its brand orange).
+- **AI read row** `.home-hero__ai` (Product and Visual lists) — a "Read with" label in `--ink-soft` mono, then buttons named just Claude / ChatGPT / Grok (each keeps `aria-label="Read this portfolio with …"`). Phones: the label takes its own line so the three buttons share one row (they wrap at 320px).
 - **Card** `.card` — label, display title, optional subtitle, Explore button; square media (`aspect-ratio: 1`). Product cards with screen recordings use `.card__pair`: from 800px the desktop recording sits behind (top right, 68%) and the phone recording in front (left, 40%), as on the case pages; below 800px only the phone recording, filling the square. Top rule `--ink`; `.card--soft` uses `--rule`.
 - **Media frame** `.frame` — clips media; `--top/--bottom/--left/--right` (% of the frame) reproduce Figma's oversized-and-cropped placement at every width.
 - **Visual project page** — `cs-hero` (label, display title, title, meta) then `cs-*` blocks (text, figure + caption, split, quote, grids), then "More projects".
