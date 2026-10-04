@@ -14,6 +14,9 @@
   --rule: #4f4f4f;
   --paper: #fff;
   --paper-alt: #f2f2f2;
+  /* one underline for the whole site: the fonts' own (from-font) stroke was hairline-thin */
+  --ul: underline max(1.5px, 0.06em);
+  --ul-offset: 0.16em;
   /* Figma 'OUT_CUBIC' is played by the runtime as motion's easeOut = CSS ease-out (0,0,.58,1) */
 
   --gutter: 20px;
@@ -42,6 +45,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 .skip-link { position: absolute; left: -9999px; top: 0; z-index: 10000; background: var(--paper); padding: 8px 12px; font: 16px/1 var(--mono); }
 .skip-link:focus { left: 8px; top: 8px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ---------- type ---------- */
@@ -50,7 +54,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .t-meta    { font-size: var(--title); line-height: var(--title-lh); letter-spacing: var(--meta-ls); }
 .t-body    { font-weight: 300; font-size: 16px; line-height: 20px; letter-spacing: -0.72px; }
 .t-body strong, .t-bold { font-weight: 700; }
-.t-label   { font: 500 var(--label)/1.03 var(--mono); letter-spacing: -0.72px; text-decoration: underline from-font; text-underline-position: from-font; }
+.t-label   { font: 500 var(--label)/1.03 var(--mono); letter-spacing: -0.72px; text-decoration: var(--ul); text-underline-offset: var(--ul-offset); }
 .t-mono    { font: 400 16px/1.03 var(--mono); letter-spacing: -0.72px; }
 
 /* ---------- page shell ---------- */
@@ -97,7 +101,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 /* Figma appends -letter-spacing after single-line text (adjustLetterSpacing); match its widths. */
 .btn, .nav__links a { padding-right: calc(var(--btn-pad, 0px) + 0.72px); }
-.nav__links a:is(:hover, :focus-visible) { text-decoration: underline from-font; text-underline-position: from-font; }
+.nav__links a:is(:hover, :focus-visible) { text-decoration: var(--ul); text-underline-offset: var(--ul-offset); }
 .btn:hover { background: var(--ink); color: var(--paper); }
 .btn svg { width: 24px; height: 23.04px; fill: currentColor; flex-shrink: 0; }
 
@@ -107,7 +111,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 40px;
   padding: 29px 0 150px; border-top: 1px solid var(--rule);
 }
-.footer__links a { font-size: 28px; line-height: 37.8px; letter-spacing: -0.0084em; white-space: nowrap; text-decoration: underline from-font; text-underline-position: from-font; }
+.footer__links a { font-size: 28px; line-height: 37.8px; letter-spacing: -0.0084em; white-space: nowrap; text-decoration: var(--ul); text-underline-offset: var(--ul-offset); }
 .footer__copy { font-size: var(--display); line-height: var(--display-lh); letter-spacing: -2.25px; }
 @media (min-width: 800px) {
   .footer__links { flex-direction: row; gap: 19px; }
@@ -217,7 +221,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 /* more projects */
 .more { width: 100%; max-width: 1180px; display: flex; flex-direction: column; align-items: flex-start; gap: 48px; padding: 29px 0 30px; border-top: 1px solid var(--rule); }
-.more__title { font: 500 12px/1.03 var(--mono); letter-spacing: -0.72px; text-decoration: underline from-font; text-underline-position: from-font; } /* underlined on mobile only */
+.more__title { font: 500 12px/1.03 var(--mono); letter-spacing: -0.72px; text-decoration: var(--ul); text-underline-offset: var(--ul-offset); } /* underlined on mobile only */
 .more__list { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 48px; }
 .more-card {
   width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 50px;
@@ -467,7 +471,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .about > :not(.sr-only) { width: 100%; }
 .about-bio { padding: 30px 0 100px; }
 .about-gap { font-size: 24px; line-height: 36.48px; } /* blank line kept as in Figma (zero-width-space paragraph) */
-.about-bio a { text-decoration: underline from-font; text-underline-position: from-font; }
+.about-bio a { text-decoration: var(--ul); text-underline-offset: var(--ul-offset); }
 .about-now { display: flex; flex-direction: column; align-items: flex-start; gap: 50px; padding-bottom: 100px; }
 .about-now > * { width: 100%; }
 .about-now__title, .about-row p { font: 400 var(--label)/1.03 var(--mono); letter-spacing: -0.72px; white-space: nowrap; }
@@ -504,5 +508,5 @@ ul { list-style: none; margin: 0; padding: 0; }
 .card__media--empty { background: var(--paper-alt); }
 /* Skills block: same rows as "Right now I am...", but content-height and wrapping values */
 .about-now--work .about-row p:last-child { white-space: normal; }
-.about-now--work a { text-decoration: underline from-font; text-underline-position: from-font; }
+.about-now--work a { text-decoration: var(--ul); text-underline-offset: var(--ul-offset); }
 @media (min-width: 800px) { .about-now--work, .about-now--work .about-now__title { height: auto; } }

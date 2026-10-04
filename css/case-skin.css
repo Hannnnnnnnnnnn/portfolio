@@ -3,7 +3,7 @@
    Source Serif for text, Source Code Pro for labels, black ink, no uppercase or heavy grotesk.
    Store components inside .demo keep Poppins (they reproduce the live theme). */
 
-:root { --fg: var(--ink); }
+:root { --fg: var(--ink); --tint: var(--paper-alt); }
 
 main.case { font-family: var(--serif); font-size: 17px; line-height: 1.55; }
 @media (min-width: 800px) { main.case { font-size: 18px; } }
@@ -11,7 +11,7 @@ main.case { font-family: var(--serif); font-size: 17px; line-height: 1.55; }
 /* ---- labels: mono, sentence case (t-label without the underline) ---- */
 main.case :is(.label, .prose h2, .meta dt, .table-wrap thead th, .mfd__type) {
   font-family: var(--mono); font-weight: 500; font-size: var(--label);
-  text-transform: none; letter-spacing: -0.3px;
+  text-transform: none; letter-spacing: -0.72px;
 }
 main.case .toc__num { font-size: calc(var(--label) - 1px); }
 main.case code { font-family: var(--mono); }
@@ -21,11 +21,16 @@ main.case .prose h1 {
   font-weight: 400; text-transform: none;
   font-size: var(--display); line-height: var(--display-lh); letter-spacing: -2.25px;
 }
+/* statement headings = the site's sub-heading (.ai-chapter, 36/43.2), display size on phones */
 main.case :is(.prose h3, .hero-type, .case-nav__title) {
   font-weight: 400; text-transform: none;
-  font-size: calc(var(--title) * 1.4); line-height: 1.2; letter-spacing: -1.08px;
+  font-size: var(--display); line-height: var(--display-lh); letter-spacing: -1.62px;
 }
-main.case .metric-value { font-weight: 400; letter-spacing: -2.25px; }
+@media (min-width: 1280px) { main.case :is(.prose h3, .hero-type, .case-nav__title) { font-size: 36px; line-height: 43.2px; } }
+main.case .metric-value { font-weight: 400; font-size: var(--display); line-height: var(--display-lh); letter-spacing: -2.25px; }
+
+/* underlines: the site token instead of the original's auto/0.2em */
+main.case :is(.prose a, .back:hover, .case-nav__back:hover) { text-decoration-thickness: max(1.5px, 0.06em); text-underline-offset: var(--ul-offset); }
 main.case .lead { font-size: var(--title); line-height: var(--title-lh); letter-spacing: -1.08px; }
 
 /* ---- the visual nav is fixed from 800px: clear it ---- */
