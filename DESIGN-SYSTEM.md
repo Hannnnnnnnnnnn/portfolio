@@ -35,6 +35,7 @@ Mobile first: **0–799 · 800–1279 · 1280+** (from the original Figma frames
 | `--rule` | `#4f4f4f` | Dividers only (nav bottom on mobile, footer, soft cards) — never text |
 | `--paper` | `#fff` | Page |
 | `--paper-alt` | `#f2f2f2` | Fills: placeholders, panels, case snapshots (case `--tint` points here) |
+| `--hair` | `#dedede` | Light frame border around screen recordings (product cards; case `--line` has the same value) |
 
 Case diagrams also use `#dedede` (case `--line`, light borders inside figures) and `#d4d4d4` (inactive bars). Keep them inside diagrams.
 
@@ -94,7 +95,7 @@ Focus ring, site-wide: `outline: 2px solid var(--ink); outline-offset: 3px` on `
 
 - **Nav** — avatar (40px, 50px from 800) + name, links Product / Visual / About. Stacked on mobile; fixed with a white-to-transparent gradient from 800, so pages start ~200px down.
 - **Button** `.btn` — mono 16, 1px border, `3px 9px 6px` padding. Optional 24px icon (Grok/Claude/ChatGPT marks; the Claude mark keeps its brand orange).
-- **Card** `.card` — label, display title, optional subtitle, Explore button; square media (`aspect-ratio: 1`). Top rule `--ink`; `.card--soft` uses `--rule`.
+- **Card** `.card` — label, display title, optional subtitle, Explore button; square media (`aspect-ratio: 1`). Product cards with screen recordings use `.card__pair`: from 800px the desktop recording sits behind (top right, 68%) and the phone recording in front (left, 40%), as on the case pages; below 800px only the phone recording, filling the square. Top rule `--ink`; `.card--soft` uses `--rule`.
 - **Media frame** `.frame` — clips media; `--top/--bottom/--left/--right` (% of the frame) reproduce Figma's oversized-and-cropped placement at every width.
 - **Visual project page** — `cs-hero` (label, display title, title, meta) then `cs-*` blocks (text, figure + caption, split, quote, grids), then "More projects".
 - **Case page** — section guide + `.prose`; meta list, metrics, tags, figures/diagrams (`.mfd`, `.dist`, `.anno`, `.flows`), snapshots (`.snap`), demos, next-case link.

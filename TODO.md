@@ -6,7 +6,7 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 
 - [x] Résumé PDF replaced 2026-10-03 (`~/Downloads/Resume_Hanbyoul_Kim.docx.pdf`): five years, typo fixed, one link to `/portfolio`.
   - Still open (Han): phone number and city are in the public PDF.
-- [ ] **Product card preview media — Han will send new ones.** Replace `assets/video/card-pdp.mp4`, `card-plp.mp4` (temporary: the root site's mobile hero clips, square-cropped, PDP cuts off "LOW STOCK") and the grey placeholder on the Pre-order card (`.card__media--empty`, delete that CSS rule once it is gone). Cards are square (`aspect-ratio: 1`).
+- [ ] **Pre-order card media — Han will send it.** Still the grey placeholder (`.card__media--empty`; delete that CSS rule once it is gone). PDP and PLP cards now use the case pages' desktop + phone recordings (`.card__pair`, 2026-10-03).
 - [x] Write `/portfolio/llms.txt` (phase 4).
 - [x] No `/visual/` URL left in the site (grepped before cutover).
 
