@@ -52,3 +52,6 @@ main.case .lead { font-size: var(--title); line-height: var(--title-lh); letter-
 
 /* tags pills sit flush with the text (the original's .prose ul padding overrode .tags { padding: 0 }) */
 main.case .prose .tags { padding-left: 0; }
+
+/* quotes read at body size (the original's 1.05rem = 16.8px was off the scale) */
+main.case blockquote p { font-size: inherit; line-height: inherit; }
