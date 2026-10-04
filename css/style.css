@@ -55,7 +55,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .t-meta    { font-size: var(--title); line-height: var(--title-lh); letter-spacing: var(--meta-ls); }
 .t-body    { font-weight: 300; font-size: 16px; line-height: 20px; letter-spacing: -0.72px; }
 .t-body strong, .t-bold { font-weight: 700; }
-.t-label   { font: 500 var(--label)/1.03 var(--mono); letter-spacing: -0.72px; text-decoration: var(--ul); text-underline-offset: var(--ul-offset); }
+.t-label   { font: 500 var(--label)/1.03 var(--mono); letter-spacing: -0.72px; }  /* no underline (Han, 2026-10-03: it competed with the title) */
 .t-mono    { font: 400 16px/1.03 var(--mono); letter-spacing: -0.72px; }
 
 /* ---------- page shell ---------- */
@@ -202,8 +202,14 @@ ul { list-style: none; margin: 0; padding: 0; }
 .cs-quote cite { font-style: normal; }
 
 .cs-grid { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-bottom: 80px; }
-.cs-thirds { width: 100%; display: flex; align-items: center; gap: 24px; padding-bottom: 80px; }
-.cs-thirds > * { flex: 1 1 0; min-width: 0; }
+/* text + two crops of one screenshot. Phones: text full width, crops side by side under it (three 96px columns were unreadable). 800+: one row of thirds */
+.cs-thirds { width: 100%; display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 24px 8px; padding-bottom: 80px; }
+.cs-thirds > * { min-width: 0; }
+.cs-thirds > .cs-text-col { grid-column: 1 / -1; }
+@media (min-width: 800px) {
+  .cs-thirds { display: flex; align-items: center; gap: 24px; }
+  .cs-thirds > * { flex: 1 1 0; }
+}
 
 .cs-text--keep { padding-right: 100px; } /* kits-invest keeps the 100px inset on mobile */
 
@@ -234,7 +240,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 /* more projects */
 .more { width: 100%; max-width: 1180px; display: flex; flex-direction: column; align-items: flex-start; gap: 48px; padding: 29px 0 30px; border-top: 1px solid var(--rule); }
-.more__title { font: 500 12px/1.03 var(--mono); letter-spacing: -0.72px; text-decoration: var(--ul); text-underline-offset: var(--ul-offset); } /* underlined on mobile only */
+.more__title { font: 500 12px/1.03 var(--mono); letter-spacing: -0.72px; }
 .more__list { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 48px; }
 .more-card {
   width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 50px;
@@ -261,7 +267,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   .cs-stats { flex: 0 0 239px; }
   .cs-quote { padding: 30px 80px 0; }
   .cs-grid { gap: 16px; }
-  .more__title { font-weight: 400; font-size: 14px; text-decoration: none; }
+  .more__title { font-weight: 400; font-size: 14px; }
   .more-card { flex-direction: row; }
   .more-card--soft { border-top-color: var(--rule); } /* tablet only, as on the original */
   .more-card__text, .more-card__media { flex: 1 1 0; min-width: 0; }

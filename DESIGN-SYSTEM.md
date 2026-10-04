@@ -53,7 +53,7 @@ Source Serif 4 is Adobe's official variable WOFF2, **unmodified** (OFL with Rese
 | Body | `.t-body` | 16/20 | 16/20 | 16/20 | serif **300**, ls −0.72px. Visual project text, captions |
 | Case reading text | `main.case` | 17/1.55 | 18/1.55 | 18/1.55 | serif 400. Long-form only; quotes use it too |
 | Small | case diagrams | 14/1.55 | 14/1.55 | 14/1.55 | **One size** for all secondary/diagram text and `code` |
-| Label | `.t-label` | 12/1.03 | 14/1.03 | 16/1.03 | mono **500**, ls −0.72px, sentence case, underlined. Case labels use it without the underline |
+| Label | `.t-label` | 12/1.03 | 14/1.03 | 16/1.03 | mono **500**, ls −0.72px, sentence case, no underline. Case labels use the same style |
 | Mono UI | `.t-mono`, `.btn`, nav links | 16/1.03 | 16/1.03 | 16/1.03 | mono 400, ls −0.72px |
 
 Rules: no uppercase, no weights above 700, no new sizes — pick the nearest role. Numbers that are the point (case metrics) use Display.
@@ -70,7 +70,7 @@ Rules: no uppercase, no weights above 700, no new sizes — pick the nearest rol
 One underline everywhere: `--ul: underline max(1.5px, 0.06em)` + `--ul-offset: 0.16em`.
 1.5px on text up to 25px, then it scales (3px on the 50px footer links). Use `text-decoration: var(--ul); text-underline-offset: var(--ul-offset);` — never `from-font` (Source Code Pro's own stroke is hairline-thin). Case body links get the same values in `case-skin.css`.
 
-Where it appears: labels (`.t-label`), footer links, About links, case body links, and nav links **on hover/focus only**.
+Where it appears: footer links, About links, case body links, and nav links **on hover/focus only**. Labels above titles (`.t-label`, "More projects") are **not** underlined (removed 2026-10-03: it competed with the title).
 
 ## Interaction
 
