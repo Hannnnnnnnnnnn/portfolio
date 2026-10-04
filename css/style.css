@@ -97,6 +97,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 /* Figma appends -letter-spacing after single-line text (adjustLetterSpacing); match its widths. */
 .btn, .nav__links a { padding-right: calc(var(--btn-pad, 0px) + 0.72px); }
+.nav__links a:is(:hover, :focus-visible) { text-decoration: underline from-font; text-underline-position: from-font; }
 .btn:hover { background: var(--ink); color: var(--paper); }
 .btn svg { width: 24px; height: 23.04px; fill: currentColor; flex-shrink: 0; }
 
