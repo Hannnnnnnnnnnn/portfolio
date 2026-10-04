@@ -49,12 +49,13 @@ Source Serif 4 is Adobe's official variable WOFF2, **unmodified** (OFL with Rese
 | Display | `.t-display` | 28/33.6 | 36/43.2 | 50/60 | serif 400, ls −2.25px. Page titles, card titles, footer © |
 | Sub-heading | case `h3` (`.ai-chapter`) | 28/33.6 | 36/43.2 | 36/43.2 | serif 400, ls −1.62px. `.ai-chapter` itself stays 36/43.2 on phones too |
 | Title | `.t-title` | 20/1.52 | 22/1.52 | 24/1.52 | serif 400, ls −1.08px. Card subtitles, case lead |
-| Meta | `.t-meta` | 20 | 22 | 24 | Title size, tighter ls (`--meta-ls`). Project meta, About bio |
+| Meta | `.t-meta` | 20 | 22 | 24 | Title size, tighter ls (`--meta-ls`). Visual project meta |
 | Body | `.t-body` | 16/20 | 16/20 | 16/20 | serif **300**, ls −0.72px. Visual project text, captions |
 | Case reading text | `main.case` | 17/1.55 | 18/1.55 | 18/1.55 | serif 400. Long-form only; quotes use it too |
 | Small | case diagrams | 14/1.55 | 14/1.55 | 14/1.55 | **One size** for all secondary/diagram text and `code` |
 | Label | `.t-label` | 12/1.03 | 14/1.03 | 16/1.03 | mono **500**, ls −0.72px, sentence case, no underline. Case labels use the same style |
 | Mono UI | `.t-mono`, `.btn`, nav links | 16/1.03 | 16/1.03 | 16/1.03 | mono 400, ls −0.72px |
+| About text | `.about-bio`, `.about-row` | 12/1.6 | 14/1.6 | 16/1.6 | mono 400, ls −0.72px, `--label` size. Bio capped at 72ch (rows are single-line, lh 1.03) |
 
 Rules: no uppercase, no weights above 700, no new sizes — pick the nearest role. Numbers that are the point (case metrics) use Display.
 
@@ -95,7 +96,7 @@ Focus ring, site-wide: `outline: 2px solid var(--ink); outline-offset: 3px` on `
 
 - **Nav** — avatar (40px, 50px from 800) + name, links Product / Visual / About. Stacked on mobile; fixed with a white-to-transparent gradient from 800, so pages start ~200px down.
 - **Button** `.btn` — mono 16, 1px border, `3px 9px 6px` padding. Optional 24px icon (Grok/Claude/ChatGPT marks; the Claude mark keeps its brand orange).
-- **AI read row** `.home-hero__ai` (Product and Visual lists) — a "Read with" label in `--ink-soft` mono, then buttons named just Claude / ChatGPT / Grok (each keeps `aria-label="Read this portfolio with …"`). Phones: the label takes its own line so the three buttons share one row (they wrap at 320px).
+- **AI read row** `.home-hero__ai` (Product and Visual lists) — a "Read with" label in `--ink-soft` mono, then buttons named just Claude / ChatGPT / Grok (each keeps `aria-label="Read this portfolio with …"`). The label always sits on its own line above the buttons; from 1280px the group is a grid sized by the buttons, flush right in the hero row. The buttons share one row down to 375px (they wrap at 320px).
 - **Card** `.card` — label, display title, optional subtitle, Explore button; square media (`aspect-ratio: 1`). Product cards with screen recordings use `.card__pair`: from 800px the desktop recording sits behind (top right, 68%) and the phone recording in front (left, 40%), as on the case pages; below 800px only the phone recording, filling the square. Top rule `--ink`; `.card--soft` uses `--rule`.
 - **Media frame** `.frame` — clips media; `--top/--bottom/--left/--right` (% of the frame) reproduce Figma's oversized-and-cropped placement at every width.
 - **Visual project page** — `cs-hero` (label, display title, title, meta) then `cs-*` blocks (text, figure + caption, split, quote, grids), then "More projects".

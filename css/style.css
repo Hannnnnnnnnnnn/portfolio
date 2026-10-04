@@ -135,8 +135,10 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 /* ---------- home ---------- */
 .home-hero__ai { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-.home-hero__ai-label { font: 400 16px/1.03 var(--mono); letter-spacing: -0.72px; color: var(--ink-soft); margin-right: 4px; }
-@media (max-width: 799px) { .home-hero__ai-label { flex-basis: 100%; } }  /* phones: label on its own line so the three buttons share one row */
+.home-hero__ai-label { flex-basis: 100%; font: 400 16px/1.03 var(--mono); letter-spacing: -0.72px; color: var(--ink-soft); }  /* label sits above the buttons */
+/* 1280+: hero is a row, so size the group by its buttons (a wrapping flex row would also count the label) and keep it flush right */
+@media (min-width: 1280px) { .home-hero__ai { display: grid; grid-template-columns: repeat(3, auto); } .home-hero__ai-label { grid-column: 1 / -1; } }
+
 .home-hero { display: flex; flex-direction: column; align-items: flex-start; gap: 19px; padding: 80px 0; max-width: 1500px; width: 100%; }
 
 .card {
@@ -490,8 +492,9 @@ ul { list-style: none; margin: 0; padding: 0; }
 /* ---------- about ---------- */
 .about { display: flex; flex-direction: column; align-items: flex-start; }
 .about > :not(.sr-only) { width: 100%; }
-.about-bio { padding: 30px 0 100px; }
-.about-gap { font-size: 24px; line-height: 36.48px; } /* blank line kept as in Figma (zero-width-space paragraph) */
+/* bio in the same face and size as the rows below (mono, --label), with paragraph leading; capped so mono lines stay readable */
+.about-bio { padding: 30px 0 100px; font: 400 var(--label)/1.6 var(--mono); letter-spacing: -0.72px; max-width: 72ch; }
+.about-gap { line-height: 1.6; } /* blank line between paragraphs (zero-width-space paragraph, as in Figma) */
 .about-bio a { text-decoration: var(--ul); text-underline-offset: var(--ul-offset); }
 .about-now { display: flex; flex-direction: column; align-items: flex-start; gap: 50px; padding-bottom: 100px; }
 .about-now > * { width: 100%; }
