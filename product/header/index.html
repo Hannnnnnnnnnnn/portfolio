@@ -391,7 +391,7 @@ background: rgba(255, 255, 255, calc(0.5 + 0.3 * var(--bar-hover, 0)));
 
       <div class="demo" data-demo-progress>
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">Scroll inside the frame and watch the header become the floating bar. On the homepage it follows the scroll; on a product page it switches at the header&rsquo;s bottom edge with a fade. Keep scrolling past Add to cart and the price and button drop in under the bar. Phones hold the hover term at 1, so their bar ends at 80%.</p>
+        <p class="demo__caption">Scroll inside the frame and watch the header become the floating bar. On the homepage it follows the scroll; on a product page it switches at the header&rsquo;s bottom edge with a fade. Keep scrolling past Add to cart and the price and button drop in under the bar. Switch to Before for the live theme: its sticky header is turned off, so the header scrolls away with the page and there is no sticky add to cart. Phones hold the hover term at 1, so their bar ends at 80%.</p>
         <div class="demo__stage">
           <div class="dev"><div class="sb">
             <div class="sb__scroll" data-sb-scroll tabindex="0" aria-label="Scrollable page preview">
@@ -448,6 +448,13 @@ background: rgba(255, 255, 255, calc(0.5 + 0.3 * var(--bar-hover, 0)));
           <p class="sb__read label"><code>scroll <span data-sb-y>0</span>px &middot; sticky <span data-sb-on>off</span> &middot; --sticky-progress <span data-sb-value>0.00</span></code></p>
         </div>
         <div class="demo__controls">
+          <p class="demo__field">
+            <span class="label">Version</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="sb-ver" value="before"><span>Before (live)</span></label>
+              <label><input type="radio" name="sb-ver" value="after" checked><span>After</span></label>
+            </span>
+          </p>
           <p class="demo__field">
             <span class="label">Page</span>
             <span class="demo__seg">

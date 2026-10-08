@@ -351,17 +351,20 @@ run(() => {
   const update = () => {
     const y = scroller.scrollTop;
     const home = demo.querySelector('[name="sb-page"][value="home"]').checked;
+    // Before = 라이브 테마: enable_sticky_header 꺼짐 → 헤더가 페이지와 함께 스크롤되고 sticky ATC 없음
+    // Before = the live theme: enable_sticky_header is off, so the header scrolls away and there is no sticky ATC
+    const before = demo.querySelector('[name="sb-ver"][value="before"]').checked;
     // 헤더 높이: 데스크톱 18 + 44 + 10 실측, 폰은 아이콘 행 34 / header height: desktop measured, phone with the 34px row
     const headerH = demo.querySelector('[name="sb-device"][value="desktop"]').checked ? 72 : 62;
-    const stuck = y >= (home ? ANN : ANN + headerH);
-    const p = home ? Math.min(Math.max((y - ANN) / 200, 0), 1) : stuck ? 1 : 0;
+    const stuck = !before && y >= (home ? ANN : ANN + headerH);
+    const p = before ? 0 : home ? Math.min(Math.max((y - ANN) / 200, 0), 1) : stuck ? 1 : 0;
     frame.style.setProperty("--p", p);
     frame.style.setProperty("--y", stuck ? 0 : ANN - y);
     frame.classList.toggle("is-stuck", stuck);
     // 상품 페이지: 메인 버튼이 프레임 위로 완전히 지나가면 sticky ATC (테마의 IntersectionObserver 조건)
     // Product page: the sticky ATC once the main button is fully above the frame (the theme's IO condition)
     const atc = demo.querySelector("[data-sb-atc]");
-    frame.classList.toggle("is-satc", !home && atc.getBoundingClientRect().bottom < scroller.getBoundingClientRect().top);
+    frame.classList.toggle("is-satc", !before && !home && atc.getBoundingClientRect().bottom < scroller.getBoundingClientRect().top);
     out("y").textContent = Math.round(y);
     out("on").textContent = stuck ? "on" : "off";
     out("value").textContent = home ? p.toFixed(2) : "n/a";
