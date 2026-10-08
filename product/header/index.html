@@ -387,10 +387,11 @@ background: rgba(255, 255, 255, calc(0.5 + 0.3 * var(--bar-hover, 0)));
       <h3>A bar that follows the scroll, not a breakpoint</h3>
       <p>On the homepage the header starts as transparent type over the first banner. Instead of snapping into a sticky bar at some threshold, it becomes one gradually: over the first 200px of scroll, a single value, <code>--sticky-progress</code>, goes from 0 to 1, and the tint, blur, inset, padding and logo size are all written as functions of it. Scroll back up and it unwinds by the same amount.</p>
       <p><strong>And it never leaves.</strong> On phones the vendor header hides on scroll down; this one stays in view at every width. One consequence I had to fix: the collection page&rsquo;s sticky filter bar only stuck while the header was hidden, so it ended up stuck <em>underneath</em> the header, out of sight. It scrolls with the page now.</p>
+      <p><strong>On a product page, the bar brings the buy button with it.</strong> Once the main Add to cart has scrolled out of view, the price and an Add to cart button appear right under the right end of the bar. Shoppers scroll down through photos, details and pairings, and buying stays one tap away instead of a scroll back up. That is the part of the header closest to revenue, and the main reason the bar is never allowed to leave. <a href="#decision-5">Decision 05</a> covers how it stays correct.</p>
 
       <div class="demo" data-demo-progress>
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">Scroll inside the frame and watch the header become the floating bar. On the homepage it follows the scroll; on a product page it switches at the header&rsquo;s bottom edge with a fade. Phones hold the hover term at 1, so their bar ends at 80%.</p>
+        <p class="demo__caption">Scroll inside the frame and watch the header become the floating bar. On the homepage it follows the scroll; on a product page it switches at the header&rsquo;s bottom edge with a fade. Keep scrolling past Add to cart and the price and button drop in under the bar. Phones hold the hover term at 1, so their bar ends at 80%.</p>
         <div class="demo__stage">
           <div class="dev"><div class="sb">
             <div class="sb__scroll" data-sb-scroll tabindex="0" aria-label="Scrollable page preview">
