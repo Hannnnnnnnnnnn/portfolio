@@ -59,3 +59,6 @@
 - **Unlisted**: `noindex, nofollow`, no canonical/OG, linked from nowhere (Product list, More projects, llms.txt). To list it: drop the robots line, add a card to the list, a More projects entry and an llms.txt section.
 - `tools/sitecheck.mjs` skips `data:` URIs (the SVG lens map was reported as a missing file).
 - Checks: sitecheck 0 problems on 12 pages; Playwright at 1440 and 375 — no page errors, no horizontal overflow, all four demos rendered and exercised; below 800px the demos open on Phone.
+- Han decided to keep the root site's `work-4.html` as well ("일단 그대로 두자"), so this case exists twice: any edit goes to both. MERGE-PLAN's "root is frozen" still holds for the three original cases.
+
+**Next**: hero recordings for this case (Han), desktop menu decision (Han), real-phone check of the phone product page.
