@@ -488,6 +488,10 @@ html.js .prose > *.is-in { opacity: 1; transform: none; }
    (1440x900 과 360x560 의 가로세로비). 데모는 본문 칸을 넘어 오른쪽 여백까지 넓어진다.
    A desktop + phone pair. From 900px they sit side by side, split 2.489 : 1 so both are the
    same height (the aspect ratios of 1440x900 and 360x560); the demo widens past the text column. */
+/* 04 Dec 01: 홈페이지 실제 캡처 두 장, 폰 프레임 안에서 각자 스크롤 / two real homepage captures, each scrolling in its own phone frame */
+.demo .hpshot { margin: 0; display: grid; gap: 0.75rem; justify-items: center; }
+.demo .hpshot__frame { width: min(300px, 100%); height: 560px; overflow-y: auto; overscroll-behavior: contain; outline: 1px solid var(--line); background: #fff; }
+.demo .hpshot__frame img { display: block; width: 100%; height: auto; }
 .demo .devcol { margin: 0; width: 100%; display: grid; gap: 0.75rem; justify-items: center; }
 .demo .devcol__cap { margin: 0; text-align: center; }
 @media (min-width: 900px) {
