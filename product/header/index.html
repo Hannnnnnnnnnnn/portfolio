@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Header &amp; Homepage &mdash; Hanbyoul Kim</title>
+<!-- 링크 없이 공개 — 상품 목록·More projects·llms.txt 어디서도 링크하지 않는다. 공개 시 이 줄을 지우고 목록에 추가 /
+     Unlisted: linked from nowhere (Product list, More projects, llms.txt). To list it, drop this line and add it to the list -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="A header that stops covering the campaign, and a homepage that stops rotating it away.">
+
+
+<link rel="icon" href="../../assets/img/favicon.png">
+<link rel="preload" href="../../assets/fonts/SourceSerif4Variable-Roman.ttf.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/source-code-pro.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/case.css">
+<link rel="stylesheet" href="../../css/case-skin.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="../../js/main.js" defer></script>
+<script src="../../js/case.js" defer></script>
+</head>
+<body>
+<!-- 데모가 공유하는 아이콘(테마 실물 그대로)과 리퀴드 글래스 렌즈 / Icons shared by the demos (as the theme ships them) and the liquid glass lenses -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-menu" viewBox="0 0 32 32" fill="none"><path d="M0 26.667h32M0 16h26.98M0 5.333h32" stroke="currentColor"/></symbol>
+  <symbol id="i-search" viewBox="0 0 15 17" fill="none"><circle cx="7.11113" cy="7.11113" r="6.56113" stroke="currentColor"/><path d="M11.078 12.3282L13.8878 16.0009" stroke="currentColor" stroke-linecap="round"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24" fill="none"><path d="M16 10V6a4 4 0 0 0-8 0v4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.46 15.44 18.39 21a1.39 1.39 0 0 1-1.27.93H6.88A1.39 1.39 0 0 1 5.61 21l-2.07-5.56-1.23-3.26c-.12-.34-.23-.62-.32-.85a17.28 17.28 0 0 1 20 0c-.09.23-.2.51-.32.85Z" stroke="currentColor" stroke-miterlimit="10"/></symbol>
+  <symbol id="i-account" viewBox="0 0 14 18" fill="none"><path d="M7.34497 10.0933C4.03126 10.0933 1.34497 12.611 1.34497 15.7169C1.34497 16.4934 1.97442 17.1228 2.75088 17.1228H11.9391C12.7155 17.1228 13.345 16.4934 13.345 15.7169C13.345 12.611 10.6587 10.0933 7.34497 10.0933Z" stroke="currentColor"/><ellipse cx="7.34503" cy="5.02631" rx="3.63629" ry="3.51313" stroke="currentColor" stroke-linecap="square"/></symbol>
+  <symbol id="i-close" viewBox="0 0 12 12" fill="none"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-linecap="round"/></symbol>
+  <!-- 테마의 두 렌즈를 그대로: 가장자리 변위 맵 + 블러 3 + 채도 1.8, 바 14 / 박스 40 (Chromium 전용) /
+       The theme's two lenses verbatim: edge displacement map + blur 3 + saturate 1.8, bar 14 / boxes 40 (Chromium only) -->
+  <filter id="LensBar" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='x'%3E%3Cstop offset='0' stop-color='rgb(255,0,0)'/%3E%3Cstop offset='.06' stop-color='rgb(128,0,0)'/%3E%3Cstop offset='.94' stop-color='rgb(128,0,0)'/%3E%3Cstop offset='1' stop-color='rgb(0,0,0)'/%3E%3C/linearGradient%3E%3ClinearGradient id='y' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='rgb(0,255,0)'/%3E%3Cstop offset='.25' stop-color='rgb(0,128,0)'/%3E%3Cstop offset='.75' stop-color='rgb(0,128,0)'/%3E%3Cstop offset='1' stop-color='rgb(0,0,0)'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23x)'/%3E%3Crect width='100' height='100' fill='url(%23y)' style='mix-blend-mode:screen'/%3E%3C/svg%3E" preserveAspectRatio="none" result="map"/>
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    <feGaussianBlur stdDeviation="3"/>
+    <feColorMatrix type="saturate" values="1.8"/>
+  </filter>
+  <filter id="LensBox" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='x'%3E%3Cstop offset='0' stop-color='rgb(255,0,0)'/%3E%3Cstop offset='.06' stop-color='rgb(128,0,0)'/%3E%3Cstop offset='.94' stop-color='rgb(128,0,0)'/%3E%3Cstop offset='1' stop-color='rgb(0,0,0)'/%3E%3C/linearGradient%3E%3ClinearGradient id='y' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='rgb(0,255,0)'/%3E%3Cstop offset='.25' stop-color='rgb(0,128,0)'/%3E%3Cstop offset='.75' stop-color='rgb(0,128,0)'/%3E%3Cstop offset='1' stop-color='rgb(0,0,0)'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23x)'/%3E%3Crect width='100' height='100' fill='url(%23y)' style='mix-blend-mode:screen'/%3E%3C/svg%3E" preserveAspectRatio="none" result="map"/>
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="40" xChannelSelector="R" yChannelSelector="G"/>
+    <feGaussianBlur stdDeviation="3"/>
+    <feColorMatrix type="saturate" values="1.8"/>
+  </filter>
+</svg>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="page">
+  <nav class="nav">
+    <a class="nav__home" href="../../">
+      <span class="nav__avatar"><video src="../../assets/video/avatar.mp4" data-autoplay loop muted playsinline preload="metadata" aria-hidden="true"></video></span>
+      <span class="nav__name">Han Kim</span>
+    </a>
+    <div class="nav__links t-mono">
+      <a class="link-fade" href="../../">Product</a>
+      <a class="link-fade" href="../../visual/">Visual</a>
+      <a class="link-fade" href="../../about/">About</a>
+    </div>
+  </nav>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<main id="main" class="section case">
+  <nav class="toc label" aria-label="On this page">
+    <ol>
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#decisions">Decisions</a>
+        <ol class="toc__nums">
+          <li><a class="toc__num" href="#decision-1">01</a></li>
+          <li><a class="toc__num" href="#decision-2">02</a></li>
+          <li><a class="toc__num" href="#decision-3">03</a></li>
+          <li><a class="toc__num" href="#decision-4">04</a></li>
+          <li><a class="toc__num" href="#decision-5">05</a></li>
+          <li><a class="toc__num" href="#decision-6">06</a></li>
+        </ol>
+      </li>
+      <li><a href="#outcome">Outcome</a></li>
+      <li><a href="#next">Next</a></li>
+    </ol>
+  </nav>
+  <div class="prose">
+
+    <p class="label muted">04 &middot; Header &amp; Homepage</p>
+    <h1>Getting out of the campaign&rsquo;s way</h1>
+    <p class="lead">A header that stops covering the campaign, and a homepage that stops rotating it away.</p>
+
+    <ul class="tags label">
+      <li>Interaction Design</li>
+      <li>Visual Design</li>
+      <li>Front-end Implementation</li>
+      <li>Analytics</li>
+    </ul>
+
+    <p class="caveat">In review on a draft theme, not yet published. The numbers below are the baseline this will be measured against &mdash; not results.</p>
+
+    <dl class="meta">
+      <dt>Client</dt><dd>Atacz</dd>
+      <dt>Role</dt><dd>Sole designer and developer</dd>
+      <dt>Timeline</dt><dd>Sept &ndash; Oct 2026 &middot; in review</dd>
+      <dt>Tools</dt><dd>Liquid, CSS (backdrop-filter, @property, SVG filters), vanilla JavaScript, GA4</dd>
+    </dl>
+
+    <div class="snaps snaps--pair">
+      <figure class="snap snap--mobile">
+        <div class="snap__scroll"><p class="snap__slot label">Screen recording, mobile<br><code>../../assets/case/04-header/hero-mobile.mp4</code></p></div>
+      </figure>
+      <figure class="snap snap--desktop">
+        <div class="snap__scroll"><p class="snap__slot label">Screen recording, desktop<br><code>../../assets/case/04-header/hero-desktop.mp4</code></p></div>
+      </figure>
+    </div>
+
+    <h2 id="problem">1 &middot; The problem</h2>
+    <h3>The header was a wall, and the homepage was a slideshow nobody waited for.</h3>
+    <p><strong>The header was the theme&rsquo;s template, as shipped.</strong> A centred logo on a solid white bar, out of step with the design system I was rebuilding, and opaque by construction: every pixel of it hid the photography underneath. The menu and the cart opened as opaque drawers that covered the page too.</p>
+    <p><strong>That photography is the most expensive thing on the site.</strong> Campaigns are shot by outside studios, and they are the store&rsquo;s priority. The catalogue is small &mdash; small enough that the menu has comparatively little to sort &mdash; so the homepage&rsquo;s job is the campaign, and the header was standing on top of it.</p>
+    <p><strong>The homepage led with an auto-rotating carousel:</strong> two slides, six seconds each. Whatever was on the second slide was, by design, invisible for the first six seconds of every visit.</p>
+
+    <h2 id="research">2 &middot; What I found</h2>
+    <h3>Most visits end before the second slide arrives.</h3>
+    <p><strong>On a phone, the average homepage view is engaged for 4.8 seconds.</strong> The carousel advanced every 6. On desktop the figure is 9.6 seconds, so a desktop visitor does get to see the second slide &mdash; but phones are where the visits are.</p>
+
+    <figure class="figure figure--diagram">
+      <div class="tl">
+        <div class="tl__track">
+          <span class="tl__slide">Slide 1 &middot; 0&ndash;6s</span>
+          <span class="tl__slide">Slide 2 &middot; 6&ndash;12s</span>
+        </div>
+        <div class="tl__mark" style="--at: 40%"><span class="tl__tag">Mobile view ends &middot; 4.8s</span></div>
+        <div class="tl__mark tl__mark--alt" style="--at: 80%"><span class="tl__tag">Desktop &middot; 9.6s</span></div>
+      </div>
+      <figcaption class="label muted">Average engaged time per homepage view, 15 Sept &ndash; 7 Oct 2026, against the carousel&rsquo;s 6-second rotation (<code>autoplay_speed: 6000</code>).</figcaption>
+    </figure>
+
+    <p><strong>The carousel was the least clicked thing on the homepage.</strong> GA4 had no click event on the homepage, so I measured what I could: the share of homepage views followed by a visit to each module&rsquo;s destination. For the carousel&rsquo;s product slides that is an upper bound &mdash; and it was still low.</p>
+
+    <figure class="figure figure--diagram">
+      <div class="dist">
+        <div class="dist__row dist__row--lead">
+          <span class="dist__name">Category tile &middot; Editions</span>
+          <span class="dist__pct">10.1%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 100%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Category tile &middot; Most Loved</span>
+          <span class="dist__pct">3.5%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 34.7%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Category tile &middot; Add-ons</span>
+          <span class="dist__pct">1.7%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 16.8%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Carousel &middot; slide 1</span>
+          <span class="dist__pct">1.4%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 13.9%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Carousel &middot; slide 2</span>
+          <span class="dist__pct">1.2%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 11.9%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Brand tile &middot; Our Commitment</span>
+          <span class="dist__pct">&le;1.1%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 10.9%"></span></span>
+        </div>
+        <div class="dist__row">
+          <span class="dist__name">Brand tile &middot; Blog</span>
+          <span class="dist__pct">&le;0.6%</span>
+          <span class="dist__track"><span class="dist__bar" style="width: 5.9%"></span></span>
+        </div>
+      </div>
+      <figcaption class="label muted">Share of homepage views followed by a visit to each module&rsquo;s destination, 15&ndash;27 Sept 2026. Our Commitment and the blog are also in the menu, so theirs are ceilings. With the slides changed, slide 2 fell to 0.58% the following ten days.</figcaption>
+    </figure>
+
+    <p><strong>The top tile wasn&rsquo;t about categories.</strong> Editions is where the Miffy collaboration lives &mdash; the one tile that kept showing it. Most Loved was the next strongest entry point. Both mattered for what came next: they were the two things I could not afford to lose by taking the tiles away.</p>
+
+    <p><strong>The outside research pointed the same way.</strong></p>
+    <ul>
+      <li>Across Notre Dame&rsquo;s homepage carousel, <strong>1.07%</strong> of visits clicked it, and <strong>89.1%</strong> of those clicks went to the first slide (<a href="https://erikrunyon.com/2013/07/carousel-interaction-stats/">Runyon, 2013</a>). The one auto-forwarding carousel in that set did better, at 9.4% &mdash; the counterexample is in the same post.</li>
+      <li>Auto-forwarding hides content most of the time, moves before people finish reading, and looks enough like an ad to be ignored (<a href="https://www.nngroup.com/articles/auto-forwarding/">Nielsen Norman Group, 2013</a>).</li>
+      <li><strong>57%</strong> of viewing time is above the fold and <strong>74%</strong> within the first two screens (<a href="https://www.nngroup.com/articles/scrolling-and-attention/">NN/g, 2018</a>). With two slides, each campaign held the top of the page only half the time.</li>
+    </ul>
+
+    <p><strong>And the research I had to argue with.</strong> Hiding navigation behind a menu icon costs more than 20% in discoverability, and desktop users were at least 39% slower with it; NN/g&rsquo;s advice is not to do it on desktop (<a href="https://www.nngroup.com/articles/hamburger-menus/">Pernice &amp; Budiu, 2016</a>). Translucent surfaces fail when text sits over a busy background (<a href="https://www.nngroup.com/articles/glassmorphism/">NN/g, 2024</a>; <a href="https://www.nngroup.com/articles/liquid-glass/">2025</a>). I did both anyway. Decisions 02 and 03 say why, and what each one costs.</p>
+
+    <p><strong>Who the decisions are for.</strong> Over the last twelve months, phones carried <strong>83.6%</strong> of sessions. Desktop carried <strong>12.6%</strong> of sessions but <strong>21.1%</strong> of purchases and <strong>19.2%</strong> of revenue: a desktop visitor converts about <strong>1.8&times;</strong> as often as a mobile one, and about <strong>3.0&times;</strong> in Canada. Small on traffic, not small on money.</p>
+
+    <h2 id="decisions">3 &middot; Decisions</h2>
+
+    <section class="decision" id="decision-1">
+      <span class="label muted">Decision 01</span>
+      <h3>Stacking campaigns instead of rotating them</h3>
+      <p>The carousel is gone. The homepage now stacks full-width campaign banners down the page, with the impact counter and a two-up collage row between them. Nothing waits six seconds for its turn.</p>
+      <p><strong>Old campaigns keep working.</strong> A shoot used to earn a month on the homepage and then disappear. Stacked, last season&rsquo;s photography keeps a slot instead of being retired.</p>
+      <p><strong>The order is a dial.</strong> The carousel held two banners at most. A stack holds as many as the page needs, and its order can follow sales &mdash; the best seller&rsquo;s campaign moves up.</p>
+      <p><strong>The strong tiles become banners, not casualties.</strong> The second slot is reserved for Miffy, which is what Editions was really carrying. Most Loved comes back as roughly the third banner. The brand and blog tiles, the least visited modules, step down.</p>
+      <p><strong>Trade-off.</strong> Only about 15% of homepage views reach 90% of the page today. Every banner below the first is a bet that people keep scrolling when the next thing is new. Whether they do is the first number in section 4.</p>
+
+      <figure class="figure figure--diagram">
+        <div class="hp">
+          <div class="hp__col">
+            <p class="hp__head label">Before</p>
+            <ol class="hp__list">
+              <li class="hp__item hp__item--hero">Carousel &middot; 2 slides, 6s each</li>
+              <li class="hp__item">Impact counter</li>
+              <li class="hp__item">Category tiles &times; 4</li>
+              <li class="hp__item">Brand + blog collage</li>
+              <li class="hp__item">Rich text</li>
+              <li class="hp__item">Instagram feed</li>
+            </ol>
+          </div>
+          <div class="hp__col">
+            <p class="hp__head label">After</p>
+            <ol class="hp__list">
+              <li class="hp__item hp__item--hero">Campaign banner</li>
+              <li class="hp__item">Impact counter</li>
+              <li class="hp__item hp__item--hero">Campaign banner &middot; Miffy</li>
+              <li class="hp__item">Collage row, two-up on phones too</li>
+              <li class="hp__item hp__item--hero">Campaign banner &middot; Most Loved</li>
+              <li class="hp__item">Rich text</li>
+              <li class="hp__item">Instagram feed</li>
+            </ol>
+          </div>
+        </div>
+        <figcaption class="label muted">Homepage order, live theme and draft. The Miffy and Most Loved slots are planned; the draft holds other campaigns there today.</figcaption>
+      </figure>
+    </section>
+
+    <section class="decision" id="decision-2">
+      <span class="label muted">Decision 02</span>
+      <h3>Glass instead of a wall</h3>
+      <p>Every header surface &mdash; the floating bar, the menu, search and cart boxes, the sticky add to cart, and the Shopify Inbox chat button &mdash; is now translucent glass. The menu is still there, and so is the campaign behind it.</p>
+      <p><strong>The first pass was dark.</strong> Black at 30% for the bar and 50% for the boxes, a 6px blur, rounded 19.7px corners measured off the chat button. <strong>The version in review is white:</strong> 50% on the bar and 70% on the boxes, <code>blur(12px) saturate(180%)</code>, a bright 1px rim on the top-left edge, square corners.</p>
+      <p><strong>Under the pointer, the glass thickens to 80%.</strong> Glass that is pleasant to look through can be unpleasant to read through, so the surface you are using gets more opaque, with a 250ms fade. The bar&rsquo;s tint already follows the scroll position with no transition, so the hover value is a registered <code>@property</code> that animates on its own: scroll stays instant, hover stays smooth.</p>
+      <p><strong>Then I checked the edge case, and it failed.</strong> In Chromium the glass also refracts the page at its edges, through an SVG displacement lens inside <code>backdrop-filter</code>. To make that visible I had lowered the box tint to 45%. Over a black section, <code>#0c0c0c</code> text on that comes out at <strong>4.1:1</strong> &mdash; under the 4.5 that AA asks of small text. And a phone never hovers, so on phones the 80% would never arrive. <strong>Touch devices now hold every surface at 80%</strong>, which also takes the 45% boxes off the table on phones.</p>
+      <p><strong>Trade-off.</strong> On desktop Chromium the resting boxes are still 45%, because that is where the refraction reads. Hover fixes it for the person using the box. The fallback matters too: <code>url()</code> in <code>backdrop-filter</code> renders only in Chromium and voids the whole declaration elsewhere, blur included, so the lens is gated behind a class that only Chromium gets.</p>
+
+      <div class="demo" data-demo-glass>
+        <span class="demo__label label">Try it</span>
+        <p class="demo__caption">The same header and menu over the draft&rsquo;s own campaign film, in each surface it has had. Desktop draws a 1440px-wide page and scales it down; Phone is drawn at phone size; a phone never hovers, so it holds the thicker glass.</p>
+        <div class="demo__stage">
+          <div class="dev"><div class="gl" data-glass>
+            <div class="gl__page" aria-hidden="true">
+              <div class="gl__bg gl__bg--campaign"><video class="gl__vid" src="../../assets/case/04-header/campaign-loop.mp4" poster="../../assets/case/04-header/campaign-loop-poster.jpg" width="1280" height="720" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><div class="hc" aria-hidden="true"><p class="hc__h">Meet the New Crew</p><p class="hc__s">Soft forms. Bold color.</p><span class="hc__l">Shop Crew Puff Collection</span></div></div>
+              <img class="gl__bg gl__bg--lifestyle" src="../../assets/case/04-header/crew-puff-campaign.jpg" alt="" width="1280" height="854" loading="lazy">
+              <div class="gl__bg gl__bg--dark"><p>Made into bags that matter.</p></div>
+            </div>
+            <div class="gl__bar">
+              <span class="gl__icons"><span class="gl__btn"><svg class="gl__icon" aria-hidden="true"><use href="#i-close"/></svg></span><span class="gl__btn gl__dsk"><svg class="gl__icon" aria-hidden="true"><use href="#i-search"/></svg></span></span>
+              <img class="gl__logo" src="../../assets/case/04-header/atacz-logo.svg" alt="Atacz" width="120" height="24">
+              <span class="gl__icons gl__icons--end"><span class="gl__btn gl__mob"><svg class="gl__icon" aria-hidden="true"><use href="#i-search"/></svg></span><span class="gl__btn gl__dsk"><svg class="gl__icon" aria-hidden="true"><use href="#i-account"/></svg></span><span class="gl__btn"><svg class="gl__icon" aria-hidden="true"><use href="#i-cart"/></svg></span></span>
+            </div>
+            <nav class="gl__box gl__menu" aria-label="Menu, as rendered in the demo">
+              <ul>
+                <li class="gl__top">New Arrivals</li>
+                <li class="gl__top">Miffy</li>
+                <li class="gl__top">Bags</li>
+                <li class="gl__top">Accessories</li>
+                <li class="gl__top">Knit to Care</li>
+              </ul>
+              <p class="gl__util">Log in &nbsp; Gift Card &nbsp; Find a store</p>
+            </nav>
+          </div></div>
+        </div>
+        <div class="demo__controls">
+          <p class="demo__field">
+            <span class="label">Surface</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="gl-surface" value="opaque"><span>Opaque</span></label>
+              <label><input type="radio" name="gl-surface" value="dark"><span>Dark glass</span></label>
+              <label><input type="radio" name="gl-surface" value="white" checked><span>White glass</span></label>
+            </span>
+          </p>
+          <p class="demo__field">
+            <span class="label">Behind it</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="gl-bg" value="campaign" checked><span>Campaign film</span></label>
+              <label><input type="radio" name="gl-bg" value="lifestyle"><span>Sky</span></label>
+              <label><input type="radio" name="gl-bg" value="dark"><span>Black</span></label>
+            </span>
+          </p>
+          <p class="demo__field">
+            <span class="label">Used on</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="gl-use" value="rest" checked><span>Desktop</span></label>
+              <label><input type="radio" name="gl-use" value="hover"><span>Pointer on it</span></label>
+              <label><input type="radio" name="gl-use" value="touch"><span>Phone</span></label>
+            </span>
+          </p>
+        </div>
+        <details>
+          <summary class="label">The glass, from the theme</summary>
+<pre><code>:root {
+  --glass-filter: blur(12px) saturate(180%);
+  --glass-box-tint: rgba(255, 255, 255, 0.7);
+  --glass-box-tint-hover: rgba(255, 255, 255, 0.8);
+}
+/* Chromium only: the lens replaces the filter, lighter tint so it shows */
+:root.liquid-glass-refraction {
+  --glass-filter: url(#LiquidGlassRefraction);
+  --glass-box-tint: rgba(255, 255, 255, 0.45);
+}
+/* Bar: 50%, 80% under the pointer, faded on its own */
+@property --bar-hover { syntax: '&lt;number&gt;'; inherits: false; initial-value: 0; }
+background: rgba(255, 255, 255, calc(0.5 + 0.3 * var(--bar-hover, 0)));
+/* Touch devices: the pointer never arrives, so hold the hover tint */
+@media (hover: none) {
+  :root, :root.liquid-glass-refraction { --glass-box-tint: var(--glass-box-tint-hover); }
+}</code></pre>
+        </details>
+      </div>
+    </section>
+
+    <section class="decision" id="decision-3">
+      <span class="label muted">Decision 03</span>
+      <h3>One menu button, at every width</h3>
+      <p>Desktop now uses the same off-canvas layout as phones: a menu button and search on the left, the logo in the middle, the cart on the right. Menu, search and cart each open as a glass box under the bar, and only one is open at a time &mdash; opening one closes the others first. The page stays scrollable behind them.</p>
+      <p><strong>Why give desktop a hamburger.</strong> Phones are 83.6% of sessions, so the menu button is the navigation most visitors already know. Giving desktop the same button means one pattern to learn instead of two. And with a catalogue this small the menu has comparatively little to sort; the priority on the page is the campaign, not the category tree.</p>
+      <p><strong>Trade-off, taken knowingly.</strong> This is the decision the research argues against most directly: hidden navigation was more than 20% less discoverable and at least 39% slower on desktop. Desktop is 12.6% of sessions but 21.1% of purchases, so the cost lands on the visitors who buy the most often. The categories open expanded inside the box, and desktop conversion and menu use are the first things I will watch after launch.</p>
+
+      <div class="demo" data-demo-boxes>
+        <input class="hb__state" type="radio" name="hb" id="hb-none" value="none" checked aria-label="All boxes closed">
+        <input class="hb__state" type="radio" name="hb" id="hb-menu" value="menu" aria-label="Menu box open">
+        <input class="hb__state" type="radio" name="hb" id="hb-search" value="search" aria-label="Search box open">
+        <input class="hb__state" type="radio" name="hb" id="hb-cart" value="cart" aria-label="Cart box open">
+        <span class="demo__label label">Try it</span>
+        <p class="demo__caption">On a phone: open the menu, search or cart. Only one box is ever open, and the button that opened it turns into its close.</p>
+        <div class="demo__stage">
+          <div class="gl gl--fixed">
+            <div class="gl__page" aria-hidden="true">
+              <div class="gl__bg"><video class="gl__vid" src="../../assets/case/04-header/campaign-loop.mp4" poster="../../assets/case/04-header/campaign-loop-poster.jpg" width="1280" height="720" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><div class="hc" aria-hidden="true"><p class="hc__h">Meet the New Crew</p><p class="hc__s">Soft forms. Bold color.</p><span class="hc__l">Shop Crew Puff Collection</span></div></div>
+            </div>
+            <div class="gl__bar">
+              <span class="gl__icons"><label class="gl__btn hb__btn" for="hb-menu" data-for="menu"><svg class="gl__icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="visually-hidden">Open menu</span></label><label class="gl__btn hb__btn hb__btn--close" for="hb-none" data-for="menu"><svg class="gl__icon" aria-hidden="true"><use href="#i-close"/></svg><span class="visually-hidden">Close menu</span></label></span>
+              <img class="gl__logo" src="../../assets/case/04-header/atacz-logo.svg" alt="Atacz" width="120" height="24">
+              <span class="gl__icons gl__icons--end"><label class="gl__btn hb__btn" for="hb-search" data-for="search"><svg class="gl__icon" aria-hidden="true"><use href="#i-search"/></svg><span class="visually-hidden">Open search</span></label><label class="gl__btn hb__btn hb__btn--close" for="hb-none" data-for="search"><svg class="gl__icon" aria-hidden="true"><use href="#i-close"/></svg><span class="visually-hidden">Close search</span></label><label class="gl__btn hb__btn" for="hb-cart" data-for="cart"><svg class="gl__icon" aria-hidden="true"><use href="#i-cart"/></svg><span class="visually-hidden">Open cart</span></label><label class="gl__btn hb__btn hb__btn--close" for="hb-none" data-for="cart"><svg class="gl__icon" aria-hidden="true"><use href="#i-close"/></svg><span class="visually-hidden">Close cart</span></label></span>
+            </div>
+
+            <nav class="gl__box gl__menu hb__box" data-box="menu" aria-label="Menu, as rendered in the demo">
+              <ul>
+                <li><span class="gl__top">New Arrivals</span></li>
+                <li><details class="gl__acc" open><summary class="gl__top">Miffy</summary>
+                  <p class="gl__group">Shop by Type</p><p class="gl__sub">Bags</p><p class="gl__sub">Straps</p><p class="gl__sub">Keychains &amp; Pouches</p>
+                  <p class="gl__group">Shop by Collection</p><p class="gl__sub">Miffy I</p><p class="gl__sub">Miffy II</p>
+                </details></li>
+                <li><details class="gl__acc" open><summary class="gl__top">Bags</summary>
+                  <p class="gl__group">Shop by Style</p><p class="gl__sub">Handbags</p><p class="gl__sub">Tote bags</p><p class="gl__sub">Crossbody Bags</p><p class="gl__sub">Backpacks</p>
+                  <p class="gl__group">Shop by Collection</p><p class="gl__sub">Birthday</p><p class="gl__sub">Twist</p><p class="gl__sub">Nimbus</p><p class="gl__sub">Crew Puff</p><p class="gl__sub">Voyage</p><p class="gl__sub">Rift</p><p class="gl__sub">Proof Plus Eco</p><p class="gl__sub">ATACZ Mart</p>
+                </details></li>
+                <li><details class="gl__acc" open><summary class="gl__top">Accessories</summary>
+                  <p class="gl__group">Customize</p><p class="gl__sub">Straps</p><p class="gl__sub">Phone Straps</p><p class="gl__sub">Keychains &amp; Letters</p>
+                  <p class="gl__group">Small goods</p><p class="gl__sub">Pouches &amp; Cases</p>
+                </details></li>
+                <li><details class="gl__acc" open><summary class="gl__top">Knit to Care</summary>
+                  <p class="gl__group">About ATACZ</p><p class="gl__sub">Our Mission</p><p class="gl__sub">Our Commitment</p><p class="gl__sub">Our Stores</p>
+                  <p class="gl__group">Sustainability</p><p class="gl__sub">1% for the Planet</p>
+                  <p class="gl__group">More</p><p class="gl__sub">The ATACZ Edit</p><p class="gl__sub">Bind Tutorial</p><p class="gl__sub">Gift Card</p>
+                </details></li>
+              </ul>
+              <p class="gl__util">Log in &nbsp; Gift Card &nbsp; Find a store</p>
+            </nav>
+
+            <div class="gl__box hb__box hb__search" data-box="search">
+              <p class="hb__input">barrel</p>
+              <p class="gl__group">Products</p>
+              <p class="hb__row"><img src="../../assets/case/04-header/sw-mud.jpg" alt="" width="40" height="50"><span>Mini Barrel Bag<br><span class="hb__muted">$139.00</span></span></p>
+              <p class="hb__more">Search for &ldquo;barrel&rdquo;</p>
+            </div>
+
+            <div class="gl__box hb__box hb__cart" data-box="cart">
+              <p class="hb__title">Your cart</p>
+              <p class="hb__row"><img src="../../assets/case/04-header/sw-mud.jpg" alt="" width="60" height="75"><span>Mini Barrel Bag<br><span class="hb__muted">Mud &middot; 1</span></span><span class="hb__price">$139.00</span></p>
+              <p class="hb__sum"><span>Subtotal</span><span>$139.00</span></p>
+              <span class="hb__cta hb__cta--checkout">Check out</span>
+              <span class="hb__cta">View cart</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="decision" id="decision-4">
+      <span class="label muted">Decision 04</span>
+      <h3>A bar that follows the scroll, not a breakpoint</h3>
+      <p>On the homepage the header starts as transparent type over the first banner. Instead of snapping into a sticky bar at some threshold, it becomes one gradually: over the first 200px of scroll, a single value, <code>--sticky-progress</code>, goes from 0 to 1, and the tint, blur, inset, padding and logo size are all written as functions of it. Scroll back up and it unwinds by the same amount.</p>
+      <p><strong>And it never leaves.</strong> On phones the vendor header hides on scroll down; this one stays in view at every width. One consequence I had to fix: the collection page&rsquo;s sticky filter bar only stuck while the header was hidden, so it ended up stuck <em>underneath</em> the header, out of sight. It scrolls with the page now.</p>
+
+      <div class="demo" data-demo-progress>
+        <span class="demo__label label">Try it</span>
+        <p class="demo__caption">Scroll inside the frame and watch the header become the floating bar. On the homepage it follows the scroll; on a product page it switches at the header&rsquo;s bottom edge with a fade. Phones hold the hover term at 1, so their bar ends at 80%.</p>
+        <div class="demo__stage">
+          <div class="dev"><div class="sb">
+            <div class="sb__scroll" data-sb-scroll tabindex="0" aria-label="Scrollable page preview">
+              <p class="sb__ann">Free shipping on all orders $108+</p>
+              <div class="sb__home">
+                <div class="sb__hero"><video class="gl__vid" src="../../assets/case/04-header/campaign-loop.mp4" poster="../../assets/case/04-header/campaign-loop-poster.jpg" width="1280" height="720" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><div class="hc" aria-hidden="true"><p class="hc__h">Meet the New Crew</p><p class="hc__s">Soft forms. Bold color.</p><span class="hc__l">Shop Crew Puff Collection</span></div></div>
+                <p class="sb__copy">Made to move, from repurposed PET bottles.</p>
+                <img class="sb__img" src="../../assets/case/04-header/crew-puff-campaign.jpg" alt="" width="1280" height="854" loading="lazy">
+              </div>
+              <div class="sb__pdp pp">
+                <div class="pp__media">
+                  <ul class="pp__gallery">
+                    <li><img src="../../assets/case/04-header/pdp-mud-1.jpg" alt="" width="1000" height="1250" loading="lazy"><span class="pp__pet"><svg viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M7.80194 1.53055L5.27853 2.02425C4.9714 2.08434 4.77113 2.38204 4.83122 2.68918L5.06379 3.87789C5.12388 4.18503 5.42158 4.3853 5.72871 4.32521L8.25212 3.83151C8.55926 3.77142 8.75953 3.47372 8.69944 3.16658L8.46687 1.97787C8.40678 1.67073 8.10908 1.47046 7.80194 1.53055Z"/><path d="M12.1477 12.502L11.5811 9.76076C11.5598 9.66867 9.93775 8.18117 9.93775 8.18117C10.1998 8.13159 10.1928 6.96284 10.1573 6.77159L9.79608 4.93701C9.76067 4.75284 7.95442 3.88867 7.95442 3.88867L5.84358 4.29951C5.84358 4.29951 4.604 5.75159 4.63942 5.94284L5.00067 7.77742C5.02192 7.90492 5.61692 8.56367 6.19067 8.93909C5.84358 9.36409 5.46108 10.1362 5.48942 10.2778L5.85067 12.1124"/><path d="M2.00464 12.5941C2.00464 12.5941 4.27839 11.5316 6.38214 12.3816C8.25214 13.1395 11.978 13.777 15.0451 12.4737"/><path d="M2.00464 14.9813C2.00464 14.9813 4.20756 13.9188 6.25464 14.7688C7.61464 15.3355 9.98756 15.8384 12.3463 15.5055"/></svg><span>&times; 6</span></span></li>
+                    <li><img src="../../assets/case/04-header/pdp-video-poster.jpg" alt="" width="1000" height="1250" loading="lazy"></li>
+                    <li><img src="../../assets/case/04-header/pdp-model-1.jpg" alt="" width="1000" height="1250" loading="lazy"></li>
+                    <li><img src="../../assets/case/04-header/pdp-model-2.jpg" alt="" width="1000" height="1250" loading="lazy"></li>
+                  </ul>
+                  <div class="pp__tcol"><ul class="pp__thumbs">
+                    <li class="is-on"><img src="../../assets/case/04-header/sw-mud.jpg" alt="" width="160" height="200" loading="lazy"></li>
+                    <li class="pp__thumb--video"><img src="../../assets/case/04-header/pdp-video-poster.jpg" alt="" width="1000" height="1250" loading="lazy"></li>
+                    <li><img src="../../assets/case/04-header/pdp-model-1.jpg" alt="" width="1000" height="1250" loading="lazy"></li>
+                    <li><img src="../../assets/case/04-header/pdp-model-2.jpg" alt="" width="1000" height="1250" loading="lazy"></li>
+                  </ul></div>
+                </div>
+                <div class="pp__info">
+                  <p class="pp__badge">Low stock</p>
+                  <p class="pp__title">Mini Barrel Bag</p>
+                  <p class="pp__price"><span class="pp__cur">$</span>139<sup>.00</sup></p>
+                  <p class="pp__option">Color <span>&ndash; Mud</span></p>
+                  <p class="pp__swatches"><span class="is-on"><img src="../../assets/case/04-header/sw-mud.jpg" alt="" width="160" height="200" loading="lazy"></span><span><img src="../../assets/case/04-header/sw-black.jpg" alt="" width="160" height="200" loading="lazy"></span><span><img src="../../assets/case/04-header/sw-baja.jpg" alt="" width="160" height="200" loading="lazy"></span><span><img src="../../assets/case/04-header/sw-pink.jpg" alt="" width="160" height="200" loading="lazy"></span></p>
+                  <span class="pp__atc" data-sb-atc>Add to cart</span>
+                  <span class="pp__shop">Buy with <b>shop</b></span>
+                  <span class="pp__more">More payment options</span>
+                  <div class="pp__pairs">
+                    <p class="pp__ptitle">Pair well with</p>
+                    <ul class="pp__rail"><li class="pp__card"><span class="pp__cimg"><img src="../../assets/case/04-header/pair-knitted-tag.jpg" alt="" width="340" height="425" loading="lazy"></span><span class="pp__cname">Knitted Tag</span><span class="pp__cprice"><span class="pp__cur">$</span>20<sup>.00</sup></span><span class="pp__cbtn pp__cbtn--sold">Sold out</span></li><li class="pp__card"><span class="pp__cimg"><img src="../../assets/case/04-header/pair-heart-pouch.jpg" alt="" width="340" height="425" loading="lazy"></span><span class="pp__cname">Heart Knitted Pouch<span class="pp__cvar">&ndash; Black</span></span><span class="pp__cprice"><span class="pp__cur">$</span>39<sup>.00</sup></span><span class="pp__dots"><span class="pp__dot is-on" style="background-color:black"></span><span class="pp__dot" style="background-color:purple"></span><span class="pp__dot" style="background-image:url(../../assets/case/04-header/chips/mud.png)"></span><span class="pp__dot" style="background-color:pink"></span><span class="pp__dot" style="background-color:turquoise"></span><span class="pp__dot" style="background-color:orange"></span><span class="pp__more-n">+1</span></span><span class="pp__cbtn">Add to cart</span></li><li class="pp__card"><span class="pp__cimg"><img src="../../assets/case/04-header/pair-harness-strap.jpg" alt="" width="340" height="425" loading="lazy"></span><span class="pp__cname">Harness Strap<span class="pp__cvar">&ndash; Mist Grey</span></span><span class="pp__cprice"><span class="pp__cur">$</span>99<sup>.00</sup></span><span class="pp__dots"><span class="pp__dot is-on" style="background-image:url(../../assets/case/04-header/chips/mist-grey.png)"></span><span class="pp__dot" style="background-image:url(../../assets/case/04-header/chips/forest-green.png)"></span><span class="pp__dot" style="background-image:url(../../assets/case/04-header/chips/grape.png)"></span><span class="pp__dot" style="background-image:url(../../assets/case/04-header/chips/mocha.png)"></span><span class="pp__dot" style="background-color:black"></span><span class="pp__dot" style="background-color:blue"></span></span><span class="pp__cbtn">Add to cart</span></li></ul>
+                  </div>
+                  <div class="acc pp__acc">
+                    <div class="acc__row"><p class="acc__head"><span class="acc__title">Details</span><svg class="acc__caret" viewBox="0 0 24 15" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 15c-.3 0-.6-.1-.8-.4l-11-13C-.2 1.2-.1.5.3.2c.4-.4 1.1-.3 1.4.1L12 12.5 22.2.4c.4-.4 1-.5 1.4-.1.4.4.5 1 .1 1.4l-11 13c-.1.2-.4.3-.7.3z" fill="currentColor"/></svg></p></div>
+                    <div class="acc__row"><p class="acc__head"><span class="acc__title">Size</span><svg class="acc__caret" viewBox="0 0 24 15" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 15c-.3 0-.6-.1-.8-.4l-11-13C-.2 1.2-.1.5.3.2c.4-.4 1.1-.3 1.4.1L12 12.5 22.2.4c.4-.4 1-.5 1.4-.1.4.4.5 1 .1 1.4l-11 13c-.1.2-.4.3-.7.3z" fill="currentColor"/></svg></p></div>
+                    <div class="acc__row"><p class="acc__head"><span class="acc__title">Materials &amp; Care</span><svg class="acc__caret" viewBox="0 0 24 15" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 15c-.3 0-.6-.1-.8-.4l-11-13C-.2 1.2-.1.5.3.2c.4-.4 1.1-.3 1.4.1L12 12.5 22.2.4c.4-.4 1-.5 1.4-.1.4.4.5 1 .1 1.4l-11 13c-.1.2-.4.3-.7.3z" fill="currentColor"/></svg></p></div>
+                    <div class="acc__row"><p class="acc__head"><span class="acc__title">Shipping &amp; Returns</span><svg class="acc__caret" viewBox="0 0 24 15" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 15c-.3 0-.6-.1-.8-.4l-11-13C-.2 1.2-.1.5.3.2c.4-.4 1.1-.3 1.4.1L12 12.5 22.2.4c.4-.4 1-.5 1.4-.1.4.4.5 1 .1 1.4l-11 13c-.1.2-.4.3-.7.3z" fill="currentColor"/></svg></p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sb__bar">
+              <span class="gl__icons"><span class="gl__btn"><svg class="gl__icon" aria-hidden="true"><use href="#i-menu"/></svg></span><span class="gl__btn gl__dsk"><svg class="gl__icon" aria-hidden="true"><use href="#i-search"/></svg></span></span>
+              <img class="sb__logo" src="../../assets/case/04-header/atacz-logo.svg" alt="Atacz" width="120" height="24">
+              <span class="gl__icons gl__icons--end"><span class="gl__btn gl__mob"><svg class="gl__icon" aria-hidden="true"><use href="#i-search"/></svg></span><span class="gl__btn gl__dsk"><svg class="gl__icon" aria-hidden="true"><use href="#i-account"/></svg></span><span class="gl__btn"><svg class="gl__icon" aria-hidden="true"><use href="#i-cart"/></svg></span></span>
+            </div>
+            <div class="sb__satc" aria-hidden="true"><span>$139.00</span><span class="sb__satc-btn">Add to cart</span></div>
+            </div></div>
+          <p class="sb__read label"><code>scroll <span data-sb-y>0</span>px &middot; sticky <span data-sb-on>off</span> &middot; --sticky-progress <span data-sb-value>0.00</span></code></p>
+        </div>
+        <div class="demo__controls">
+          <p class="demo__field">
+            <span class="label">Page</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="sb-page" value="home" checked><span>Homepage</span></label>
+              <label><input type="radio" name="sb-page" value="pdp"><span>Product page</span></label>
+            </span>
+          </p>
+          <p class="demo__field">
+            <span class="label">Device</span>
+            <span class="demo__seg">
+              <label><input type="radio" name="sb-device" value="desktop" checked><span>Desktop</span></label>
+              <label><input type="radio" name="sb-device" value="phone"><span>Phone</span></label>
+            </span>
+          </p>
+        </div>
+        <details>
+          <summary class="label">The scroll handler and the bar, from the theme</summary>
+<pre><code>// Transparent header: stick once the announcement bar has gone, 0..1 over 200px.
+// Solid header: stick at the header's bottom edge.
+const stickAt = scrollLinked ? this.headerBounds.top : this.headerBounds.bottom;
+const progress = Math.min(Math.max((scrollTop - this.headerBounds.top) / 200, 0), 1) || 0;
+this.header.style.setProperty('--sticky-progress', progress);
+
+/* the bar, as functions of progress */
+left: calc(var(--bar-inset) * var(--sticky-progress, 1));
+width: calc(100% - var(--bar-inset) * 2 * var(--sticky-progress, 1));
+background: rgba(255, 255, 255,
+  calc((0.5 + 0.3 * var(--bar-hover, 0)) * var(--sticky-progress, 1)));
+--image-logo-height: calc(40px - 10px * var(--sticky-progress, 1)); /* phone: 24px - 7.2px */</code></pre>
+        </details>
+      </div>
+    </section>
+
+    <section class="decision" id="decision-5">
+      <span class="label muted">Decision 05</span>
+      <h3>A sticky add to cart that can&rsquo;t disagree with the form</h3>
+      <p>On product pages, once the main Add to Cart has scrolled fully out of view, a small glass box appears under the right end of the bar with the price and a button. It hides again while the menu, search or cart is open.</p>
+      <p><strong>It owns nothing.</strong> The theme ships a sticky cart block, and I didn&rsquo;t use it: its form tests inventory only and never sends the pre-order property, so a pre-order added from it would reach the order untagged (see <a href="../preorder/">Case 03</a>). This one mirrors the real button instead &mdash; label, disabled state, loading state and price, kept in sync by a <code>MutationObserver</code> &mdash; and clicking it clicks that button. Variant, quantity, sold out and pre-order are whatever the real form says, because it <em>is</em> the real form.</p>
+      <p><strong>Trade-off.</strong> On desktop the product column is sticky, so the box appears only after the whole product section has scrolled away. That is intended.</p>
+      <details>
+        <summary class="label">The mirror, from the theme</summary>
+<pre><code>// The first product form in the main content is the product page's own
+this.source = document.querySelector('#MainContent product-form .product-form__submit');
+this.button.addEventListener('click', () =&gt; this.source.click());
+
+this.mutationObserver = new MutationObserver(this.sync);
+this.mutationObserver.observe(this.source,
+  { attributes: true, childList: true, characterData: true, subtree: true });
+
+// Only once the button has been scrolled fully past, not while it is still below
+this.intersectionObserver = new IntersectionObserver(([entry]) =&gt; {
+  this.classList.toggle('is-visible', !entry.isIntersecting &amp;&amp; entry.boundingClientRect.bottom &lt; 0);
+});
+
+sync() {
+  this.button.textContent = this.source.textContent.trim();
+  this.button.disabled = this.source.disabled;
+  this.button.classList.toggle('loading', this.source.classList.contains('loading'));
+}</code></pre>
+      </details>
+    </section>
+
+    <section class="decision" id="decision-6">
+      <span class="label muted">Decision 06</span>
+      <h3>A small reward for curiosity</h3>
+      <p>The homepage&rsquo;s impact counter adds up the PET bottles our bags are knitted from. On the draft, the number is a button: press it and a bottle flies out and drops off the screen.</p>
+      <p><strong>Built to be harmless.</strong> It is a real <code>&lt;button&gt;</code>, so a keyboard can launch one too, from the middle of the number. Thirty bottles in flight at most, so mashing it cannot pile up DOM. Motion is time-based, so 60Hz and 120Hz screens draw the same arc. With reduced motion turned on, nothing flies.</p>
+
+      <div class="demo" data-demo-bottle>
+        <span class="demo__label label">Try it</span>
+        <p class="demo__caption">Press the number.</p>
+        <div class="demo__stage">
+          <div class="icount">
+            <p class="icount__num">
+              <button class="icount__btn" type="button" data-bottle-trigger>
+                <span class="icount__value">131,271</span>
+                <span class="icount__suffix">bottles upcycled</span>
+              </button>
+            </p>
+            <p class="icount__desc">Knit to care - Made into bags that matter</p>
+          </div>
+        </div>
+        <template data-bottle-template>
+          <svg class="bottle" viewBox="0 0 24 43" width="24" height="43" aria-hidden="true" focusable="false">
+            <rect x="8" y="1" width="8" height="5" rx="1" fill="#F15A29"/>
+            <path d="M9 6h6v3c0 2 5 3.5 5 8q-1.1 2 0 4q-1.1 2 0 4q-1.1 2 0 4q-1.1 2 0 4q-1.1 2 0 4v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-2q1.1 -2 0 -4q1.1 -2 0 -4q1.1 -2 0 -4q1.1 -2 0 -4q1.1 -2 0 -4c0-4.5 5-6 5-8z" fill="#FFFFFF" stroke="#0C0C0C" stroke-width="1.5" stroke-linejoin="round"/>
+            <rect x="4.75" y="18.5" width="14.5" height="11" fill="#F15A29"/>
+            <path d="M12.5 20.87L14.12 23.67M14.12 25.4L10.88 25.4M9.38 24.53L11 21.73" fill="none" stroke="#FFFFFF" stroke-width="0.8" stroke-linecap="round"/>
+            <path d="M14.77 24.79L13.02 23.96L14.92 22.86zM9.58 25.4L11.18 24.3L11.18 26.5zM11.65 20.61L11.8 22.54L9.9 21.44z" fill="#FFFFFF"/>
+          </svg>
+        </template>
+      </div>
+    </section>
+
+    <h2>4 &middot; What&rsquo;s in review</h2>
+    <p>Two draft themes, one stacked on the other. The first carries the homepage layout, the off-canvas header and its scroll-linked bar, the sticky add to cart and the bottle. The second adds the white liquid glass on top. Every change ships as a pushed file on a draft, read back byte for byte; the live theme is untouched until a person publishes it.</p>
+
+    <h2 id="outcome">5 &middot; What I&rsquo;ll measure</h2>
+    <p><strong>Nothing here has launched, so there are no results.</strong> There is a baseline, and a list of what would make this wrong.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Question</th><th scope="col">Baseline</th><th scope="col">How</th></tr></thead>
+        <tbody>
+          <tr><td>Do people click the homepage&rsquo;s campaigns?</td><td>&le;2.6% of homepage views reached a carousel destination</td><td>A click and view event per banner &mdash; there is none today</td></tr>
+          <tr><td>Does a stack beat a slideshow?</td><td>Mobile view 4.8s against a 6s rotation</td><td>Banner views per homepage view, by slot</td></tr>
+          <tr><td>Did Miffy and Most Loved survive the move?</td><td>10.1% and 3.5% as tiles</td><td>The same share, from their banners</td></tr>
+          <tr><td>Did desktop pay for the menu button?</td><td>Desktop: 12.6% of sessions, 21.1% of purchases</td><td>Desktop conversion, and menu opens per session</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>One measure I won&rsquo;t use.</strong> &ldquo;About 15% reach 90% of the page&rdquo; looks like the obvious score for a homepage built to be scrolled. But scroll depth is a share of page length, and stacking banners makes the page longer, so the same scrolling reads as less. I made exactly that mistake once already (<a href="../plp/">Case 02</a>). Banner views are counted in banners, not percent.</p>
+
+    <h2 id="next">6 &middot; What&rsquo;s next</h2>
+    <p><strong>Track the banners before launch, not after.</strong> The case for stacking is that more slots let the data pile up &mdash; which is only true if every banner reports its views and clicks. Without that, there is nothing to pile up.</p>
+    <p><strong>Correct for position.</strong> Ordering by sales means the best seller gets the top slot, and the top slot gets clicked more whatever is in it. Rotating the order now and then is what lets a click mean &ldquo;this campaign&rdquo; rather than &ldquo;this slot&rdquo;.</p>
+    <p><strong>Desktop navigation is still an open question.</strong> If desktop conversion drops, the cheap fix NN/g&rsquo;s research suggests is combination navigation: two or three labels &mdash; New Arrivals, Miffy &mdash; beside the menu button, in the same bar.</p>
+    <p><strong>A system preference for less glass.</strong> <code>prefers-reduced-transparency</code> lets people who have turned transparency down get an opaque header. Chromium supports it; Safari doesn&rsquo;t yet.</p>
+
+    <nav class="case-nav" aria-label="More work">
+      <a class="case-nav__back label" href="../../">&larr; All work</a>
+      <a class="case-nav__next" href="../pdp/">
+        <span class="case-nav__eyebrow label muted">Next case &mdash; 01</span>
+        <span class="case-nav__title">PDP Revamp</span>
+        <span class="case-nav__sub">Rebuilding a product page around purchase confidence</span>
+      </a>
+    </nav>
+  </div>
+</main>
+
+  <footer class="footer">
+    <div class="footer__links">
+      <a class="link-fade" href="mailto:hanbyoul.kim91@gmail.com">Email</a>
+      <a class="link-fade" href="https://www.linkedin.com/in/hanbyoul-kim/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="footer__copy">© Han Kim 2026 All Rights Reserved</p>
+  </footer>
+</div>
+</body>
+</html>

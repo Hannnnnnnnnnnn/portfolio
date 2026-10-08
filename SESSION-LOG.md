@@ -51,3 +51,11 @@
 3. **Never write off a diff without attributing it in code.** One-row pixel diffs I called "antialiasing" were missing underlines; a "hazy" image was an 80% opacity layer. Each became a new property in the code diff (decoration, effective opacity).
 4. **Check what the comparison can't see.** Content changes shift layout, so the original is patched with the same decisions before comparing; fold position decides which blocks start armed, so appear checks union "at load" and "after scrolling".
 5. **Figma Sites specifics**: borders are drawn inside the box; single-line text gets `-letter-spacing` padding; many frames have fractional fixed sizes; the runtime keeps only the visible breakpoint frame in the DOM; videos play only on screen.
+
+## 2026-10-08 — Header & Homepage case (unlisted)
+
+**Done**
+- `product/header/` = the root site's `work-4.html` (same day) in this site's frame: head/nav/footer from the PLP page, `.frame*` → `.snap*`, assets in `assets/case/04-header/`, its CSS appended to `css/case.css`, its demo JS (6f0–6i) appended to `js/case.js`; the reduced-motion block no longer gives a demo's background video controls.
+- **Unlisted**: `noindex, nofollow`, no canonical/OG, linked from nowhere (Product list, More projects, llms.txt). To list it: drop the robots line, add a card to the list, a More projects entry and an llms.txt section.
+- `tools/sitecheck.mjs` skips `data:` URIs (the SVG lens map was reported as a missing file).
+- Checks: sitecheck 0 problems on 12 pages; Playwright at 1440 and 375 — no page errors, no horizontal overflow, all four demos rendered and exercised; below 800px the demos open on Phone.

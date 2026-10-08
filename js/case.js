@@ -241,7 +241,7 @@ run(() => {
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   document.querySelectorAll("video[autoplay]").forEach((v) => {
     v.autoplay = false;
-    v.controls = true;
+    v.controls = !v.closest(".demo");   // 데모 배경 영상은 멈추기만 / a demo's background video just stops
     v.pause();
   });
 });
@@ -314,3 +314,105 @@ run(() => {
   draw();
 });
 
+/* ── 6f0. 04 데모: 폰으로 보면 폰 모드로 연다 ──
+   1440 캔버스는 좁은 화면에서 5분의 1 크기가 되어 읽히지 않는다. 800px 미만이면 기기 토글을
+   Phone 으로 시작한다(데스크톱은 여전히 고를 수 있다).
+   On a narrow screen the 1440 canvas shrinks to a fifth and stops reading, so below 800px the
+   device toggles start on Phone (Desktop is still one tap away). */
+run(() => {
+  if (!matchMedia("(max-width: 799px)").matches) return;
+  document.querySelectorAll('.demo [name="gl-use"][value="touch"], .demo [name="sb-device"][value="phone"]').forEach((i) => { i.checked = true; });
+});
+
+/* ── 6f. 04 Dec 02·03: 리퀴드 글래스 렌즈는 Chromium 에서만 ──
+   테마와 같은 판정이다. url() 을 backdrop-filter 에 쓰면 다른 브라우저는 선언 전체(블러까지)를
+   버리므로, 클래스가 붙은 곳에서만 렌즈 값을 쓴다.
+   Same gate as the theme: elsewhere url() in backdrop-filter voids the whole declaration,
+   blur included, so the lens values apply only where this class lands. */
+run(() => {
+  if (!(navigator.userAgentData && navigator.userAgentData.brands.some((b) => b.brand === "Chromium"))) return;
+  document.querySelectorAll(".demo :is(.gl, .sb)").forEach((el) => el.classList.add("is-lens"));
+});
+
+/* ── 6g. 04 Dec 04: 스크롤하면 스티키가 된다 — 테마 StickyHeader.onScroll 의 두 갈래 ──
+   홈(투명 헤더)은 공지 바가 사라지는 지점(headerBounds.top)에서 붙고 200px 동안 0..1,
+   상품 페이지(흰 헤더)는 헤더 바닥(headerBounds.bottom)에서 붙는다. 쓰는 값은 --p 와,
+   붙기 전 헤더의 위치 --y 둘뿐이고 나머지는 전부 CSS calc() 다.
+   The two branches of the theme's onScroll: the transparent homepage header sticks where the
+   announcement bar ends and runs 0..1 over 200px; a solid product-page header sticks at its
+   bottom edge. JS writes only --p and --y (where the header sits before it sticks). */
+run(() => {
+  const demo = document.querySelector("[data-demo-progress]");
+  if (!demo) return;
+  const frame = demo.querySelector(".sb");
+  const scroller = demo.querySelector("[data-sb-scroll]");
+  const out = (k) => demo.querySelector("[data-sb-" + k + "]");
+  const ANN = 26;  // 공지 바 높이, 드래프트 실측 / announcement bar height, measured on the draft
+  const update = () => {
+    const y = scroller.scrollTop;
+    const home = demo.querySelector('[name="sb-page"][value="home"]').checked;
+    // 헤더 높이: 데스크톱 18 + 44 + 10 실측, 폰은 아이콘 행 34 / header height: desktop measured, phone with the 34px row
+    const headerH = demo.querySelector('[name="sb-device"][value="desktop"]').checked ? 72 : 62;
+    const stuck = y >= (home ? ANN : ANN + headerH);
+    const p = home ? Math.min(Math.max((y - ANN) / 200, 0), 1) : stuck ? 1 : 0;
+    frame.style.setProperty("--p", p);
+    frame.style.setProperty("--y", stuck ? 0 : ANN - y);
+    frame.classList.toggle("is-stuck", stuck);
+    // 상품 페이지: 메인 버튼이 프레임 위로 완전히 지나가면 sticky ATC (테마의 IntersectionObserver 조건)
+    // Product page: the sticky ATC once the main button is fully above the frame (the theme's IO condition)
+    const atc = demo.querySelector("[data-sb-atc]");
+    frame.classList.toggle("is-satc", !home && atc.getBoundingClientRect().bottom < scroller.getBoundingClientRect().top);
+    out("y").textContent = Math.round(y);
+    out("on").textContent = stuck ? "on" : "off";
+    out("value").textContent = home ? p.toFixed(2) : "n/a";
+  };
+  scroller.addEventListener("scroll", update, { passive: true });
+  demo.addEventListener("change", () => { scroller.scrollTop = 0; update(); });
+  update();
+});
+
+/* ── 6h. 04 Dec 06: 보틀 — 테마 블록의 launchBottle 그대로 ──
+   속도는 px/초, 회전은 도/초라 주사율과 무관하게 같은 궤적이다. 동시 30개 상한, 키보드로
+   누르면(detail 0) 숫자 가운데에서 출발. 병은 데모 안에 붙고 position: fixed 로 화면 기준이다.
+   The theme block's launchBottle: time-based, 30 in flight at most, keyboard presses start
+   from the centre of the number. Bottles live inside the demo and are fixed to the viewport. */
+run(() => {
+  const demo = document.querySelector("[data-demo-bottle]");
+  if (!demo) return;
+  const template = demo.querySelector("[data-bottle-template]");
+  let flying = 0;
+  demo.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-bottle-trigger]");
+    if (!trigger || flying >= 30 || reduce) return;
+    const rect = trigger.getBoundingClientRect();
+    const x0 = event.detail ? event.clientX : rect.left + rect.width / 2;
+    const y0 = event.detail ? event.clientY : rect.top + rect.height / 2;
+    const vx = (Math.random() - 0.5) * 600;
+    const vy = -(800 + Math.random() * 400);
+    const spin = (Math.random() - 0.5) * 1440;
+    const bottle = template.content.firstElementChild.cloneNode(true);
+    demo.append(bottle);
+    flying++;
+    const t0 = performance.now();
+    const step = (now) => {
+      const t = (now - t0) / 1000;
+      const y = y0 + vy * t + 1200 * t * t;   // 중력 2400px/s² 의 절반 / half of 2400px/s² gravity
+      bottle.style.transform = `translate(${x0 + vx * t}px, ${y}px) translate(-50%, -50%) rotate(${spin * t}deg)`;
+      if (y < innerHeight + 60) requestAnimationFrame(step);
+      else { bottle.remove(); flying--; }
+    };
+    requestAnimationFrame(step);
+  });
+});
+
+/* ── 6i. 04 데모: 데스크톱 프레임 = 1440px 캔버스를 래퍼 폭에 맞춰 축소 ──
+   --s 하나만 쓴다. 폰 모드에선 쓰이지 않는다(스케일 없음).
+   Desktop frames are a 1440px canvas scaled to the wrapper; this writes --s only. */
+run(() => {
+  const devs = document.querySelectorAll(".demo .dev");
+  const fit = (el) => el.style.setProperty("--s", el.getBoundingClientRect().width / 1440);
+  // RO 가 주 경로지만 숨은 탭에선 콜백이 없으므로 로드·토글 때도 직접 잰다
+  // RO is the main path, but a hidden tab delivers no callbacks, so measure on load and on toggles too
+  const ro = new ResizeObserver((entries) => entries.forEach((e) => fit(e.target)));
+  devs.forEach((el) => { ro.observe(el); fit(el); el.closest(".demo").addEventListener("change", () => fit(el)); });
+});

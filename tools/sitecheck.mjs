@@ -16,7 +16,7 @@ const external = new Set();
 for (const p of pages) {
   const html = readFileSync(join(ROOT, p), 'utf8'), dir = dirname(join(ROOT, p));
   for (const [, attr, val] of html.matchAll(/\b(href|src)="([^"]+)"/g)) {
-    if (/^(https?:|mailto:|#)/.test(val)) { if (/^https?:/.test(val)) external.add(val.split('?')[0]); continue; }
+    if (/^(https?:|mailto:|#|data:)/.test(val)) { if (/^https?:/.test(val)) external.add(val.split('?')[0]); continue; }
     const target = resolve(dir, val.split('#')[0]);
     const file = val.endsWith('/') || val === '' ? join(target, 'index.html') : target;
     if (!existsSync(file)) say(false, `${p}: ${attr}="${val}" → missing ${file.replace(ROOT, '')}`);
