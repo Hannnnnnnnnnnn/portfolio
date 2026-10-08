@@ -484,6 +484,19 @@ html.js .prose > *.is-in { opacity: 1; transform: none; }
 .demo__stage { padding: 2rem 1rem; border-top: 1px solid var(--line); background: var(--tint); display: grid; justify-items: center; gap: 1.75rem; }
 .demo__stage--pair { grid-auto-flow: row; }
 @media (min-width: 560px) { .demo__stage--pair { grid-auto-flow: column; align-items: end; } }
+/* 데스크톱·폰 프레임 한 쌍. 900px 이상에선 나란히, 높이가 같도록 폭을 2.489 : 1 로 나눈다
+   (1440x900 과 360x560 의 가로세로비). 데모는 본문 칸을 넘어 오른쪽 여백까지 넓어진다.
+   A desktop + phone pair. From 900px they sit side by side, split 2.489 : 1 so both are the
+   same height (the aspect ratios of 1440x900 and 360x560); the demo widens past the text column. */
+.demo .devcol { margin: 0; width: 100%; display: grid; gap: 0.75rem; justify-items: center; }
+.demo .devcol__cap { margin: 0; text-align: center; }
+@media (min-width: 900px) {
+  .demo--wide { width: min(70rem, calc(100vw - 100px)); }
+  .demo__stage--devs { grid-template-columns: minmax(0, 2.489fr) minmax(0, 1fr); align-items: start; }
+  .demo__stage--devs .dev { width: 100%; }
+}
+/* 1200px 이상: 왼쪽 목차 칸(11rem + 3rem)과 양쪽 여백 50px 을 뺀다 / minus the contents column and the 50px gutters */
+@media (min-width: 1200px) { .demo--wide { width: min(70rem, calc(100vw - 374px)); } }
 .demo__controls { padding: 1.1rem 1rem; border-top: 1px solid var(--line); display: grid; gap: 1rem; }
 /* 값은 슬라이더 폭 안에서 오른쪽 끝에 붙는다 — 필드 전체가 같은 폭을 가져야
    숫자가 슬라이더에서 떨어져 나가지 않는다
@@ -1434,8 +1447,7 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
   isolation: isolate;
   font-family: var(--shop);
 }
-.demo[data-demo-glass]:has([name="gl-use"]:not([value="touch"]):checked) .gl,
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .sb {
+.demo .dev--desk :is(.gl, .sb) {
   --inset: 20px;
   --bar-h: 50px;
   --btn-w: 52px;
@@ -1458,9 +1470,11 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
    같아진다. --s 는 래퍼 폭 / 1440 (main.js 6i). 폰은 실제 크기 그대로.
    Desktop draws a 1440px page at real sizes and scales the whole thing down, so the bar, logo
    and boxes keep their true proportions; --s is wrapper width / 1440 (main.js 6i). Phones are drawn 1:1. */
-.demo .dev { position: relative; width: min(360px, 100%); }
-.demo[data-demo-glass]:has([name="gl-use"]:not([value="touch"]):checked) .dev,
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .dev { width: 100%; aspect-ratio: 1440 / 900; overflow: hidden; }
+.demo .dev { position: relative; width: min(360px, 100%); aspect-ratio: 360 / 560; overflow: hidden; }
+/* 나란히 놓인 폰 프레임도 360x560 을 그대로 그리고 축소한다 (--s = 폭 / 360)
+   The phone frame beside it is also drawn at 360x560 and scaled (--s = width / 360) */
+.demo .dev:not(.dev--desk) > :is(.gl, .sb) { position: absolute; top: 0; left: 0; width: 360px; transform: scale(var(--s, 1)); transform-origin: 0 0; }
+.demo .dev.dev--desk { width: 100%; aspect-ratio: 1440 / 900; overflow: hidden; }
 .demo[data-demo-progress] .dev { outline: 1px solid var(--line); }
 
 /* 배너 문구 — 드래프트 hero_carousel_pxPhQn 설정 그대로. 폰: 왼쪽 8 · 아래 24 · 패딩 15 · 18/12/12px,
@@ -1472,21 +1486,15 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .demo .hc .hc__h { margin: 0 0 10px; max-width: none; font-size: 18px; font-weight: 600; line-height: 1.2; }
 .demo .hc .hc__s { margin: 0 0 14px; max-width: none; font-size: 12px; line-height: 1.4; }
 .demo .hc .hc__l { display: block; font-size: 12px; text-decoration: underline; }
-.demo[data-demo-glass]:has([name="gl-use"]:not([value="touch"]):checked) .hc,
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .hc { left: 40px; bottom: 40px; max-width: 450px; padding: 20px; }
-.demo[data-demo-glass]:has([name="gl-use"]:not([value="touch"]):checked) .hc__h,
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .hc__h { font-size: 32px; }
-.demo[data-demo-glass]:has([name="gl-use"]:not([value="touch"]):checked) .hc__s,
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .hc__s { margin-bottom: 20px; font-size: 14px; }
-.demo[data-demo-glass]:has([name="gl-use"]:not([value="touch"]):checked) .hc__l,
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .hc__l { font-size: 14px; }
+.demo .dev--desk .hc { left: 40px; bottom: 40px; max-width: 450px; padding: 20px; }
+.demo .dev--desk .hc__h { font-size: 32px; }
+.demo .dev--desk .hc__s { margin-bottom: 20px; font-size: 14px; }
+.demo .dev--desk .hc__l { font-size: 14px; }
 /* 서치 아이콘: 데스크톱은 메뉴 옆, 폰은 카트 옆. 계정은 데스크톱에만 (테마의 small-hide)
    Search sits beside the menu on desktop and beside the cart on phones; account is desktop only */
 .demo .gl__btn.gl__dsk { display: none; }
-.demo[data-demo-glass]:has([name="gl-use"]:not([value="touch"]):checked) .gl__dsk,
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .gl__dsk { display: grid; }
-.demo[data-demo-glass]:has([name="gl-use"]:not([value="touch"]):checked) .gl__mob,
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .gl__mob { display: none; }
+.demo .dev--desk .gl__dsk { display: grid; }
+.demo .dev--desk .gl__mob { display: none; }
 
 .demo .gl__icons { display: flex; align-items: center; }
 .demo .gl__icons--end { justify-content: flex-end; }
@@ -1538,13 +1546,13 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 }
 /* 흰 유리만 두꺼워진다: 포인터가 올라갔거나(데스크톱), 폰이라 항상. 데모 H 는 폰이라 항상
    Only the white glass thickens: under the pointer on desktop, always on a phone. Demo H is a phone */
-.demo[data-demo-glass]:has([name="gl-surface"][value="white"]:checked):has([name="gl-use"]:not([value="rest"]):checked) .gl,
+.demo[data-demo-glass]:has([name="gl-surface"][value="white"]:checked) .dev:not(.dev--desk) .gl,
 .demo[data-demo-boxes] .gl.gl--fixed {
   --gl-bar-bg: var(--gl-hover-bg);
   --gl-box-bg: var(--gl-hover-bg);
 }
 @media (hover: hover) {
-  .demo[data-demo-glass]:has([name="gl-surface"][value="white"]:checked):has([name="gl-use"][value="rest"]:checked) :is(.gl__bar, .gl__box):hover { background-color: var(--gl-hover-bg); }
+  .demo[data-demo-glass]:has([name="gl-surface"][value="white"]:checked) .dev--desk :is(.gl__bar, .gl__box):hover { background-color: var(--gl-hover-bg); }
 }
 
 .demo .gl__page { position: absolute; inset: 0; }
@@ -1676,7 +1684,7 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
    info 40% with 70px left padding, 30px top, sticky); type and buttons are fixed px. The phone layout
    could not be measured (the window cannot be narrowed) and follows the theme's phone structure. */
 .demo .pp { --pp-pad: 0px; align-items: flex-start; flex-direction: column; padding: calc(var(--btn-h) + 40px) var(--pp-pad) 120px; font-family: var(--shop); color: #0c0c0c; }
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .pp { --pp-pad: 50px; flex-direction: row; }
+.demo .dev--desk .pp { --pp-pad: 50px; flex-direction: row; }
 /* 초기화는 :where() 로 — 특정성이 낮아야 아래 요소별 여백이 이긴다 / resets in :where() so the per-element margins below win */
 .demo .pp :where(ul) { list-style: none; margin: 0; padding: 0; max-width: none; }
 .demo .pp :where(li, p) { margin: 0; max-width: none; }
@@ -1686,11 +1694,11 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .demo .pp__gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .demo .pp__gallery > li { position: relative; flex: 0 0 100%; scroll-snap-align: start; background: #f5f5f5; }
 .demo .pp__tcol { display: none; }
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .pp__media { flex: 0 0 60%; }
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .pp__gallery { flex-direction: column; gap: 8px; overflow: visible; }
+.demo .dev--desk .pp__media { flex: 0 0 60%; }
+.demo .dev--desk .pp__gallery { flex-direction: column; gap: 8px; overflow: visible; }
 /* 썸네일 열: 미디어 오른쪽 끝에 걸쳐(오른쪽 -30) 폭 60, 섹션 위에서 60 아래에 붙는다
    The thumbnail column straddles the media's right edge (-30), 60 wide, stuck 60px down */
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .pp__tcol { display: block; position: absolute; top: 60px; bottom: 0; right: -30px; width: 60px; }
+.demo .dev--desk .pp__tcol { display: block; position: absolute; top: 60px; bottom: 0; right: -30px; width: 60px; }
 .demo .pp__thumbs { position: sticky; top: 60px; display: grid; gap: 8px; }
 .demo .pp__thumbs li { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #f5f5f5; }
 .demo .pp__thumbs img { height: 100%; object-fit: cover; }
@@ -1701,7 +1709,7 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .demo .pp__pet svg { width: 22px; height: 22px; }
 
 .demo .pp__info { width: 100%; box-sizing: border-box; padding: 20px 15px 0; }
-.demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .pp__info { position: sticky; top: 0; flex: 0 0 40%; width: 40%; min-width: 0; box-sizing: border-box; padding: 30px 0 0 70px; }
+.demo .dev--desk .pp__info { position: sticky; top: 0; flex: 0 0 40%; width: 40%; min-width: 0; box-sizing: border-box; padding: 30px 0 0 70px; }
 /* 배지 줄은 25px 상자, 글자는 그 가운데 / the badge row is a 25px box with the text centred */
 .demo .pp__badge { display: flex; align-items: center; height: 25px; font-size: 14px; font-weight: 600; letter-spacing: 0.56px; line-height: 16.8px; text-transform: uppercase; color: #dc2626; }
 .demo .pp__title { margin-bottom: 20px; font-size: 24px; font-weight: 600; letter-spacing: 0.6px; line-height: 31.2px; }
@@ -1766,7 +1774,7 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 }
 .demo .sb.is-satc .sb__satc { opacity: 1; visibility: visible; transition: opacity 0.4s ease; }
 /* 폰은 80% (테마 2f854c6) / phones hold 80%, as the theme now does */
-.demo[data-demo-progress]:has([name="sb-device"][value="phone"]:checked) .sb__satc { background: rgba(255, 255, 255, 0.8); }
+.demo .dev:not(.dev--desk) .sb__satc { background: rgba(255, 255, 255, 0.8); }
 .demo .sb__satc-btn { display: grid; place-items: center; min-height: 36px; padding: 0 16px; background: #0c0c0c; color: #fff; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; }
 
 .demo .sb__bar {
@@ -1799,7 +1807,7 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 /* Chromium: 붙은 투명 헤더 바는 렌즈를 쓴다 (테마와 같다) / in Chromium the stuck bar uses the lens, as in the theme */
 .demo .sb.is-lens.is-stuck .sb__bar { -webkit-backdrop-filter: url(#LensBar); backdrop-filter: url(#LensBar); }
 @media (hover: hover) {
-  .demo[data-demo-progress]:has([name="sb-device"][value="desktop"]:checked) .sb.is-stuck .sb__bar:hover { --hover: 1; }
+  .demo .dev--desk .sb.is-stuck .sb__bar:hover { --hover: 1; }
 }
 .demo .sb__read { margin: 0; text-align: center; }
 .demo .sb__read code { text-transform: none; letter-spacing: 0; }

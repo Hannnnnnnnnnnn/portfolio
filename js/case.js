@@ -314,14 +314,19 @@ run(() => {
   draw();
 });
 
-/* ── 6f0. 04 데모: 폰으로 보면 폰 모드로 연다 ──
-   1440 캔버스는 좁은 화면에서 5분의 1 크기가 되어 읽히지 않는다. 800px 미만이면 기기 토글을
-   Phone 으로 시작한다(데스크톱은 여전히 고를 수 있다).
-   On a narrow screen the 1440 canvas shrinks to a fifth and stops reading, so below 800px the
-   device toggles start on Phone (Desktop is still one tap away). */
+/* ── 6f0. 04 데모: 데스크톱과 폰을 나란히 — 마크업은 한 벌, 폰 프레임은 그 복제 ──
+   렌즈·스케일·스크롤 핸들러보다 먼저 돌아야 복제본에도 붙는다.
+   Desktop and phone side by side: one copy of the markup, the phone frame is its clone.
+   Runs before the lens, scale and scroll blocks so the clone gets them too. */
 run(() => {
-  if (!matchMedia("(max-width: 799px)").matches) return;
-  document.querySelectorAll('.demo [name="gl-use"][value="touch"], .demo [name="sb-device"][value="phone"]').forEach((i) => { i.checked = true; });
+  document.querySelectorAll(".demo__stage--devs .devcol").forEach((col) => {
+    const phone = col.cloneNode(true);
+    phone.querySelector(".dev").classList.remove("dev--desk");
+    phone.querySelector(".devcol__name").textContent = "Phone";
+    phone.querySelectorAll("[aria-label]").forEach((el) => el.setAttribute("aria-label", el.getAttribute("aria-label").replace(/desktop$/, "phone")));
+    col.after(phone);
+    if (!reduce) phone.querySelectorAll("video[autoplay]").forEach((v) => v.play().catch(() => {}));
+  });
 });
 
 /* ── 6f. 04 Dec 02·03: 리퀴드 글래스 렌즈는 Chromium 에서만 ──
@@ -344,34 +349,38 @@ run(() => {
 run(() => {
   const demo = document.querySelector("[data-demo-progress]");
   if (!demo) return;
-  const frame = demo.querySelector(".sb");
-  const scroller = demo.querySelector("[data-sb-scroll]");
-  const out = (k) => demo.querySelector("[data-sb-" + k + "]");
   const ANN = 26;  // 공지 바 높이, 드래프트 실측 / announcement bar height, measured on the draft
-  const update = () => {
-    const y = scroller.scrollTop;
-    const home = demo.querySelector('[name="sb-page"][value="home"]').checked;
-    // Before = 라이브 테마: enable_sticky_header 꺼짐 → 헤더가 페이지와 함께 스크롤되고 sticky ATC 없음
-    // Before = the live theme: enable_sticky_header is off, so the header scrolls away and there is no sticky ATC
-    const before = demo.querySelector('[name="sb-ver"][value="before"]').checked;
+  // 프레임(데스크톱·폰)마다 따로 스크롤하고 따로 계산한다 / each frame, desktop and phone, scrolls and computes on its own
+  const frames = [...demo.querySelectorAll(".devcol")].map((col) => {
+    const frame = col.querySelector(".sb");
+    const scroller = col.querySelector("[data-sb-scroll]");
+    const out = (k) => col.querySelector("[data-sb-" + k + "]");
     // 헤더 높이: 데스크톱 18 + 44 + 10 실측, 폰은 아이콘 행 34 / header height: desktop measured, phone with the 34px row
-    const headerH = demo.querySelector('[name="sb-device"][value="desktop"]').checked ? 72 : 62;
-    const stuck = !before && y >= (home ? ANN : ANN + headerH);
-    const p = before ? 0 : home ? Math.min(Math.max((y - ANN) / 200, 0), 1) : stuck ? 1 : 0;
-    frame.style.setProperty("--p", p);
-    frame.style.setProperty("--y", stuck ? 0 : ANN - y);
-    frame.classList.toggle("is-stuck", stuck);
-    // 상품 페이지: 메인 버튼이 프레임 위로 완전히 지나가면 sticky ATC (테마의 IntersectionObserver 조건)
-    // Product page: the sticky ATC once the main button is fully above the frame (the theme's IO condition)
-    const atc = demo.querySelector("[data-sb-atc]");
-    frame.classList.toggle("is-satc", !before && !home && atc.getBoundingClientRect().bottom < scroller.getBoundingClientRect().top);
-    out("y").textContent = Math.round(y);
-    out("on").textContent = stuck ? "on" : "off";
-    out("value").textContent = home ? p.toFixed(2) : "n/a";
-  };
-  scroller.addEventListener("scroll", update, { passive: true });
-  demo.addEventListener("change", () => { scroller.scrollTop = 0; update(); });
-  update();
+    const headerH = col.querySelector(".dev--desk") ? 72 : 62;
+    const update = () => {
+      const y = scroller.scrollTop;
+      const home = demo.querySelector('[name="sb-page"][value="home"]').checked;
+      // Before = 라이브 테마: enable_sticky_header 꺼짐 → 헤더가 페이지와 함께 스크롤되고 sticky ATC 없음
+      // Before = the live theme: enable_sticky_header is off, so the header scrolls away and there is no sticky ATC
+      const before = demo.querySelector('[name="sb-ver"][value="before"]').checked;
+      const stuck = !before && y >= (home ? ANN : ANN + headerH);
+      const p = before ? 0 : home ? Math.min(Math.max((y - ANN) / 200, 0), 1) : stuck ? 1 : 0;
+      frame.style.setProperty("--p", p);
+      frame.style.setProperty("--y", stuck ? 0 : ANN - y);
+      frame.classList.toggle("is-stuck", stuck);
+      // 상품 페이지: 메인 버튼이 프레임 위로 완전히 지나가면 sticky ATC (테마의 IntersectionObserver 조건)
+      // Product page: the sticky ATC once the main button is fully above the frame (the theme's IO condition)
+      const atc = col.querySelector("[data-sb-atc]");
+      frame.classList.toggle("is-satc", !before && !home && atc.getBoundingClientRect().bottom < scroller.getBoundingClientRect().top);
+      out("y").textContent = Math.round(y);
+      out("on").textContent = stuck ? "on" : "off";
+      out("value").textContent = home ? p.toFixed(2) : "n/a";
+    };
+    scroller.addEventListener("scroll", update, { passive: true });
+    return { scroller, update };
+  });
+  demo.addEventListener("change", () => frames.forEach((f) => { f.scroller.scrollTop = 0; f.update(); }));
+  frames.forEach((f) => f.update());
 });
 
 /* ── 6h. 04 Dec 06: 보틀 — 테마 블록의 launchBottle 그대로 ──
@@ -413,7 +422,8 @@ run(() => {
    Desktop frames are a 1440px canvas scaled to the wrapper; this writes --s only. */
 run(() => {
   const devs = document.querySelectorAll(".demo .dev");
-  const fit = (el) => el.style.setProperty("--s", el.getBoundingClientRect().width / 1440);
+  // 데스크톱 캔버스 1440, 폰 캔버스 360 / a 1440 canvas on desktop, 360 on a phone
+  const fit = (el) => el.style.setProperty("--s", el.getBoundingClientRect().width / (el.classList.contains("dev--desk") ? 1440 : 360));
   // RO 가 주 경로지만 숨은 탭에선 콜백이 없으므로 로드·토글 때도 직접 잰다
   // RO is the main path, but a hidden tab delivers no callbacks, so measure on load and on toggles too
   const ro = new ResizeObserver((entries) => entries.forEach((e) => fit(e.target)));

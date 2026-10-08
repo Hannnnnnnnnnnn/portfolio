@@ -238,11 +238,12 @@
       <p><strong>Then I checked the edge case, and it failed.</strong> In Chromium the glass also refracts the page at its edges, through an SVG displacement lens inside <code>backdrop-filter</code>. To make that visible I had lowered the box tint to 45%. Over a black section, <code>#0c0c0c</code> text on that comes out at <strong>4.1:1</strong> &mdash; under the 4.5 that AA asks of small text. And a phone never hovers, so on phones the 80% would never arrive. <strong>Touch devices now hold every surface at 80%</strong>, which also takes the 45% boxes off the table on phones.</p>
       <p><strong>Trade-off.</strong> On desktop Chromium the resting boxes are still 45%, because that is where the refraction reads. Hover fixes it for the person using the box. The fallback matters too: <code>url()</code> in <code>backdrop-filter</code> renders only in Chromium and voids the whole declaration elsewhere, blur included, so the lens is gated behind a class that only Chromium gets.</p>
 
-      <div class="demo" data-demo-glass>
+      <div class="demo demo--wide" data-demo-glass>
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">The same header and menu over the draft&rsquo;s own campaign film, in each surface it has had. Desktop draws a 1440px-wide page and scales it down; Phone is drawn at phone size; a phone never hovers, so it holds the thicker glass.</p>
-        <div class="demo__stage">
-          <div class="dev"><div class="gl" data-glass>
+        <p class="demo__caption">The same header and menu over the draft&rsquo;s own campaign film, in each surface it has had, on desktop and phone at once. Both are drawn at real size and scaled down. Point at the desktop bar to see its hover tint; a phone never hovers, so it holds that thicker glass all the time.</p>
+        <div class="demo__stage demo__stage--devs">
+          <figure class="devcol">
+          <div class="dev dev--desk"><div class="gl" data-glass>
             <div class="gl__page" aria-hidden="true">
               <div class="gl__bg gl__bg--campaign"><video class="gl__vid" src="../../assets/case/04-header/campaign-loop.mp4" poster="../../assets/case/04-header/campaign-loop-poster.jpg" width="1280" height="720" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><div class="hc" aria-hidden="true"><p class="hc__h">Meet the New Crew</p><p class="hc__s">Soft forms. Bold color.</p><span class="hc__l">Shop Crew Puff Collection</span></div></div>
               <img class="gl__bg gl__bg--lifestyle" src="../../assets/case/04-header/crew-puff-campaign.jpg" alt="" width="1280" height="854" loading="lazy">
@@ -253,7 +254,7 @@
               <img class="gl__logo" src="../../assets/case/04-header/atacz-logo.svg" alt="Atacz" width="120" height="24">
               <span class="gl__icons gl__icons--end"><span class="gl__btn gl__mob"><svg class="gl__icon" aria-hidden="true"><use href="#i-search"/></svg></span><span class="gl__btn gl__dsk"><svg class="gl__icon" aria-hidden="true"><use href="#i-account"/></svg></span><span class="gl__btn"><svg class="gl__icon" aria-hidden="true"><use href="#i-cart"/></svg></span></span>
             </div>
-            <nav class="gl__box gl__menu" aria-label="Menu, as rendered in the demo">
+            <nav class="gl__box gl__menu" aria-label="Menu, as rendered in the demo, desktop">
               <ul>
                 <li class="gl__top">New Arrivals</li>
                 <li class="gl__top">Miffy</li>
@@ -264,6 +265,8 @@
               <p class="gl__util">Log in &nbsp; Gift Card &nbsp; Find a store</p>
             </nav>
           </div></div>
+          <figcaption class="devcol__cap label"><span class="devcol__name">Desktop</span></figcaption>
+          </figure>
         </div>
         <div class="demo__controls">
           <p class="demo__field">
@@ -280,14 +283,6 @@
               <label><input type="radio" name="gl-bg" value="campaign" checked><span>Campaign film</span></label>
               <label><input type="radio" name="gl-bg" value="lifestyle"><span>Sky</span></label>
               <label><input type="radio" name="gl-bg" value="dark"><span>Black</span></label>
-            </span>
-          </p>
-          <p class="demo__field">
-            <span class="label">Used on</span>
-            <span class="demo__seg">
-              <label><input type="radio" name="gl-use" value="rest" checked><span>Desktop</span></label>
-              <label><input type="radio" name="gl-use" value="hover"><span>Pointer on it</span></label>
-              <label><input type="radio" name="gl-use" value="touch"><span>Phone</span></label>
             </span>
           </p>
         </div>
@@ -389,12 +384,13 @@ background: rgba(255, 255, 255, calc(0.5 + 0.3 * var(--bar-hover, 0)));
       <p><strong>And it never leaves.</strong> On phones the vendor header hides on scroll down; this one stays in view at every width. One consequence I had to fix: the collection page&rsquo;s sticky filter bar only stuck while the header was hidden, so it ended up stuck <em>underneath</em> the header, out of sight. It scrolls with the page now.</p>
       <p><strong>On a product page, the bar brings the buy button with it.</strong> Once the main Add to cart has scrolled out of view, the price and an Add to cart button appear right under the right end of the bar. Shoppers scroll down through photos, details and pairings, and buying stays one tap away instead of a scroll back up. That is the part of the header closest to revenue, and the main reason the bar is never allowed to leave. <a href="#decision-5">Decision 05</a> covers how it stays correct.</p>
 
-      <div class="demo" data-demo-progress>
+      <div class="demo demo--wide" data-demo-progress>
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">Scroll inside the frame and watch the header become the floating bar. On the homepage it follows the scroll; on a product page it switches at the header&rsquo;s bottom edge with a fade. Keep scrolling past Add to cart and the price and button drop in under the bar. Switch to Before for the live theme: its sticky header is turned off, so the header scrolls away with the page and there is no sticky add to cart. Phones hold the hover term at 1, so their bar ends at 80%.</p>
-        <div class="demo__stage">
-          <div class="dev"><div class="sb">
-            <div class="sb__scroll" data-sb-scroll tabindex="0" aria-label="Scrollable page preview">
+        <p class="demo__caption">Scroll inside the frame and watch the header become the floating bar. On the homepage it follows the scroll; on a product page it switches at the header&rsquo;s bottom edge with a fade. Keep scrolling past Add to cart and the price and button drop in under the bar. Switch to Before for the live theme: its sticky header is turned off, so the header scrolls away with the page and there is no sticky add to cart. Desktop and phone scroll separately. Phones hold the hover term at 1, so their bar ends at 80%.</p>
+        <div class="demo__stage demo__stage--devs">
+          <figure class="devcol">
+          <div class="dev dev--desk"><div class="sb">
+            <div class="sb__scroll" data-sb-scroll tabindex="0" aria-label="Scrollable page preview, desktop">
               <p class="sb__ann">Free shipping on all orders $108+</p>
               <div class="sb__home">
                 <div class="sb__hero"><video class="gl__vid" src="../../assets/case/04-header/campaign-loop.mp4" poster="../../assets/case/04-header/campaign-loop-poster.jpg" width="1280" height="720" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><div class="hc" aria-hidden="true"><p class="hc__h">Meet the New Crew</p><p class="hc__s">Soft forms. Bold color.</p><span class="hc__l">Shop Crew Puff Collection</span></div></div>
@@ -445,7 +441,8 @@ background: rgba(255, 255, 255, calc(0.5 + 0.3 * var(--bar-hover, 0)));
             </div>
             <div class="sb__satc" aria-hidden="true"><span>$139.00</span><span class="sb__satc-btn">Add to cart</span></div>
             </div></div>
-          <p class="sb__read label"><code>scroll <span data-sb-y>0</span>px &middot; sticky <span data-sb-on>off</span> &middot; --sticky-progress <span data-sb-value>0.00</span></code></p>
+          <figcaption class="sb__read devcol__cap label"><span class="devcol__name">Desktop</span> <code>scroll <span data-sb-y>0</span>px &middot; sticky <span data-sb-on>off</span> &middot; --sticky-progress <span data-sb-value>0.00</span></code></figcaption>
+          </figure>
         </div>
         <div class="demo__controls">
           <p class="demo__field">
@@ -460,13 +457,6 @@ background: rgba(255, 255, 255, calc(0.5 + 0.3 * var(--bar-hover, 0)));
             <span class="demo__seg">
               <label><input type="radio" name="sb-page" value="home" checked><span>Homepage</span></label>
               <label><input type="radio" name="sb-page" value="pdp"><span>Product page</span></label>
-            </span>
-          </p>
-          <p class="demo__field">
-            <span class="label">Device</span>
-            <span class="demo__seg">
-              <label><input type="radio" name="sb-device" value="desktop" checked><span>Desktop</span></label>
-              <label><input type="radio" name="sb-device" value="phone"><span>Phone</span></label>
             </span>
           </p>
         </div>
