@@ -62,3 +62,20 @@
 - Han decided to keep the root site's `work-4.html` as well ("일단 그대로 두자"), so this case exists twice: any edit goes to both. MERGE-PLAN's "root is frozen" still holds for the three original cases.
 
 **Next**: hero recordings for this case (Han), desktop menu decision (Han), real-phone check of the phone product page.
+
+## 2026-10-08 (later) — header case: Before / After, desktop and phone side by side
+
+All in `product/header/` and the root site's `work-4.html` (kept in step, per the two-copies decision).
+
+**Done**
+- Decision 04: a paragraph on the sticky add to cart riding under the bar on product pages (owner: "important for sales"), and a **Before (live) / After** toggle in its demo. Before = the live theme as configured: `enable_sticky_header` is **off** on live (`188602614064`, read from `sections/header-group.json`), so the header scrolls away and there is no sticky ATC. The body sentence that said the vendor header "hides on scroll down" was corrected to match.
+- Decisions 02 and 04: **desktop and phone at once** instead of a Device toggle. One copy of the markup; JS clones the frame for the phone (`6f0` in `js/case.js`). Device selectors moved from the radio to a `.dev--desk` class; both frames drawn at real size and scaled (1440 / 360) so they are the same height (columns 2.489 : 1). From 900px the demo widens past the 46rem text column (`.demo--wide`, `100vw − 374px` from 1200px). Decision 02 lost "Pointer on it": hover the desktop frame instead; the phone frame always holds the hover tint.
+- Decision 01: real homepage captures, live vs draft (`188817080624`), 390px @2x, in two scrolling phone frames under the order diagram (`assets/case/04-header/home-{before,after}.jpg`, 0.8 + 0.56 MB). Region-modal and Klaviyo scripts were blocked during capture (the region modal redirected mid-scroll); the caption says pop-ups are hidden.
+- Checks: Playwright at 1440 / 1024 / 390 on both sites — no page errors, no horizontal overflow, equal frame heights, Before/After and sticky ATC states as expected.
+
+**Next**: `TODO.md` → "Header & Homepage case".
+
+**Lessons**
+- A "Before" is the live store as configured, not the vendor default. The vendor header hides on scroll; live has sticky switched off entirely. Read the live theme's settings before drawing or describing the old state.
+- Don't hand-type the account name in URLs (`hannnnnnnnnnnn`): a wrong `n` count gave the owner two dead links. Copy it from `git remote -v`, and `curl` a link before giving it out.
+- Side-by-side frames in a 46rem column make a 1440 canvas unreadable; widen the demo into the free right margin instead of shrinking both.

@@ -18,6 +18,13 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 - [ ] "Top section height differs between Visual and Product": the two list pages measured identical. If it meant case vs Visual project pages: label sits 18px higher on case pages on phones, label→title gap 38–41 vs 33–35px. Align to the Visual project pages?
 - [ ] Dropick case study (`~/dropick/docs/portfolio/README.md`): import after Han's research, usability test and iPhone recordings (draft has `[ ]` gaps, no visuals, private repo links, live-app link). Built with its existing `build.py`.
 
+## Header & Homepage case (`product/header/`, unlisted — also root `work-4.html`, edit both)
+
+- [ ] Re-capture Decision 01's After once the draft's 2nd and 3rd banners are Miffy and Most Loved (caption says they aren't yet). Same method: 390px @2x, `?preview_theme_id=`, block region-modal + Klaviyo, assert `Shopify.theme.id`.
+- [ ] If live switches its sticky header on, Decision 04's Before toggle, its caption and the "And it never leaves" sentence are wrong.
+- [ ] Hero recordings (Han), desktop menu decision (Han), real-phone check of the phone product page and 80% glass.
+- [ ] Below 900px the two frames stack and the desktop frame is small (0.22 at 390). Fine for now; revisit if phone readers find it unreadable.
+
 ## Before deploying to GitHub Pages (`*.github.io`)
 
 - [x] Grok button prompt still points to `https://han-kiim-xai.figma.site/` (kept on purpose for now) — switch it to the github.io URL once the site is live. It is URL-encoded in the `href` of the "Read with Grok" button in `index.html`.
