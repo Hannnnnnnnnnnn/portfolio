@@ -1503,7 +1503,14 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .demo .gl__icons { display: flex; align-items: center; }
 .demo .gl__icons--end { justify-content: flex-end; }
 .demo .gl__btn { display: grid; place-items: center; width: var(--btn-w); height: var(--btn-h); color: inherit; }
-.demo .gl__icon { display: block; width: 20px; height: 20px; stroke-width: 1.8px; }
+/* 테마 실물 굵기: --icon-weight 1.1(헤더 설정)은 각 아이콘 viewBox 단위라 아이콘마다 다르게 칠해진다.
+   햄버거 = 1.1 × 2 − 0.4, 장바구니 bag = 1.1 × 24/17, 닫기 X = 1.1 − 0.1 을 14px 에, 나머지 = 1.1 (base.css)
+   The theme's real weights: --icon-weight 1.1 (header setting) is in each icon's viewBox units, so it paints
+   differently per icon. Hamburger 1.1 x 2 - 0.4, bag cart 1.1 x 24/17, close X 1.1 - 0.1 at 14px, others 1.1 (base.css) */
+.demo .gl__icon { display: block; width: 20px; height: 20px; stroke-width: 1.1px; }
+.demo .gl__icon:has(use[href="#i-menu"]) { stroke-width: 1.8px; }
+.demo .gl__icon:has(use[href="#i-cart"]) { stroke-width: calc(1.1px * 24 / 17); }
+.demo .gl__icon:has(use[href="#i-close"]) { width: 14px; height: 14px; stroke-width: 1px; }
 
 /* ── 데모 G: 리퀴드 글래스 (04 Dec 02) — JS 0줄, 렌즈 게이트 3줄 ──
    표면 값은 커스텀 프로퍼티 하나씩이고, 컨트롤은 :has() 로 그 값만 바꾼다.
