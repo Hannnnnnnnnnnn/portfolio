@@ -1618,6 +1618,9 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
   color: var(--gl-ink);
   transition: background-color 0.25s ease;
 }
+/* 메뉴 박스는 화면 높이의 2/3 에서 멈춘다 — 테마: 뷰포트 × 2/3 − 헤더 하단(바 위 10 + 바 높이) − 10px
+   The menu box stops at two thirds of the screen, as the theme: viewport x 2/3 - header bottom (10 + bar) - 10px */
+.demo .gl__menu { max-height: calc(var(--frame-h) * 2 / 3 - var(--bar-h) - 20px); }
 .demo .gl__box ul { list-style: none; margin: 0; padding: 5px var(--menu-pad) 0; max-width: none; }
 .demo .gl__box li { margin: 0; }
 .demo .gl__top { display: block; padding: 10px 0; font-size: 14px; font-weight: 600; line-height: 1.7; border-bottom: 1px solid var(--gl-rule); }
