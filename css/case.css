@@ -1726,6 +1726,13 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 .demo .pp__info { width: 100%; box-sizing: border-box; padding: 20px 15px 0; }
 .demo .dev--desk .pp__info { position: sticky; top: 0; flex: 0 0 40%; width: 40%; min-width: 0; box-sizing: border-box; padding: 30px 0 0 70px; }
+/* 05 데모: 데스크톱 상품 페이지는 사진을 세우고 오른쪽 정보를 스크롤한다 — 메인 ATC 가 빨리 지나가 sticky ATC 가 바로 보이게.
+   테마는 반대(정보 고정, 사진 스크롤)이고 캡션에 그렇게 적었다
+   Demo 05: on the desktop product page the photos hold still and the details scroll, so the main ATC passes
+   quickly and the sticky ATC shows at once. The theme does the opposite (details sticky, photos scroll); the caption says so */
+.demo[data-sb-start] .dev--desk .pp__media { position: sticky; top: 0; align-self: flex-start; }
+.demo[data-sb-start] .dev--desk .pp__gallery { max-height: var(--frame-h); overflow: hidden; }
+.demo[data-sb-start] .dev--desk .pp__info { position: static; }
 /* 배지 줄은 25px 상자, 글자는 그 가운데 / the badge row is a 25px box with the text centred */
 .demo .pp__badge { display: flex; align-items: center; height: 25px; font-size: 14px; font-weight: 600; letter-spacing: 0.56px; line-height: 16.8px; text-transform: uppercase; color: #dc2626; }
 .demo .pp__title { margin-bottom: 20px; font-size: 24px; font-weight: 600; letter-spacing: 0.6px; line-height: 31.2px; }

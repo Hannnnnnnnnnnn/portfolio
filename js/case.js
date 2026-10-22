@@ -379,8 +379,33 @@ run(() => {
     scroller.addEventListener("scroll", update, { passive: true });
     return { scroller, update };
   });
-  demo.addEventListener("change", () => frames.forEach((f) => { f.scroller.scrollTop = 0; f.update(); }));
-  frames.forEach((f) => f.update());
+  // data-sb-start="atc" (05): 상품 페이지는 메인 ATC 와 결제 버튼 바로 아래까지 내려간 상태로 시작 — sticky ATC 가 처음부터 보인다.
+  // 프레임이 축소돼 있으니 화면 px 을 배율로 나눠 스크롤 px 로 바꾼다
+  // data-sb-start="atc" (05): the product page starts scrolled just past the main ATC and payment buttons, so the sticky ATC shows from
+  // the start. The frame is scaled, so screen px are divided by the scale to get scroll px
+  const startAtAtc = demo.dataset.sbStart === "atc";
+  const start = (f) => {
+    const pdp = demo.querySelector('[name="sb-page"][value="pdp"]').checked;
+    let y = 0;
+    if (startAtAtc && pdp) {
+      const box = f.scroller.getBoundingClientRect();
+      const scale = box.height / f.scroller.clientHeight || 1;
+      // 결제 버튼 묶음(Shop Pay·More payment options)까지 지나서 — 바 위 틈으로 보라색 버튼이 비치지 않게
+      // Past the payment group (Shop Pay, More payment options), so no purple button shows in the gap above the bar
+      const end = f.scroller.querySelector(".pp__more").getBoundingClientRect();
+      y = f.scroller.scrollTop + (end.bottom - box.top) / scale + 12;
+    }
+    f.scroller.scrollTop = 0;
+    f.scroller.scrollTop = y;
+    f.update();
+  };
+  demo.addEventListener("change", () => frames.forEach((f) => { f.scroller.scrollTop = 0; f.update(); start(f); }));
+  frames.forEach(start);
+  // 폰트·이미지가 늦게 와서 ATC 위치가 바뀔 수 있으니, 아직 아무도 스크롤하지 않았다면 load 후 한 번 더
+  // Fonts and images can move the ATC after first paint, so redo it on load unless someone has scrolled already
+  let touched = false;
+  frames.forEach((f) => ["wheel", "touchstart", "keydown", "pointerdown"].forEach((e) => f.scroller.addEventListener(e, () => { touched = true; }, { passive: true, once: true })));
+  if (startAtAtc) window.addEventListener("load", () => { if (!touched) frames.forEach(start); }, { once: true });
 });
 
 /* ── 6h. 04 Dec 06: 보틀 — 테마 블록의 launchBottle 그대로 ──
