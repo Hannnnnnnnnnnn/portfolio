@@ -79,3 +79,17 @@ All in `product/header/` and the root site's `work-4.html` (kept in step, per th
 - A "Before" is the live store as configured, not the vendor default. The vendor header hides on scroll; live has sticky switched off entirely. Read the live theme's settings before drawing or describing the old state.
 - Don't hand-type the account name in URLs (`hannnnnnnnnnnn`): a wrong `n` count gave the owner two dead links. Copy it from `git remote -v`, and `curl` a link before giving it out.
 - Side-by-side frames in a 46rem column make a 1440 canvas unreadable; widen the demo into the free right margin instead of shrinking both.
+
+## 2026-10-22 — Header Revamp case split out (branch `case/header-revamp`, not on `main`)
+
+**Done**
+- New unlisted case `product/header-revamp/` (05), split from `product/header/` so it can carry the A/B test (23 Oct – 12 Nov 2026). Option A chosen by Han: header only; the homepage stays in the old case.
+- Kept: problem (header paragraphs), device split, the counter-research, Decisions 02–05 → 01–04 with their demos. Dropped: carousel data, homepage stack, bottle, footer (Han: leave the footer out).
+- Every value in Decisions 01–04 checked against the variant theme `189168779568`: its `header.liquid` / `header-drawer.liquid` are byte-identical to `feature/header-liquid-glass` `2f854c6`; live (control) still has `enable_sticky_header: false`.
+- One sentence changed: the desktop menu button is decided **after** the A/B result (Han), not "watched after launch".
+- New sections: 4 How I'm testing it, 5 Outcome (pending), What I can't claim (prefilled), 6 What's next. `sitecheck` passes.
+
+**Next**: `TODO.md` → "Header Revamp case".
+
+**Lessons**
+- Chained string replacements for renumbering (5→4, then 4→3 …) collapse every number into 1. Renumber in one regex pass.
