@@ -1555,15 +1555,17 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
   --gl-hover-bg: #ffffff;
   --gl-shadow: none;
 }
-/* 흰 유리만 두꺼워진다: 포인터가 올라갔거나(데스크톱), 폰이라 항상. 데모 H 는 폰이라 항상
-   Only the white glass thickens: under the pointer on desktop, always on a phone. Demo H is a phone */
-.demo[data-demo-glass]:has([name="gl-surface"][value="white"]:checked) .dev:not(.dev--desk) .gl,
+/* 흰 유리만 두꺼워진다: 포인터가 올라갔거나(데스크톱), 폰이라 항상. 데모 H 는 폰이라 항상.
+   흰 유리 = 다른 표면이 선택되지 않은 상태 — 표면 컨트롤이 없는 페이지(05)에서도 기본값이 된다
+   Only the white glass thickens: under the pointer on desktop, always on a phone. Demo H is a phone.
+   White = no other surface picked, so it is also the default on a page without the surface control (05) */
+.demo[data-demo-glass]:not(:has([name="gl-surface"]:is([value="dark"], [value="opaque"]):checked)) .dev:not(.dev--desk) .gl,
 .demo[data-demo-boxes] .gl.gl--fixed {
   --gl-bar-bg: var(--gl-hover-bg);
   --gl-box-bg: var(--gl-hover-bg);
 }
 @media (hover: hover) {
-  .demo[data-demo-glass]:has([name="gl-surface"][value="white"]:checked) .dev--desk :is(.gl__bar, .gl__box):hover { background-color: var(--gl-hover-bg); }
+  .demo[data-demo-glass]:not(:has([name="gl-surface"]:is([value="dark"], [value="opaque"]):checked)) .dev--desk :is(.gl__bar, .gl__box):hover { background-color: var(--gl-hover-bg); }
 }
 
 .demo .gl__page { position: absolute; inset: 0; }
