@@ -1730,8 +1730,16 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
    테마는 반대(정보 고정, 사진 스크롤)이고 캡션에 그렇게 적었다
    Demo 05: on the desktop product page the photos hold still and the details scroll, so the main ATC passes
    quickly and the sticky ATC shows at once. The theme does the opposite (details sticky, photos scroll); the caption says so */
-.demo[data-sb-start] .dev--desk .pp__media { position: sticky; top: 0; align-self: flex-start; }
-.demo[data-sb-start] .dev--desk .pp__gallery { max-height: var(--frame-h); overflow: hidden; }
+/* 바 아래에 멈춘다 — top: 0 이면 사진 왼쪽 위 PET 배지가 바 유리 뒤에 깔려 초록 얼룩이 된다.
+   사진 높이도 그만큼 줄여야 줄 끝에 밀려 올라가지 않는다
+   It stops below the bar: at top 0 the photo's PET badge sat under the glass as a green smudge.
+   The photo is cut by the same amount, or the end of its row pushes it back up */
+.demo[data-sb-start] .dev--desk .sb { --pp-top: calc(10px + var(--bar-h) + 10px); }
+.demo[data-sb-start] .dev--desk .pp__media { position: sticky; top: var(--pp-top); align-self: flex-start; }
+.demo[data-sb-start] .dev--desk .pp__gallery { --pp-h: calc(var(--frame-h) - 2 * var(--pp-top)); max-height: var(--pp-h); overflow: hidden; }
+/* 첫 사진은 그 높이에 통째로 들어가게 (가방이 잘리지 않게) / the first photo fits that height whole, so the bag is not cut */
+.demo[data-sb-start] .dev--desk .pp__gallery > li:first-child { flex-basis: var(--pp-h); min-height: 0; }
+.demo[data-sb-start] .dev--desk .pp__gallery > li:first-child > img { width: 100%; height: 100%; object-fit: contain; }
 .demo[data-sb-start] .dev--desk .pp__info { position: static; }
 /* 배지 줄은 25px 상자, 글자는 그 가운데 / the badge row is a 25px box with the text centred */
 .demo .pp__badge { display: flex; align-items: center; height: 25px; font-size: 14px; font-weight: 600; letter-spacing: 0.56px; line-height: 16.8px; text-transform: uppercase; color: #dc2626; }
