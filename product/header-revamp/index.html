@@ -137,14 +137,14 @@
 
       <div class="demo demo--wide" data-demo-glass>
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">The same header and menu in white glass over the draft&rsquo;s own campaign film, on desktop and phone at once. Both are drawn at real size and scaled down. Point at the desktop bar to see its hover tint; a phone never hovers, so it holds that thicker glass all the time.</p>
+        <p class="demo__caption">The same header and menu in white glass over the draft&rsquo;s own campaign film, on desktop and phone at once. Both are drawn at real size and scaled down. Scroll the page behind it, from the film to a bright photo to a black field, and point at the desktop bar to see its hover tint; a phone never hovers, so it holds that thicker glass all the time.</p>
         <div class="demo__stage demo__stage--devs">
           <figure class="devcol">
           <div class="dev dev--desk"><div class="gl" data-glass>
-            <div class="gl__page" aria-hidden="true">
+            <div class="gl__page gl__page--scroll" tabindex="0" aria-label="Page behind the header, scrollable">
               <div class="gl__bg gl__bg--campaign"><video class="gl__vid" src="../../assets/case/04-header/campaign-loop.mp4" poster="../../assets/case/04-header/campaign-loop-poster.jpg" width="1280" height="720" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><div class="hc" aria-hidden="true"><p class="hc__h">Meet the New Crew</p><p class="hc__s">Soft forms. Bold color.</p><span class="hc__l">Shop Crew Puff Collection</span></div></div>
               <img class="gl__bg gl__bg--lifestyle" src="../../assets/case/04-header/crew-puff-campaign.jpg" alt="" width="1280" height="854" loading="lazy">
-              <div class="gl__bg gl__bg--dark"><p>Made into bags that matter.</p></div>
+              <div class="gl__bg gl__bg--dark" aria-hidden="true"><p>Made into bags that matter.</p></div>
             </div>
             <div class="gl__bar">
               <span class="gl__icons"><span class="gl__btn"><svg class="gl__icon" aria-hidden="true"><use href="#i-close"/></svg></span><span class="gl__btn gl__dsk"><svg class="gl__icon" aria-hidden="true"><use href="#i-search"/></svg></span></span>
@@ -177,16 +177,6 @@
           </div></div>
           <figcaption class="devcol__cap label"><span class="devcol__name">Desktop</span></figcaption>
           </figure>
-        </div>
-        <div class="demo__controls">
-          <p class="demo__field">
-            <span class="label">Behind it</span>
-            <span class="demo__seg">
-              <label><input type="radio" name="gl-bg" value="campaign" checked><span>Campaign film</span></label>
-              <label><input type="radio" name="gl-bg" value="lifestyle"><span>Sky</span></label>
-              <label><input type="radio" name="gl-bg" value="dark"><span>Black</span></label>
-            </span>
-          </p>
         </div>
         <details>
           <summary class="label">The glass, from the theme</summary>
@@ -224,11 +214,13 @@ background: rgba(255, 255, 255, calc(0.5 + 0.3 * var(--bar-hover, 0)));
         <input class="hb__state" type="radio" name="hb" id="hb-search" value="search" aria-label="Search box open">
         <input class="hb__state" type="radio" name="hb" id="hb-cart" value="cart" aria-label="Cart box open">
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">On a phone: open the menu, search or cart. Only one box is ever open, and the button that opened it turns into its close.</p>
+        <p class="demo__caption">On a phone: open the menu, search or cart. Only one box is ever open, and the button that opened it turns into its close. Scroll the page behind it to see the glass over each kind of background.</p>
         <div class="demo__stage">
           <div class="gl gl--fixed">
-            <div class="gl__page" aria-hidden="true">
+            <div class="gl__page gl__page--scroll" tabindex="0" aria-label="Page behind the header, scrollable">
               <div class="gl__bg"><video class="gl__vid" src="../../assets/case/04-header/campaign-loop.mp4" poster="../../assets/case/04-header/campaign-loop-poster.jpg" width="1280" height="720" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><div class="hc" aria-hidden="true"><p class="hc__h">Meet the New Crew</p><p class="hc__s">Soft forms. Bold color.</p><span class="hc__l">Shop Crew Puff Collection</span></div></div>
+              <img class="gl__bg gl__bg--lifestyle" src="../../assets/case/04-header/crew-puff-campaign.jpg" alt="" width="1280" height="854" loading="lazy">
+              <div class="gl__bg gl__bg--dark" aria-hidden="true"><p>Made into bags that matter.</p></div>
             </div>
             <div class="gl__bar">
               <span class="gl__icons"><label class="gl__btn hb__btn" for="hb-menu" data-for="menu"><svg class="gl__icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="visually-hidden">Open menu</span></label><label class="gl__btn hb__btn hb__btn--close" for="hb-none" data-for="menu"><svg class="gl__icon" aria-hidden="true"><use href="#i-close"/></svg><span class="visually-hidden">Close menu</span></label></span>

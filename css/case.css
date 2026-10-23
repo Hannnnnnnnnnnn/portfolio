@@ -1577,6 +1577,12 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .demo[data-demo-glass]:has([name="gl-bg"][value="campaign"]:checked) .gl__bg--campaign,
 .demo[data-demo-glass]:has([name="gl-bg"][value="lifestyle"]:checked) .gl__bg--lifestyle { display: block; }
 .demo[data-demo-glass]:has([name="gl-bg"][value="dark"]:checked) .gl__bg--dark { display: grid; }
+/* 05: 배경이 스크롤된다 — 필름·밝은 사진·검은 면을 한 화면씩 쌓아 유리 아래로 지나가게 한다 (컨트롤 대신)
+   05: the page behind scrolls. Film, a bright photo and a black field, one screen each, pass under the glass (instead of a control) */
+.demo .gl__page--scroll { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+.demo .gl__page--scroll::-webkit-scrollbar { display: none; }
+.demo .gl__page--scroll .gl__bg { position: relative; display: block; height: var(--frame-h); }
+.demo .gl__page--scroll .gl__bg--dark { display: grid; }
 /* 최악의 배경: 큰 검은 면 위의 흰 문구 / worst case: a large black field with white type */
 .demo .gl__bg--dark { place-items: end start; padding: 2rem 1.5rem; background: #0c0c0c; color: #fff; }
 .demo .gl__bg--dark p { margin: 0; font-size: 28px; font-weight: 600; line-height: 1.15; }
