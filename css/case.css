@@ -1564,6 +1564,9 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
   --gl-bar-bg: var(--gl-hover-bg);
   --gl-box-bg: var(--gl-hover-bg);
 }
+/* 데모 H 는 폰이다: 무대 폭을 다 쓰면 702x560 태블릿 비율이 된다 — 다른 폰 프레임처럼 360x560
+   Demo H is a phone: at the stage's full width it came out 702x560, a tablet. 360x560 like the other phone frames */
+.demo[data-demo-boxes] .gl--fixed { width: min(360px, 100%); }
 @media (hover: hover) {
   .demo[data-demo-glass]:not(:has([name="gl-surface"]:is([value="dark"], [value="opaque"]):checked)) .dev--desk :is(.gl__bar, .gl__box):hover { background-color: var(--gl-hover-bg); }
 }
