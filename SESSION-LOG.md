@@ -93,3 +93,19 @@ All in `product/header/` and the root site's `work-4.html` (kept in step, per th
 
 **Lessons**
 - Chained string replacements for renumbering (5→4, then 4→3 …) collapse every number into 1. Renumber in one regex pass.
+
+## 2026-10-23 — Header Revamp case deployed (unlisted) and demo fixes
+
+**Done** (all on `main` and `case/header-revamp`, live)
+- Merged to `main` (`e5797b9`), still unlisted: noindex, no Product-list card, not in `llms.txt`.
+- Decision 02: phone frame capped at 360px (`b4b2c4c`) — it was stretching to the stage width and read as a tablet.
+- Decision 01 hover: the site's fixed `.nav` (180px tall from 800px, its bottom 100px a see-through fade) swallowed pointer events over the demo's bar. `.nav` is now `pointer-events: none`, its children `auto` (`5a67756`). Headless tests passed throughout; only probing Han's real Chrome found it.
+- Decisions 01–02: the page behind the glass scrolls (`2047914`), and is now the live atacz.com homepage, captured with its header and announcement bar hidden, 1440 for desktop and 360 @2x for phone (`fabbf68`, `assets/case/05-header-revamp/home-{desk,mob}.jpg`, ~0.8 MB each). Hero = still image in place of the video (Han). The "Behind it" control was removed.
+- Captures blocked GA4, Shopify analytics, Clarity, Klaviyo and the A/B script so the running header test got no events.
+- Decision 03's Version toggle: no change needed (Han confirmed).
+
+**Next**: `TODO.md` → "Header Revamp case" (baseline numbers need the kickoff deck PDF; poppler is not installed).
+
+**Lessons**
+- A pointer bug that headless tests cannot reproduce: check what sits on top in the real browser (`elementFromPoint`) before touching the demo's own CSS. A fixed, partly transparent element above the content is the usual suspect.
+- Capturing the live store while an A/B test runs: block analytics and the A/B tool, or every capture is a session in the results.

@@ -18,14 +18,15 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 - [ ] "Top section height differs between Visual and Product": the two list pages measured identical. If it meant case vs Visual project pages: label sits 18px higher on case pages on phones, label→title gap 38–41 vs 33–35px. Align to the Visual project pages?
 - [ ] Dropick case study (`~/dropick/docs/portfolio/README.md`): import after Han's research, usability test and iPhone recordings (draft has `[ ]` gaps, no visuals, private repo links, live-app link). Built with its existing `build.py`.
 
-## Header Revamp case (`product/header-revamp/`, unlisted, branch `case/header-revamp`)
+## Header Revamp case (`product/header-revamp/`, unlisted, on `main` + `case/header-revamp`)
 
 - [ ] Baseline numbers → the kickoff deck's (GA4 28 Sep – 18 Oct 2026: mobile 78.4% reach a product page, 2.40% of those add to cart; desktop home/collection → product page 29.4%; detectable mobile lift ~21%). The draft still has 24 Sep – 14 Oct figures (77%, 696 ATC sessions).
 - [ ] After the 13 Nov readout: fill 5 Outcome (GA4 filtered by `ab_test = header_revamp_2026_10`), revise What I can't claim and Decision 02's desktop sentence to match the call.
 - [ ] Title and lead are a draft — Han to confirm.
 - [ ] Hero recordings (`assets/case/05-header-revamp/hero-*.mp4`).
 - [ ] Trim `product/header/` (04, also root `work-4.html`) to the homepage, and link the two.
-- [ ] Merge to `main` only when Han says so (listing it = drop noindex, add to the Product list, `llms.txt`).
+- [x] On `main` since 23 Oct, still unlisted (noindex, not in the Product list or `llms.txt`). Listing it = drop noindex, add both — only when Han says so.
+- [ ] Decisions 01–02 backgrounds are static captures of atacz.com (23 Oct, header hidden, 1440 + 360). Re-capture if the homepage changes.
 
 ## Header & Homepage case (`product/header/`, unlisted — also root `work-4.html`, edit both)
 
