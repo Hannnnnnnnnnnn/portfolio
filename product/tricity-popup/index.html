@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tri-City Pop-up &mdash; Hanbyoul Kim</title>
+<!-- 링크 없이 공개 — 상품 목록·More projects·llms.txt 어디서도 링크하지 않는다. 공개 시 이 줄을 지우고 목록에 추가 /
+     Unlisted: linked from nowhere (Product list, More projects, llms.txt). To list it, drop this line and add it to the list -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="A landing page and an RSVP system for a two-week pop-up store and a live drawing event.">
+
+
+<link rel="icon" href="../../assets/img/favicon.png">
+<link rel="preload" href="../../assets/fonts/SourceSerif4Variable-Roman.ttf.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/source-code-pro.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/case.css">
+<link rel="stylesheet" href="../../css/case-skin.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="../../js/main.js" defer></script>
+<script src="../../js/case.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="page">
+  <nav class="nav">
+    <a class="nav__home" href="../../">
+      <span class="nav__avatar"><video src="../../assets/video/avatar.mp4" data-autoplay loop muted playsinline preload="metadata" aria-hidden="true"></video></span>
+      <span class="nav__name">Han Kim</span>
+    </a>
+    <div class="nav__links t-mono">
+      <a class="link-fade" href="../../">Product</a>
+      <a class="link-fade" href="../../visual/">Visual</a>
+      <a class="link-fade" href="../../about/">About</a>
+    </div>
+  </nav>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+
+<!-- 초안 — 이벤트(2026-11-28)가 끝난 뒤 마감한다. [대괄호] 는 Han 이 채울 자리, 수치는 테마/Flow 에서 뽑을 것 /
+     Draft — finished after the event (28 Nov 2026). [Brackets] are for Han; numbers come from the theme and Flow, never estimated -->
+<main id="main" class="section case">
+  <nav class="toc label" aria-label="On this page">
+    <ol>
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#decisions">Decisions</a>
+        <ol class="toc__nums">
+          <li><a class="toc__num" href="#decision-1">01</a></li>
+          <li><a class="toc__num" href="#decision-2">02</a></li>
+          <li><a class="toc__num" href="#decision-3">03</a></li>
+        </ol>
+      </li>
+      <li><a href="#outcome">Outcome</a></li>
+      <li><a href="#next">Next</a></li>
+    </ol>
+  </nav>
+  <div class="prose">
+
+    <p class="label muted">06 &middot; Tri-City Pop-up</p>
+    <h1>[Title &mdash; Han]</h1>
+    <p class="lead">A landing page for a pop-up store, and an RSVP page for the live drawing event inside it &mdash; built on the live theme in days.</p>
+
+    <ul class="tags label">
+      <li>Visual Design</li>
+      <li>Interaction Design</li>
+      <li>Front-end Implementation</li>
+      <li>Shopify Flow</li>
+    </ul>
+
+    <p class="caveat">Draft. The pop-up opens on 20 November 2026 and the event is on 28 November; results come after.</p>
+
+    <dl class="meta">
+      <dt>Client</dt><dd>Atacz</dd>
+      <dt>Role</dt><dd>Sole designer and developer</dd>
+      <dt>Timeline</dt><dd>Nov 2026</dd>
+      <dt>Tools</dt><dd>Liquid, CSS, vanilla JavaScript (Web Animations API), SVG, Shopify Flow</dd>
+    </dl>
+
+    <div class="snaps snaps--pair">
+      <figure class="snap snap--mobile">
+        <div class="snap__scroll"><p class="snap__slot label">Screen recording, mobile<br><code>../../assets/case/06-tricity-popup/hero-mobile.mp4</code></p></div>
+      </figure>
+      <figure class="snap snap--desktop">
+        <div class="snap__scroll"><p class="snap__slot label">Screen recording, desktop<br><code>../../assets/case/06-tricity-popup/hero-desktop.mp4</code></p></div>
+      </figure>
+    </div>
+
+    <h2 id="problem">1 &middot; The problem</h2>
+    <h3>[One-line problem &mdash; Han]</h3>
+    <p>[Why a pop-up at Tri-City Pavilion, what the page had to do, the deadline &mdash; Han.]</p>
+
+    <h2 id="decisions">2 &middot; Decisions</h2>
+
+    <section class="decision" id="decision-1">
+      <span class="label muted">Decision 01</span>
+      <h3>The collection, hung like ornaments</h3>
+      <p>The top of the page is the Birthday Color Twist Bag, one card per colour &mdash; twelve, January to December &mdash; each hung from the ceiling on its own thread. Card size stands for depth: nearer cards are larger and sit higher in the stack. The thread and the card sway together, each on its own period.</p>
+      <p>Click a card and every card is pulled up its thread, then they drop back one at a time in random order, the one you clicked first. Under <code>prefers-reduced-motion</code> nothing moves.</p>
+      <p>The ornaments stay fixed while the page scrolls, and the next sections slide over them. Desktop and phone each get their own layout table, because a single one either clipped cards at the edge or split a card from its thread.</p>
+      <p>[Why ornaments &mdash; Han.]</p>
+    </section>
+
+    <section class="decision" id="decision-2">
+      <span class="label muted">Decision 02</span>
+      <h3>Booking slots without a booking app</h3>
+      <p>The event takes six 30-minute slots of six people. The form is the store&rsquo;s own customer form: picking a slot adds a customer tag, and a Shopify Flow re-counts every tagged customer on each new tag and writes the totals to a shop metafield, which the page reads to show the spaces left.</p>
+      <p>Flow re-counts instead of adding one, so a missed run fixes itself on the next. The trade-off, agreed up front: two people submitting at once can overbook a slot, and that is accepted.</p>
+    </section>
+
+    <section class="decision" id="decision-3">
+      <span class="label muted">Decision 03</span>
+      <h3>[Keeping the guest list in the store &mdash; Han to confirm this belongs in a public case]</h3>
+      <p>[The first reference page saved names and emails outside the store. Moving the form onto Shopify kept consent and the list in one place.]</p>
+    </section>
+
+    <!-- 이벤트 후: RSVP 수(Flow metafield), 슬롯별 마감, 실제 참석, LP 세션(GA4) — 출처와 기간 명시 /
+         After the event: RSVPs (Flow metafield), slots filled, attendance, LP sessions (GA4) — with source and dates -->
+    <h2 id="outcome">4 &middot; Outcome</h2>
+    <p class="caveat">Pending. The event is on 28 November 2026.</p>
+
+    <h2 id="next">5 &middot; What&rsquo;s next</h2>
+    <p>[Han.]</p>
+
+    <nav class="case-nav" aria-label="More work">
+      <a class="case-nav__back label" href="../../">&larr; All work</a>
+      <a class="case-nav__next" href="../pdp/">
+        <span class="case-nav__eyebrow label muted">Next case &mdash; 01</span>
+        <span class="case-nav__title">PDP Revamp</span>
+        <span class="case-nav__sub">Rebuilding a product page around purchase confidence</span>
+      </a>
+    </nav>
+  </div>
+</main>
+
+  <footer class="footer">
+    <div class="footer__links">
+      <a class="link-fade" href="mailto:hanbyoul.kim91@gmail.com">Email</a>
+      <a class="link-fade" href="https://www.linkedin.com/in/hanbyoul-kim/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="footer__copy">© Han Kim 2026 All Rights Reserved</p>
+  </footer>
+</div>
+</body>
+</html>

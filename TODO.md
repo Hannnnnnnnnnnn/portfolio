@@ -18,6 +18,17 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 - [ ] "Top section height differs between Visual and Product": the two list pages measured identical. If it meant case vs Visual project pages: label sits 18px higher on case pages on phones, label→title gap 38–41 vs 33–35px. Align to the Visual project pages?
 - [ ] Dropick case study (`~/dropick/docs/portfolio/README.md`): import after Han's research, usability test and iPhone recordings (draft has `[ ]` gaps, no visuals, private repo links, live-app link). Built with its existing `build.py`.
 
+## Tri-City Pop-up case (`product/tricity-popup/`, draft on `case/tricity-popup`, not on `main`)
+
+One case for the pop-up LP (`/pages/tricity-pop-up`) and the event RSVP (`/pages/tricity-doodle-event-rsvp`), started 16 Nov 2026. Finish after the event (28 Nov). Facts come from the theme repo's session logs `2026-11-12_tricity-popup-lp.md` and `2026-11-12_event-rsvp.md` (branch `feature/event-rsvp`).
+
+- [ ] Han: title, problem, why ornaments, what's next (every `[bracket]` in the page).
+- [ ] Han: may the artist's name, work and photo appear? Until then the page names no artist.
+- [ ] Han: does Decision 03 (reference page stored guests outside the store) belong in a public case?
+- [ ] After 28 Nov: RSVPs per slot (metafield `custom.event_rsvp_counts`), attendance, LP sessions (GA4) — with dates.
+- [ ] Recordings: ornament drop + click (desktop, phone), RSVP booking. No customer names or emails in any capture.
+- [ ] Case number 06 and the "Next case" link are placeholders; unlisted (noindex) until Han says otherwise.
+
 ## Header Revamp case (`product/header-revamp/`, unlisted, on `main` + `case/header-revamp`)
 
 - [ ] Baseline numbers → the kickoff deck's (GA4 28 Sep – 18 Oct 2026: mobile 78.4% reach a product page, 2.40% of those add to cart; desktop home/collection → product page 29.4%; detectable mobile lift ~21%). The draft still has 24 Sep – 14 Oct figures (77%, 696 ATC sessions).
