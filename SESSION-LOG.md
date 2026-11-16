@@ -109,3 +109,12 @@ All in `product/header/` and the root site's `work-4.html` (kept in step, per th
 **Lessons**
 - A pointer bug that headless tests cannot reproduce: check what sits on top in the real browser (`elementFromPoint`) before touching the demo's own CSS. A fixed, partly transparent element above the content is the usual suspect.
 - Capturing the live store while an A/B test runs: block analytics and the A/B tool, or every capture is a session in the results.
+
+## 2026-11-16 — Tri-City Pop-up case started (draft, not on `main`)
+
+**Done**
+- Han's call: the pop-up LP and the event RSVP become **one** case, `product/tricity-popup/` (06, noindex), on branch `case/tricity-popup`. Skeleton only; finished after the event (28 Nov 2026).
+- Decisions 01 (ornament drape) and 02 (customer tags + Flow re-count + shop metafield) written from the theme repo's session logs `2026-11-12_tricity-popup-lp.md` and `2026-11-12_event-rsvp.md` (`feature/event-rsvp`). Decision 03 is a placeholder.
+- Every reason, the title and what's next are `[bracketed]` for Han; nothing inferred. No artist named.
+
+**Next**: `TODO.md` → "Tri-City Pop-up case". Resume on `case/tricity-popup`, not `main`.
