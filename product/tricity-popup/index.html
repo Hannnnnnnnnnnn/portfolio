@@ -107,7 +107,7 @@
 
       <div class="demo demo--wide" data-demo-drape>
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">The landing page&rsquo;s first screen, rebuilt from the live section&rsquo;s values (positions, thread lengths, sizes, sway periods, timing) on desktop and phone at once, scaled down. Click any card, or the button.</p>
+        <p class="demo__caption">The landing page&rsquo;s first screen on desktop and phone at once, scaled down, rebuilt from the live section&rsquo;s values: positions, sizes, sway periods, timing. Two changes for this page: the copy sits in the gap between the cards (under them on the phone), and the phone&rsquo;s threads are shorter to fit a shorter frame. Click any card, or the button.</p>
         <div class="demo__stage demo__stage--devs">
           <figure class="devcol">
             <div class="dev dev--desk dev--drape"><div class="dp" data-drape>
@@ -172,9 +172,25 @@
       </figure>
       <p><strong>Sized for the device.</strong> Thread length and card width are in <code>vh</code>, set for the iPad held landscape (1180&times;820).</p>
       <p><strong>Three tabs, three scenes.</strong> Birthday Twist, Straps and Pins each hang their own ornaments. Straps hangs two products, Utility Bind 2.0 on the left half and Bind Strap on the right, and a tap on either half opens that product. The drop and sway use the landing page&rsquo;s values, so the page and the store move the same way.</p>
-      <figure class="snap snap--desktop">
-        <div class="snap__scroll"><p class="snap__slot label">Screen recording, kiosk (1180&times;820)<br><code>../../assets/case/06-tricity-popup/kiosk.mp4</code></p></div>
-      </figure>
+      <div class="demo demo--wide" data-demo-kiosk>
+        <span class="demo__label label">The kiosk</span>
+        <p class="demo__caption">Screens captured from the kiosk app&rsquo;s own preview at the iPad&rsquo;s size, 1180&times;820, with the location settings as they stood on 18 November. Pick a screen.</p>
+        <div class="demo__stage">
+          <div class="ks">
+            <img class="ks__shot ks__shot--twist" src="../../assets/case/06-tricity-popup/kiosk-twist.webp" alt="The Birthday Twist tab: twelve bag ornaments around the one product card." width="1600" height="1112" loading="lazy">
+            <img class="ks__shot ks__shot--straps" src="../../assets/case/06-tricity-popup/kiosk-straps.webp" alt="The Straps tab: Utility Bind 2.0 hangs on the left half, Bind Strap on the right." width="1600" height="1112" loading="lazy">
+            <img class="ks__shot ks__shot--pins" src="../../assets/case/06-tricity-popup/kiosk-pins.webp" alt="The Pins tab: the same layout with the twelve pins." width="1600" height="1112" loading="lazy">
+            <img class="ks__shot ks__shot--pdp" src="../../assets/case/06-tricity-popup/kiosk-pdp.webp" alt="The product page: colours as photo tiles, the chosen one outlined." width="1600" height="1112" loading="lazy">
+            <img class="ks__shot ks__shot--cart" src="../../assets/case/06-tricity-popup/kiosk-cart.webp" alt="The cart: scan the QR code to pay on your own phone." width="1600" height="1112" loading="lazy">
+          </div>
+        </div>
+        <div class="demo__controls">
+          <p class="demo__field">
+            <span class="label">Screen</span>
+            <span class="demo__seg"><label><input type="radio" name="ks" value="twist" checked><span>Birthday Twist</span></label><label><input type="radio" name="ks" value="straps"><span>Straps</span></label><label><input type="radio" name="ks" value="pins"><span>Pins</span></label><label><input type="radio" name="ks" value="pdp"><span>Product page</span></label><label><input type="radio" name="ks" value="cart"><span>Cart</span></label></span>
+          </p>
+        </div>
+      </div>
     </section>
 
     <section class="decision" id="decision-5">

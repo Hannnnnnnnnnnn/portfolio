@@ -1867,10 +1867,10 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
    frame height (900 desktop, 780 phone) instead of svh, and the layers sit in the frame instead of being fixed.
    Motion starts when the demo comes into view (.is-on). */
 .demo .dev.dev--drape { outline: 1px solid var(--line); background: #fff; }
-.demo .dev--drape:not(.dev--desk) { aspect-ratio: 360 / 780; }
+.demo .dev--drape:not(.dev--desk) { aspect-ratio: 360 / 640; }
 .demo .dp {
   --card-w: 78px; --drape-top: 80px; --string: rgba(12, 12, 12, .22);
-  position: absolute; top: 0; left: 0; width: 360px; height: 780px;
+  position: absolute; top: 0; left: 0; width: 360px; height: 640px;
   overflow: hidden; isolation: isolate; background: #fff;
   transform: scale(var(--s, 1)); transform-origin: 0 0;
   font-family: Poppins, sans-serif; color: #0c0c0c;
@@ -1880,7 +1880,9 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .demo .dp__strings { z-index: 1; pointer-events: none; }
 .demo .dp__cards { z-index: 2; }
 .demo .dp__pos {
-  --ax: var(--xm); --alen: calc(var(--lenm) * 480px / 700); --as: var(--sm); --asway: var(--swaym);  /* (780 − 300) / 700 */
+  /* 폰: 실을 라이브(780px 화면 기준 480/700)보다 짧게 — 카드 묶음을 위로 올리고 제목을 그 아래에 둔다 (Han, 2026-11-18)
+     Phone: threads shorter than live (480/700 on a 780px screen) so the cards sit higher and the copy fits below them */
+  --ax: var(--xm); --alen: calc(var(--lenm) * 280px / 700); --as: var(--sm); --asway: var(--swaym);
   --w: calc(var(--card-w) * var(--as));
   position: absolute; top: 0; width: var(--w); margin: 0;
   left: clamp(8px, calc(var(--ax) - var(--w) / 2), calc(100% - var(--w) - 8px));
@@ -1902,8 +1904,10 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .demo .dev--desk .dp .dp__name { font-size: 12px; }
 .demo .dev--desk .dp .dp__colour { gap: 5px; font-size: 10px; }
 .demo .dev--desk .dp .dp__swatch { width: 11px; height: 11px; }
-.demo .dp__text { position: relative; z-index: 3; max-width: 560px; margin: 190px auto 0; padding: 0 22px; text-align: center; pointer-events: none; }
-.demo .dev--desk .dp .dp__text { margin-top: 300px; }
+/* 제목 위치는 라이브와 다르다: 카드 사이 빈 띠(데스크톱) / 카드 아래(폰)에 둔다 (Han, 2026-11-18)
+   Copy placement differs from live: in the gap between the cards on desktop, under them on a phone */
+.demo .dp__text { position: relative; z-index: 3; max-width: 560px; margin: 470px auto 0; padding: 0 22px; text-align: center; pointer-events: none; }
+.demo .dev--desk .dp .dp__text { max-width: 760px; margin-top: 470px; }  /* 제목 한 줄 / one-line heading */
 /* 제목 뒤 흐림 (--title-blur: 2px, 라이브 설정) / blur behind the title (--title-blur: 2px, the live setting) */
 .demo .dp__text::before {
   content: ""; position: absolute; inset: -48px -40px; z-index: -1;
@@ -1935,3 +1939,13 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .hosts__pe { counter-increment: orn; padding: 0.1rem 0.45rem; font-family: var(--mono); font-size: 14px; line-height: 1.55; color: var(--bg, #fff); background: var(--fg); }
 .hosts__pe::after { content: " " counter(orn, decimal-leading-zero); opacity: 0.6; }
 .demo [data-drape-pull] { justify-self: start; }  /* 컨트롤 줄에서 늘어나지 않게 / don't stretch across the controls row */
+
+/* ── 06 Decision 04: 키오스크 화면 보기 — 라디오로 한 장씩 (JS 없음) / the kiosk screens, one at a time by radio (no JS) ── */
+.demo .ks { width: 100%; aspect-ratio: 1180 / 820; outline: 1px solid var(--line); background: #fff; }
+.demo .ks__shot { display: none; width: 100%; height: 100%; object-fit: cover; }
+.demo[data-demo-kiosk]:has([value="twist"]:checked) .ks__shot--twist,
+.demo[data-demo-kiosk]:has([value="straps"]:checked) .ks__shot--straps,
+.demo[data-demo-kiosk]:has([value="pins"]:checked) .ks__shot--pins,
+.demo[data-demo-kiosk]:has([value="pdp"]:checked) .ks__shot--pdp,
+.demo[data-demo-kiosk]:has([value="cart"]:checked) .ks__shot--cart { display: block; }
+.demo[data-demo-kiosk] .demo__seg { flex-wrap: wrap; }
