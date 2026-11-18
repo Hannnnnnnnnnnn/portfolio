@@ -1880,9 +1880,7 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .demo .dp__strings { z-index: 1; pointer-events: none; }
 .demo .dp__cards { z-index: 2; }
 .demo .dp__pos {
-  /* 폰: 실을 라이브(780px 화면 기준 480/700)보다 짧게 — 카드 묶음을 위로 올리고 제목을 그 아래에 둔다 (Han, 2026-11-18)
-     Phone: threads shorter than live (480/700 on a 780px screen) so the cards sit higher and the copy fits below them */
-  --ax: var(--xm); --alen: calc(var(--lenm) * 280px / 700); --as: var(--sm); --asway: var(--swaym);
+  --ax: var(--xm); --alen: calc(var(--lenm) * 340px / 700); --as: var(--sm); --asway: var(--swaym);  /* 라이브 공식, 화면 640: (640 − 300) / 700 / live formula on a 640 screen */
   --w: calc(var(--card-w) * var(--as));
   position: absolute; top: 0; width: var(--w); margin: 0;
   left: clamp(8px, calc(var(--ax) - var(--w) / 2), calc(100% - var(--w) - 8px));
@@ -1904,9 +1902,9 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .demo .dev--desk .dp .dp__name { font-size: 12px; }
 .demo .dev--desk .dp .dp__colour { gap: 5px; font-size: 10px; }
 .demo .dev--desk .dp .dp__swatch { width: 11px; height: 11px; }
-/* 제목 위치는 라이브와 다르다: 카드 사이 빈 띠(데스크톱) / 카드 아래(폰)에 둔다 (Han, 2026-11-18)
-   Copy placement differs from live: in the gap between the cards on desktop, under them on a phone */
-.demo .dp__text { position: relative; z-index: 3; max-width: 560px; margin: 470px auto 0; padding: 0 22px; text-align: center; pointer-events: none; }
+/* 폰은 라이브 그대로(190px, 카드와 조금 겹친다). 데스크톱만 카드 사이 빈 띠로 내렸다 (Han, 2026-11-18)
+   Phone copy as live (190px, overlapping the cards a little); only desktop moves it into the gap between the cards */
+.demo .dp__text { position: relative; z-index: 3; max-width: 560px; margin: 190px auto 0; padding: 0 22px; text-align: center; pointer-events: none; }
 .demo .dev--desk .dp .dp__text { max-width: 760px; margin-top: 470px; }  /* 제목 한 줄 / one-line heading */
 /* 제목 뒤 흐림 (--title-blur: 2px, 라이브 설정) / blur behind the title (--title-blur: 2px, the live setting) */
 .demo .dp__text::before {
@@ -1949,3 +1947,14 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .demo[data-demo-kiosk]:has([value="pdp"]:checked) .ks__shot--pdp,
 .demo[data-demo-kiosk]:has([value="cart"]:checked) .ks__shot--cart { display: block; }
 .demo[data-demo-kiosk] .demo__seg { flex-wrap: wrap; }
+/* 캡처 위의 누르는 자리 — 보이는 화면에서만 켠다. tabs = 탭바가 있는 세 화면, scene = 장면 세 화면 + 상품 페이지(장바구니 아이콘)
+   Hotspots over the captures, live only on the screen they belong to. tabs = the three tab screens; scene = those plus the product page (cart icon) */
+.demo .ks { position: relative; }
+.demo .ks__hot { position: absolute; z-index: 1; display: none; cursor: pointer; }
+.demo .ks__hot:hover { background: rgba(0, 0, 0, .04); }
+.demo[data-demo-kiosk]:has(:is([value="twist"], [value="straps"], [value="pins"]):checked) .ks__hot--tabs,
+.demo[data-demo-kiosk]:has(:is([value="twist"], [value="straps"], [value="pins"], [value="pdp"]):checked) .ks__hot--scene,
+.demo[data-demo-kiosk]:has([value="twist"]:checked) .ks__hot--twist,
+.demo[data-demo-kiosk]:has([value="pdp"]:checked) .ks__hot--pdp,
+.demo[data-demo-kiosk]:has([value="cart"]:checked) .ks__hot--cart { display: block; }
+.demo .ks__hot--twist { z-index: 0; }  /* 장면 전체 — 탭바·장바구니 아이콘이 위 / the whole scene sits under the tab bar and cart icon */

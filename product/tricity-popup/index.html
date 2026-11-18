@@ -107,7 +107,7 @@
 
       <div class="demo demo--wide" data-demo-drape>
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">The landing page&rsquo;s first screen on desktop and phone at once, scaled down, rebuilt from the live section&rsquo;s values: positions, sizes, sway periods, timing. Two changes for this page: the copy sits in the gap between the cards (under them on the phone), and the phone&rsquo;s threads are shorter to fit a shorter frame. Click any card, or the button.</p>
+        <p class="demo__caption">The landing page&rsquo;s first screen on desktop and phone at once, scaled down, rebuilt from the live section&rsquo;s values: positions, sizes, sway periods, timing. One change for this page: on desktop the copy sits in the gap between the cards. Click any card, or the button.</p>
         <div class="demo__stage demo__stage--devs">
           <figure class="devcol">
             <div class="dev dev--desk dev--drape"><div class="dp" data-drape>
@@ -174,9 +174,18 @@
       <p><strong>Three tabs, three scenes.</strong> Birthday Twist, Straps and Pins each hang their own ornaments. Straps hangs two products, Utility Bind 2.0 on the left half and Bind Strap on the right, and a tap on either half opens that product. The drop and sway use the landing page&rsquo;s values, so the page and the store move the same way.</p>
       <div class="demo demo--wide" data-demo-kiosk>
         <span class="demo__label label">The kiosk</span>
-        <p class="demo__caption">Screens captured from the kiosk app&rsquo;s own preview at the iPad&rsquo;s size, 1180&times;820, with the location settings as they stood on 18 November. Pick a screen.</p>
+        <p class="demo__caption">Screens captured from the kiosk app&rsquo;s own preview at the iPad&rsquo;s size, 1180&times;820, with the location settings as they stood on 18 November. Tap it as on the iPad: the tab bar, the scene, Back, Add to cart, the cart icon and its close; or pick a screen below.</p>
         <div class="demo__stage">
           <div class="ks">
+            <label class="ks__hot ks__hot--tabs" for="ks-twist" style="left: 27.97%; top: 89.15%; width: 14.83%; height: 8.05%"><span class="sr-only">Birthday Twist tab</span></label>
+            <label class="ks__hot ks__hot--tabs" for="ks-straps" style="left: 42.80%; top: 89.15%; width: 14.83%; height: 8.05%"><span class="sr-only">Birthday Straps tab</span></label>
+            <label class="ks__hot ks__hot--tabs" for="ks-pins" style="left: 57.63%; top: 89.15%; width: 14.83%; height: 8.05%"><span class="sr-only">Birthday Pins tab</span></label>
+            <label class="ks__hot ks__hot--twist" for="ks-pdp" style="left: 0.00%; top: 14.63%; width: 100.00%; height: 73.17%"><span class="sr-only">Open the product</span></label>
+            <label class="ks__hot ks__hot--scene" for="ks-cart" style="left: 93.22%; top: 4.88%; width: 4.75%; height: 6.83%"><span class="sr-only">Open the cart</span></label>
+            <label class="ks__hot ks__hot--pdp" for="ks-twist" style="left: 2.12%; top: 18.29%; width: 9.32%; height: 6.10%"><span class="sr-only">Back</span></label>
+            <label class="ks__hot ks__hot--pdp" for="ks-cart" style="left: 61.36%; top: 85.37%; width: 35.93%; height: 6.34%"><span class="sr-only">Add to cart</span></label>
+            <label class="ks__hot ks__hot--cart" for="ks-pdp" style="left: 94.07%; top: 2.44%; width: 4.75%; height: 6.83%"><span class="sr-only">Close the cart</span></label>
+            <label class="ks__hot ks__hot--cart" for="ks-pdp" style="left: 61.44%; top: 90.24%; width: 36.53%; height: 6.83%"><span class="sr-only">Continue shopping</span></label>
             <img class="ks__shot ks__shot--twist" src="../../assets/case/06-tricity-popup/kiosk-twist.webp" alt="The Birthday Twist tab: twelve bag ornaments around the one product card." width="1600" height="1112" loading="lazy">
             <img class="ks__shot ks__shot--straps" src="../../assets/case/06-tricity-popup/kiosk-straps.webp" alt="The Straps tab: Utility Bind 2.0 hangs on the left half, Bind Strap on the right." width="1600" height="1112" loading="lazy">
             <img class="ks__shot ks__shot--pins" src="../../assets/case/06-tricity-popup/kiosk-pins.webp" alt="The Pins tab: the same layout with the twelve pins." width="1600" height="1112" loading="lazy">
@@ -187,7 +196,7 @@
         <div class="demo__controls">
           <p class="demo__field">
             <span class="label">Screen</span>
-            <span class="demo__seg"><label><input type="radio" name="ks" value="twist" checked><span>Birthday Twist</span></label><label><input type="radio" name="ks" value="straps"><span>Straps</span></label><label><input type="radio" name="ks" value="pins"><span>Pins</span></label><label><input type="radio" name="ks" value="pdp"><span>Product page</span></label><label><input type="radio" name="ks" value="cart"><span>Cart</span></label></span>
+            <span class="demo__seg"><label><input type="radio" name="ks" id="ks-twist" value="twist" checked><span>Birthday Twist</span></label><label><input type="radio" name="ks" id="ks-straps" value="straps"><span>Straps</span></label><label><input type="radio" name="ks" id="ks-pins" value="pins"><span>Pins</span></label><label><input type="radio" name="ks" id="ks-pdp" value="pdp"><span>Product page</span></label><label><input type="radio" name="ks" id="ks-cart" value="cart"><span>Cart</span></label></span>
           </p>
         </div>
       </div>
