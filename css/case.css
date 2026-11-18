@@ -1858,3 +1858,80 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
    Demo J: the number group becomes a button, with its defaults stripped so it looks unchanged (as the theme does) */
 .demo .icount__btn { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 4px 6px; padding: 0; margin: 0; border: 0; background: none; font: inherit; color: inherit; letter-spacing: inherit; cursor: pointer; }
 .demo .bottle { position: fixed; top: 0; left: 0; z-index: 1000; pointer-events: none; will-change: transform; }
+
+/* ── 데모 K: 오너먼트 (06 Decision 01) ──
+   라이브 섹션 popup-drape 의 값을 그대로 옮겼다 (atacz.ca, 2026-11-18). 차이는 둘뿐: 뷰포트(svh) 대신
+   프레임 높이(데스크톱 900, 폰 780)로 실 길이를 계산하고, 화면 고정(fixed) 대신 프레임 안에 놓는다.
+   애니메이션은 데모가 화면에 들어올 때(.is-on) 시작한다.
+   Demo K: values copied from the live popup-drape section. Two differences only: thread length is computed from the
+   frame height (900 desktop, 780 phone) instead of svh, and the layers sit in the frame instead of being fixed.
+   Motion starts when the demo comes into view (.is-on). */
+.demo .dev.dev--drape { outline: 1px solid var(--line); background: #fff; }
+.demo .dev--drape:not(.dev--desk) { aspect-ratio: 360 / 780; }
+.demo .dp {
+  --card-w: 78px; --drape-top: 80px; --string: rgba(12, 12, 12, .22);
+  position: absolute; top: 0; left: 0; width: 360px; height: 780px;
+  overflow: hidden; isolation: isolate; background: #fff;
+  transform: scale(var(--s, 1)); transform-origin: 0 0;
+  font-family: Poppins, sans-serif; color: #0c0c0c;
+}
+.demo .dev--desk .dp { --card-w: 150px; --drape-top: 98px; width: 1440px; height: 900px; }
+.demo .dp :is(.dp__strings, .dp__cards) { position: absolute; top: 0; left: 0; right: 0; height: 0; max-width: none; margin: 0; padding: 0; list-style: none; }  /* .prose ul 의 38rem 을 푼다 / undo .prose ul's 38rem */
+.demo .dp__strings { z-index: 1; pointer-events: none; }
+.demo .dp__cards { z-index: 2; }
+.demo .dp__pos {
+  --ax: var(--xm); --alen: calc(var(--lenm) * 480px / 700); --as: var(--sm); --asway: var(--swaym);  /* (780 − 300) / 700 */
+  --w: calc(var(--card-w) * var(--as));
+  position: absolute; top: 0; width: var(--w); margin: 0;
+  left: clamp(8px, calc(var(--ax) - var(--w) / 2), calc(100% - var(--w) - 8px));
+  transform-origin: 50% 0;
+}
+.demo .dev--desk .dp .dp__pos { --ax: var(--x); --alen: calc(var(--len) * 1px); --as: var(--s); --asway: var(--sway); }  /* min(1px, (900 − 260) / 600) */
+.demo .dp__string { height: calc(var(--drape-top) + var(--alen)); background: linear-gradient(var(--string), var(--string)) no-repeat 50% 0 / 1px 100%; }
+.demo .dp__item { --d: calc((var(--as) - .6) / .75); z-index: calc(var(--as) * 100); padding-top: calc(var(--drape-top) + var(--alen)); pointer-events: none; }
+.demo .dp__card {
+  position: relative; display: block; margin-top: 8px; padding: 6px 6px 9px; background: #fff; pointer-events: auto; cursor: pointer;
+  box-shadow: 0 0 0 1px #0c0c0c0a, 0 calc(3px + 18px * var(--d)) calc(6px + 30px * var(--d)) calc(-4px - 10px * var(--d)) rgba(12, 12, 12, calc(.42 - .27 * var(--d)));
+}
+.demo .dp__cap { position: absolute; top: -8px; left: 50%; width: 10px; height: 8px; margin-left: -5px; background: #8e8b83; border-radius: 2px 2px 0 0; }
+.demo .dp__media { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #f7f6f2; }
+.demo .dp__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.demo .dp__name { display: block; margin-top: 6px; font-size: 10px; font-weight: 500; line-height: 1.4; color: #55524c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.demo .dp__colour { display: flex; align-items: center; gap: 4px; margin-top: 2px; font-size: 8px; line-height: 1.4; color: #76736c; white-space: nowrap; overflow: hidden; }
+.demo .dp__swatch { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--swatch-img, none) center / cover no-repeat, var(--swatch, #e5e3db); box-shadow: 0 0 0 1px #0c0c0c1f; }
+.demo .dev--desk .dp .dp__name { font-size: 12px; }
+.demo .dev--desk .dp .dp__colour { gap: 5px; font-size: 10px; }
+.demo .dev--desk .dp .dp__swatch { width: 11px; height: 11px; }
+.demo .dp__text { position: relative; z-index: 3; max-width: 560px; margin: 190px auto 0; padding: 0 22px; text-align: center; pointer-events: none; }
+.demo .dev--desk .dp .dp__text { margin-top: 300px; }
+/* 제목 뒤 흐림 (--title-blur: 2px, 라이브 설정) / blur behind the title (--title-blur: 2px, the live setting) */
+.demo .dp__text::before {
+  content: ""; position: absolute; inset: -48px -40px; z-index: -1;
+  background: #ffffff40; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent 100%); mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+}
+.demo .dev--desk .dp .dp__text::before { inset: -64px -120px; }
+.demo .dp :is(.dp__heading, .dp__sub, .dp__meta) { text-shadow: 0 0 14px rgba(255, 255, 255, .95), 0 0 3px #fff; }
+.demo .dp__heading { margin: 0; font-size: 34px; font-weight: 600; line-height: 1.05; letter-spacing: -.025em; }
+.demo .dp__sub { margin: 14px 0 0; font-size: 14px; line-height: 1.6; color: #55524c; }
+.demo .dp__meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 20px; margin: 20px 0 0; font-size: 12px; line-height: 1.6; font-variant-numeric: tabular-nums; }
+.demo .dev--desk .dp .dp__heading { font-size: 56px; }
+.demo .dev--desk .dp .dp__sub { font-size: 16px; }
+.demo .dev--desk .dp .dp__meta { font-size: 13px; }
+@media (prefers-reduced-motion: no-preference) {
+  .demo .dp.is-on :is(.dp__string, .dp__item) { animation: dp-sway var(--asway, 5s) ease-in-out 2.4s infinite alternate; }
+  .demo .dp.is-on .dp__card { animation: dp-drop 1.2s cubic-bezier(.2, .8, .2, 1) calc(var(--i) * 90ms) backwards; transition: translate .22s ease; }
+  .js .demo .dp:not(.is-on) .dp__card { visibility: hidden; }  /* 떨어지기 전엔 천장 위에 (JS 없으면 그냥 보인다) / above the ceiling until the drop (shown as is without JS) */
+  .demo .dp__card:hover { translate: 0 -4px; }
+}
+@keyframes dp-drop { 0% { translate: 0 calc(-1 * (var(--drape-top) + var(--alen) + 320px)); } to { translate: 0 0; } }
+@keyframes dp-sway { 0% { rotate: -.8deg; } to { rotate: .8deg; } }
+
+/* ── 06 Decision 04: 카드 한 장의 오너먼트 자리 12개 / the twelve ornament slots in one card ── */
+.hosts__list { display: grid; gap: 0.5rem; margin: 0; padding: 1.25rem; list-style: none; border: 1px solid var(--line); counter-reset: orn; }
+.hosts__list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; margin: 0; }
+.hosts__list li:nth-child(n+2) { padding-left: 1rem; }  /* 목록 아래 요소들 / everything inside the list */
+.hosts__el { min-width: 9rem; }
+.hosts__pe { counter-increment: orn; padding: 0.1rem 0.45rem; font-family: var(--mono); font-size: 14px; line-height: 1.55; color: var(--bg, #fff); background: var(--fg); }
+.hosts__pe::after { content: " " counter(orn, decimal-leading-zero); opacity: 0.6; }
+.demo [data-drape-pull] { justify-self: start; }  /* 컨트롤 줄에서 늘어나지 않게 / don't stretch across the controls row */

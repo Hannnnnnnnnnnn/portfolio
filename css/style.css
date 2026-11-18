@@ -504,8 +504,10 @@ ul { list-style: none; margin: 0; padding: 0; }
 .about-bio a { text-decoration: var(--ul); text-underline-offset: var(--ul-offset); }
 .about-now { display: flex; flex-direction: column; align-items: flex-start; gap: 50px; padding-bottom: 100px; }
 .about-now > * { width: 100%; }
-.about-now__title, .about-row p { font: 400 var(--label)/1.03 var(--mono); letter-spacing: -0.72px; white-space: nowrap; }
-.about-now__title { padding: 39px 0 40px; border-top: 1px solid var(--rule); }
+.about-row p { font: 400 var(--label)/1.03 var(--mono); letter-spacing: -0.72px; white-space: nowrap; }
+/* 섹션 제목은 Title 역할(세리프) — 행과 같은 모노 크기면 위계가 없었다 (2026-11-18) /
+   Section titles take the Title role (serif); at the rows' mono size there was no hierarchy */
+.about-now__title { font: 400 var(--title)/var(--title-lh) var(--serif); letter-spacing: -1.08px; white-space: nowrap; padding: 39px 0 40px; border-top: 1px solid var(--rule); }
 .about-row { display: flex; align-items: flex-start; gap: 19px; padding: 29px 0 30px; border-top: 1px solid var(--rule); }
 .about-row p:first-child { padding-right: 0.72px; } /* Figma's trailing letter-spacing compensation */
 .about-photo { box-shadow: 0 4px 4px rgba(0, 0, 0, .25); transition: transform .3s ease-out; }

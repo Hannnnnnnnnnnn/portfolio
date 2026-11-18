@@ -28,6 +28,8 @@ One case for the pop-up LP (`/pages/tricity-pop-up`) and the event RSVP (`/pages
 - [ ] After 28 Nov: RSVPs per slot (metafield `custom.event_rsvp_counts`), attendance, LP sessions (GA4) — with dates.
 - [ ] Kiosk (Decisions 03–04, added 18 Nov from the theme repo's kiosk log, branch `docs/kiosk-birthday-ornaments`): the cart paragraph (QR 202px, GWP band) was awaiting publish on 17 Nov — confirm the location config carries it, then drop the HTML note. Reason for putting the ornaments on the kiosk — Han.
 - [ ] Recordings: kiosk on the iPad (`kiosk.mp4`, three tabs + PDP + cart), ornament drop + click (desktop, phone), RSVP booking. No customer names or emails in any capture.
+- [ ] Decision 03 (guest list) is on hold until after the event (Han, 18 Nov) — moved from 05 to sit next to the RSVP decision.
+- [ ] Ornament demo (Decision 01) copies the live `popup-drape` values as of 18 Nov. If the owner retunes the LP, re-copy them (positions, lengths, sizes, sway, `--title-blur`).
 - [ ] Case number 06 and the "Next case" link are placeholders; unlisted (noindex) until Han says otherwise.
 
 ## Header Revamp case (`product/header-revamp/`, unlisted, on `main` + `case/header-revamp`)

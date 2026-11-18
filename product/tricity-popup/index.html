@@ -7,7 +7,7 @@
 <!-- 링크 없이 공개 — 상품 목록·More projects·llms.txt 어디서도 링크하지 않는다. 공개 시 이 줄을 지우고 목록에 추가 /
      Unlisted: linked from nowhere (Product list, More projects, llms.txt). To list it, drop this line and add it to the list -->
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="A landing page, an RSVP system and an in-store kiosk for a two-week pop-up store and a live drawing event.">
+<meta name="description" content="A landing page, an RSVP system and an in-store kiosk for a pop-up store and a live drawing event.">
 
 
 <link rel="icon" href="../../assets/img/favicon.png">
@@ -44,6 +44,7 @@
   <nav class="toc label" aria-label="On this page">
     <ol>
       <li><a href="#problem">Problem</a></li>
+      <li><a href="#constraints">Constraints</a></li>
       <li><a href="#decisions">Decisions</a>
         <ol class="toc__nums">
           <li><a class="toc__num" href="#decision-1">01</a></li>
@@ -61,14 +62,12 @@
 
     <p class="label muted">06 &middot; Tri-City Pop-up</p>
     <h1>[Title &mdash; Han]</h1>
-    <p class="lead">A landing page for a pop-up store, and an RSVP page for the live drawing event inside it, and the iPad kiosk on the shop floor &mdash; built on the live theme in days.</p>
+    <p class="lead">Three surfaces for one pop-up store: a landing page, an RSVP page for the live drawing event inside it, and the iPad kiosk on the shop floor &mdash; built on the live theme in days.</p>
 
     <ul class="tags label">
       <li>Visual Design</li>
       <li>Interaction Design</li>
       <li>Front-end Implementation</li>
-      <li>Shopify Flow</li>
-      <li>Kiosk UI</li>
     </ul>
 
     <p class="caveat">Draft. The pop-up opens on 20 November 2026 and the event is on 28 November; results come after.</p>
@@ -77,7 +76,7 @@
       <dt>Client</dt><dd>Atacz</dd>
       <dt>Role</dt><dd>Sole designer and developer</dd>
       <dt>Timeline</dt><dd>Nov 2026</dd>
-      <dt>Tools</dt><dd>Liquid, CSS, vanilla JavaScript (Web Animations API), SVG, Shopify Flow, Store Check-in (kiosk app, CSS only)</dd>
+      <dt>Tools</dt><dd>Liquid, CSS, vanilla JavaScript (Web Animations API), Shopify Flow, Store Check-in kiosk app</dd>
     </dl>
 
     <div class="snaps snaps--pair">
@@ -93,50 +92,100 @@
     <h3>[One-line problem &mdash; Han]</h3>
     <p>[Why a pop-up at Tri-City Pavilion, what the page had to do, the deadline &mdash; Han.]</p>
 
-    <h2 id="decisions">2 &middot; Decisions</h2>
+    <h2 id="constraints">2 &middot; The constraints</h2>
+    <p><strong>The kiosk is someone else&rsquo;s app.</strong> In the store, shoppers browse on an iPad running a third-party kiosk app, Store Check-in, build a cart there, and pay on their own phone through a QR code. The app renders one card per product. Its only design control is a custom CSS box, capped at 20,000 characters: no markup, no script.</p>
+    <p><strong>The app owns the gestures.</strong> A fast sideways swipe already means back or home.</p>
+    <p><strong>The event is small.</strong> Six 30-minute slots of six people each, booked through the store&rsquo;s own pages.</p>
+
+    <h2 id="decisions">3 &middot; Decisions</h2>
 
     <section class="decision" id="decision-1">
       <span class="label muted">Decision 01</span>
       <h3>The collection, hung like ornaments</h3>
-      <p>The top of the page is the Birthday Color Twist Bag, one card per colour &mdash; twelve, January to December &mdash; each hung from the ceiling on its own thread. Card size stands for depth: nearer cards are larger and sit higher in the stack. The thread and the card sway together, each on its own period.</p>
-      <p>Click a card and every card is pulled up its thread, then they drop back one at a time in random order, the one you clicked first. Under <code>prefers-reduced-motion</code> nothing moves.</p>
-      <p>The ornaments stay fixed while the page scrolls, and the next sections slide over them. Desktop and phone each get their own layout table, because a single one either clipped cards at the edge or split a card from its thread.</p>
+      <p><strong>Twelve colours, twelve months, twelve threads.</strong> The top of the page is the Birthday Color Twist Bag, one card per colour, January to December, each hung from the ceiling on its own thread. Card size stands for depth: nearer cards are larger and sit higher in the stack. The thread and the card sway together, each on its own period.</p>
+      <p><strong>One click moves all of them.</strong> Click a card and every card is pulled up its thread, the one you clicked first; then they drop back one at a time, in random order. Under <code>prefers-reduced-motion</code> nothing moves.</p>
+
+      <div class="demo demo--wide" data-demo-drape>
+        <span class="demo__label label">Try it</span>
+        <p class="demo__caption">The landing page&rsquo;s first screen, rebuilt from the live section&rsquo;s values (positions, thread lengths, sizes, sway periods, timing) on desktop and phone at once, scaled down. Click any card, or the button.</p>
+        <div class="demo__stage demo__stage--devs">
+          <figure class="devcol">
+            <div class="dev dev--desk dev--drape"><div class="dp" data-drape>
+              <ul class="dp__strings" aria-hidden="true"><li class="dp__pos dp__string" style="--i: 0; --x: 7%; --len: 40; --s: 1.2; --sway: 5200ms; --xm: 15%; --lenm: 10; --sm: 0.9; --swaym: 5200ms;"></li><li class="dp__pos dp__string" style="--i: 1; --x: 39%; --len: 210; --s: 0.55; --sway: 6300ms; --xm: 37%; --lenm: 130; --sm: 0.7; --swaym: 4600ms;"></li><li class="dp__pos dp__string" style="--i: 2; --x: 9.5%; --len: 520; --s: 0.78; --sway: 4800ms; --xm: 58%; --lenm: 0; --sm: 1.05; --swaym: 5800ms;"></li><li class="dp__pos dp__string" style="--i: 3; --x: 35%; --len: 520; --s: 0.7; --sway: 4700ms; --xm: 78%; --lenm: 60; --sm: 1.3; --swaym: 4900ms;"></li><li class="dp__pos dp__string" style="--i: 4; --x: 16%; --len: 470; --s: 1.3; --sway: 4600ms; --xm: 88%; --lenm: 210; --sm: 0.7; --swaym: 5500ms;"></li><li class="dp__pos dp__string" style="--i: 5; --x: 26%; --len: 20; --s: 0.9; --sway: 5800ms; --xm: 21%; --lenm: 330; --sm: 0.55; --swaym: 6100ms;"></li><li class="dp__pos dp__string" style="--i: 6; --x: 44%; --len: 0; --s: 0.65; --sway: 4900ms; --xm: 85%; --lenm: 400; --sm: 0.55; --swaym: 4400ms;"></li><li class="dp__pos dp__string" style="--i: 7; --x: 60%; --len: 40; --s: 0.75; --sway: 5500ms; --xm: 18%; --lenm: 560; --sm: 1; --swaym: 5000ms;"></li><li class="dp__pos dp__string" style="--i: 8; --x: 74%; --len: 50; --s: 1.35; --sway: 4300ms; --xm: 40%; --lenm: 640; --sm: 0.75; --swaym: 5300ms;"></li><li class="dp__pos dp__string" style="--i: 9; --x: 63%; --len: 560; --s: 0.85; --sway: 6100ms; --xm: 55%; --lenm: 560; --sm: 1.2; --swaym: 4700ms;"></li><li class="dp__pos dp__string" style="--i: 10; --x: 93.2%; --len: 120; --s: 1.15; --sway: 5000ms; --xm: 81%; --lenm: 690; --sm: 0.7; --swaym: 5600ms;"></li><li class="dp__pos dp__string" style="--i: 11; --x: 90.5%; --len: 560; --s: 0.8; --sway: 5400ms; --xm: 86%; --lenm: 560; --sm: 0.8; --swaym: 4500ms;"></li></ul>
+              <ul class="dp__cards" aria-hidden="true">
+                <li class="dp__pos dp__item" style="--i: 0; --x: 7%; --len: 40; --s: 1.2; --sway: 5200ms; --xm: 15%; --lenm: 10; --sm: 0.9; --swaym: 5200ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-1.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">January</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #c37c54; --swatch-img: url('../../assets/case/06-tricity-popup/sw-1.webp')"></span><span>Caramel</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 1; --x: 39%; --len: 210; --s: 0.55; --sway: 6300ms; --xm: 37%; --lenm: 130; --sm: 0.7; --swaym: 4600ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-2.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">February</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #b793c0; --swatch-img: url('../../assets/case/06-tricity-popup/sw-2.webp')"></span><span>Sheer Lilac</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 2; --x: 9.5%; --len: 520; --s: 0.78; --sway: 4800ms; --xm: 58%; --lenm: 0; --sm: 1.05; --swaym: 5800ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-3.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">March</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #bfe9e3; --swatch-img: url('../../assets/case/06-tricity-popup/sw-3.webp')"></span><span>Fair Aqua</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 3; --x: 35%; --len: 520; --s: 0.7; --sway: 4700ms; --xm: 78%; --lenm: 60; --sm: 1.3; --swaym: 4900ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-4.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">April</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #e04951; --swatch-img: url('../../assets/case/06-tricity-popup/sw-4.webp')"></span><span>Cayenne</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 4; --x: 16%; --len: 470; --s: 1.3; --sway: 4600ms; --xm: 88%; --lenm: 210; --sm: 0.7; --swaym: 5500ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-5.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">May</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #79b465; --swatch-img: url('../../assets/case/06-tricity-popup/sw-5.webp')"></span><span>Bud Green</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 5; --x: 26%; --len: 20; --s: 0.9; --sway: 5800ms; --xm: 21%; --lenm: 330; --sm: 0.55; --swaym: 6100ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-6.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">June</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #ffd858; --swatch-img: url('../../assets/case/06-tricity-popup/sw-6.webp')"></span><span>Aspen Gold</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 6; --x: 44%; --len: 0; --s: 0.65; --sway: 4900ms; --xm: 85%; --lenm: 400; --sm: 0.55; --swaym: 4400ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-7.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">July</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #e6b2b8; --swatch-img: url('../../assets/case/06-tricity-popup/sw-7.webp')"></span><span>Coral Blush</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 7; --x: 60%; --len: 40; --s: 0.75; --sway: 5500ms; --xm: 18%; --lenm: 560; --sm: 1; --swaym: 5000ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-8.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">August</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #f38235; --swatch-img: url('../../assets/case/06-tricity-popup/sw-8.webp')"></span><span>Sun Orange</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 8; --x: 74%; --len: 50; --s: 1.35; --sway: 4300ms; --xm: 40%; --lenm: 640; --sm: 0.75; --swaym: 5300ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-9.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">September</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #5265b0; --swatch-img: url('../../assets/case/06-tricity-popup/sw-9.webp')"></span><span>Baja Blue</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 9; --x: 63%; --len: 560; --s: 0.85; --sway: 6100ms; --xm: 55%; --lenm: 560; --sm: 1.2; --swaym: 4700ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-10.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">October</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #98b4d4; --swatch-img: url('../../assets/case/06-tricity-popup/sw-10.webp')"></span><span>Cerulean</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 10; --x: 93.2%; --len: 120; --s: 1.15; --sway: 5000ms; --xm: 81%; --lenm: 690; --sm: 0.7; --swaym: 5600ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-11.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">November</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #c14a64; --swatch-img: url('../../assets/case/06-tricity-popup/sw-11.webp')"></span><span>Cerise</span></span></div></li>
+                <li class="dp__pos dp__item" style="--i: 11; --x: 90.5%; --len: 560; --s: 0.8; --sway: 5400ms; --xm: 86%; --lenm: 560; --sm: 0.8; --swaym: 4500ms;"><div class="dp__card"><span class="dp__cap"></span><span class="dp__media"><img src="../../assets/case/06-tricity-popup/bag-12.webp" alt="" width="480" height="600" loading="lazy"></span><span class="dp__name">December</span><span class="dp__colour"><span class="dp__swatch" style="--swatch: #1b7f8e; --swatch-img: url('../../assets/case/06-tricity-popup/sw-12.webp')"></span><span>Pagoda Blue</span></span></div></li>
+              </ul>
+              <div class="dp__text"><p class="dp__heading">The Art of The Twist</p><p class="dp__sub">Where design, art, and community come together.</p><p class="dp__meta"><span>November 20, 2026 &ndash; February 19, 2027</span><span>TriCity Pavilion, Coquitlam, BC</span></p></div>
+            </div></div>
+            <figcaption class="devcol__cap label"><span class="devcol__name">Desktop</span></figcaption>
+          </figure>
+        </div>
+        <div class="demo__controls">
+          <button class="btn" type="button" data-drape-pull>Pull them up</button>
+        </div>
+      </div>
+
+      <p><strong>Two layouts, not one.</strong> The ornaments stay fixed while the page scrolls, and the next sections slide over them. Desktop and phone each get their own position table, because a single one either clipped cards at the edge or split a card from its thread.</p>
       <p>[Why ornaments &mdash; Han.]</p>
     </section>
 
     <section class="decision" id="decision-2">
       <span class="label muted">Decision 02</span>
       <h3>Booking slots without a booking app</h3>
-      <p>The event takes six 30-minute slots of six people. The form is the store&rsquo;s own customer form: picking a slot adds a customer tag, and a Shopify Flow re-counts every tagged customer on each new tag and writes the totals to a shop metafield, which the page reads to show the spaces left.</p>
-      <p>Flow re-counts instead of adding one, so a missed run fixes itself on the next. The trade-off, agreed up front: two people submitting at once can overbook a slot, and that is accepted.</p>
+      <p><strong>The form is the store&rsquo;s own customer form.</strong> Picking a slot adds a customer tag. A Shopify Flow re-counts every tagged customer on each new tag and writes the totals to a store-wide value (a shop metafield), which the page reads to show the spaces left.</p>
+      <p><strong>Re-count, not add one.</strong> A missed run fixes itself on the next.</p>
+      <p><strong>The cost, agreed up front:</strong> two people submitting at once can overbook a slot, and that is accepted.</p>
     </section>
 
     <section class="decision" id="decision-3">
       <span class="label muted">Decision 03</span>
+      <h3>[Keeping the guest list in the store &mdash; Han to confirm this belongs in a public case]</h3>
+      <p>[The first reference page saved names and emails outside the store. Moving the form onto Shopify kept consent and the list in one place.]</p>
+    </section>
+
+    <section class="decision" id="decision-4">
+      <span class="label muted">Decision 04</span>
       <h3>The same ornaments, on the shop-floor iPad</h3>
-      <p>In the store, shoppers browse on an iPad running a third-party kiosk app, Store Check-in. They build a cart there and pay on their own phone through a QR code. The only design control the app offers is a custom CSS box, and it renders one card per product. So twelve colours could not be twelve cards.</p>
-      <p>Instead, the twelve ornaments are drawn on twelve pseudo-elements of the one real card and its children. Each has its own thread length, width, colour photo, month and colour name, and sway period. Tapping anywhere on the scene opens the product, and the colour is picked there. Thread length and card width are in <code>vh</code>, sized for the iPad held landscape (1180&times;820).</p>
-      <p>The kiosk carries three tabs and each is its own scene: Birthday Twist, Straps and Pins. Straps hangs two products, Utility Bind 2.0 on the left half and Bind Strap on the right, and a tap on either half opens that product. The drop and sway use the landing page&rsquo;s values, so the page and the store move the same way.</p>
+      <p><strong>So twelve colours could not be twelve cards.</strong> The kiosk gives the Birthday Color Twist Bag one card. Instead, the twelve ornaments are drawn on twelve pseudo-elements of that one real card and its children. Each has its own thread length, width, colour photo, month and colour name, and sway period. Tapping anywhere on the scene opens the product, and the colour is picked there.</p>
+      <figure class="figure figure--diagram hosts">
+        <ol class="hosts__list" aria-label="The twelve pseudo-elements that draw the ornaments">
+          <li><span class="hosts__el">Product list</span><span class="hosts__pe">::before</span></li>
+          <li><span class="hosts__el">Card</span><span class="hosts__pe">::before</span><span class="hosts__pe">::after</span></li>
+          <li><span class="hosts__el">Product info</span><span class="hosts__pe">::before</span><span class="hosts__pe">::after</span></li>
+          <li><span class="hosts__el">Title</span><span class="hosts__pe">::before</span><span class="hosts__pe">::after</span></li>
+          <li><span class="hosts__el">Price</span><span class="hosts__pe">::before</span></li>
+          <li><span class="hosts__el">Price text</span><span class="hosts__pe">::before</span><span class="hosts__pe">::after</span></li>
+          <li><span class="hosts__el">Description</span><span class="hosts__pe">::before</span><span class="hosts__pe">::after</span></li>
+        </ol>
+        <figcaption>One product card from the app, seven elements, twelve pseudo-elements: one ornament each. The description is kept with its text at zero size, only for its two slots.</figcaption>
+      </figure>
+      <p><strong>Sized for the device.</strong> Thread length and card width are in <code>vh</code>, set for the iPad held landscape (1180&times;820).</p>
+      <p><strong>Three tabs, three scenes.</strong> Birthday Twist, Straps and Pins each hang their own ornaments. Straps hangs two products, Utility Bind 2.0 on the left half and Bind Strap on the right, and a tap on either half opens that product. The drop and sway use the landing page&rsquo;s values, so the page and the store move the same way.</p>
       <figure class="snap snap--desktop">
         <div class="snap__scroll"><p class="snap__slot label">Screen recording, kiosk (1180&times;820)<br><code>../../assets/case/06-tricity-popup/kiosk.mp4</code></p></div>
       </figure>
     </section>
 
-    <section class="decision" id="decision-4">
-      <span class="label muted">Decision 04</span>
-      <h3>Designing the rest of the kiosk from a CSS box</h3>
-      <p>The custom CSS box stops at 20,000 characters, and the three scenes did not fit. The app also accepts font stylesheet URLs, which it loads as ordinary <code>&lt;link&gt;</code> tags. So the scenes moved into a stylesheet hosted in Shopify Files, with no size limit. Every edit is uploaded under a new file name, so the iPad cannot change before a version is published.</p>
-      <p>The app already uses fast sideways swipes for back and home, so tabs could not be swiped. The tab row became a navigation bar at the bottom centre. It rises first, and an underline grows under the open tab.</p>
-      <p>The product page takes the live theme&rsquo;s type and button sizes. Colours are photo tiles instead of text pills, with a 2px outline on the chosen one. The app paints the selected option with a forced background colour. Rather than fight it with <code>!important</code>, the tile redefines the variable that rule reads.</p>
-      <!-- 장바구니 문단(QR 축소·GWP 띠)은 11-17 기준 키오스크 게시 대기였다 — 게시 확인 후 이 주석 삭제 /
-           Cart paragraph (smaller QR, GWP band) was awaiting publish on 17 Nov — delete this note once published -->
-      <p>In the cart, the QR code shrank from 252 to 202px, so two and a half items show at once instead of one. A band under the cart title shows the gift-with-purchase pouch: a free Festive Nano Twist with orders of $180 or more.</p>
-    </section>
-
     <section class="decision" id="decision-5">
       <span class="label muted">Decision 05</span>
-      <h3>[Keeping the guest list in the store &mdash; Han to confirm this belongs in a public case]</h3>
-      <p>[The first reference page saved names and emails outside the store. Moving the form onto Shopify kept consent and the list in one place.]</p>
+      <h3>Designing the rest of the kiosk from a CSS box</h3>
+      <p><strong>Past the 20,000-character cap.</strong> The three scenes did not fit. The app also accepts font stylesheet URLs, which it loads as ordinary <code>&lt;link&gt;</code> tags, so the scenes moved into a stylesheet hosted in Shopify Files, with no size limit. Every edit is uploaded under a new file name, so the iPad cannot change before a version is published.</p>
+      <p><strong>Tabs you tap, not swipe.</strong> Because the app owns the swipe, the tab row became a navigation bar at the bottom centre. It rises first, and an underline grows under the open tab.</p>
+      <p><strong>The store&rsquo;s product page, inside the app.</strong> It takes the live theme&rsquo;s type and button sizes. Colours are photo tiles instead of text pills, with a 2px outline on the chosen one. The app paints the selected option with a forced background colour; rather than fight it with <code>!important</code>, the tile redefines the variable that rule reads.</p>
+      <!-- 장바구니 문단(QR 축소·GWP 띠)은 11-17 기준 키오스크 게시 대기였다 — 게시 확인 후 이 주석 삭제 /
+           Cart paragraph (smaller QR, GWP band) was awaiting publish on 17 Nov — delete this note once published -->
+      <p><strong>A cart you can read at a glance.</strong> The QR code shrank from 252 to 202px, so two and a half items show at once instead of one. A band under the cart title shows the gift-with-purchase pouch: a free Festive Nano Twist with orders of $180 or more.</p>
     </section>
 
     <!-- 이벤트 후: RSVP 수(Flow metafield), 슬롯별 마감, 실제 참석, LP 세션(GA4) — 출처와 기간 명시 /

@@ -286,15 +286,17 @@ run(() => {
     if (link) setActive(link.hash.slice(1));
   });
   if (location.hash) setActive(location.hash.slice(1));
-  // 히어로에서는 목차가 제목과 나란히 서서 경쟁한다 — 제목이 화면을 뜬 뒤에 들인다
-  // At the hero it stands level with the H1 and competes; let it in once the
-  // title has left the screen
-  const hero = document.querySelector(".prose h1");
-  if (hero) {
+  // 히어로에서는 목차가 제목·스냅샷과 경쟁한다 — 첫 본문 섹션(h2)이 화면 위 60% 에 들어온 뒤에 들인다.
+  // 예전 기준(h1 이 화면을 뜰 때)은 히어로 스냅샷이 아직 보이는 동안 목차를 켰다 (2026-11-18).
+  // At the hero it competes with the title and snapshots; let it in once the first body
+  // section (h2) reaches the top 60% of the screen. Keying it to the h1 leaving switched
+  // it on while the hero snapshots were still in view.
+  const body = document.querySelector(".prose h2[id]");
+  if (body) {
     new IntersectionObserver(
-      ([e]) => nav.classList.toggle("is-live", !e.isIntersecting),
-      { rootMargin: "-64px 0px 0px 0px" }
-    ).observe(hero);
+      ([e]) => nav.classList.toggle("is-live", e.isIntersecting || e.boundingClientRect.top < 0),
+      { rootMargin: "0px 0px -40% 0px" }
+    ).observe(body);
   }
 });
 
@@ -440,6 +442,58 @@ run(() => {
     };
     requestAnimationFrame(step);
   });
+});
+
+/* ── 6j. 06 데모: 오너먼트 — 라이브 popup-drape 의 클릭 스크립트 그대로 ──
+   눌린 카드가 먼저(지연 0), 나머지는 120–340ms 뒤에 실째 끌려 올라가고, 무작위 순서로 140ms 간격으로 내려온다.
+   차이: 장면이 축소(--s)돼 있어서 들어 올릴 거리를 화면 px 에서 장면 px 로 나눠 바꾼다. 장면마다 따로 돈다.
+   The live section's click script: the clicked card goes first, the rest 120–340ms later, card and thread together;
+   then they drop back in random order, 140ms apart. The scene is scaled (--s), so the lift is converted from screen px
+   to scene px. Each scene runs on its own. */
+run(() => {
+  const demo = document.querySelector("[data-demo-drape]");
+  if (!demo) return;
+  const scenes = [...demo.querySelectorAll("[data-drape]")];
+  // 화면에 들어오면 떨어지기 시작 / start the drop once it is on screen
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-on"); io.unobserve(e.target); }
+  }), { threshold: 0.25 });
+  scenes.forEach((s) => io.observe(s));
+  const pull = async (scene, clicked) => {
+    if (scene.dataset.busy || reduce || !scene.classList.contains("is-on")) return;
+    scene.dataset.busy = "1";
+    const scale = scene.getBoundingClientRect().width / scene.offsetWidth;
+    const top = scene.getBoundingClientRect().top;
+    const cards = [...scene.querySelectorAll(".dp__card")];
+    const strings = [...scene.querySelectorAll(".dp__string")];
+    const lifts = cards.map((c) => -(c.getBoundingClientRect().bottom - top + 40) / scale);
+    const both = (i, keyframes, timing) => [cards[i], strings[i]].map((el) => el.animate(keyframes, timing));
+    const ups = cards.map((card, i) => both(i,
+      [{ translate: "0 0" }, { translate: `0 ${lifts[i]}px` }],
+      { duration: 650, delay: card === clicked ? 0 : 120 + Math.random() * 220, easing: "cubic-bezier(0.5, 0, 0.75, 0)", fill: "forwards" }
+    ));
+    await Promise.all(ups.flat().map((a) => a.finished));
+    const order = cards.map((_, i) => i);
+    for (let i = order.length - 1; i > 0; i--) {   // Fisher–Yates
+      const j = Math.floor(Math.random() * (i + 1));
+      [order[i], order[j]] = [order[j], order[i]];
+    }
+    await Promise.all(order.map((index, rank) => {
+      const down = both(index,
+        [{ translate: `0 ${lifts[index]}px` }, { translate: "0 0" }],
+        { duration: 900, delay: 200 + rank * 140, easing: "cubic-bezier(0.25, 1.35, 0.5, 1)", fill: "both" }
+      );
+      return Promise.all(down.map((a) => a.finished)).then(() => [...ups[index], ...down].forEach((a) => a.cancel()));
+    }));
+    delete scene.dataset.busy;
+  };
+  demo.addEventListener("click", (event) => {
+    const card = event.target.closest(".dp__card");
+    if (card) pull(card.closest("[data-drape]"), card);
+    else if (event.target.closest("[data-drape-pull]")) scenes.forEach((s) => pull(s, null));
+  });
+  // 동작 줄이기면 움직일 것이 없으니 버튼을 숨긴다 / with reduced motion nothing moves, so the button goes
+  if (reduce) demo.querySelector("[data-drape-pull]")?.closest(".demo__controls").remove();
 });
 
 /* ── 6i. 04 데모: 데스크톱 프레임 = 1440px 캔버스를 래퍼 폭에 맞춰 축소 ──
