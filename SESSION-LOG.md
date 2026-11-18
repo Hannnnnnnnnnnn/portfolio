@@ -118,3 +118,9 @@ All in `product/header/` and the root site's `work-4.html` (kept in step, per th
 - Every reason, the title and what's next are `[bracketed]` for Han; nothing inferred. No artist named.
 
 **Next**: `TODO.md` → "Tri-City Pop-up case". Resume on `case/tricity-popup`, not `main`.
+
+## 2026-11-18 — Tri-City Pop-up case: the in-store kiosk
+
+- New Decisions 03 (ornament scenes on the Store Check-in iPad: one card per product, so twelve pseudo-elements; three tabs; LP motion values) and 04 (20,000-char CSS box → scenes in a Files-hosted stylesheet, new file name per edit; bottom tab bar because the app owns swipes; PDP photo tiles, variable override instead of `!important`; cart QR 252 → 202px, GWP band). Guest-list placeholder moved to 05.
+- Source: theme repo `docs/session-logs/2026-10-16_store-check-in-kiosk.md` on `docs/kiosk-birthday-ornaments` (`9058434`). The CDN location preview file on 18 Nov still showed v3068 (scenes-6, CSS 15,862) — the cart changes may not be live yet; flagged in an HTML note.
+- `tools/sitecheck.mjs`: all ok.

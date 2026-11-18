@@ -26,7 +26,8 @@ One case for the pop-up LP (`/pages/tricity-pop-up`) and the event RSVP (`/pages
 - [ ] Han: may the artist's name, work and photo appear? Until then the page names no artist.
 - [ ] Han: does Decision 03 (reference page stored guests outside the store) belong in a public case?
 - [ ] After 28 Nov: RSVPs per slot (metafield `custom.event_rsvp_counts`), attendance, LP sessions (GA4) — with dates.
-- [ ] Recordings: ornament drop + click (desktop, phone), RSVP booking. No customer names or emails in any capture.
+- [ ] Kiosk (Decisions 03–04, added 18 Nov from the theme repo's kiosk log, branch `docs/kiosk-birthday-ornaments`): the cart paragraph (QR 202px, GWP band) was awaiting publish on 17 Nov — confirm the location config carries it, then drop the HTML note. Reason for putting the ornaments on the kiosk — Han.
+- [ ] Recordings: kiosk on the iPad (`kiosk.mp4`, three tabs + PDP + cart), ornament drop + click (desktop, phone), RSVP booking. No customer names or emails in any capture.
 - [ ] Case number 06 and the "Next case" link are placeholders; unlisted (noindex) until Han says otherwise.
 
 ## Header Revamp case (`product/header-revamp/`, unlisted, on `main` + `case/header-revamp`)

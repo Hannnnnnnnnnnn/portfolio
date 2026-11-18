@@ -7,7 +7,7 @@
 <!-- 링크 없이 공개 — 상품 목록·More projects·llms.txt 어디서도 링크하지 않는다. 공개 시 이 줄을 지우고 목록에 추가 /
      Unlisted: linked from nowhere (Product list, More projects, llms.txt). To list it, drop this line and add it to the list -->
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="A landing page and an RSVP system for a two-week pop-up store and a live drawing event.">
+<meta name="description" content="A landing page, an RSVP system and an in-store kiosk for a two-week pop-up store and a live drawing event.">
 
 
 <link rel="icon" href="../../assets/img/favicon.png">
@@ -49,6 +49,8 @@
           <li><a class="toc__num" href="#decision-1">01</a></li>
           <li><a class="toc__num" href="#decision-2">02</a></li>
           <li><a class="toc__num" href="#decision-3">03</a></li>
+          <li><a class="toc__num" href="#decision-4">04</a></li>
+          <li><a class="toc__num" href="#decision-5">05</a></li>
         </ol>
       </li>
       <li><a href="#outcome">Outcome</a></li>
@@ -59,13 +61,14 @@
 
     <p class="label muted">06 &middot; Tri-City Pop-up</p>
     <h1>[Title &mdash; Han]</h1>
-    <p class="lead">A landing page for a pop-up store, and an RSVP page for the live drawing event inside it &mdash; built on the live theme in days.</p>
+    <p class="lead">A landing page for a pop-up store, and an RSVP page for the live drawing event inside it, and the iPad kiosk on the shop floor &mdash; built on the live theme in days.</p>
 
     <ul class="tags label">
       <li>Visual Design</li>
       <li>Interaction Design</li>
       <li>Front-end Implementation</li>
       <li>Shopify Flow</li>
+      <li>Kiosk UI</li>
     </ul>
 
     <p class="caveat">Draft. The pop-up opens on 20 November 2026 and the event is on 28 November; results come after.</p>
@@ -74,7 +77,7 @@
       <dt>Client</dt><dd>Atacz</dd>
       <dt>Role</dt><dd>Sole designer and developer</dd>
       <dt>Timeline</dt><dd>Nov 2026</dd>
-      <dt>Tools</dt><dd>Liquid, CSS, vanilla JavaScript (Web Animations API), SVG, Shopify Flow</dd>
+      <dt>Tools</dt><dd>Liquid, CSS, vanilla JavaScript (Web Animations API), SVG, Shopify Flow, Store Check-in (kiosk app, CSS only)</dd>
     </dl>
 
     <div class="snaps snaps--pair">
@@ -110,6 +113,28 @@
 
     <section class="decision" id="decision-3">
       <span class="label muted">Decision 03</span>
+      <h3>The same ornaments, on the shop-floor iPad</h3>
+      <p>In the store, shoppers browse on an iPad running a third-party kiosk app, Store Check-in. They build a cart there and pay on their own phone through a QR code. The only design control the app offers is a custom CSS box, and it renders one card per product. So twelve colours could not be twelve cards.</p>
+      <p>Instead, the twelve ornaments are drawn on twelve pseudo-elements of the one real card and its children. Each has its own thread length, width, colour photo, month and colour name, and sway period. Tapping anywhere on the scene opens the product, and the colour is picked there. Thread length and card width are in <code>vh</code>, sized for the iPad held landscape (1180&times;820).</p>
+      <p>The kiosk carries three tabs and each is its own scene: Birthday Twist, Straps and Pins. Straps hangs two products, Utility Bind 2.0 on the left half and Bind Strap on the right, and a tap on either half opens that product. The drop and sway use the landing page&rsquo;s values, so the page and the store move the same way.</p>
+      <figure class="snap snap--desktop">
+        <div class="snap__scroll"><p class="snap__slot label">Screen recording, kiosk (1180&times;820)<br><code>../../assets/case/06-tricity-popup/kiosk.mp4</code></p></div>
+      </figure>
+    </section>
+
+    <section class="decision" id="decision-4">
+      <span class="label muted">Decision 04</span>
+      <h3>Designing the rest of the kiosk from a CSS box</h3>
+      <p>The custom CSS box stops at 20,000 characters, and the three scenes did not fit. The app also accepts font stylesheet URLs, which it loads as ordinary <code>&lt;link&gt;</code> tags. So the scenes moved into a stylesheet hosted in Shopify Files, with no size limit. Every edit is uploaded under a new file name, so the iPad cannot change before a version is published.</p>
+      <p>The app already uses fast sideways swipes for back and home, so tabs could not be swiped. The tab row became a navigation bar at the bottom centre. It rises first, and an underline grows under the open tab.</p>
+      <p>The product page takes the live theme&rsquo;s type and button sizes. Colours are photo tiles instead of text pills, with a 2px outline on the chosen one. The app paints the selected option with a forced background colour. Rather than fight it with <code>!important</code>, the tile redefines the variable that rule reads.</p>
+      <!-- 장바구니 문단(QR 축소·GWP 띠)은 11-17 기준 키오스크 게시 대기였다 — 게시 확인 후 이 주석 삭제 /
+           Cart paragraph (smaller QR, GWP band) was awaiting publish on 17 Nov — delete this note once published -->
+      <p>In the cart, the QR code shrank from 252 to 202px, so two and a half items show at once instead of one. A band under the cart title shows the gift-with-purchase pouch: a free Festive Nano Twist with orders of $180 or more.</p>
+    </section>
+
+    <section class="decision" id="decision-5">
+      <span class="label muted">Decision 05</span>
       <h3>[Keeping the guest list in the store &mdash; Han to confirm this belongs in a public case]</h3>
       <p>[The first reference page saved names and emails outside the store. Moving the form onto Shopify kept consent and the list in one place.]</p>
     </section>
