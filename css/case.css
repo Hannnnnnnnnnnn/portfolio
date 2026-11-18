@@ -1941,20 +1941,87 @@ svg.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 /* ── 06 Decision 04: 키오스크 화면 보기 — 라디오로 한 장씩 (JS 없음) / the kiosk screens, one at a time by radio (no JS) ── */
 .demo .ks { width: 100%; aspect-ratio: 1180 / 820; outline: 1px solid var(--line); background: #fff; }
 .demo .ks__shot { display: none; width: 100%; height: 100%; object-fit: cover; }
-.demo[data-demo-kiosk]:has([value="twist"]:checked) .ks__shot--twist,
-.demo[data-demo-kiosk]:has([value="straps"]:checked) .ks__shot--straps,
-.demo[data-demo-kiosk]:has([value="pins"]:checked) .ks__shot--pins,
 .demo[data-demo-kiosk]:has([value="pdp"]:checked) .ks__shot--pdp,
 .demo[data-demo-kiosk]:has([value="cart"]:checked) .ks__shot--cart { display: block; }
 .demo[data-demo-kiosk] .demo__seg { flex-wrap: wrap; }
-/* 캡처 위의 누르는 자리 — 보이는 화면에서만 켠다. tabs = 탭바가 있는 세 화면, scene = 장면 세 화면 + 상품 페이지(장바구니 아이콘)
-   Hotspots over the captures, live only on the screen they belong to. tabs = the three tab screens; scene = those plus the product page (cart icon) */
-.demo .ks { position: relative; }
+/* 캡처 위의 누르는 자리 — 보이는 화면에서만 켠다. scene = 장면 세 화면 + 상품 페이지(장바구니 아이콘)
+   Hotspots over the captures, live only on the screen they belong to. scene = the three tab screens plus the product page (cart icon) */
+.demo .ks { position: relative; overflow: hidden; }
 .demo .ks__hot { position: absolute; z-index: 1; display: none; cursor: pointer; }
 .demo .ks__hot:hover { background: rgba(0, 0, 0, .04); }
-.demo[data-demo-kiosk]:has(:is([value="twist"], [value="straps"], [value="pins"]):checked) .ks__hot--tabs,
 .demo[data-demo-kiosk]:has(:is([value="twist"], [value="straps"], [value="pins"], [value="pdp"]):checked) .ks__hot--scene,
 .demo[data-demo-kiosk]:has([value="twist"]:checked) .ks__hot--twist,
 .demo[data-demo-kiosk]:has([value="pdp"]:checked) .ks__hot--pdp,
 .demo[data-demo-kiosk]:has([value="cart"]:checked) .ks__hot--cart { display: block; }
 .demo .ks__hot--twist { z-index: 0; }  /* 장면 전체 — 탭바·장바구니 아이콘이 위 / the whole scene sits under the tab bar and cart icon */
+
+/* ── 06 Decision 04: 키오스크 장면을 움직이게 — 장면 CSS(kiosk-birthday-scenes, scenes-8)의 값 그대로 ──
+   오너먼트 하나 = 상자 하나(실·집게·흰 카드·사진·색 이름은 배경 레이어, 달 이름은 글자), 원본과 같은 선언. 1vh = 8.2px(820 화면).
+   글자(로고·장바구니·상품명·가격)는 키오스크에서도 오너먼트 위라, 오너먼트를 지운 투명 캡처를 위에 얹는다. 탭바는 다시 만들었다.
+   1180×820 캔버스를 --k 로 축소(case.js 6k). 탭을 바꾸면 그 장면이 display 로 다시 붙어 떨어짐부터 다시 돈다(키오스크와 같다).
+   The kiosk scenes animated, with scenes-8's values: one box per ornament (string, clip, card, photo and colour name as background
+   layers, the month as text), the same declarations; 1vh = 8.2px. The kiosk's text sits above the ornaments, so a transparent capture
+   without them goes on top; the tab bar is rebuilt. A 1180×820 canvas scaled by --k (case.js 6k). Switching tabs re-attaches that
+   scene, so it drops again, as on the kiosk. */
+.demo .kx__tabs { display: none; }
+.demo .kx { position: absolute; top: 0; left: 0; z-index: 0; display: block; width: 1180px; height: 820px; overflow: hidden; background: #fff; transform: scale(var(--k, 1)); transform-origin: 0 0;
+  --c0: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3ECaramel%3C/text%3E%3C/svg%3E");
+  --c1: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3ESheer%20Lilac%3C/text%3E%3C/svg%3E");
+  --c2: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3EFair%20Aqua%3C/text%3E%3C/svg%3E");
+  --c3: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3ECayenne%3C/text%3E%3C/svg%3E");
+  --c4: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3EBud%20Green%3C/text%3E%3C/svg%3E");
+  --c5: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3EAspen%20Gold%3C/text%3E%3C/svg%3E");
+  --c6: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3ECoral%20Blush%3C/text%3E%3C/svg%3E");
+  --c7: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3ESun%20Orange%3C/text%3E%3C/svg%3E");
+  --c8: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3EBaja%20Blue%3C/text%3E%3C/svg%3E");
+  --c9: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3ECerulean%3C/text%3E%3C/svg%3E");
+  --c10: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3ECerise%3C/text%3E%3C/svg%3E");
+  --c11: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12'%3E%3Ctext x='70' y='9' text-anchor='middle' font-family='Helvetica Neue' font-size='9' font-weight='300' fill='gray'%3EPagoda%20Blue%3C/text%3E%3C/svg%3E");
+}
+.demo[data-demo-kiosk]:has(:is([value="pdp"], [value="cart"]):checked) .kx { display: none; }
+.demo .kx__scene, .demo .kx__over { display: none; }
+.demo .kx__scene { position: absolute; inset: 0; isolation: isolate; }
+.demo .kx__half { position: absolute; inset: 0 50% 0 0; }
+.demo .kx__half--r { inset: 0 0 0 50%; }
+.demo .kx__over { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.demo[data-demo-kiosk]:has([value="twist"]:checked) :is(.kx__scene--twist, .kx__over--twist),
+.demo[data-demo-kiosk]:has([value="straps"]:checked) :is(.kx__scene--straps, .kx__over--straps),
+.demo[data-demo-kiosk]:has([value="pins"]:checked) :is(.kx__scene--pins, .kx__over--pins) { display: block; }
+.demo .kx__o {
+  position: absolute; top: 0; left: calc(var(--x) - var(--w) / 2); width: var(--w); height: calc(var(--l) + var(--w) * 1.25 + 36px);
+  display: flex; align-items: flex-end; justify-content: center; padding: 0 0 21px; box-sizing: border-box;
+  color: #55524C; font: 500 11px / 1.45 Poppins, sans-serif; letter-spacing: 0.4px; text-align: center; white-space: pre;
+  background:
+    linear-gradient(#8E8B83 0 0) 50% calc(var(--l) - 9px) / 14px 13px no-repeat,
+    var(--c) 50% calc(100% - 8px) / 140px 12px no-repeat,
+    var(--u) 50% calc(var(--l) + 6px) / calc(var(--w) - 12px) auto no-repeat,
+    linear-gradient(#fff 0 0) 0 var(--l) / 100% 100% no-repeat,
+    linear-gradient(rgba(12, 12, 12, 0.22) 0 0) 50% 0 / 1px var(--l) no-repeat;
+  filter: drop-shadow(0 6px 10px #0002);
+  transform-origin: 50% 0;
+}
+/* 탭바 — 기본 키오스크 CSS 의 .tabs-container / .tab-button 값 / the tab bar, from the base kiosk CSS */
+.demo[data-demo-kiosk]:has(:is([value="twist"], [value="straps"], [value="pins"]):checked) .kx__tabs { display: flex; }
+.demo .kx__tabs {
+  position: absolute; z-index: 2; bottom: calc(24px * var(--k, 1)); left: 50%; translate: -50% 0;
+  gap: calc(40px * var(--k, 1)); padding: calc(12px * var(--k, 1)) calc(32px * var(--k, 1));
+  background: rgba(255, 255, 255, 0.9); box-shadow: 0 4px 16px rgba(12, 12, 12, 0.12); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.demo .kx__tab { position: relative; padding: calc(8px * var(--k, 1)) 0; font: 400 calc(16px * var(--k, 1)) / 1.5 Poppins, sans-serif; color: #0C0C0C; white-space: nowrap; cursor: pointer; transition: scale 0.15s ease; }
+.demo .kx__tab:active { scale: 0.94; }
+.demo[data-demo-kiosk]:has([value="twist"]:checked) .kx__tab--twist::after,
+.demo[data-demo-kiosk]:has([value="straps"]:checked) .kx__tab--straps::after,
+.demo[data-demo-kiosk]:has([value="pins"]:checked) .kx__tab--pins::after { content: ""; position: absolute; inset: auto 0 calc(3.2px * var(--k, 1)); height: 1px; background: currentColor; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .demo .ks:not(.is-on) :is(.kx__o, .kx__tabs) { visibility: hidden; }  /* 화면에 들어오기 전엔 숨김 / hidden until on screen */
+  .demo .ks.is-on .kx__o {
+    animation: kx-drop 1200ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i) * 90ms) backwards,
+      kx-swing var(--d) ease-in-out 2400ms infinite var(--sd, alternate) backwards;
+  }
+  .demo .ks.is-on .kx__tabs { animation: kx-nav-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  .demo .ks.is-on .kx__tab::after { animation: kx-line 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+}
+@keyframes kx-drop { 0% { translate: 0 calc(-100% - 40px); } 100% { translate: 0 0; } }
+@keyframes kx-swing { from { rotate: -0.8deg; } to { rotate: 0.8deg; } }
+@keyframes kx-nav-in { from { translate: -50% 160%; opacity: 0; } }
+@keyframes kx-line { from { scale: 0 1; } }

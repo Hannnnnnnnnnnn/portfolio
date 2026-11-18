@@ -496,6 +496,18 @@ run(() => {
   if (reduce) demo.querySelector("[data-drape-pull]")?.closest(".demo__controls").remove();
 });
 
+/* ── 6k. 06 키오스크: 1180×820 캔버스를 래퍼 폭에 맞춰 축소(--k), 화면에 들어오면 움직이기 시작(.is-on) ──
+   The kiosk: scale the 1180×820 canvas to the wrapper (--k) and start the motion once it is on screen (.is-on) */
+run(() => {
+  const ks = document.querySelector("[data-demo-kiosk] .ks");
+  if (!ks) return;
+  const fit = () => ks.style.setProperty("--k", ks.getBoundingClientRect().width / 1180);
+  new ResizeObserver(fit).observe(ks);
+  fit();
+  const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { ks.classList.add("is-on"); io.disconnect(); } }, { threshold: 0.25 });
+  io.observe(ks);
+});
+
 /* ── 6i. 04 데모: 데스크톱 프레임 = 1440px 캔버스를 래퍼 폭에 맞춰 축소 ──
    --s 하나만 쓴다. 폰 모드에선 쓰이지 않는다(스케일 없음).
    Desktop frames are a 1440px canvas scaled to the wrapper; this writes --s only. */

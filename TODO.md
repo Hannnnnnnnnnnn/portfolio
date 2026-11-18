@@ -27,7 +27,8 @@ One case for the pop-up LP (`/pages/tricity-pop-up`) and the event RSVP (`/pages
 - [ ] Han: does Decision 03 (reference page stored guests outside the store) belong in a public case?
 - [ ] After 28 Nov: RSVPs per slot (metafield `custom.event_rsvp_counts`), attendance, LP sessions (GA4) — with dates.
 - [ ] Kiosk (Decisions 03–04, added 18 Nov from the theme repo's kiosk log, branch `docs/kiosk-birthday-ornaments`): the cart paragraph (QR 202px, GWP band) was awaiting publish on 17 Nov — confirm the location config carries it, then drop the HTML note. Reason for putting the ornaments on the kiosk — Han.
-- [ ] Kiosk screens (`kiosk-*.webp`) are v3068: re-capture once the 17 Nov cart CSS is published, so the cart matches the D05 paragraph (202px QR, GWP band).
+- [ ] Kiosk scenes copy scenes-8; if the kiosk layout changes, re-copy the values and re-capture the text overlays (`kiosk-o-*.webp`).
+- [ ] Kiosk product page / cart captures (`kiosk-pdp.webp`, `kiosk-cart.webp`) are v3068: re-capture once the 17 Nov cart CSS is published, so the cart matches the D05 paragraph (202px QR, GWP band).
 - [ ] Recordings: ornament drop + click (desktop, phone), RSVP booking. No customer names or emails in any capture.
 - [ ] Decision 03 (guest list) is on hold until after the event (Han, 18 Nov) — moved from 05 to sit next to the RSVP decision.
 - [ ] Ornament demo (Decision 01) copies the live `popup-drape` values as of 18 Nov. If the owner retunes the LP, re-copy them (positions, lengths, sizes, sway, `--title-blur`).
