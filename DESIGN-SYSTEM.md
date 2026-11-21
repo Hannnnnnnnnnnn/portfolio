@@ -1,6 +1,6 @@
 # Design system — hannnnnnnnnnnn.github.io/portfolio
 
-> Reference for anyone (or any session) changing the site. Values are copied from the CSS as of 2026-10-03 (`dcb0806` → `228d5e1`).
+> Reference for anyone (or any session) changing the site. Values are copied from the CSS as of 2026-11-21 (critique fixes on top of 2026-10-03).
 > The CSS is the source of truth; if this file and the CSS disagree, fix this file.
 
 ## Principles
@@ -46,23 +46,25 @@ Source Serif 4 is Adobe's official variable WOFF2, **unmodified** (OFL with Rese
 
 | Role | Class | 0–799 | 800–1279 | 1280+ | Notes |
 |---|---|---|---|---|---|
-| Display | `.t-display` | 28/33.6 | 36/43.2 | 50/60 | serif 400, ls −2.25px. Page titles, card titles, footer © |
-| Sub-heading | case `h3` (`.ai-chapter`) | 28/33.6 | 36/43.2 | 36/43.2 | serif 400, ls −1.62px. `.ai-chapter` itself stays 36/43.2 on phones too |
-| Title | `.t-title` | 20/1.52 | 22/1.52 | 24/1.52 | serif 400, ls −1.08px. Card subtitles, case lead |
-| Meta | `.t-meta` | 20 | 22 | 24 | Title size, tighter ls (`--meta-ls`). Visual project meta |
-| Body | `.t-body` | 16/20 | 16/20 | 16/20 | serif **300**, ls −0.72px. Visual project text, captions |
+| Display | `.t-display` | 28/33.6 | 36/43.2 | 50/60 | serif 400, ls −0.04em (was −2.25px: −0.08em on phones). Page titles, card titles |
+| Sub-heading | case `h3` (`.ai-chapter`) | 28/33.6 | 36/43.2 | 36/43.2 | serif 400, ls −0.04em. `.ai-chapter` itself stays 36/43.2 on phones too |
+| Title | `.t-title` | 20/1.52 | 22/1.52 | 24/1.52 | serif 400, ls −0.04em. Card subtitles, case lead, home intro line |
+| Meta list | `.cs-meta` (visual) / case `.meta` | dt label · dd 17/18 | | | Mono label column, serif values. Same grid on both sides (2026-11-21) |
+| Body | `.t-body` | 17/1.55 | 18/1.55 | 18/1.55 | serif 400, ls 0. Visual project text — the same as case reading text since 2026-11-21 (was 300/16/20) |
 | Case reading text | `main.case` | 17/1.55 | 18/1.55 | 18/1.55 | serif 400. Long-form only; quotes use it too |
 | Small | case diagrams | 14/1.55 | 14/1.55 | 14/1.55 | **One size** for all secondary/diagram text and `code` |
 | Label | `.t-label` | 12/1.03 | 14/1.03 | 16/1.03 | mono **500**, ls −0.72px, sentence case, no underline. Case labels use the same style |
 | Mono UI | `.t-mono`, `.btn`, nav links | 16/1.03 | 16/1.03 | 16/1.03 | mono 400, ls −0.72px |
-| About text | `.about-bio`, `.about-row` | 12/1.6 | 14/1.6 | 16/1.6 | mono 400, ls −0.72px, `--label` size. Bio capped at 72ch (rows are single-line, lh 1.03) |
+| About bio | `.about-bio` | 17/1.55 | 18/1.55 | 18/1.55 | serif 400, reading text, max 46rem (was 12–16px mono) |
+| About rows | `.about-row` | 12/1.03 | 14/1.03 | 16/1.03 | mono 400, ls −0.72px; wrapping skill rows lh 1.6 |
+| Small | `.cs-caption`, `.ai-cap-sm`, case diagrams | 14/1.55 | 14/1.55 | 14/1.55 | serif 400, `--ink-soft` |
 
-Rules: no uppercase, no weights above 700, no new sizes — pick the nearest role. Numbers that are the point (case metrics) use Display.
+Rules: no uppercase, no weights above 700, no new sizes — pick the nearest role. Numbers that are the point (case metrics) use Display. Tracking never below −0.04em. Headings `text-wrap: balance`, paragraphs `pretty`.
 
 ### Spacing and layout
 
 - Side gutter `--gutter`: **20px** mobile, **50px** from 800. Applied once, on `.page`.
-- Content measure: `.cs-text` max 700px; case `.prose` 46rem; wide blocks max 1180px.
+- Content measure: `.cs-text` and case `.prose` both 46rem; wide blocks max 1180px; case `.cmp` and `.demo--wide` break out to `min(70rem, 100vw − 374px)` from 1200px.
 - Recurring gaps: **19px** inside text groups, **24px** between figures, **50px** between card text and media, **8px** inside image grids. (19 and 49/29/39 come from Figma drawing borders inside boxes: 20 − 1, 50 − 1.)
 - Desktop nav links: **28px** apart.
 
@@ -77,7 +79,7 @@ Where it appears: footer links, About links, case body links, and nav links **on
 
 | Element | Rest | Hover | Focus |
 |---|---|---|---|
-| Nav link | plain mono | underline + fade to .7 | underline + focus ring |
+| Nav link | plain mono; current section underlined (`aria-current`) | underline + fade to .7 | underline + focus ring |
 | Button `.btn` | 1px ink border | inverted (ink fill, paper text) | focus ring |
 | Card | — | whole card .75 (mobile/tablet), media only .75 (1280+) | focus ring |
 | Text link | underlined | fade (`.link-fade`) where used | focus ring |
@@ -94,14 +96,16 @@ Focus ring, site-wide: `outline: 2px solid var(--ink); outline-offset: 3px` on `
 
 ## Components
 
-- **Nav** — avatar (40px, 50px from 800) + name, links Product / Visual / About. Stacked on mobile; fixed with a white-to-transparent gradient from 800, so pages start ~200px down.
+- **Nav** — avatar (32px, 50px from 800) + name, links Product / Visual / About. One row on phones (wraps only below ~330px); fixed from 800 with an opaque paper band behind the text and a 40px fade below it (the old 40%→0% gradient let headings overprint it), so pages start ~200px down.
 - **Button** `.btn` — mono 16, 1px border, `3px 9px 6px` padding. Optional 24px icon (Grok/Claude/ChatGPT marks; the Claude mark keeps its brand orange).
-- **AI read row** `.home-hero__ai` (Product and Visual lists) — a "Read with" label in `--ink-soft` mono, then buttons named just Claude / ChatGPT / Grok (each keeps `aria-label="Read this portfolio with …"`). The label always sits on its own line above the buttons; from 1280px the group is a grid sized by the buttons, flush right in the hero row. The buttons share one row down to 375px (they wrap at 320px).
-- **Card** `.card` — label, display title, optional subtitle, Explore button; square media (`aspect-ratio: 1`). Product cards with screen recordings use `.card__pair`: from 800px the desktop recording sits behind (top right, 68%) and the phone recording in front (left, 40%), as on the case pages; below 800px only the phone recording, at its own ratio (not square) in a `--hair` frame. Top rule `--ink`; `.card--soft` uses `--rule`.
+- **Home intro** `.home-hero__intro` — the Product Design title and one Title-role line saying who Han is, with a number.
+- **AI read row** `.home-hero__ai` (Product and Visual lists) — buttons one step quieter than `.btn` (`--hair` border, `--ink-soft` text; Han kept the row in the hero, 2026-11-21). A "Read with" label in `--ink-soft` mono, then buttons named just Claude / ChatGPT / Grok (each keeps `aria-label="Read this portfolio with …"`). The label always sits on its own line above the buttons; from 1280px the group is a grid sized by the buttons, flush right in the hero row. The buttons share one row down to 375px (they wrap at 320px).
+- **Card** `.card` — label (client · dates, not the page title again), display title, optional subtitle, Explore button; square media (`aspect-ratio: 1`). Product cards with screen recordings use `.card__pair`: from 800px the desktop recording sits behind (top right, 68%) and the phone recording in front (left, 40%), as on the case pages; below 800px only the phone recording, at its own ratio (not square) in a `--hair` frame. Top rule `--ink`; `.card--soft` uses `--rule`. A case with no recording gets `.card__type`: its own designed sentence set at Display size on `--paper-alt`.
 - **Media frame** `.frame` — clips media; `--top/--bottom/--left/--right` (% of the frame) reproduce Figma's oversized-and-cropped placement at every width.
-- **Visual project page** — `cs-hero` (label, display title, title, meta) then `cs-*` blocks (text, figure + caption, split, quote, grids), then "More projects".
+- **More projects** — lists the other projects, never the current one. From 1280 a subgrid lines up label, title, button and media across the cards (no fixed heights).
+- **Visual project page** — `cs-hero` (label, display title, title, `.cs-meta` list) then `cs-*` blocks (text, figure + caption, split, quote, grids), then "More projects".
 - **Case page** — section guide + `.prose`; meta list, metrics, tags, figures/diagrams (`.mfd`, `.dist`, `.anno`, `.flows`), snapshots (`.snap`), demos, next-case link.
-- **Footer** — Email / LinkedIn links at display-ish sizes (28 / 36 / 50) and the © line.
+- **Footer** — Email / LinkedIn links at display-ish sizes (28 / 36 / 50), then the © line at label size in `--ink-soft`.
 
 ## Exceptions
 

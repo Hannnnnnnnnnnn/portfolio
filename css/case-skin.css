@@ -25,19 +25,22 @@ main.case :is(.mfd__list, .flows__name, .prose p, .prose li) code { font-size: 1
 /* ---- display type: serif regular, as .t-display / .t-title ---- */
 main.case .prose h1 {
   font-weight: 400; text-transform: none;
-  font-size: var(--display); line-height: var(--display-lh); letter-spacing: -2.25px;
+  font-size: var(--display); line-height: var(--display-lh); letter-spacing: -0.04em;
 }
 /* statement headings = the site's sub-heading (.ai-chapter, 36/43.2), display size on phones */
 main.case :is(.prose h3, .hero-type, .case-nav__title) {
   font-weight: 400; text-transform: none;
-  font-size: var(--display); line-height: var(--display-lh); letter-spacing: -1.62px;
+  font-size: var(--display); line-height: var(--display-lh); letter-spacing: -0.04em;
 }
 @media (min-width: 1280px) { main.case :is(.prose h3, .hero-type, .case-nav__title) { font-size: 36px; line-height: 43.2px; } }
-main.case .metric-value { font-weight: 400; font-size: var(--display); line-height: var(--display-lh); letter-spacing: -2.25px; }
+/* h2 바로 아래 작은 소제목 — 개요상 h3 이지만 모양은 원본 h4 그대로 (2026-11-18) /
+   Small subheads straight under an h2: an h3 in the outline (no skipped level), styled as the original h4 */
+main.case .prose h3.h-minor { margin: 1.75rem 0 0.5rem; max-width: none; font-size: 1rem; line-height: inherit; font-weight: 700; letter-spacing: -0.01em; }
+main.case .metric-value { font-weight: 400; font-size: var(--display); line-height: var(--display-lh); letter-spacing: -0.04em; }
 
 /* underlines: the site token instead of the original's auto/0.2em */
 main.case :is(.prose a, .back:hover, .case-nav__back:hover) { text-decoration-thickness: max(1.5px, 0.06em); text-underline-offset: var(--ul-offset); }
-main.case .lead { font-size: var(--title); line-height: var(--title-lh); letter-spacing: -1.08px; }
+main.case .lead { font-size: var(--title); line-height: var(--title-lh); letter-spacing: -0.04em; }
 
 /* ---- the visual nav is fixed from 800px: clear it ---- */
 @media (min-width: 800px) {
@@ -55,3 +58,19 @@ main.case .prose .tags { padding-left: 0; }
 
 /* quotes read at body size (the original's 1.05rem = 16.8px was off the scale) */
 main.case blockquote p { font-size: inherit; line-height: inherit; }
+
+/* 태그는 테두리 없는 모노 라벨 — 테두리 칩은 헤어라인 미감에 비해 무거웠다 (2026-11-21 크리틱) /
+   Tags as plain mono labels; bordered chips were heavy against the hairline look */
+main.case .prose .tags { gap: 0.35rem 1.25rem; }
+main.case .prose .tags li { padding: 0; border: 0; }
+
+/* 비포/애프터 비교는 본문 칸을 넘어 오른쪽 여백까지 — 데모(.demo--wide)와 같은 폭 규칙.
+   본문 46rem 칸에서는 비포 스크린샷 글자가 4px 로 렌더됐다 /
+   Before/after comparisons break out of the 46rem column, with the same width rule as .demo--wide;
+   inside it the before screenshots rendered their text at about 4px */
+@media (min-width: 900px) { main.case .cmp { width: min(70rem, calc(100vw - 100px)); } }
+@media (min-width: 1200px) { main.case .cmp { width: min(70rem, calc(100vw - 374px)); } }
+
+/* 지표 줄도 본문 ul 규칙(왼쪽 18.4px, 최대 38rem)을 물려받아 들여 써지고 위 선이 메타 표보다 짧았다 — 태그와 같은 처리 /
+   The metrics row inherited the prose ul padding and cap: inset 18px, its rule 128px shorter than the meta table's */
+main.case .prose .metrics { padding-left: 0; max-width: none; }

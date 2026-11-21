@@ -42,6 +42,13 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 - [x] `og:image` is relative (`assets/img/og-image.png`); social cards need an absolute URL — set it once the domain is known.
 - [x] Enable Pages for the repo (Settings → Pages → deploy from `main`, root). Pages serves `about/index.html` at `/about/`, so the clean URLs keep working.
 
+## Critique follow-ups (2026-11-21)
+
+- [ ] Re-run `/impeccable critique` after Han has looked at the changes (first run 16/24).
+- [ ] KITS BF: section heads have about as much space below as above (detector heading-rhythm); kits-invest `.cs-text--keep` still keeps a 100px right inset on phones.
+- [ ] Case writing: 34–58 em dashes per case (detector advisory).
+- [ ] Merge `main` into `case/tricity-popup` before the next session there (both touched `style.css`, `case-skin.css`, `product/pdp`).
+
 ## Later / nice to have
 
 - [ ] Pages publishes the whole repo root, so `tools/`, `PLAN.md` and `TODO.md` become public URLs too (nothing secret in them). If that matters, deploy with a GitHub Actions workflow that uploads only `index.html`, the page folders, `css/`, `js/` and `assets/`.

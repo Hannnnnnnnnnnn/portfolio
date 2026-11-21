@@ -286,15 +286,17 @@ run(() => {
     if (link) setActive(link.hash.slice(1));
   });
   if (location.hash) setActive(location.hash.slice(1));
-  // 히어로에서는 목차가 제목과 나란히 서서 경쟁한다 — 제목이 화면을 뜬 뒤에 들인다
-  // At the hero it stands level with the H1 and competes; let it in once the
-  // title has left the screen
-  const hero = document.querySelector(".prose h1");
-  if (hero) {
+  // 히어로에서는 목차가 제목·스냅샷과 경쟁한다 — 첫 본문 섹션(h2)이 화면 위 60% 에 들어온 뒤에 들인다.
+  // 예전 기준(h1 이 화면을 뜰 때)은 히어로 스냅샷이 아직 보이는 동안 목차를 켰다 (2026-11-18).
+  // At the hero it competes with the title and snapshots; let it in once the first body
+  // section (h2) reaches the top 60% of the screen. Keying it to the h1 leaving switched
+  // it on while the hero snapshots were still in view.
+  const body = document.querySelector(".prose h2[id]");
+  if (body) {
     new IntersectionObserver(
-      ([e]) => nav.classList.toggle("is-live", !e.isIntersecting),
-      { rootMargin: "-64px 0px 0px 0px" }
-    ).observe(hero);
+      ([e]) => nav.classList.toggle("is-live", e.isIntersecting || e.boundingClientRect.top < 0),
+      { rootMargin: "0px 0px -40% 0px" }
+    ).observe(body);
   }
 });
 

@@ -109,3 +109,21 @@ All in `product/header/` and the root site's `work-4.html` (kept in step, per th
 **Lessons**
 - A pointer bug that headless tests cannot reproduce: check what sits on top in the real browser (`elementFromPoint`) before touching the demo's own CSS. A fixed, partly transparent element above the content is the usual suspect.
 - Capturing the live store while an A/B test runs: block analytics and the A/B tool, or every capture is a session in the results.
+
+## 2026-11-21 — Impeccable critique and fixes (site-wide)
+
+Critique (dual-agent): 16/24 (67%, Acceptable), P1 ×3, P2 ×2; snapshot in `.impeccable/critique/` (untracked). Han: fix P1 + P2, keep the "Read with" row in the hero, use the conversion number.
+
+**Done**
+- Nav: one row on phones (~190 → 72px; wraps under ~330px). From 800 an opaque paper band behind the text with a 40px fade below — the old 40%→0% gradient let headings overprint "Han Kim" and the links. Current section underlined (`aria-current`) on every page.
+- Home: intro line under "Product Design" ("I'm Han, a product designer in Vancouver… lifted conversion 23%"); the AI row one step quieter (`--hair` border, `--ink-soft`); card labels now client · dates; the Pre-order card shows its own hero sentence on `--paper-alt` (`.card__type`) instead of an empty slot.
+- Product/Visual made one site: `.t-body` = case reading text (400, 17/18px, lh 1.55, was 300/16/20); captions = Small (14px); text column 46rem with paragraphs at 38rem like `.prose p`; visual heroes use a `.cs-meta` list (mono label | serif value) like the case `.meta`; no 100px right inset on phones.
+- Tracking in em, floor −0.04em (fixed −2.25px was −0.08em on phones). `text-wrap: balance` on headings, `pretty` on paragraphs.
+- Cases: before/after `.cmp` breaks out of the column like `.demo--wide`; tags without borders; the metrics row no longer inherits the prose `ul` inset (its rule was 128px shorter than the meta table's). PLP's four h4 → `h3.h-minor`. Brought over from `case/tricity-popup` the PDP h-minor fix, the About section titles (Title role) and the toc timing — those had never reached `main`.
+- More projects: lists the other four projects, not the current one; subgrid lines up label / title / button / media; full row width.
+- About bio set as serif reading text (was 12–16px mono); wrapping skill rows lh 1.6. Footer © at label size.
+- DESIGN-SYSTEM.md updated.
+
+**Checks**: sitecheck all ok. 13 pages × 390/800/1024/1440: no horizontal overflow, no page errors; the only text outside a box is the AI page's chapter-2 head (+50px, same on the old CSS). Detector after: home, visual, about 0 at both widths (before: tracking/leading hits at 390); kits-bf 2 heading-rhythm; PDP only demo-store false positives and the em-dash advisory.
+
+**Not done**: the heatmap figure is left full height (cropping would cut the "nobody reached the bottom" evidence); the avatar keeps its shadow (identity from the original).
