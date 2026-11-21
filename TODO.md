@@ -5,16 +5,16 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 ## Merge (live since 2026-10-03, `e13e348`)
 
 - [x] Résumé PDF replaced 2026-10-03 (`~/Downloads/Resume_Hanbyoul_Kim.docx.pdf`): five years, typo fixed, one link to `/portfolio`.
-  - Still open (Han): phone number and city are in the public PDF.
+  - Phone number and city stay in the public PDF (Han, 2026-11-21).
 - [x] Pre-order card: grey placeholder removed 2026-11-05 (text-only card; `.card:has(.card__media)` keeps its hover fade on desktop). Add a `.card__pair` back if Han sends recordings.
 - [x] Write `/portfolio/llms.txt` (phase 4).
 - [x] No `/visual/` URL left in the site (grepped before cutover).
 
 ## Waiting on Han (asked 2026-10-03, not answered yet)
 
-- [ ] KITS BF "PLP Banners": the second paragraph ("Transformed static assets into dynamic video using Veo 3.1… uncanny valley") is the AI page's Step 4 text — delete or replace?
-- [ ] Résumé says the PLP revamp was "validated through a 43-day A/B test"; the PLP case says the test could not confirm the effect (CI −18% to +35%). Suggested: "tested in a 43-day A/B test (product CTR 9.05% → 9.80%, not significant)".
-- [ ] Résumé title is "Multidisciplinary Designer — Brand, Interface, and Generative AI"; the site says "Product Designer" (root title, OG card, llms.txt). Align, or keep on purpose?
+- [x] KITS BF "PLP Banners": deleted 2026-11-21 (Han). Was: the second paragraph ("Transformed static assets into dynamic video using Veo 3.1… uncanny valley") is the AI page's Step 4 text — delete or replace?
+- [ ] (Han 2026-11-21: "no result yet") Résumé says the PLP revamp was "validated through a 43-day A/B test"; the PLP case says the test could not confirm the effect (CI −18% to +35%). Suggested: "tested in a 43-day A/B test (product CTR 9.05% → 9.80%, not significant)".
+- [x] Different on purpose (Han, 2026-11-21). Résumé title is "Multidisciplinary Designer — Brand, Interface, and Generative AI"; the site says "Product Designer" (root title, OG card, llms.txt). Align, or keep on purpose?
 - [ ] "Top section height differs between Visual and Product": the two list pages measured identical. If it meant case vs Visual project pages: label sits 18px higher on case pages on phones, label→title gap 38–41 vs 33–35px. Align to the Visual project pages?
 - [ ] Dropick case study (`~/dropick/docs/portfolio/README.md`): import after Han's research, usability test and iPhone recordings (draft has `[ ]` gaps, no visuals, private repo links, live-app link). Built with its existing `build.py`.
 
