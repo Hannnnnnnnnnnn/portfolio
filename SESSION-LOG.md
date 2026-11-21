@@ -143,3 +143,14 @@ All in `product/header/` and the root site's `work-4.html` (kept in step, per th
 - Location preview file now carries the 11-16/17 cart work (Custom CSS 17,896, scenes-8). Re-captured `kiosk-pdp.webp` and `kiosk-cart.webp` (1180×820 @2x → 1600×1112): the cart now shows the GWP band, the "Spend $180+" line and the 202px QR, matching D05; the HTML "pending publish" note is gone.
 - Product page content sits 32px higher than in v3068, so the hotspots were re-measured from the live DOM (Back 32,122,80×48; Add to cart 724,664,424×52; cart close 1119,16,37×48; Continue 725,748,431×56; cart icon 1100,51).
 - scenes-9 (theme repo `3049bee`, still unpublished) only widens the Straps list selector; no visual change, so the scenes were left as they are.
+
+## 2026-11-21 — Tri-City case: title, artist, Decision 03, hero recordings, How it was built
+
+- Han's answers: title "Birthday Twist Collection Pop-up"; the artist (Olivia Di Liberto) may be named; Decision 03 goes public; outcome waits; add the RSVP and kiosk build process.
+- Decision 03 written (external site-builder form → store customer form, consent boxes, old bookings to move). New section 4 "How it was built": the RSVP chain as an `.mfd--chain` diagram plus its gotchas (Flow query default 10 → 100, metafield definition first, live tests, two accepted limits, owner editing the live template); the kiosk as a version table (2823 → 3114) and what CSS could not fix. Outcome → 5, What's next → 6.
+- Hero videos recorded from the live page with Playwright, analytics and the A/B script blocked. Phone: Playwright `recordVideo` and headless screencasts at deviceScaleFactor 2 deliver 1x frames (the first try put a 390×844 picture in the corner of a grey 780×1688 canvas); only **headed** Chrome's CDP screencast gives 780×1688.
+- Checks: sitecheck all ok; 1440 and 390 — no page errors, no failed requests, no horizontal overflow, both videos load.
+
+**Lessons**
+- Check a recording at full size before encoding — a contact sheet at thumbnail scale hid the grey 3/4 of the phone video.
+- Fetch before saying something doesn't exist: this case lived only on `origin/case/tricity-popup`.

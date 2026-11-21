@@ -22,14 +22,17 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 
 One case for the pop-up LP (`/pages/tricity-pop-up`) and the event RSVP (`/pages/tricity-doodle-event-rsvp`), started 16 Nov 2026. Finish after the event (28 Nov). Facts come from the theme repo's session logs `2026-11-12_tricity-popup-lp.md` and `2026-11-12_event-rsvp.md` (branch `feature/event-rsvp`).
 
-- [ ] Han: title, problem, why ornaments, what's next (every `[bracket]` in the page).
-- [ ] Han: may the artist's name, work and photo appear? Until then the page names no artist.
-- [ ] Han: does Decision 03 (reference page stored guests outside the store) belong in a public case?
+- [x] Title: "Birthday Twist Collection Pop-up" (Han, 2026-11-21; small wording changes OK).
+- [ ] Han: problem, why ornaments, what's next (the remaining `[bracket]`s).
+- [x] Artist may be named (Han, 2026-11-21: her name and work will be public in photos anyway). Lead and meta now name Olivia Di Liberto.
+- [x] Decision 03 stays in the public case (Han, 2026-11-21). Written from the RSVP log; its last line says the old page "needed taking down" — confirm it was.
 - [ ] After 28 Nov: RSVPs per slot (metafield `custom.event_rsvp_counts`), attendance, LP sessions (GA4) — with dates.
 - [ ] Kiosk (Decisions 03–04, added 18 Nov from the theme repo's kiosk log, branch `docs/kiosk-birthday-ornaments`): the cart paragraph (QR 202px, GWP band) was awaiting publish on 17 Nov — confirm the location config carries it, then drop the HTML note. Reason for putting the ornaments on the kiosk — Han.
 - [ ] Kiosk scenes copy scenes-8 (scenes-9, pending publish on 20 Nov, only changes which photo marks the Straps list — nothing visible); if the kiosk layout changes, re-copy the values and re-capture the text overlays (`kiosk-o-*.webp`).
 - [x] Kiosk product page / cart re-captured 20 Nov from the published location (CSS 17,896, scenes-8): GWP band, $180 line, 202px QR. Hotspots re-measured.
-- [ ] Recordings: ornament drop + click (desktop, phone), RSVP booking. No customer names or emails in any capture.
+- [x] Hero recordings 2026-11-21 from the live LP (theme 190555685168, analytics/A-B/Klaviyo blocked): desktop 1280×800 2.1 MB, phone 720×1558 1.8 MB (headed Chrome screencast — headless and Playwright recordVideo give 1x frames at deviceScaleFactor 2).
+- [ ] RSVP booking recording, if wanted (no customer names or emails; don't submit the live form).
+- [ ] Section 4 "How it was built" (added 2026-11-21, Han asked for the RSVP and kiosk process): the gift-app paragraph assumes it is live — on 16 Nov it ran only on a draft checkout; confirm before listing. The kiosk screensaver video is not on this machine (`~/Downloads/kiosk-birthday-screensaver-white.mp4` is gone); re-render with the theme repo's `screensaver/render-from-kiosk.mjs` if it should go in.
 - [ ] Decision 03 (guest list) is on hold until after the event (Han, 18 Nov) — moved from 05 to sit next to the RSVP decision.
 - [ ] Ornament demo (Decision 01) copies the live `popup-drape` values as of 18 Nov. If the owner retunes the LP, re-copy them (positions, lengths, sizes, sway, `--title-blur`).
 - [ ] Case number 06 and the "Next case" link are placeholders; unlisted (noindex) until Han says otherwise.
