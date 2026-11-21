@@ -286,6 +286,21 @@ run(() => {
     if (link) setActive(link.hash.slice(1));
   });
   if (location.hash) setActive(location.hash.slice(1));
+  // 관찰 밴드는 화면의 5% 라 점프·빠른 스크롤은 그걸 건너뛴다 — 스크롤이 멈추면 화면 45% 선 위의 마지막 섹션으로 맞춘다 (2026-11-21).
+  // 멈출 때 한 번만 읽으므로 매 프레임 레이아웃을 읽는 문제는 없다.
+  // The band is 5% of the screen, so a jump or a fast fling skips it; once scrolling stops, settle on the last
+  // section above the 45% line. One read per stop, not per frame.
+  const targets = links.map((a) => document.getElementById(a.hash.slice(1))).filter(Boolean);
+  let settle;
+  addEventListener("scroll", () => {
+    clearTimeout(settle);
+    settle = setTimeout(() => {
+      const line = innerHeight * 0.45;
+      let last = null;
+      for (const t of targets) if (t.getBoundingClientRect().top < line) last = t;
+      if (last) setActive(last.id);
+    }, 150);
+  }, { passive: true });
   // 히어로에서는 목차가 제목·스냅샷과 경쟁한다 — 첫 본문 섹션(h2)이 화면 위 60% 에 들어온 뒤에 들인다.
   // 예전 기준(h1 이 화면을 뜰 때)은 히어로 스냅샷이 아직 보이는 동안 목차를 켰다 (2026-11-18).
   // At the hero it competes with the title and snapshots; let it in once the first body

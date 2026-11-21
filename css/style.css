@@ -188,10 +188,15 @@ p { text-wrap: pretty; }
    below that, the phone recording alone at its own ratio. The desktop clip never loads on phones (display: none + preload none). */
 .card__pair { position: relative; }
 /* phones: the phone recording at its own ratio (width/height attributes set it before the clip loads), not a square crop */
+/* 폰: 미디어가 먼저, 전체 폭. 녹화는 회색 무대 가운데 — 제목 옆 150px 썸네일로는 작업이 거의 안 보였다 (2026-11-21) /
+   Phones: media first and full width, the recording centred on a paper stage; as a 150px side thumbnail the work was barely visible */
 @media (max-width: 799px) {
-  .card__pair { aspect-ratio: auto; }
+  .card { flex-direction: column; gap: 24px; }
+  .card__text { flex: none; width: 100%; }
+  .card__media { order: -1; flex: none; width: 100%; }
+  .card__pair { aspect-ratio: auto; display: flex; justify-content: center; padding: 24px 0; background: var(--paper-alt); }
   .card__pair-desktop { display: none; }
-  .card__pair-mobile { border: 1px solid var(--hair); }
+  .card__pair-mobile { width: 58%; border: 1px solid var(--hair); }
   .card__pair-mobile video { width: 100%; height: auto; }
 }
 @media (min-width: 800px) {
@@ -202,6 +207,11 @@ p { text-wrap: pretty; }
 }
 
 
+/* 작업이 7/12 — 반반일 땐 녹화가 작고 텍스트 칸이 비었다 / the work takes 7/12; at half and half the recordings were small and the text column empty */
+@media (min-width: 800px) {
+  .card__text { flex: 5 1 0; }
+  .card__media { flex: 7 1 0; }
+}
 @media (min-width: 800px) {
   .home-hero { padding: 200px 80px 80px 0; }
   .card__sub { font-weight: 400; font-size: var(--title); line-height: var(--title-lh); letter-spacing: -0.04em; }
@@ -281,6 +291,8 @@ p { text-wrap: pretty; }
 /* more projects */
 .more { width: 100%; max-width: 1180px; display: flex; flex-direction: column; align-items: flex-start; gap: 48px; padding: 29px 0 30px; border-top: 1px solid var(--rule); }
 .more__title { font: 500 12px/1.03 var(--mono); letter-spacing: -0.72px; }
+.more__all { font: 400 16px/1.03 var(--mono); letter-spacing: -0.72px; text-decoration: var(--ul); text-underline-offset: var(--ul-offset); }
+.more--home { margin-top: 80px; padding-bottom: 80px; }
 .more__list { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 48px; }
 .more-card {
   width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 50px;
@@ -544,7 +556,7 @@ p { text-wrap: pretty; }
 .about-now__title { font: 400 var(--title)/var(--title-lh) var(--serif); letter-spacing: -0.04em; white-space: nowrap; padding: 39px 0 40px; border-top: 1px solid var(--rule); }
 .about-row { display: flex; align-items: flex-start; gap: 19px; padding: 29px 0 30px; border-top: 1px solid var(--rule); }
 .about-row p:first-child { padding-right: 0.72px; } /* Figma's trailing letter-spacing compensation */
-.about-photo { box-shadow: 0 4px 4px rgba(0, 0, 0, .25); transition: transform .3s ease-out; }
+.about-photo { transition: transform .3s ease-out; }  /* no shadow: it was the only shadowed object on a flat site */
 .about-photo:hover { transform: rotate(2deg); }
 @media (min-width: 800px) {
   .about-bio { padding: 200px 0 100px; }
@@ -572,6 +584,8 @@ p { text-wrap: pretty; }
   .link-fade { transition: none; }
 }
 /* Skills block: same rows as "Right now I am...", but content-height and wrapping values */
-.about-now--work .about-row p:last-child { white-space: normal; line-height: 1.6; }  /* these wrap; 1.03 leading stacked the lines on phones */
+.about-now--work .about-row p:last-child { white-space: normal; }
+/* 두 칸 같은 행간 — 값만 1.6 이면 라벨이 값보다 4px 위에 떴다 / both cells share the leading; with only the values at 1.6 the label sat 4px above them */
+.about-now--work .about-row p { line-height: 1.6; }
 .about-now--work a { text-decoration: var(--ul); text-underline-offset: var(--ul-offset); }
 @media (min-width: 800px) { .about-now--work, .about-now--work .about-now__title { height: auto; } }

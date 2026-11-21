@@ -127,3 +127,21 @@ Critique (dual-agent): 16/24 (67%, Acceptable), P1 ×3, P2 ×2; snapshot in `.im
 **Checks**: sitecheck all ok. 13 pages × 390/800/1024/1440: no horizontal overflow, no page errors; the only text outside a box is the AI page's chapter-2 head (+50px, same on the old CSS). Detector after: home, visual, about 0 at both widths (before: tracking/leading hits at 390); kits-bf 2 heading-rhythm; PDP only demo-store false positives and the em-dash advisory.
 
 **Not done**: the heatmap figure is left full height (cropping would cut the "nobody reached the bottom" evidence); the avatar keeps its shadow (identity from the original).
+
+## 2026-11-21 (later) — critique rerun (16/24, P1 ×2) and second round of fixes
+
+Rerun scored 16/24 again (17 with the guide re-check), with new P1s: the work doesn't lead, and the Visual copy reads like another author. Han: do everything at once; use existing images; demote Visual to evidence.
+
+**Done**
+- Cards: media 7/12 from 800; phones stack media first, full width, the phone recording centred on a `--paper-alt` stage (was a ~150px side thumbnail).
+- Case heroes: recordings on a `--tint` stage at the demo width (`min(70rem, 100vw − 374px)` from 1200).
+- Visual as evidence: the home page gets an "Also: visual work" row (the More projects cards, five projects, "All visual work" link). `/visual/` and the nav link stay because links went out.
+- Visual copy, form only (no new claims): sentence case subtitles, bold run-ins with periods, curly quotes, "After Effects", "visual", "Step 1–4", chapter colons; labels client · kind (KITS · Campaign / Event identity / Generative AI, Several clients · Packaging and 3D, Self-directed · Game UI). About "McDonald's".
+- God of War card: new square crop of the mock-up panel and Kratos (`card-god-of-war-sq-{480,800,828}.webp`), no cut text or black band. The God of War page keeps the 16:9 originals.
+- Captions: one role (serif 14, muted, left) for figure, comparison and demo captions. PDP heatmap shows its top at 16:9 with "Show the full scroll" for the whole image.
+- Guide: also settles on the last section above the 45% line 150ms after scrolling stops (jumps skipped the 5% band). Rerun's "stuck on Decisions" did not reproduce with continuous scrolling.
+- About: label and value rows share leading (label sat 4px high); photo shadow removed. Next-case arrow spaced (the leading space collapsed inside the inline-block).
+
+**Checks**: sitecheck all ok; 13 pages × 390/800/1024/1440 no overflow, no page errors. Detector: home 3 heading-rhythm on subgrid card titles (false positive), visual and about 0, PDP only demo-store hits and the em-dash advisory.
+
+**Not done**: a captured pre-order badge for the Pre-order card (needs a product currently on pre-order); the baked-in sans "Before / After" inside `01-pdp/03.jpg`.

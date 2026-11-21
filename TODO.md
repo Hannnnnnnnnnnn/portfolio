@@ -47,6 +47,9 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 - [ ] Re-run `/impeccable critique` after Han has looked at the changes (first run 16/24).
 - [ ] KITS BF: section heads have about as much space below as above (detector heading-rhythm); kits-invest `.cs-text--keep` still keeps a 100px right inset on phones.
 - [ ] Case writing: 34–58 em dashes per case (detector advisory).
+- [ ] Visual card labels have no years (client · kind). Han: years for Generative AI and Packaging/3D, and is the AI persona work for KITS? (label says KITS · Generative AI because Chapter 2 is a KITS campaign).
+- [ ] Pre-order card: add a real artifact (badge or confirmation state) when a product is on pre-order to capture.
+- [ ] PDP `01-pdp/03.jpg` has baked-in sans "Before / After" headings; re-export without them if the source exists.
 - [ ] Merge `main` into `case/tricity-popup` before the next session there (both touched `style.css`, `case-skin.css`, `product/pdp`).
 
 ## Later / nice to have

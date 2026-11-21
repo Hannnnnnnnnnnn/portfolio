@@ -74,3 +74,31 @@ main.case .prose .tags li { padding: 0; border: 0; }
 /* 지표 줄도 본문 ul 규칙(왼쪽 18.4px, 최대 38rem)을 물려받아 들여 써지고 위 선이 메타 표보다 짧았다 — 태그와 같은 처리 /
    The metrics row inherited the prose ul padding and cap: inset 18px, its rule 128px shorter than the meta table's */
 main.case .prose .metrics { padding-left: 0; max-width: none; }
+
+/* 캡션은 한 역할 — 세리프 14, --muted, 왼쪽. 그림은 모노 라벨, 데모는 세리프 14.4px 로 두 가지였다 (2026-11-21) /
+   One caption role: serif 14, muted, left. Figures used the mono label and demos a 14.4px serif */
+main.case :is(.figure figcaption, .cmp__side figcaption, .demo__caption) {
+  font: 400 14px/1.55 var(--serif); letter-spacing: 0; text-transform: none; color: var(--muted); text-align: left;
+}
+
+/* 다음 케이스 화살표: inline-block 앞의 공백은 접혀서 제목에 붙었다 / the leading space inside the inline-block collapsed, so the arrow touched the title */
+main.case .case-nav__title::after { content: "\2192"; margin-left: 0.3em; }
+
+/* 히어로 녹화는 회색 무대 위, 데모·비교와 같은 폭 — 흰 화면에 떠 있었다 /
+   The hero recordings sit on a paper stage at the demos' width; they floated on white */
+main.case .prose > .snaps--pair { background: var(--tint); padding: 1rem; }
+@media (min-width: 800px) {
+  main.case .prose > .snaps--pair { padding: 2rem; min-height: 36rem; }
+  main.case .prose > .snaps--pair .snap--desktop { top: 2rem; right: 2rem; width: calc(68% - 2rem); }
+}
+@media (min-width: 900px) { main.case .prose > .snaps--pair { width: min(70rem, calc(100vw - 100px)); } }
+@media (min-width: 1200px) { main.case .prose > .snaps--pair { width: min(70rem, calc(100vw - 374px)); } }
+
+/* 긴 세로 그림은 위쪽만 보여주고 전체는 펼쳐서 — 히트맵이 한 화면을 거의 읽을 것 없이 채웠다 /
+   A tall figure shows its top; the full image opens below. The heatmap filled a screen with almost nothing to read */
+main.case .peek { aspect-ratio: 16 / 9; overflow: hidden; }
+main.case .peek img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+main.case .peek__more { margin-top: 0.6rem; }
+main.case .peek__more summary { cursor: pointer; font: 500 var(--label)/1.4 var(--mono); letter-spacing: -0.72px; color: var(--muted); }
+main.case .peek__more img { margin-top: 0.8rem; }
+main.case .figure:has(.peek) { place-items: normal; }  /* caption and toggle sit left under the figure, not centred by .figure's grid */
