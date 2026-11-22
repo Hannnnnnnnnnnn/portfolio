@@ -49,8 +49,8 @@
 <main id="main" class="section case">
   <nav class="toc label" aria-label="On this page">
     <ol>
-      <li><a href="#problem">Problem</a></li>
-      <li><a href="#research">Research</a></li>
+      <li><a href="#problem">The problem</a></li>
+      <li><a href="#research">What I found</a></li>
       <li><a href="#decisions">Decisions</a>
         <ol class="toc__nums">
           <li><a class="toc__num" href="#decision-1">01</a></li>
@@ -61,7 +61,8 @@
         </ol>
       </li>
       <li><a href="#outcome">Outcome</a></li>
-      <li><a href="#next">Next</a></li>
+      <li><a href="#claims">What I can&rsquo;t claim</a></li>
+      <li><a href="#next">What&rsquo;s next</a></li>
     </ol>
   </nav>
   <div class="prose">
@@ -478,8 +479,7 @@
           </ul>
         </div>
       </div>
-      <p class="mfd__note">The low stock threshold is the exception: it is a section setting in the theme editor, not a metafield, so it is tuned per collection rather than per product.</p>
-      <figcaption class="label muted">One metafield set rendering into the PDP: pairings, bottle count, badge states</figcaption>
+      <figcaption class="label muted">One metafield set rendering into the PDP: pairings, bottle count, badge states. The low stock threshold is the exception: it is a section setting in the theme editor, not a metafield, so it is tuned per collection rather than per product.</figcaption>
     </figure>
 
     <blockquote>
@@ -522,12 +522,12 @@
     <p>Overall conversion rose from <strong>0.284% to 0.349%, +23%</strong>. The interesting part is where it came from.</p>
     <p>Add-to-cart barely moved. What changed was <strong>completion</strong> &mdash; the share of cart sessions finishing checkout went from <strong>20.8% to 25.3%</strong>. The revamp didn&rsquo;t make more people add to cart. It made the people who added more likely to finish.</p>
 
-    <h3>What I can&rsquo;t claim</h3>
+    <h2 id="claims">6 &middot; What I can&rsquo;t claim</h2>
     <p><strong>Add-to-cart is not a clean result.</strong> The same metric points three ways depending on the window: <strong>+26%</strong> on a tight post-launch window, <strong>+7%</strong> on the official windows, <strong>&minus;44%</strong> over eight weeks. All three are correctly calculated. The spread comes from product launch cycles, not page design &mdash; during a product drop, add-to-cart hit 10.6% against a 2&ndash;3% baseline, then fell straight back. The before period carried that momentum; the after period had no new drops. So I don&rsquo;t attribute add-to-cart movement to the redesign in either direction.</p>
     <p><strong>AOV fell 9% while orders rose 9%.</strong> Both this and the bundle shift below are downstream of Decision 03. The likely cause is product mix moving toward lower-priced accessories surfaced by &ldquo;Pairs Well With&rdquo; &mdash; bundle variety rose and the single dominant pairing dropped from 26% to 18% of all bundles, which is what a working cross-sell module should produce. I couldn&rsquo;t confirm it at the line-item level, so it stays a hypothesis.</p>
     <p><strong>And the general caveat.</strong> Session volume differed between windows (the after period ran about 12% lighter), URL re-indexing was still in progress during measurement, and no traffic was held back as a control. These are directional results from a live store, not experimental findings.</p>
 
-    <h2 id="next">6 &middot; What&rsquo;s next</h2>
+    <h2 id="next">7 &middot; What&rsquo;s next</h2>
     <p><strong>Measure completion, not volume.</strong> Add-to-cart is dominated by launch cadence and makes a poor success metric for page-level work. Cart completion is what I&rsquo;d hold future PDP iterations to.</p>
     <p><strong>Re-test add-to-cart in a launch-neutral window</strong> &mdash; no product drops in either period &mdash; to isolate the page&rsquo;s actual effect.</p>
     <p><strong>Confirm the cross-sell hypothesis</strong> with line-item attach analysis and Clarity custom events tracking a pairing click through to the specific item added. This is the missing piece of the AOV story.</p>

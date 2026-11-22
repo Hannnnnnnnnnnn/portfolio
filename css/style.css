@@ -242,7 +242,7 @@ p { text-wrap: pretty; }
 
 .cs-figure { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 24px; }
 .cs-figure > .frame { width: 100%; }
-.cs-caption { font-weight: 400; font-size: 14px; line-height: 1.55; letter-spacing: 0; color: var(--ink-soft); text-align: center; }  /* = the case 'Small' role */
+.cs-caption { font-weight: 400; font-size: 14px; line-height: 1.55; letter-spacing: 0; color: var(--ink-soft); text-align: left; }  /* = the case caption role */
 
 .cs-split { width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 24px; }
 .cs-split > .frame { width: 100%; }
@@ -304,6 +304,16 @@ p { text-wrap: pretty; }
 .more-card__title { font-size: var(--display); line-height: var(--display-lh); letter-spacing: -0.04em; }
 .more-card__media { width: 100%; aspect-ratio: 1; }
 .btn--sm { padding-bottom: 3px; line-height: 20px; }
+/* 홈의 Visual 줄은 1280 미만에서 목록으로 — 전체 폭 정사각형 5장이 폰에서 페이지의 57% 였다 (2026-11-22) /
+   Home visual row is a list below 1280: five full-width squares took 57% of the phone page */
+@media (max-width: 1279px) {
+  .more--home .more__list { gap: 0; }
+  .more--home .more-card { display: grid; grid-template-columns: 88px minmax(0, 1fr); align-items: center; gap: 16px; padding: 16px 0; border-top-color: var(--rule); }
+  .more--home .more-card__media { order: -1; }
+  .more--home .more-card__text { gap: 6px; }
+  .more--home .more-card__title { font-size: var(--title); line-height: var(--title-lh); }
+  .more--home .more-card .btn { display: none; }
+}
 
 @media (min-width: 800px) {
   .cs-hero { padding: 200px 100px 39px 0; }

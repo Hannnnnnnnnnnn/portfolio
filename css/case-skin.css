@@ -77,7 +77,7 @@ main.case .prose .metrics { padding-left: 0; max-width: none; }
 
 /* 캡션은 한 역할 — 세리프 14, --muted, 왼쪽. 그림은 모노 라벨, 데모는 세리프 14.4px 로 두 가지였다 (2026-11-21) /
    One caption role: serif 14, muted, left. Figures used the mono label and demos a 14.4px serif */
-main.case :is(.figure figcaption, .cmp__side figcaption, .demo__caption) {
+main.case :is(.figure figcaption, .cmp__side figcaption, .demo__caption), main.case figcaption.label.muted {
   font: 400 14px/1.55 var(--serif); letter-spacing: 0; text-transform: none; color: var(--muted); text-align: left;
 }
 

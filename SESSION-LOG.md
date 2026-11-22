@@ -145,3 +145,18 @@ Rerun scored 16/24 again (17 with the guide re-check), with new P1s: the work do
 **Checks**: sitecheck all ok; 13 pages × 390/800/1024/1440 no overflow, no page errors. Detector: home 3 heading-rhythm on subgrid card titles (false positive), visual and about 0, PDP only demo-store hits and the em-dash advisory.
 
 **Not done**: a captured pre-order badge for the Pre-order card (needs a product currently on pre-order); the baked-in sans "Before / After" inside `01-pdp/03.jpg`.
+
+## 2026-11-22 — critique run 3 (26/32, P1 ×2) and fixes
+
+Run 3 scored 26/32 (7 and 10 n/a; earlier runs scored 16/24 with four n/a). Han: the image's KITS numbers are right; compact list for the phone Visual row; fix all P1 + P2.
+
+**Done**
+- KITS Black Friday: text matched to its own image ($5.8M week +22% YoY; 16,800 glasses units +35%, $1.2M glasses revenue; was +35% / 16,900 / +47%). Copy rewritten in the product-case voice: says what Han made, reports sales as company results, drops "led", "directly contributing", "maximized engagement", "proving". Same fix on the /visual/ card subtitle and llms.txt.
+- Home Visual row: below 1280 a list (88px thumb, label, title, no button). Phone: 840px, was 3554px.
+- Home product card labels: one outcome instead of dates (+23% conversion / +8.2% product click-through / Self-initiated).
+- Captions: sentence captions marked `figcaption.label.muted` (PDP 5, PLP 7, Pre-order 4, Header 3) now use the caption role; short device labels stay mono. `.cs-caption` left-aligned on Visual pages. PDP metafield note merged into its caption.
+- "What I can't claim" is section 6 in PDP and PLP (was an h3 at 36px inside Outcome); section guides on all cases use the heading text.
+
+**Checks**: sitecheck all ok; no overflow at 390/1024/1440 on home.
+
+**Not done**: About résumé link size, Pre-order card empty space, PLP hero metric order, Investors Deck subtitle (minor observations).
