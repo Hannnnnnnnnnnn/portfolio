@@ -176,3 +176,22 @@ Run 3 scored 26/32 (7 and 10 n/a; earlier runs scored 16/24 with four n/a). Han:
 - In zsh, `for f in $VAR` does not split on newlines: a loop over a file list ran once with the whole list as one name and reported every page as "no icon". Pipe to `xargs` or `while read`.
 
 **Next**: the favicon and the root's Header case are now shared with `~/P`: change them in both. `tools/critA.mjs` is untracked and not from this session.
+
+## 2026-11-22 (later) — critique run 4 (23/32, P1 ×1) and fixes
+
+Run 4 checked the numbers harder and scored 23/32. Earlier fixes all held. Han: PLP card label "43-day split test"; drop +9.4% from the PLP hero; fix P1 + P2 except case length.
+
+**Done**
+- Home PLP label "+8.2% product click-through" → "43-day split test" (the +8.2% is not significant, CI −18% to +35%, as the case itself says).
+- PLP hero metrics: "+9.4% actual scroll distance" removed (page-length arithmetic; raw scroll 37.74% vs 37.76%).
+- PDP: "+51%" scroll depth no longer bold in the Engagement table (Decision 02 already explains the page got ~4× shorter).
+- Outcome opens with a statement h3 like Problem: PDP "Conversion rose 23%, from checkout completion, not add-to-cart." PLP "The result matched the prediction. The test couldn't confirm it."
+- "4 · What shipped" has `id="shipped"` and a guide entry (PDP, PLP).
+- Résumé link in the footer of every page. About: "this year" (was "last year" for 2026 work), "Five years into my career".
+- Double captions merged (PLP metafield figure, Pre-order email chain).
+- Statement h3 after body text gets 2.5rem above (PLP "It is not…" h3s had 16px above and below).
+- DESIGN-SYSTEM.md: nav is Product / About (Visual tab dropped 2026-11-21).
+
+**Checks**: sitecheck all ok; 13 pages × 390/800/1024/1440 no overflow, no page errors.
+
+**Open (Han)**: PDP Problem says top-3 product pages had 1.0–1.7% search CTR, the Outcome table starts mobile search CTR at 7.47%. The scope of the 7.47% (all queries? all PDPs?) isn't recorded anywhere; state it once known. Not done by choice: "In short" summaries and shorter Try-it boxes (case length).

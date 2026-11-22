@@ -36,6 +36,8 @@ main.case :is(.prose h3, .hero-type, .case-nav__title) {
 /* h2 바로 아래 작은 소제목 — 개요상 h3 이지만 모양은 원본 h4 그대로 (2026-11-18) /
    Small subheads straight under an h2: an h3 in the outline (no skipped level), styled as the original h4 */
 main.case .prose h3.h-minor { margin: 1.75rem 0 0.5rem; max-width: none; font-size: 1rem; line-height: inherit; font-weight: 700; letter-spacing: -0.01em; }
+/* 문단 뒤에 오는 진술문 소제목은 위 여백이 0 이라 위아래 16px 로 붙었다 (2026-11-22) / a statement subhead after body text had 16px above and below */
+main.case .prose > :not(h2) + h3:not(.h-minor) { margin-top: 2.5rem; }
 main.case .metric-value { font-weight: 400; font-size: var(--display); line-height: var(--display-lh); letter-spacing: -0.04em; }
 
 /* underlines: the site token instead of the original's auto/0.2em */
