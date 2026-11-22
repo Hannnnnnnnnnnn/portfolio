@@ -160,3 +160,19 @@ Run 3 scored 26/32 (7 and 10 n/a; earlier runs scored 16/24 with four n/a). Han:
 **Checks**: sitecheck all ok; no overflow at 390/1024/1440 on home.
 
 **Not done**: About résumé link size, Pre-order card empty space, PLP hero metric order, Investors Deck subtitle (minor observations).
+
+## 2026-11-05 – 11-21 — Pre-order placeholder, root vs /portfolio diff, HK favicon, Visual tab dropped
+
+**Done**
+- Pre-order card: grey placeholder removed (`8253770`), text-only card. Desktop hover fades only `.card__media`, so the rule is now `.card:has(.card__media):hover`: a card without media keeps the whole-card fade.
+- Root site vs `/portfolio/`: the four case pairs (work-1–4 ↔ pdp / plp / preorder / header) have the same visible and hidden text (textContent) and byte-identical media. Differences are style only: the root uppercases labels in Helvetica Neue, here they keep their case in Source Code Pro. Both copies of Header & Homepage still print the hero video paths as placeholder text (recordings pending).
+- Favicon: HK initials (#0a0a0a rounded square, white Helvetica Neue bold), rendered in Chrome to 64px `favicon.png` + 180px `apple-touch-icon.png`. Same bytes on both sites: root `~/P` (`651465b`, Han asked to touch the root for this) and here `assets/img/` on all 13 pages (`f2b634d`).
+- Nav: Visual tab removed from all 13 pages (`73ade24`); nav is Product / About. The home "Also: visual work" row links all five projects + "All visual work". `/visual/` stays for links already sent out.
+
+**Checks**: sitecheck all ok after each change; Pages builds `built`, live bytes = local for the changed files; nav one row and no overflow at 1440 / 390 on home, KITS BF, `/visual/`, PDP.
+
+**Lessons**
+- Text diffs from `innerText` pick up `text-transform`: the first root-vs-portfolio diff was all uppercase noise. Diff case-insensitively, or `textContent`, which also covers hidden demo states.
+- In zsh, `for f in $VAR` does not split on newlines: a loop over a file list ran once with the whole list as one name and reported every page as "no icon". Pipe to `xargs` or `while read`.
+
+**Next**: the favicon and the root's Header case are now shared with `~/P`: change them in both. `tools/critA.mjs` is untracked and not from this session.
