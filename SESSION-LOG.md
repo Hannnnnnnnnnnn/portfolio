@@ -197,3 +197,10 @@ Run 4 checked the numbers harder and scored 23/32. Earlier fixes all held. Han: 
 **Checks**: sitecheck all ok; 13 pages × 390/800/1024/1440 no overflow, no page errors.
 
 **Open (Han)**: PDP Problem says top-3 product pages had 1.0–1.7% search CTR, the Outcome table starts mobile search CTR at 7.47%. The scope of the 7.47% (all queries? all PDPs?) isn't recorded anywhere; state it once known. Not done by choice: "In short" summaries and shorter Try-it boxes (case length).
+
+## 2026-11-22 — Case length (left over from critique run 4)
+
+- "In short" under the meta list on PDP, PLP, Pre-order: Problem / Decisions / Result / Caveat, each one sentence or two, all taken from the case's own copy. `.meta.meta--brief`, no top rule so it reads as part of the facts block. Header cases (unlisted, outcome pending) skipped.
+- Try-it captions cut to one sentence (PDP pairs, reviews, stock; PLP card, badge). What they used to explain moved into the decision prose: PLP Add to cart appears only after a colour is picked; PLP card and product-page badges are one component at two sizes; PDP reviews are an accordion row, not a block; PDP badges share one slot and the first matching rule wins (from the Liquid).
+
+**Checks**: sitecheck all ok; 13 pages × 390/800/1024/1440 no overflow, no page errors.

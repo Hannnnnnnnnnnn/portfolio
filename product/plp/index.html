@@ -93,6 +93,13 @@
       <dt>Tools</dt><dd>Shopify split testing, Microsoft Clarity, Shopify Analytics, Liquid, Figma</dd>
     </dl>
 
+    <dl class="meta meta--brief" aria-label="In short">
+      <dt>Problem</dt><dd>Half our paid visitors land on a collection page and never see the homepage, so the grid has to introduce the brand.</dd>
+      <dt>Decisions</dt><dd>Took quick view and repeated brand lines off the card, then added a PET bottle badge and a store-wide bottle count, both read from one metafield.</dd>
+      <dt>Result</dt><dd>Product click-through moved from 9.05% to 9.80%, inside the predicted +5&ndash;15%. Badges reached 58% of visitors at the first row.</dd>
+      <dt>Caveat</dt><dd>The split was store-wide but the change was on one page, so only 2,327 visitors saw it. The confidence interval runs from &minus;18% to +35%.</dd>
+    </dl>
+
     <div class="snaps snaps--pair">
       <figure class="snap snap--mobile">
         <div class="snap__scroll snap__scroll--video">
@@ -178,16 +185,10 @@
       <p>I turned it off. One section setting removes both triggers at once, and the theme keeps the markup, so it is reversible rather than deleted. The top-right it held is still empty; the PET badge went to the top-left, which was free. The point wasn&rsquo;t to swap one mark for another in the same spot &mdash; it was that the card now carries one always-visible mark where it used to carry two that a phone could never reveal.</p>
       <p><strong>The filter got smaller, not removed.</strong> The whole catalogue is 60 products &mdash; bags, accessories and straps together &mdash; so not many people were ever going to need a filter to get through it. It went from a full-width button with an icon to plain underlined text with a plus after it: still there for anyone who wants it, but no longer sized like a catalogue you have to narrow down before you can shop.</p>
       <p><strong>The card&rsquo;s own hierarchy got re-cut too.</strong> The old card opened with a row that paired the vendor &mdash; &ldquo;Atacz&rdquo;, on an Atacz-only store &mdash; with the colour swatches pushed to its far right, then the title at 15px, the price at 18px, and a star rating under it. Every product said the same brand name. And most products have no reviews at all, so a rating row on a grid is mostly an empty slot pretending to be information &mdash; it belongs on the product page, shown only for the products that actually have one.</p>
-      <p>So the vendor and the rating came off, the title went to 12px and the price to 14px, and the swatches moved out of that row to sit beneath the price. On a grid where the photo is doing the selling, the name and the price are what should be read next &mdash; not a brand line that never varies, and not a row of dots you can&rsquo;t act on until the bag has already interested you.</p>
+      <p>So the vendor and the rating came off, the title went to 12px and the price to 14px, and the swatches moved out of that row to sit beneath the price. On a grid where the photo is doing the selling, the name and the price are what should be read next &mdash; not a brand line that never varies, and not a row of dots you can&rsquo;t act on until the bag has already interested you. Picking a colour is also what brings up <em>Add to cart</em> on the new card: a card with several colours has nothing specific to add until one is chosen, so the button doesn&rsquo;t exist before that.</p>
       <div class="demo" data-demo-card>
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">The two versions side by side, both lifted from the themes that ran them. Hover either photo. On the left,
-          the circular quick-view button appears in the top-right and <em>Choose options</em> slides over the photo &mdash; both only on
-          hover, inside an <code>@media (hover: hover)</code> block, so a phone got neither. On the right the top-right stays empty,
-          the PET badge is always visible, and the photo carries one button instead of two. Below the photo the card is retuned too: the vendor line and the star rating come off, the title drops from the theme&rsquo;s default 15px to 12px and the price from 18px to 14px, and the colour swatches leave the vendor&rsquo;s row to sit under the price &mdash; so name and price read first.</p>
-        <p class="demo__caption">Pick a colour on either card: the photo swaps in place and hovering it reveals that colour&rsquo;s second shot.
-          Only on the right does that raise <em>Add to cart</em> &mdash; on the live page the button does not exist until a variant is chosen,
-          because a card with several colours has nothing specific to add yet.</p>
+        <p class="demo__caption">Both cards are lifted from the themes that ran them: hover either photo, then pick a colour on each.</p>
         <div class="demo__pair">
         <div class="demo__col demo__col--before">
           <p class="demo__colhead label">Before</p>
@@ -277,7 +278,7 @@
         <li><strong>On a product card</strong>, it renders as a badge &mdash; <em>this bag = N bottles</em></li>
         <li><strong>On the collection page</strong>, it feeds a running total, computed by reading orders across all channels and summing the count for every item sold</li>
       </ul>
-      <p><strong>Nobody updates that number.</strong> It isn&rsquo;t a claim about the brand; it&rsquo;s an accumulating fact, and it goes up whether or not anyone remembers to maintain it. The same field powers the individual story and the cumulative one, so the two can never contradict each other.</p>
+      <p><strong>Nobody updates that number.</strong> It isn&rsquo;t a claim about the brand; it&rsquo;s an accumulating fact, and it goes up whether or not anyone remembers to maintain it. The same field powers the individual story and the cumulative one, so the two can never contradict each other. The badge on a card and the one on the product page&rsquo;s photo are the same component at two sizes, reading that one field.</p>
       <p><strong>Placement.</strong> Between the banner and the grid is the one point every scrolling visitor passes before seeing a single product. Brand context arrives before the shopping starts, without a section anyone has to choose to read.</p>
       <figure class="figure figure--diagram">
         <div class="mfd">
@@ -305,9 +306,7 @@
       </figure>
       <div class="demo">
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">One value, every place it surfaces. Hover or tap either badge &mdash; the card size and the product-media size
-          are the same component at different dimensions, reading the same field. Below them is that field read at the other
-          scale: every badge in the store, summed across orders. Nobody types any of these numbers in.</p>
+        <p class="demo__caption">Hover or tap either badge, then read the same field summed across every order below them.</p>
         <div class="demo__stage demo__stage--pair">
           <figure class="pet">
             <div class="pet__photo">

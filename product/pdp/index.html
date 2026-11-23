@@ -94,6 +94,13 @@
       <dt>Tools</dt><dd>Google Search Console, Microsoft Clarity, Shopify Analytics, Liquid, Figma</dd>
     </dl>
 
+    <dl class="meta meta--brief" aria-label="In short">
+      <dt>Problem</dt><dd>Search found the top product pages, but only 1.0&ndash;1.7% clicked through, and 74% of those clicks were on mobile, on a page built desktop-first.</dd>
+      <dt>Decisions</dt><dd>Cut the page to about a quarter of its height, put pairings directly under Add to cart, and made reviews and badges appear only when they are true.</dd>
+      <dt>Result</dt><dd>Conversion rose from 0.284% to 0.349%. The gain came from more carts finishing checkout, not from more adds to cart.</dd>
+      <dt>Caveat</dt><dd>Two five-week windows compared before and after, with no control group. Directional, not experimental.</dd>
+    </dl>
+
     <div class="snaps snaps--pair">
       <figure class="snap snap--mobile">
         <div class="snap__scroll snap__scroll--video">
@@ -162,7 +169,7 @@
       <p><strong>The real problem was inconsistency, not performance.</strong> The same template rendered completely differently depending on the product &mdash; some pages showed a healthy review block, most showed an empty shell. A customer moving between two bags saw two different pages. And an empty review section doesn&rsquo;t read as &ldquo;new product.&rdquo; It reads as &ldquo;nobody bought this.&rdquo; The engagement data supported removal, but consistency is why I removed it.</p>
       <p><strong>The pushback.</strong> Marketing&rsquo;s position was direct: reviews build trust, and we&rsquo;d removed trust.</p>
       <p>They were right about the goal. The disagreement was about what an empty block communicates. Removing proof and displaying the absence of proof aren&rsquo;t the same thing.</p>
-      <p><strong>What I shipped instead of restoring it.</strong> A conditional section &mdash; products with reviews render it, products without don&rsquo;t render the block at all. Marketing&rsquo;s goal met, catalog consistency preserved. Review collection continued through email marketing the whole time.</p>
+      <p><strong>What I shipped instead of restoring it.</strong> A conditional row in the accordion rather than a block of its own &mdash; products with reviews render it, products without don&rsquo;t render it at all, so the page never shows an empty shell where proof should be. Marketing&rsquo;s goal met, catalog consistency preserved. Review collection continued through email marketing the whole time.</p>
       <p><strong>In hindsight, that&rsquo;s what should have shipped first.</strong> Removing it outright was the faster call and it stopped the inconsistency immediately, but it also discarded working signal on the products that had it.</p>
       <div class="cmp">
         <figure class="cmp__side">
@@ -177,7 +184,7 @@
         <div class="cmp__side">
           <p class="cmp__label label">After &mdash; try it</p>
           <div class="demo" data-demo-reviews>
-            <p class="demo__caption">Reviews became a row in the accordion, not a block of its own. Switch the product: with reviews the row renders, without them it isn&rsquo;t rendered at all &mdash; the page never shows an empty shell where proof should be.</p>
+            <p class="demo__caption">Switch the product: with reviews the row renders, without them nothing does.</p>
             <div class="demo__stage">
               <div class="acc">
             <details class="acc__row">
@@ -251,7 +258,7 @@
       <p><strong>Trade-off.</strong> Anything placed directly under the primary CTA competes with it. A cross-sell module there risks pulling attention off the purchase at the worst possible moment. I accepted that because the module points deeper into the catalog rather than away from it, and I watched quick-back-click rate as the tripwire &mdash; it fell from 4.79% to 4.44%.</p>
       <div class="demo" data-demo-pairs>
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">Where it sits is the argument, so the Add to Cart button above it is part of the reproduction. Scroll the row sideways &mdash; the pairings are the nine the live product actually carries, and each card adds to cart on its own.</p>
+        <p class="demo__caption">Scroll the row sideways: these are the nine pairings the live product carries, and each card adds to cart on its own.</p>
         <div class="demo__stage">
           <div class="pdp pdp--pairs">
             <button class="pdp__cta" type="button">Add to cart</button>
@@ -382,9 +389,10 @@
       <p>Two badges replaced the payment badges we removed. Both are designed so they stop being shown the moment they stop being true.</p>
       <p><strong>Low stock at 2 units.</strong> Most stores set this threshold generously, because urgency sells. We couldn&rsquo;t: our stock genuinely runs thin, so calling a healthy quantity &ldquo;low&rdquo; would have been technically true and practically dishonest. Two units is where it&rsquo;s simply a fact. The threshold is <strong>configurable 1&ndash;10 in the section schema</strong>, so merchandising can tune it per collection without touching code.</p>
       <p><strong>New expires by itself.</strong> The badge applies the moment a product is created and removes itself after three months, automated through Shopify Flow rather than left to someone&rsquo;s memory. A &ldquo;New&rdquo; badge that outlives its truth is worse than no badge.</p>
+      <p><strong>One slot, so the order is the rule.</strong> Low stock, New and Popular share a single badge position, and the first one that matches wins. A bag that is both new and nearly gone says it is nearly gone.</p>
       <div class="demo" data-demo-stock>
         <span class="demo__label label">Try it</span>
-        <p class="demo__caption">The product information column as it ships. Drag the stock down and the badge appears at 2 &mdash; the point where &ldquo;low&rdquo; is simply a fact. Turn the other two rules on and watch which one the page is willing to show.</p>
+        <p class="demo__caption">Drag the stock down to 2, then turn New and Popular on and see which badge the page shows.</p>
         <div class="demo__stage">
           <div class="pdp">
             <p class="pdp__badge"><span class="product-badge" data-badge hidden></span></p>

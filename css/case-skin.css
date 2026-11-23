@@ -104,3 +104,6 @@ main.case .peek__more { margin-top: 0.6rem; }
 main.case .peek__more summary { cursor: pointer; font: 500 var(--label)/1.4 var(--mono); letter-spacing: -0.72px; color: var(--muted); }
 main.case .peek__more img { margin-top: 0.8rem; }
 main.case .figure:has(.peek) { place-items: normal; }  /* caption and toggle sit left under the figure, not centred by .figure's grid */
+
+/* In short: the case in four lines, right under the facts */
+main.case .meta + .meta--brief { border-top: 0; padding-top: 0; }
