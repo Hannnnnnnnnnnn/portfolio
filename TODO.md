@@ -48,9 +48,12 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 - [ ] KITS BF: section heads have about as much space below as above (detector heading-rhythm); kits-invest `.cs-text--keep` still keeps a 100px right inset on phones.
 - [ ] Case writing: 34–58 em dashes per case (detector advisory).
 - [ ] Visual card labels have no years (client · kind). Han: years for Generative AI and Packaging/3D, and is the AI persona work for KITS? (label says KITS · Generative AI because Chapter 2 is a KITS campaign).
-- [ ] Pre-order card: add a real artifact (badge or confirmation state) when a product is on pre-order to capture.
+- [x] Pre-order card and case hero: recordings of Miffy Urban Twist Bag (Cloud) on pre-order on the US store, captured 2026-11-23 (`assets/case/03-preorder/`).
 - [ ] PDP `01-pdp/03.jpg` has baked-in sans "Before / After" headings; re-export without them if the source exists.
 - [ ] Merge `main` into `case/tricity-popup` before the next session there (both touched `style.css`, `case-skin.css`, `product/pdp`).
+
+- [ ] PDP search CTR scope (Han, 2026-11-23: "put it in the TODO for now"). The Outcome Search table (7.47% → 9.97% mobile, +33%) is atacz.com property-wide: all pages and queries, Web search. Evidence: the Drive GSC export `atacz.com-Performance-on-Search-2026-06-15` (Apr 13–May 12, filter = date only) gives Mobile 10.13 / Desktop 7.33 / Tablet 7.79 / Product snippets 3.24% / mobile position 4.53, against the case's After 9.97 / 7.30 / 7.54 / 3.27 / 4.51. Branded queries (~27% CTR) and the homepage (11%) lift it far above the Problem section's top-3 product pages (1.0–1.7%). The Feb 25–Mar 31 export is not on disk or Drive. Decide: label the table scope and say why it differs, and whether the hero / home / résumé keep "+33% mobile search CTR" (it is site-wide, not PDP-only). The row label "Mobile (74% of traffic)" needs the same scope.
+- [ ] Résumé PDF (`assets/Hanbyoul-Kim-Resume.pdf`, linked in every footer) still says "+51% scroll depth" (page-length arithmetic, un-bolded on the PDP) and "+33% mobile CTR" (site-wide, above). Update the source and re-export.
 
 ## Later / nice to have
 

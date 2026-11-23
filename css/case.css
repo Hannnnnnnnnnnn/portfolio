@@ -1172,11 +1172,14 @@ html.js .prose > *.is-in { opacity: 1; transform: none; }
    가로 스크롤은 네이티브다 — JS 0줄. 레일이 스테이지 밖으로 나가지 않도록 min-width:0
    을 걸어야 한다. 그리드 아이템의 기본 min-width:auto 는 내용만큼 늘어나서, 이게 없으면
    페이지 전체가 가로로 스크롤된다. */
-.demo .pdp--pairs { gap: 1.25rem; }
-.demo .pairs__title { margin: 0; font-family: var(--shop); font-size: 15px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; }
+.demo .pdp--pairs { gap: 25px; }
+/* 2026-11 라이브 개편: 아코디언 한 줄처럼 위에 선, 제목은 문장형 14/16px, 내용은 15px 들여쓰기 (atacz.ca 실측) /
+   Live since Nov 2026: an accordion row with a rule above, a sentence-case 14/16px title, content inset 15px (measured on atacz.ca) */
+.demo .pairs__title { justify-self: stretch; margin: 0 0 -25px; padding: 15px; border-top: 1px solid #0c0c0c; font-family: var(--shop); font-size: 14px; font-weight: 400; line-height: 1.8; letter-spacing: normal; }
 .demo .pairs__rail {
   margin: 0;
-  padding: 0 0 0.75rem;
+  padding: 0 15px 5px;
+  scroll-padding-left: 15px;
   /* 이 세 줄이 없으면 레일이 칸을 넘어 페이지 전체를 가로로 밀어낸다. .pdp 가
      justify-items:start 라 그리드 아이템이 내용 크기로 잡히고, .prose ul 의
      max-width:38rem(608px) 에서 멈춘다 — 부모(370px)보다 넓다. 실측 173px 넘침.
@@ -1188,7 +1191,7 @@ html.js .prose > *.is-in { opacity: 1; transform: none; }
   min-width: 0;
   list-style: none;
   display: flex;
-  gap: 0.75rem;
+  gap: 10px;
   overflow-x: auto;
   overscroll-behavior-x: contain;   /* 끝에서 페이지가 같이 밀리지 않게 / don't chain to the page at the ends */
   scroll-snap-type: x proximity;
@@ -1203,27 +1206,35 @@ html.js .prose > *.is-in { opacity: 1; transform: none; }
      A fixed 132px hit an exact fit at 390px — the most common phone width — leaving a
      0px sliver and no sign the row scrolls. The ratio removes that coincidence while
      still settling at the theme's 132px once there is room. */
-  flex: 0 0 clamp(108px, 40%, 132px);
+  flex: 0 0 170px;
   scroll-snap-align: start;
-  display: grid;
-  gap: 0.35rem;
-  justify-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 .demo .pairs__photo { width: 100%; aspect-ratio: 4 / 5; background: #f0f0f0; }
 .demo .pairs__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.demo .pairs__name { font-size: 12px; line-height: 1.35; letter-spacing: 0.2px; }
-.demo .pairs__price { font-size: 13px; font-weight: 500; letter-spacing: 0.6px; }
+.demo .pairs__name { padding: 7.5px 0 2px; font-size: 12px; line-height: 1.3; letter-spacing: 0.6px; }
+.demo .pairs__variant { margin-left: 4px; font-size: 10px; color: rgba(12, 12, 12, 0.7); }
+.demo .pairs__price { font-size: 14px; font-weight: 500; line-height: 1.5; letter-spacing: 1.3px; }
+.demo .pairs__price .pdp__cur { margin-right: 2px; font-size: 0.7em; }
+.demo .pairs__price .pdp__cents { font-size: 0.6em; }
+.demo .pairs__swatches { display: flex; align-items: center; gap: 4px; margin-top: 2.5px; padding: 5px 0 10px; font-size: 11.67px; }
+.demo .pairs__swatches i { width: 14px; height: 14px; border-radius: 50%; background: var(--c); }
+.demo .pairs__swatches i.is-active { box-shadow: 0 0 0 1.5px #fff, 0 0 0 2.5px #0c0c0c; }
+.demo .pairs__swatches small { margin-left: 2px; font-size: inherit; }
 .demo .pairs__add {
   width: 100%;
-  margin-top: 0.15rem;
-  padding: 0.5rem 0;
+  margin-top: auto;
+  padding: 8px 12px;
+  min-height: 34px;
   border: 1px solid #0c0c0c;
-  background: #fff;
-  color: #0c0c0c;
+  background: #0c0c0c;
+  color: #fff;
   font-family: var(--shop);
-  font-size: 11px;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
   cursor: pointer;
 }
 /* 좁은 화면에서는 레일만 .pdp 패딩 밖으로 흘려보낸다 — 320px 에서 카드가 1.3개밖에
@@ -1240,9 +1251,14 @@ html.js .prose > *.is-in { opacity: 1; transform: none; }
        카드 2가 341 에서 끝나고 카드 3이 353 = 레일 오른쪽 끝에서 시작했다).
        Right padding is 0: with 28px on both sides the next card starts exactly at the
        rail's edge, the sliver becomes 0px and the row stops looking scrollable. */
-    padding-inline: 1.75rem 0;
-    scroll-padding-left: 1.75rem;
+    padding-inline: calc(1.75rem + 15px) 0;
+    scroll-padding-left: calc(1.75rem + 15px);
   }
+  /* 폰 실측: 카드 180px, 이름 10px, 가격 12px, 이름 옆 색상명 없음 / phone, measured: 180px cards, 10px name, 12px price, no colour name */
+  .demo .pairs__card { flex-basis: 180px; }
+  .demo .pairs__name { font-size: 10px; }
+  .demo .pairs__variant { display: none; }
+  .demo .pairs__price { font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { .demo .pairs__rail { scroll-behavior: auto; } }
 

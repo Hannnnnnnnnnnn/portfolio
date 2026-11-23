@@ -175,14 +175,6 @@ p { text-wrap: pretty; }
 .card__text { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 19px; }
 .card__sub { font-weight: 400; font-size: 17px; line-height: 1.4; letter-spacing: 0; }
 .card__media { flex: 1 1 0; min-width: 0; aspect-ratio: 1; }
-/* 화면 녹화가 없는 케이스: 그 케이스가 만든 문장 자체를 보여준다 (pre-order 히어로의 문구) /
-   A case without a recording shows the sentence it designed (the pre-order hero line) */
-/* 패딩은 p 에 — 플렉스 항목 자체에 % 패딩을 주면 칸이 다른 카드의 미디어보다 넓어졌다 / padding sits on the p: on the flex item it widened the column past the other cards' media */
-.card__type { display: grid; align-content: center; background: var(--paper-alt); }
-.card__type p { padding: 0 12%; font-size: var(--title); line-height: var(--title-lh); letter-spacing: -0.04em; text-wrap: balance; }
-/* 폰: 녹화 카드처럼 내용 높이 — 정사각형 안에 문장이 꽉 찼다 / phones: content height like the recording cards; the square left no margin */
-@media (max-width: 799px) { .card__type { aspect-ratio: auto; padding: 24px 0; } .card__type p { padding: 0 16px; font-size: 17px; line-height: 1.4; } }
-@media (min-width: 800px) { .card__type p { font-size: var(--display); line-height: var(--display-lh); } }
 .card .t-label span { white-space: nowrap; }
 /* Product cards: the case pages' opening pair (desktop recording behind, phone in front) from 800px;
    below that, the phone recording alone at its own ratio. The desktop clip never loads on phones (display: none + preload none). */

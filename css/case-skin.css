@@ -28,11 +28,11 @@ main.case .prose h1 {
   font-size: var(--display); line-height: var(--display-lh); letter-spacing: -0.04em;
 }
 /* statement headings = the site's sub-heading (.ai-chapter, 36/43.2), display size on phones */
-main.case :is(.prose h3, .hero-type, .case-nav__title) {
+main.case :is(.prose h3, .case-nav__title) {
   font-weight: 400; text-transform: none;
   font-size: var(--display); line-height: var(--display-lh); letter-spacing: -0.04em;
 }
-@media (min-width: 1280px) { main.case :is(.prose h3, .hero-type, .case-nav__title) { font-size: 36px; line-height: 43.2px; } }
+@media (min-width: 1280px) { main.case :is(.prose h3, .case-nav__title) { font-size: 36px; line-height: 43.2px; } }
 /* h2 바로 아래 작은 소제목 — 개요상 h3 이지만 모양은 원본 h4 그대로 (2026-11-18) /
    Small subheads straight under an h2: an h3 in the outline (no skipped level), styled as the original h4 */
 main.case .prose h3.h-minor { margin: 1.75rem 0 0.5rem; max-width: none; font-size: 1rem; line-height: inherit; font-weight: 700; letter-spacing: -0.01em; }
@@ -88,13 +88,13 @@ main.case .case-nav__title::after { content: "\2192"; margin-left: 0.3em; }
 
 /* 히어로 녹화는 회색 무대 위, 데모·비교와 같은 폭 — 흰 화면에 떠 있었다 /
    The hero recordings sit on a paper stage at the demos' width; they floated on white */
-main.case .prose > .snaps--pair { background: var(--tint); padding: 1rem; }
+main.case :is(.prose, .case-open) > .snaps--pair { background: var(--tint); padding: 1rem; }
 @media (min-width: 800px) {
-  main.case .prose > .snaps--pair { padding: 2rem; min-height: 36rem; }
-  main.case .prose > .snaps--pair .snap--desktop { top: 2rem; right: 2rem; width: calc(68% - 2rem); }
+  main.case :is(.prose, .case-open) > .snaps--pair { padding: 2rem; min-height: 36rem; }
+  main.case :is(.prose, .case-open) > .snaps--pair .snap--desktop { top: 2rem; right: 2rem; width: calc(68% - 2rem); }
 }
-@media (min-width: 900px) { main.case .prose > .snaps--pair { width: min(70rem, calc(100vw - 100px)); } }
-@media (min-width: 1200px) { main.case .prose > .snaps--pair { width: min(70rem, calc(100vw - 374px)); } }
+@media (min-width: 900px) { main.case :is(.prose, .case-open) > .snaps--pair { width: min(70rem, calc(100vw - 100px)); } }
+@media (min-width: 1200px) { main.case :is(.prose, .case-open) > .snaps--pair { width: min(70rem, calc(100vw - 374px)); } }
 
 /* 긴 세로 그림은 위쪽만 보여주고 전체는 펼쳐서 — 히트맵이 한 화면을 거의 읽을 것 없이 채웠다 /
    A tall figure shows its top; the full image opens below. The heatmap filled a screen with almost nothing to read */
@@ -107,3 +107,22 @@ main.case .figure:has(.peek) { place-items: normal; }  /* caption and toggle sit
 
 /* In short: the case in four lines, right under the facts */
 main.case .meta + .meta--brief { border-top: 0; padding-top: 0; }
+
+/* 폰: 첫 화면이 글만 1.5화면이었다 — 녹화를 제목 바로 아래로 (2026-11-23) /
+   phones: the opener was 1.5 screens of text before any screen; the recording moves up under the title */
+@media (max-width: 799px) {
+  main.case .case-open { display: flex; flex-direction: column; }
+  main.case .case-open > .snaps--pair { order: -1; margin: 1.5rem 0 0.5rem; }
+}
+/* 5열 검증 표: 폰에서 결론 열(Verdict)이 잘렸다 — 600 아래에선 행을 쌓는다 / the 5-column table clipped its Verdict column on phones; rows stack below 600 */
+@media (max-width: 599px) {
+  main.case .table-wrap--stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  main.case .table-wrap--stack :is(table, tbody, tr, td) { display: block; }
+  main.case .table-wrap--stack table { min-width: 0; }
+  main.case .table-wrap--stack tr { padding: 0.75rem 0; border-bottom: 1px solid var(--line); }
+  main.case .table-wrap--stack td { position: relative; padding: 0.15rem 0 0.15rem 9.5rem; border: 0; }
+  main.case .table-wrap--stack td::before { content: attr(data-label); position: absolute; left: 0; top: 0.3rem; width: 8.5rem; color: var(--muted); font-family: var(--mono); font-size: var(--label); }
+}
+/* 사전주문 데모 버튼·문구는 스토어 컴포넌트 — 다른 데모처럼 Poppins (2026-11-23) / the pre-order button and its line reproduce the store, so they use Poppins like the other demos */
+main.case .demo :is(.resolver__cta, .resolver__copy) { font-family: var(--shop); }
+main.case .demo .resolver__copy { font-size: 12px; }

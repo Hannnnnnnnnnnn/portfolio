@@ -204,3 +204,16 @@ Run 4 checked the numbers harder and scored 23/32. Earlier fixes all held. Han: 
 - Try-it captions cut to one sentence (PDP pairs, reviews, stock; PLP card, badge). What they used to explain moved into the decision prose: PLP Add to cart appears only after a colour is picked; PLP card and product-page badges are one component at two sizes; PDP reviews are an accordion row, not a block; PDP badges share one slot and the first matching rule wins (from the Liquid).
 
 **Checks**: sitecheck all ok; 13 pages × 390/800/1024/1440 no overflow, no page errors.
+
+## 2026-11-23 — Critique run 5 (23/32): fixes
+
+- PDP 7.47% traced: atacz.com property-wide mobile search CTR (Drive GSC export devices tab matches the After column). Han: TODO for now. Résumé PDF still carries +51% / +33% — TODO.
+- PLP "this store is 97% mobile" → "97% of this page's visits came from phones" (MEDIA-MAP draft ties 97% to the test page, desktop 7 vs 11 sessions; Drive Clarity snapshots for /collections/miffy-ads-ca agree).
+- PLP Decision 03: dead clicks −14% / bounce-backs −9% marked as a direction, each within chance.
+- Pre-order: hero and home card are now recordings of Miffy Urban Twist Bag (Cloud) on pre-order, US store. Capture notes: atacz.com geo-redirects a Canadian IP to .ca (server on first hit, then `region-redirect-modal` submits the localization form) — load twice, block the localization submit, hide the modal. Phone video is frame-by-frame screenshots at DPR 2 (Playwright recordVideo pads DPR 2 to a quarter frame). `.card__type` and `.hero-type` styles removed.
+- Phones: `.case-open` puts the hero recording right under the lead below 800.
+- Pre-order verification table stacks below 600 (Verdict was clipped).
+- About "That work is under Visual" → "on the visual work page". Titles "Page — Han Kim" everywhere (header drafts untouched). `404.html` added.
+
+**Not done**: PLP counter 124,887.5 inside the hero recording (re-record needed); Pre-order demo button still in the site serif.
+- PDP Decision 03 demo matches the live "Pair well with" (Han: recently redesigned). Measured on atacz.ca twist-bag: accordion row with a rule above, sentence-case title 14/16px with 15px inset, 170px cards (180 on phones), name 12px (10 on phones) with "– colour" on desktop, price 14px (12) with small $ and superscript cents, 14px swatch dots (averaged from the live swatch images) + "+N", black "Add to Cart" 34px button. Eight pairings now (ATACZ x Paneco Keychain gone, image removed); Blue Plastic Letters shows "View product". "Pairs Well With" renamed to "Pair well with" in the case and llms.txt. The root site's work-1.html still has the old demo.

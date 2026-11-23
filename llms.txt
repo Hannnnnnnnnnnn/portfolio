@@ -37,7 +37,7 @@ Decisions worth reading:
 - Cut the page to roughly a quarter of its length, keeping the collapsed
   description server-rendered so crawlers still saw it, verified in Search
   Console before shipping.
-- Put "Pairs Well With" directly under Add to Cart — the placement is the
+- Put "Pair well with" directly under Add to Cart — the placement is the
   argument — with add-to-cart on each pairing card, extended to every PDP.
   This forced a migration from one theme template per product to a single
   metafield-driven template.

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pre-order Experience &mdash; Hanbyoul Kim</title>
+<title>Pre-order Experience — Han Kim</title>
 <meta name="description" content="A self-initiated system that turned stockouts into pre-orders &mdash; and taught me that measurement is part of the design.">
 <link rel="canonical" href="https://hannnnnnnnnnnn.github.io/portfolio/product/preorder/">
 
@@ -70,32 +70,51 @@
     <h1>Designing an honest &ldquo;later&rdquo;</h1>
     <p class="lead">Turning stockouts into pre-orders without losing customer trust.</p>
 
-    <ul class="tags label">
-      <li>Self-initiated</li>
-      <li>Systems Design</li>
-      <li>Interaction Design</li>
-      <li>UX Writing</li>
-      <li>Front-end Implementation</li>
-      <li>Lifecycle Comms</li>
-    </ul>
+    <div class="case-open">
+      <div class="case-facts">
+      <ul class="tags label">
+        <li>Self-initiated</li>
+        <li>Systems Design</li>
+        <li>Interaction Design</li>
+        <li>UX Writing</li>
+        <li>Front-end Implementation</li>
+        <li>Lifecycle Comms</li>
+      </ul>
 
-    <p class="caveat">Shipped solo, from problem discovery to production. No clean before/after data &mdash; and that&rsquo;s part of the case.</p>
+      <p class="caveat">Shipped solo, from problem discovery to production. No clean before/after data &mdash; and that&rsquo;s part of the case.</p>
 
-    <dl class="meta">
-      <dt>Client</dt><dd>Atacz</dd>
-      <dt>Role</dt><dd>Sole designer and developer &mdash; problem discovery to production</dd>
-      <dt>Timeline</dt><dd>Feb &ndash; Mar 2026 &middot; audited and hardened Sept 2026</dd>
-      <dt>Tools</dt><dd>Liquid, Shopify Flow, Klaviyo, Shopify metafields</dd>
-    </dl>
+      <dl class="meta">
+        <dt>Client</dt><dd>Atacz</dd>
+        <dt>Role</dt><dd>Sole designer and developer &mdash; problem discovery to production</dd>
+        <dt>Timeline</dt><dd>Feb &ndash; Mar 2026 &middot; audited and hardened Sept 2026</dd>
+        <dt>Tools</dt><dd>Liquid, Shopify Flow, Klaviyo, Shopify metafields</dd>
+      </dl>
 
-    <dl class="meta meta--brief" aria-label="In short">
-      <dt>Problem</dt><dd>When stock hit zero the store could only say &ldquo;buy now&rdquo; or nothing, and an oversold launch left customers asking when their order would arrive.</dd>
-      <dt>Decisions</dt><dd>Changed the button itself to promise a shipping window, repeated the promise in a separate email, and made the promise expire and get checked at the order.</dd>
-      <dt>Result</dt><dd>The recurring &ldquo;where is my order&rdquo; thread stopped. Pre-orders became something the store could sell.</dd>
-      <dt>Caveat</dt><dd>Pre-orders couldn&rsquo;t be told apart at the order level until months later, so there is no number for how much it changed.</dd>
-    </dl>
+      <dl class="meta meta--brief" aria-label="In short">
+        <dt>Problem</dt><dd>When stock hit zero the store could only say &ldquo;buy now&rdquo; or nothing, and an oversold launch left customers asking when their order would arrive.</dd>
+        <dt>Decisions</dt><dd>Changed the button itself to promise a shipping window, repeated the promise in a separate email, and made the promise expire and get checked at the order.</dd>
+        <dt>Result</dt><dd>The recurring &ldquo;where is my order&rdquo; thread stopped. Pre-orders became something the store could sell.</dd>
+        <dt>Caveat</dt><dd>Pre-orders couldn&rsquo;t be told apart at the order level until months later, so there is no number for how much it changed.</dd>
+      </dl>
+      </div>
 
-    <p class="hero-type">Pre-order today. Your order is reserved and will ship within 2&ndash;3 weeks.</p>
+      <div class="snaps snaps--pair">
+        <figure class="snap snap--mobile">
+          <div class="snap__scroll snap__scroll--video">
+            <video class="snap__video" src="../../assets/case/03-preorder/hero-mobile.mp4" poster="../../assets/case/03-preorder/hero-mobile-poster.jpg"
+                   width="720" height="1382" autoplay muted loop playsinline preload="metadata"
+                   aria-label="Screen recording: a product on pre-order on the live US store, on mobile. The button reads Pre-order now, with the shipping window under it"></video>
+          </div>
+        </figure>
+        <figure class="snap snap--desktop">
+          <div class="snap__scroll snap__scroll--video">
+            <video class="snap__video" src="../../assets/case/03-preorder/hero-desktop.mp4" poster="../../assets/case/03-preorder/hero-desktop-poster.jpg"
+                   width="1280" height="690" autoplay muted loop playsinline preload="metadata"
+                   aria-label="Screen recording: the same pre-order product page on desktop"></video>
+          </div>
+        </figure>
+      </div>
+    </div>
 
     <h2 id="problem">1 &middot; The problem</h2>
     <h3>Nobody assigned this.</h3>
@@ -414,16 +433,16 @@ const isPreOrder = lineItems.some(function (li) {
 
       <p><strong>How I know it works now.</strong> Five test orders covering both markets and both cross-market directions, plus one real customer order carrying no property at all as the negative control.</p>
 
-      <div class="table-wrap">
+      <div class="table-wrap table-wrap--stack">
         <table>
           <thead><tr><th scope="col">Scenario</th><th scope="col">Property</th><th scope="col">Flag the gate read</th><th scope="col">Tag</th><th scope="col">Verdict</th></tr></thead>
           <tbody>
-            <tr><td>Real customer, ordinary items</td><td>none</td><td>&mdash;</td><td>none</td><td>Negative control</td></tr>
-            <tr><td>CA site &rarr; Canada</td><td>present</td><td><code>preorder_ca</code> true</td><td>tagged</td><td>Correct</td></tr>
-            <tr><td>US site &rarr; United States</td><td>present</td><td><code>preorder_us</code> true</td><td>tagged</td><td>Correct</td></tr>
-            <tr><td>US site &rarr; Canada, before the fix</td><td>present</td><td>either flag</td><td>tagged</td><td>False positive</td></tr>
-            <tr><td>US site &rarr; Canada, after the fix</td><td>present</td><td><code>preorder_ca</code> false</td><td>none</td><td>Fixed</td></tr>
-            <tr><td>US site &rarr; United States, after the fix</td><td>present</td><td><code>preorder_us</code> true</td><td>tagged</td><td>Still passes</td></tr>
+            <tr><td data-label="Scenario">Real customer, ordinary items</td><td data-label="Property">none</td><td data-label="Flag the gate read">&mdash;</td><td data-label="Tag">none</td><td data-label="Verdict">Negative control</td></tr>
+            <tr><td data-label="Scenario">CA site &rarr; Canada</td><td data-label="Property">present</td><td data-label="Flag the gate read"><code>preorder_ca</code> true</td><td data-label="Tag">tagged</td><td data-label="Verdict">Correct</td></tr>
+            <tr><td data-label="Scenario">US site &rarr; United States</td><td data-label="Property">present</td><td data-label="Flag the gate read"><code>preorder_us</code> true</td><td data-label="Tag">tagged</td><td data-label="Verdict">Correct</td></tr>
+            <tr><td data-label="Scenario">US site &rarr; Canada, before the fix</td><td data-label="Property">present</td><td data-label="Flag the gate read">either flag</td><td data-label="Tag">tagged</td><td data-label="Verdict">False positive</td></tr>
+            <tr><td data-label="Scenario">US site &rarr; Canada, after the fix</td><td data-label="Property">present</td><td data-label="Flag the gate read"><code>preorder_ca</code> false</td><td data-label="Tag">none</td><td data-label="Verdict">Fixed</td></tr>
+            <tr><td data-label="Scenario">US site &rarr; United States, after the fix</td><td data-label="Property">present</td><td data-label="Flag the gate read"><code>preorder_us</code> true</td><td data-label="Tag">tagged</td><td data-label="Verdict">Still passes</td></tr>
           </tbody>
         </table>
       </div>
