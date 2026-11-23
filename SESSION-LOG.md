@@ -175,7 +175,9 @@ Run 3 scored 26/32 (7 and 10 n/a; earlier runs scored 16/24 with four n/a). Han:
 - Text diffs from `innerText` pick up `text-transform`: the first root-vs-portfolio diff was all uppercase noise. Diff case-insensitively, or `textContent`, which also covers hidden demo states.
 - In zsh, `for f in $VAR` does not split on newlines: a loop over a file list ran once with the whole list as one name and reported every page as "no icon". Pipe to `xargs` or `while read`.
 
-**Next**: the favicon and the root's Header case are now shared with `~/P`: change them in both. `tools/critA.mjs` is untracked and not from this session.
+**Next**: the favicon and the root's Header case are now shared with `~/P`: change them in both.
+
+**Later (2026-11-22)**: pushed another session's root-repo commit `a86a703` (CLAUDE.md slimmed into `.claude/skills/`, now public via Pages) at Han's go-ahead; build `built`, live CLAUDE.md bytes = local. Both repos clean and in sync with origin; `tools/critA.mjs` is gone.
 
 ## 2026-11-22 (later) — critique run 4 (23/32, P1 ×1) and fixes
 
