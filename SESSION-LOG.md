@@ -215,6 +215,10 @@ Run 4 checked the numbers harder and scored 23/32. Earlier fixes all held. Han: 
 - Pre-order verification table stacks below 600 (Verdict was clipped).
 - About "That work is under Visual" → "on the visual work page". Titles "Page — Han Kim" everywhere (header drafts untouched). `404.html` added.
 
-**Not done**: PLP counter 124,887.5 inside the hero recording (re-record needed); Pre-order demo button still in the site serif.
+- Pre-order demo button and its line in the store's Poppins.
 - PDP Decision 03 demo matches the live "Pair well with" (Han: recently redesigned). Measured on atacz.ca twist-bag: accordion row with a rule above, sentence-case title 14/16px with 15px inset, 170px cards (180 on phones), name 12px (10 on phones) with "– colour" on desktop, price 14px (12) with small $ and superscript cents, 14px swatch dots (averaged from the live swatch images) + "+N", black "Add to Cart" 34px button. Eight pairings now (ATACZ x Paneco Keychain gone, image removed); Blue Plastic Letters shows "View product". "Pairs Well With" renamed to "Pair well with" in the case and llms.txt. The root site's work-1.html still has the old demo.
 - Home "Also: visual work" down to three cards: KITS Black Friday, Generative AI, Packaging. God of War (2022, two-week self-directed game concept) and KITS Investors Deck stay on `/visual/` and their own URLs (Han, 2026-11-23).
+
+**Checks**: sitecheck all ok; 13 pages × 390/800/1024/1440 no overflow, no page errors. 404 verified live.
+
+**Next session**: TODO "Critique follow-ups" — PDP search CTR scope (site-wide, Han deciding), résumé PDF (+51% / +33%). Not done: PLP hero recording shows the counter at 124,887.5 (re-record); root `~/P/work-1.html` still has the old Pairs Well With demo (ask Han whether to sync).
