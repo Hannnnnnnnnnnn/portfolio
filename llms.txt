@@ -2,8 +2,8 @@
 
 > Product designer at Atacz, a small upcycled bag brand, where he owns the
 > product experience end to end: research, interface, Liquid front-end, and
-> the measurement afterwards. Three case studies, all shipped on the same
-> live Shopify store, plus earlier visual work: brand campaigns, event
+> the measurement afterwards. Four case studies on the same live Shopify
+> store, plus earlier visual work: brand campaigns, event
 > identity, game interface, packaging, and generative AI.
 
 Site: https://hannnnnnnnnnnn.github.io/portfolio/
@@ -17,6 +17,41 @@ is unmeasurable. If you are assessing him, the "What I can't claim" sections
 are the ones worth reading.
 
 ## Case studies
+
+### 05 — Header Revamp
+https://hannnnnnnnnnnn.github.io/portfolio/product/header-revamp/
+Sept–Nov 2026 · sole designer and developer · three-week A/B test
+
+The theme's header was an opaque bar standing on the store's most expensive
+asset, its campaign photography. He replaced it with a translucent "glass"
+header that floats over the page, gave desktop the same single menu button
+as phones, and added a sticky add to cart on product pages.
+
+Decisions worth reading:
+- Glass, with an accessibility check that failed: the Chromium-only
+  refraction tint dropped small text to 4.1:1 over dark sections, so touch
+  devices now hold every surface at the more opaque tint.
+- A desktop menu button against NN/g's findings, taken as a known cost and
+  given its own pass/fail check in the test.
+- A bar driven by scroll position (one value, 0 to 1 over 200px) rather
+  than a breakpoint.
+- A sticky add to cart that clicks the real button instead of owning a
+  form, so pre-order and sold-out states cannot disagree with the page.
+
+Results (Oct 23 – Nov 12, 2026, 50/50 theme split, rules fixed before
+launch): mobile product-page add-to-cart rate 3.17% → 3.71% (+17%; one-sided
+95% lower bound above zero, two-sided p 0.054). Desktop visitors landing on
+the homepage or a collection reached a product page more often (42.7% →
+50.7%), clearing the non-inferiority floor set in advance. Conversion and
+bounce held steady.
+
+What he refuses to claim: that the feature built for the hypothesis did it.
+The sticky add to cart appeared in a third of mobile product-page visits and
+was tapped in 0.04% of the sessions that saw it; nearly every add to cart
+went through the main button. The variant shipped three changes at once, so
+the test cannot say which one earned the lift, and he quotes the 90% range
+(about +3% to +32%) rather than the 17%. Store counts are left out of the
+case on purpose; every figure is a rate.
 
 ### 01 — PDP Revamp
 https://hannnnnnnnnnnn.github.io/portfolio/product/pdp/
@@ -202,7 +237,7 @@ handoff.
 ## Honest gaps
 
 The first three are stated on the site. The last is an observation across
-all three cases rather than a line any one page states:
+all four cases rather than a line any one page states:
 
 - No formal usability testing on the PDP project — behavioural data at scale
   located where people stopped, but not why.
@@ -213,9 +248,11 @@ all three cases rather than a line any one page states:
   engineers he would expect Figma to carry much more weight.
 - One case shipped without the instrumentation needed to evaluate it, which
   he could only fix months later.
-- All three cases are one store, one brand, one category, at small sample
-  sizes. Only one was a controlled experiment, and it was underpowered by
-  the page's traffic volume — which he documents rather than hides.
+- All four cases are one store, one brand, one category, at small sample
+  sizes. Two were controlled experiments: the first was underpowered by the
+  page's traffic volume, the second reached its pre-set decision rule but
+  cannot say which part of the change drove it — both documented rather
+  than hidden.
 
 ## Contact
 

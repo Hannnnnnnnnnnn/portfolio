@@ -18,7 +18,7 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 - [ ] "Top section height differs between Visual and Product": the two list pages measured identical. If it meant case vs Visual project pages: label sits 18px higher on case pages on phones, label→title gap 38–41 vs 33–35px. Align to the Visual project pages?
 - [ ] Dropick case study (`~/dropick/docs/portfolio/README.md`): import after Han's research, usability test and iPhone recordings (draft has `[ ]` gaps, no visuals, private repo links, live-app link). Built with its existing `build.py`.
 
-## Header Revamp case (`product/header-revamp/`, unlisted, on `main` + `case/header-revamp`)
+## Header Revamp case (`product/header-revamp/`, listed, on `main` + `case/header-revamp`)
 
 - [x] Baseline numbers → the kickoff deck's (28 Sep – 18 Oct: 78.4% reach, 2.40% ATC, desktop 29.4%, ~21% detectable). Done 24 Nov.
 - [x] Outcome filled 24 Nov from the final readout (GA4 `ga4_verdict.py` + Shopify Rollouts; same numbers as the results deck in Figma, UX UI › "ATACZ Header Revamp A/B Test Results"). Decision 02 desktop sentence, What I can't claim and What's next revised.
@@ -26,7 +26,7 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 - [ ] Title and lead are a draft — Han to confirm.
 - [x] Hero recordings (24 Nov): recorded by script from the variant theme preview `189168779568` on atacz.ca, analytics and the preview bar blocked; mobile 360×691 at 2x, desktop 1280×690.
 - [ ] Trim `product/header/` (04, also root `work-4.html`) to the homepage, and link the two.
-- [x] On `main` since 23 Oct, still unlisted (noindex, not in the Product list or `llms.txt`). Listing it = drop noindex, add both — only when Han says so.
+- [x] Listed 24 Nov (Han): first card on the home page, noindex dropped, canonical + og (`og/work-5.png`), `llms.txt` section first, Pre-order's Next case → 05. The header launches on the store this week.
 - [ ] Decisions 01–02 backgrounds are static captures of atacz.com (23 Oct, header hidden, 1440 + 360). Re-capture if the homepage changes.
 
 ## Header & Homepage case (`product/header/`, unlisted — also root `work-4.html`, edit both)
