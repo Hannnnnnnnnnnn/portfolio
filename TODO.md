@@ -20,8 +20,9 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 
 ## Header Revamp case (`product/header-revamp/`, unlisted, on `main` + `case/header-revamp`)
 
-- [ ] Baseline numbers → the kickoff deck's (GA4 28 Sep – 18 Oct 2026: mobile 78.4% reach a product page, 2.40% of those add to cart; desktop home/collection → product page 29.4%; detectable mobile lift ~21%). The draft still has 24 Sep – 14 Oct figures (77%, 696 ATC sessions).
-- [ ] After the 13 Nov readout: fill 5 Outcome (GA4 filtered by `ab_test = header_revamp_2026_10`), revise What I can't claim and Decision 02's desktop sentence to match the call.
+- [x] Baseline numbers → the kickoff deck's (28 Sep – 18 Oct: 78.4% reach, 2.40% ATC, desktop 29.4%, ~21% detectable). Done 24 Nov.
+- [x] Outcome filled 24 Nov from the final readout (GA4 `ga4_verdict.py` + Shopify Rollouts; same numbers as the results deck in Figma, UX UI › "ATACZ Header Revamp A/B Test Results"). Decision 02 desktop sentence, What I can't claim and What's next revised.
+- [ ] When the header actually launches (owner's call on timing around Black Friday), say so in Outcome, and record the sticky add to cart decision there.
 - [ ] Title and lead are a draft — Han to confirm.
 - [ ] Hero recordings (`assets/case/05-header-revamp/hero-*.mp4`).
 - [ ] Trim `product/header/` (04, also root `work-4.html`) to the homepage, and link the two.

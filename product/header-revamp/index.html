@@ -73,7 +73,7 @@
           <li><a class="toc__num" href="#decision-4">04</a></li>
         </ol>
       </li>
-      <li><a href="#test">How I&rsquo;m testing it</a></li>
+      <li><a href="#test">How I tested it</a></li>
       <li><a href="#outcome">Outcome</a></li>
       <li><a href="#next">What&rsquo;s next</a></li>
     </ol>
@@ -92,12 +92,12 @@
       <li>A/B Testing</li>
     </ul>
 
-    <p class="caveat">In an A/B test from 23 October to 12 November 2026. The numbers below are the baseline and the plan &mdash; results come after the test ends.</p>
+    <p class="caveat">A/B tested on the live store from 23 October to 12 November 2026, and read once after it ended.</p>
 
     <dl class="meta">
       <dt>Client</dt><dd>Atacz</dd>
       <dt>Role</dt><dd>Sole designer and developer</dd>
-      <dt>Timeline</dt><dd>Sept &ndash; Nov 2026 &middot; A/B test running</dd>
+      <dt>Timeline</dt><dd>Sept &ndash; Nov 2026 &middot; three-week A/B test</dd>
       <dt>Tools</dt><dd>Liquid, CSS (backdrop-filter, @property, SVG filters), vanilla JavaScript, GA4</dd>
     </dl>
 
@@ -120,7 +120,7 @@
     <h3>Phones carry the visits, product pages carry the decision.</h3>
     <p><strong>Who the decisions are for.</strong> Over the last twelve months, phones carried <strong>83.6%</strong> of sessions. Desktop carried <strong>12.6%</strong> of sessions but <strong>21.1%</strong> of purchases and <strong>19.2%</strong> of revenue: a desktop visitor converts about <strong>1.8&times;</strong> as often as a mobile one, and about <strong>3.0&times;</strong> in Canada. Small on traffic, not small on money.</p>
 
-    <p><strong>Where the buying happens.</strong> Over the three weeks before the test (24 Sept &ndash; 14 Oct 2026), <strong>77%</strong> of mobile sessions reached a product page (29,180 of 37,976), and <strong>696</strong> added something to the cart. On a phone the product page is a long scroll &mdash; photos, details, pairings &mdash; and the Add to cart button sits near the top of it.</p>
+    <p><strong>Where the buying happens.</strong> Over the three weeks before the test (28 Sept &ndash; 18 Oct 2026), <strong>78.4%</strong> of mobile sessions reached a product page (29,324 of 37,426), and <strong>2.40%</strong> of those added something to the cart. On a phone the product page is a long scroll &mdash; photos, details, pairings &mdash; and the Add to cart button sits near the top of it.</p>
 
     <p><strong>And the research I had to argue with.</strong> Hiding navigation behind a menu icon costs more than 20% in discoverability, and desktop users were at least 39% slower with it; NN/g&rsquo;s advice is not to do it on desktop (<a href="https://www.nngroup.com/articles/hamburger-menus/">Pernice &amp; Budiu, 2016</a>). Translucent surfaces fail when text sits over a busy background (<a href="https://www.nngroup.com/articles/glassmorphism/">NN/g, 2024</a>; <a href="https://www.nngroup.com/articles/liquid-glass/">2025</a>). I did both anyway. Decisions 01 and 02 say why, and what each one costs.</p>
 
@@ -205,7 +205,7 @@ background: rgba(255, 255, 255, calc(0.5 + 0.3 * var(--bar-hover, 0)));
       <h3>One menu button, at every width</h3>
       <p>Desktop now uses the same off-canvas layout as phones: a menu button and search on the left, the logo in the middle, the cart on the right. Menu, search and cart each open as a glass box under the bar, and only one is open at a time &mdash; opening one closes the others first. The page stays scrollable behind them.</p>
       <p><strong>Why give desktop a hamburger.</strong> Phones are 83.6% of sessions, so the menu button is the navigation most visitors already know. Giving desktop the same button means one pattern to learn instead of two. And with a catalogue this small the menu has comparatively little to sort; the priority on the page is the campaign, not the category tree.</p>
-      <p><strong>Trade-off, taken knowingly.</strong> This is the decision the research argues against most directly: hidden navigation was more than 20% less discoverable and at least 39% slower on desktop. Desktop is 12.6% of sessions but 21.1% of purchases, so the cost lands on the visitors who buy the most often. The categories open expanded inside the box. Whether desktop keeps the menu button is not decided yet: the desktop half of the A/B test (<a href="#test">section 4</a>) exists to put a price on it, and the call comes after that result.</p>
+      <p><strong>Trade-off, taken knowingly.</strong> This is the decision the research argues against most directly: hidden navigation was more than 20% less discoverable and at least 39% slower on desktop. Desktop is 12.6% of sessions but 21.1% of purchases, so the cost lands on the visitors who buy the most often. The categories open expanded inside the box. The desktop half of the A/B test (<a href="#test">section 4</a>) existed to put a price on it, and the price the research predicted didn&rsquo;t show up there (<a href="#outcome">section 5</a>).</p>
 
       <div class="demo" data-demo-boxes>
         <input class="hb__state" type="radio" name="hb" id="hb-none" value="none" checked aria-label="All boxes closed">
@@ -398,37 +398,80 @@ sync() {
       </details>
     </section>
 
-    <h2 id="test">4 &middot; How I&rsquo;m testing it</h2>
-    <p><strong>A theme split, not a launch.</strong> From 23 October to 12 November 2026, Shopify splits traffic between two themes. Control is the live store. The variant is the same theme with the new header, its glass and the sticky add to cart.</p>
+    <h2 id="test">4 &middot; How I tested it</h2>
+    <p><strong>A theme split, not a launch.</strong> From 23 October to 12 November 2026, Shopify split traffic 50/50 between two themes. Control is the live store. The variant is the same theme with the new header, its glass and the sticky add to cart.</p>
     <p><strong>One primary question, fixed in advance.</strong> Does the share of mobile product-page sessions that add to cart go up? Mobile only, because that is where the sticky add to cart earns its keep: on desktop the product column is already sticky, so the box appears late and rarely, the sample is small, and the menu change is mixed into the same visits.</p>
     <p><strong>Desktop gets a different question: did the menu button cost too much?</strong> Among desktop sessions that land on the homepage or a collection, the share that reaches a product page may fall by at most 15% relative &mdash; 4.4 points on a 29.4% baseline &mdash; judged on the one-sided 95% lower bound, not the point estimate. This is where the research in section 2 says I should lose.</p>
     <p><strong>What I chose not to judge on.</strong> Conversion rate. Three weeks is about 74 orders per arm, about 20 of them on desktop; that is a guardrail for an obvious drop, not a verdict.</p>
-    <p><strong>Three weeks, then stop.</strong> Black Friday is on 27 November, and promotions change who visits, so extra days would not be the same experiment. Both themes are frozen for the duration, and the result is read once, on 13 November &mdash; no peeking and stopping on a good day.</p>
+    <p><strong>Three weeks, then stop.</strong> Black Friday is on 27 November, and promotions change who visits, so extra days would not be the same experiment. Both themes were frozen for the duration, and the test ran its full three weeks: interim numbers were logged, but nothing was stopped or changed on them.</p>
     <p><strong>Measured the same way on both sides.</strong> One tracking snippet, byte-identical in both themes, listens on the document and touches no header code, so the measurement cannot change the thing being measured. It tells the arms apart by whether the new header actually rendered, not by theme ID, which changes on every publish. Every event carries the test&rsquo;s name, because an older experiment&rsquo;s tracking is still firing its own exposure events.</p>
 
     <div class="table-wrap">
       <table>
         <thead><tr><th scope="col">Question</th><th scope="col">Baseline</th><th scope="col">Rule</th></tr></thead>
         <tbody>
-          <tr><td>Primary &middot; Mobile: do more product-page sessions add to cart?</td><td>696 of 29,180 sessions, 2.4%</td><td>Ship if higher. With ~350 add-to-cart sessions per arm, only a change of about 20% or more shows as significant</td></tr>
+          <tr><td>Primary &middot; Mobile: do more product-page sessions add to cart?</td><td>2.40% of product-page sessions</td><td>Ship if higher. With ~350 add-to-cart sessions per arm, only a change of about 21% or more shows as significant</td></tr>
           <tr><td>Desktop: did the menu button cost reach?</td><td>29.4% of homepage and collection landings reach a product page</td><td>Lower bound above &minus;4.4 points</td></tr>
           <tr><td>Desktop: does the sticky add to cart get used?</td><td>&mdash;</td><td>Reported, not judged</td></tr>
-          <tr><td>Guardrail: conversion, revenue per session</td><td>Mobile 108 purchases, desktop 39, over three weeks</td><td>Roll back on an obvious drop</td></tr>
+          <tr><td>Guardrail: conversion, revenue per session</td><td>About 74 orders per arm expected</td><td>Roll back on an obvious drop</td></tr>
         </tbody>
       </table>
     </div>
 
-    <!-- 11/13 판정 후 채운다 — GA4는 반드시 ab_test = header_revamp_2026_10 로 필터 /
-         Fill in after the 13 Nov readout — always filter GA4 by ab_test = header_revamp_2026_10 -->
     <h2 id="outcome">5 &middot; Outcome</h2>
-    <p class="caveat">Pending. The test ends on 12 November 2026.</p>
+    <h3>Mobile add to cart rose 17%. The sticky button wasn&rsquo;t why.</h3>
+    <p><strong>Test window</strong> 23 Oct &ndash; 12 Nov 2026, a 50/50 theme split. <strong>Sample</strong> 10,974 sessions on the live header and 10,878 on the new one, from the test&rsquo;s own events, counted per session.</p>
+
+    <h3 class="h-minor">Primary metric: mobile add to cart</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col"></th><th scope="col">Live header</th><th scope="col">New header</th><th scope="col">Change</th></tr></thead>
+        <tbody>
+          <tr><td>Mobile product-page sessions that add to cart</td><td>3.17% <span class="muted">(265 of 8,364)</span></td><td>3.71% <span class="muted">(304 of 8,185)</span></td><td><strong>+17%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The one-sided 95% lower bound is +0.08 points, above zero; the two-sided p is 0.054, just short of the usual bar. Three weeks could only prove a lift of about 21%, so the rule agreed in advance was to ship a positive estimate if the guardrails held. This is one.</p>
+
+    <h3 class="h-minor">The sticky add to cart: seen, not used</h3>
+    <p><strong>It appeared in 2,736 mobile sessions, a third of the new header&rsquo;s product-page visits, and was tapped once in three weeks.</strong> On desktop, 297 sessions saw it and none tapped it. The tracking had been checked on a real iPhone before launch, and a tap counts once, so this is not a counting gap.</p>
+    <p>So the lift is real enough to ship on, but not for the reason I designed for. All but one of the 304 add-to-cart sessions went through the main button. The feature the hypothesis rested on, and the one <a href="#decision-3">Decision 03</a> calls closest to revenue, didn&rsquo;t carry it.</p>
+
+    <h3 class="h-minor">Desktop: the cost the research predicted didn&rsquo;t show</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Desktop</th><th scope="col">Live header</th><th scope="col">New header</th><th scope="col">Change</th></tr></thead>
+        <tbody>
+          <tr><td>Homepage and collection landings that reach a product page</td><td>42.7% <span class="muted">(223 of 522)</span></td><td>50.7% <span class="muted">(289 of 570)</span></td><td><strong>+8.0 pts</strong></td></tr>
+          <tr><td>Sessions that clicked a menu link</td><td>32.2%</td><td>26.4%</td><td>&minus;5.8 pts</td></tr>
+          <tr><td>Sessions that opened search</td><td>3.0%</td><td>11.9%</td><td>4&times;</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Fewer desktop visitors used the menu, four times as many searched, and more of them reached a product. The lower bound is +3.0 points against a floor of &minus;4.4, so it passes with room. The sample was under half the 1,240 sessions per arm I planned for, which widens the range but doesn&rsquo;t move it near the floor.</p>
+
+    <h3 class="h-minor">Guardrails</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Shopify&rsquo;s own report</th><th scope="col">Live header</th><th scope="col">New header</th></tr></thead>
+        <tbody>
+          <tr><td>Conversion rate</td><td>0.59%</td><td>0.56%</td></tr>
+          <tr><td>Reached checkout</td><td>1.33%</td><td>1.51%</td></tr>
+          <tr><td>Added to cart, all sessions</td><td>2.44%</td><td>2.82%</td></tr>
+          <tr><td>Bounce rate</td><td>65.03%</td><td>65.27%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Every interval overlaps, and Shopify&rsquo;s own summary calls the test inconclusive: &ldquo;not enough evidence to detect a difference&rdquo;. That summary reads all sessions on every device; the primary metric was mobile product-page sessions only, and that is where the difference shows. About 60 orders per arm is too few to judge conversion, as planned; nothing dropped that the rule would roll back on. <strong>By the rule set before launch &mdash; mobile up, desktop above its floor, guardrails steady &mdash; the new header ships.</strong></p>
 
     <h3>What I can&rsquo;t claim</h3>
-    <p><strong>Which change did it.</strong> The menu button, the glass and the sticky add to cart ship as one variant, so a desktop result belongs to all three at once. The sticky add to cart only renders with the off-canvas header today; testing it alone would mean splitting that code first.</p>
-    <p><strong>Small effects.</strong> Three weeks can prove a change of about 20% or more in mobile add-to-cart rate. Anything smaller will read as &ldquo;not significant&rdquo; whether it is real or not &mdash; and the rule agreed in advance ships a positive point estimate anyway, if the guardrails hold. That is a business decision, not a statistical one, and I&rsquo;ll report it as one.</p>
+    <p><strong>Which change did it.</strong> The menu button, the glass and the floating bar ship as one variant. The test rules out the sticky add to cart as the source of the mobile lift, but it can&rsquo;t say which of the rest earned it.</p>
+    <p><strong>How big it is.</strong> The 90% interval runs from +0.08 to +1.01 points, roughly +3% to +32%. The direction is solid; the size is not, and I&rsquo;d quote the range, not the 17%.</p>
+    <p><strong>A before and after.</strong> Both arms sit above the 2.40% baseline, which was measured another way and was already rising before the test. Only the comparison between the arms counts.</p>
 
     <h2 id="next">6 &middot; What&rsquo;s next</h2>
-    <p><strong>If desktop pays for the menu button,</strong> the cheap fix NN/g&rsquo;s research suggests is combination navigation: two or three labels &mdash; New Arrivals, Miffy &mdash; beside the menu button, in the same bar. Keeping the sticky add to cart with it means separating the two in code.</p>
+    <p><strong>Decide the sticky add to cart on its own evidence.</strong> It is the one part the test put a number on, and the number is close to zero. Before keeping, redesigning or removing it, I&rsquo;m watching new-header recordings for why a visible buy button goes untapped.</p>
+    <p><strong>Combination navigation stays on the shelf.</strong> Two or three labels beside the menu button were the fix for a desktop cost that didn&rsquo;t appear. A longer read could still find a smaller one.</p>
     <p><strong>A system preference for less glass.</strong> <code>prefers-reduced-transparency</code> lets people who have turned transparency down get an opaque header. Chromium supports it; Safari doesn&rsquo;t yet.</p>
 
     <nav class="case-nav" aria-label="More work">
