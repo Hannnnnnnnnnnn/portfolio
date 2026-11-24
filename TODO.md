@@ -24,7 +24,7 @@ Live: https://hannnnnnnnnnnn.github.io/portfolio/ (GitHub Pages, `main` / root; 
 - [x] Outcome filled 24 Nov from the final readout (GA4 `ga4_verdict.py` + Shopify Rollouts; same numbers as the results deck in Figma, UX UI › "ATACZ Header Revamp A/B Test Results"). Decision 02 desktop sentence, What I can't claim and What's next revised.
 - [ ] When the header actually launches (owner's call on timing around Black Friday), say so in Outcome, and record the sticky add to cart decision there.
 - [ ] Title and lead are a draft — Han to confirm.
-- [ ] Hero recordings (`assets/case/05-header-revamp/hero-*.mp4`).
+- [x] Hero recordings (24 Nov): recorded by script from the variant theme preview `189168779568` on atacz.ca, analytics and the preview bar blocked; mobile 360×691 at 2x, desktop 1280×690.
 - [ ] Trim `product/header/` (04, also root `work-4.html`) to the homepage, and link the two.
 - [x] On `main` since 23 Oct, still unlisted (noindex, not in the Product list or `llms.txt`). Listing it = drop noindex, add both — only when Han says so.
 - [ ] Decisions 01–02 backgrounds are static captures of atacz.com (23 Oct, header hidden, 1440 + 360). Re-capture if the homepage changes.
