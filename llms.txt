@@ -93,7 +93,7 @@ Decisions worth reading:
   the AOV lever — the proposal's +16–24% target — dropped out of scope. He
   records it as untested rather than disproven.
 
-Results (43-day split test, 70,716 visits assigned, US mobile only):
+Results (43-day split test, US mobile only):
 product click-through 9.05% → 9.80%, inside the +5–15% the proposal
 predicted. Actual scroll distance +9.4% at 0.06% noise probability. Badges
 reached 58% exposure at the first product row; dead clicks and quick
@@ -101,9 +101,9 @@ bounce-backs both fell.
 
 What he refuses to claim: the headline result. The 95% confidence interval
 was [−18%, +35%], and he traces that to his own scoping rather than to a
-weak effect — the rollout split 70,716 store-wide visits while the redesign
-existed on one collection, so only 2,327 visitors ever reached it, against
-the ~24,000 per arm the comparison needed. Two friction metrics sit within
+weak effect — the rollout split all store-wide visits while the redesign
+existed on one collection, so only about 3% of them ever reached it, about a
+tenth of what the comparison needed. Two friction metrics sit within
 chance individually and are cited only as direction. Canada is called a
 blank. The scroll result only exists after correcting for the redesigned
 page being 9.5% longer — raw scroll looked flat at 37.74% vs 37.76%. He also

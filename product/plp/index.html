@@ -86,7 +86,7 @@
         <li><span class="metric-value">+8.2%</span><span class="metric-label label muted">product click-through</span></li>
         <li><span class="metric-value">58%</span><span class="metric-label label muted">badge exposure, first row</span></li>
       </ul>
-      <p class="caveat">43-day split test, 70,716 visits assigned; click-through moved 9.05% &rarr; 9.80%. The result lands inside the predicted range, but only 2,327 visitors ever reached the redesigned page &mdash; the split was store-wide, the change was not. That gap is the finding.</p>
+      <p class="caveat">43-day split test; click-through moved 9.05% &rarr; 9.80%. The result lands inside the predicted range, but only about 3% of the visits in the split ever reached the redesigned page &mdash; the split was store-wide, the change was not. That gap is the finding.</p>
 
       <dl class="meta">
         <dt>Client</dt><dd>Atacz</dd>
@@ -99,7 +99,7 @@
         <dt>Problem</dt><dd>Half our paid visitors land on a collection page and never see the homepage, so the grid has to introduce the brand.</dd>
         <dt>Decisions</dt><dd>Took quick view and repeated brand lines off the card, then added a PET bottle badge and a store-wide bottle count, both read from one metafield.</dd>
         <dt>Result</dt><dd>Product click-through moved from 9.05% to 9.80%, inside the predicted +5&ndash;15%. Badges reached 58% of visitors at the first row.</dd>
-        <dt>Caveat</dt><dd>The split was store-wide but the change was on one page, so only 2,327 visitors saw it. The confidence interval runs from &minus;18% to +35%.</dd>
+        <dt>Caveat</dt><dd>The split was store-wide but the change was on one page, so only about 3% of the split ever saw it. The confidence interval runs from &minus;18% to +35%.</dd>
       </dl>
       </div>
 
@@ -418,12 +418,12 @@
 
     <h2 id="shipped">4 &middot; What shipped</h2>
     <p>Top banner &rarr; <strong>slogan + live bottle counter</strong> &rarr; product grid with simplified cards and PET badges &rarr; up to 3 contextual banners, one per 2&ndash;3 rows</p>
-    <p>Configured 50/50 in Shopify&rsquo;s built-in rollout feature. Assignment came out 49.8 : 50.2 across 70,716 visits &mdash; matching the configuration, which I checked before trusting anything else in the test.</p>
+    <p>Configured 50/50 in Shopify&rsquo;s built-in rollout feature. Assignment came out 49.8 : 50.2 &mdash; matching the configuration, which I checked before trusting anything else in the test.</p>
 
     <h2 id="outcome">5 &middot; Outcome</h2>
     <h3>The result matched the prediction. The test couldn&rsquo;t confirm it.</h3>
 
-    <p><strong>Test window</strong> Jul 7 &ndash; Aug 18, 2026 (43 days). <strong>Decision market</strong> US mobile only &mdash; Canadian and desktop volume were too small to read (desktop: 7 sessions vs 11). 2,327 visitors saw the redesigned page.</p>
+    <p><strong>Test window</strong> Jul 7 &ndash; Aug 18, 2026 (43 days). <strong>Decision market</strong> US mobile only &mdash; Canadian and desktop volume were too small to read (desktop: a handful of sessions per arm). About 3% of the visits in the split reached the redesigned page.</p>
 
     <h3 class="h-minor">Primary metric: product click-through</h3>
     <div class="table-wrap">
@@ -435,8 +435,8 @@
       </table>
     </div>
     <p>The June proposal predicted +5&ndash;15% relative. The result landed inside it &mdash; direction and magnitude both match.</p>
-    <p><strong>That match is not proof &mdash; and the reason is a decision I made, not a weak result.</strong> The 95% confidence interval is <strong>[&minus;18%, +35%]</strong>. Resolving a lift this size on a 9% baseline needs roughly 24,000 exposed visitors per arm. I had 2,327.</p>
-    <p><strong>The shortfall was not a traffic problem. It was an aim problem.</strong> The rollout split the whole store &mdash; 70,716 visits &mdash; but the redesign existed on <em>one</em> collection, so the overwhelming majority of the traffic being divided never met the thing being tested. Applied at the PLP template level instead, across every collection, the same change would have been in front of the 51% of paid entries that land on a collection page &mdash; and the same 43 days would have cleared the threshold. The instrument was right for the job; I aimed it at a fraction of the traffic it was dividing.</p>
+    <p><strong>That match is not proof &mdash; and the reason is a decision I made, not a weak result.</strong> The 95% confidence interval is <strong>[&minus;18%, +35%]</strong>. Resolving a lift this size on a 9% baseline needs roughly ten times the exposed visitors I had.</p>
+    <p><strong>The shortfall was not a traffic problem. It was an aim problem.</strong> The rollout split the whole store, but the redesign existed on <em>one</em> collection, so the overwhelming majority of the traffic being divided never met the thing being tested. Applied at the PLP template level instead, across every collection, the same change would have been in front of the 51% of paid entries that land on a collection page &mdash; and the same 43 days would have cleared the threshold. The instrument was right for the job; I aimed it at a fraction of the traffic it was dividing.</p>
     <p>One more caveat I can&rsquo;t tidy away: the baseline halved between July and August for reasons I couldn&rsquo;t confirm, so the combined figure is indicative rather than precise. What I can say is that nothing points the other way &mdash; the redesign never trailed in either period, and the friction metrics move with it.</p>
 
     <h3 class="h-minor">Scroll: the result the data could settle</h3>
@@ -508,7 +508,7 @@
     <p><strong>Shipped.</strong> The redesign went into the main deploy. Hero copy came down from nine lines to three, restoring first-screen product visibility across every collection.</p>
     <p><strong>A bug the test found that the redesign didn&rsquo;t cause.</strong> Banner 1 used an absolute URL that sent Canadian visitors to the US site. Nothing in the test was designed to catch it &mdash; it surfaced because measuring the page meant looking at it closely. Fixed.</p>
     <p><strong>Banners applied selectively</strong> &mdash; ad landing pages, collections with 20+ products, seasonal campaigns.</p>
-    <p><strong>And the real conclusion: test the template, not the page.</strong> The split was store-wide and the change was not, so the test spent 70,716 assignments to observe 2,327 people. The fix isn&rsquo;t to abandon A/B testing here &mdash; it is to make the treatment as wide as the split. The same redesign rolled out across the PLP template puts it in front of every collection entry, which is where half our paid traffic lands, and the volume problem disappears without waiting for the store to grow.</p>
+    <p><strong>And the real conclusion: test the template, not the page.</strong> The split was store-wide and the change was not, so about 97% of the assignments went to visitors who never saw the change. The fix isn&rsquo;t to abandon A/B testing here &mdash; it is to make the treatment as wide as the split. The same redesign rolled out across the PLP template puts it in front of every collection entry, which is where half our paid traffic lands, and the volume problem disappears without waiting for the store to grow.</p>
     <p><strong>Where the volume still isn&rsquo;t there, say so before starting.</strong> A single collection or a seasonal drop can&rsquo;t carry a split test to significance, and running one anyway produces a number nobody can act on. Before/after over the full traffic answers those faster. The proposal had listed it as an option; what the test taught me was how to tell in advance which of the two a question needs.</p>
     <p>The instrument was never the problem. Matching its scope to the question is the part I&rsquo;d do differently.</p>
 
