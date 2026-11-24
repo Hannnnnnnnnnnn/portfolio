@@ -218,6 +218,7 @@ Run 4 checked the numbers harder and scored 23/32. Earlier fixes all held. Han: 
 - Pre-order demo button and its line in the store's Poppins.
 - PDP Decision 03 demo matches the live "Pair well with" (Han: recently redesigned). Measured on atacz.ca twist-bag: accordion row with a rule above, sentence-case title 14/16px with 15px inset, 170px cards (180 on phones), name 12px (10 on phones) with "– colour" on desktop, price 14px (12) with small $ and superscript cents, 14px swatch dots (averaged from the live swatch images) + "+N", black "Add to Cart" 34px button. Eight pairings now (ATACZ x Paneco Keychain gone, image removed); Blue Plastic Letters shows "View product". "Pairs Well With" renamed to "Pair well with" in the case and llms.txt. The root site's work-1.html still has the old demo.
 - Home "Also: visual work" down to three cards: KITS Black Friday, Generative AI, Packaging. God of War (2022, two-week self-directed game concept) and KITS Investors Deck stay on `/visual/` and their own URLs (Han, 2026-11-23).
+- Home "Also: visual work" back to five cards: KITS Investors Deck and God of War restored in their original places (Han, 2026-11-24).
 
 **Checks**: sitecheck all ok; 13 pages × 390/800/1024/1440 no overflow, no page errors. 404 verified live.
 
