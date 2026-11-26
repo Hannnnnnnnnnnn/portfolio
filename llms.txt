@@ -42,7 +42,8 @@ Results (Oct 23 – Nov 12, 2026, 50/50 theme split, rules fixed before
 launch): mobile product-page add-to-cart rate 3.17% → 3.71% (+17%; one-sided
 95% lower bound above zero, two-sided p 0.054). Desktop visitors landing on
 the homepage or a collection reached a product page more often (42.7% →
-50.7%), clearing the non-inferiority floor set in advance. Conversion and
+50.7%), clearing the non-inferiority floor set in advance. Menu-link clicks
+fell, the cost he expected, while search use quadrupled. Conversion and
 bounce held steady.
 
 What he refuses to claim: that the feature built for the hypothesis did it.
