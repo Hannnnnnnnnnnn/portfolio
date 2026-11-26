@@ -218,7 +218,7 @@ background: rgba(255, 255, 255, calc(0.5 + 0.3 * var(--bar-hover, 0)));
       <h3>One menu button, at every width</h3>
       <p>Desktop now uses the same off-canvas layout as phones: a menu button and search on the left, the logo in the middle, the cart on the right. Menu, search and cart each open as a glass box under the bar, and only one is open at a time &mdash; opening one closes the others first. The page stays scrollable behind them.</p>
       <p><strong>Why give desktop a hamburger.</strong> Phones are 83.6% of sessions, so the menu button is the navigation most visitors already know. Giving desktop the same button means one pattern to learn instead of two. And with a catalogue this small the menu has comparatively little to sort; the priority on the page is the campaign, not the category tree.</p>
-      <p><strong>Trade-off, taken knowingly.</strong> This is the decision the research argues against most directly: hidden navigation was more than 20% less discoverable and at least 39% slower on desktop. Desktop is 12.6% of sessions but 21.1% of purchases, so the cost lands on the visitors who buy the most often. The categories open expanded inside the box. The desktop half of the A/B test (<a href="#test">section 4</a>) existed to put a price on it, and the price the research predicted didn&rsquo;t show up there (<a href="#outcome">section 5</a>).</p>
+      <p><strong>Trade-off, taken knowingly.</strong> This is the decision the research argues against most directly: hidden navigation was more than 20% less discoverable and at least 39% slower on desktop. Desktop is 12.6% of sessions but 21.1% of purchases, so the cost lands on the visitors who buy the most often. The categories open expanded inside the box. The desktop half of the A/B test (<a href="#test">section 4</a>) existed to put a price on it, and the price showed up in menu clicks but not in reaching a product (<a href="#outcome">section 5</a>).</p>
 
       <div class="demo" data-demo-boxes>
         <input class="hb__state" type="radio" name="hb" id="hb-none" value="none" checked aria-label="All boxes closed">
@@ -450,7 +450,7 @@ sync() {
     <p><strong>It appeared in a third of the new header&rsquo;s mobile product-page visits, and was tapped in 0.04% of the sessions that saw it.</strong> The main button, for comparison, was used in 3.7% of product-page sessions. On desktop no one who saw it tapped it. The tracking had been checked on a real iPhone before launch, and a tap counts once, so this is not a counting gap.</p>
     <p>So the lift is real enough to ship on, but not for the reason I designed for. Practically every add to cart went through the main button. The feature the hypothesis rested on, and the one <a href="#decision-3">Decision 03</a> calls closest to revenue, didn&rsquo;t carry it.</p>
 
-    <h3 class="h-minor">Desktop: the cost the research predicted didn&rsquo;t show</h3>
+    <h3 class="h-minor">Desktop: fewer menu clicks, more product visits</h3>
     <div class="table-wrap">
       <table>
         <thead><tr><th scope="col">Desktop</th><th scope="col">Live header</th><th scope="col">New header</th><th scope="col">Change</th></tr></thead>
@@ -461,7 +461,7 @@ sync() {
         </tbody>
       </table>
     </div>
-    <p>Both arms sit well above the 29.4% baseline in section 4 because the test counted landings with its own tag, per browser tab, rather than with GA4&rsquo;s landing page; only the comparison between the arms counts. Fewer desktop visitors used the menu, four times as many searched, and more of them reached a product. The lower bound is +3.0 points against a floor of &minus;4.4, so it passes with room. The sample was under half the size I planned for, which widens the range but doesn&rsquo;t move it near the floor.</p>
+    <p>Both arms sit well above the 29.4% baseline in section 4 because the test counted landings with its own tag, per browser tab, rather than with GA4&rsquo;s landing page; only the comparison between the arms counts. The menu paid the price I expected: the share of sessions clicking a menu link fell 5.8 points, about 18% relative, and that drop is too large to be noise (p &asymp; 0.003). But four times as many opened search, and more of them reached a product. I read that as search taking over from the menu; the test shows the two moving together, not the same visitor switching, and a more visible search button may account for some of it. The lower bound is +3.0 points against a floor of &minus;4.4, so it passes with room. The sample was under half the size I planned for, which widens the range but doesn&rsquo;t move it near the floor.</p>
 
     <h3 class="h-minor">Guardrails</h3>
     <div class="table-wrap">
@@ -484,7 +484,7 @@ sync() {
 
     <h2 id="next">6 &middot; What&rsquo;s next</h2>
     <p><strong>Decide the sticky add to cart on its own evidence.</strong> It is the one part the test put a number on, and the number is close to zero. Before keeping, redesigning or removing it, I&rsquo;m watching new-header recordings for why a visible buy button goes untapped.</p>
-    <p><strong>Combination navigation stays on the shelf.</strong> Two or three labels beside the menu button were the fix for a desktop cost that didn&rsquo;t appear. A longer read could still find a smaller one.</p>
+    <p><strong>Combination navigation stays on the shelf.</strong> Two or three labels beside the menu button were the fix for a desktop cost that showed up in menu use but not in reaching products. A longer read could still find a smaller one.</p>
     <p><strong>A system preference for less glass.</strong> <code>prefers-reduced-transparency</code> lets people who have turned transparency down get an opaque header. Chromium supports it; Safari doesn&rsquo;t yet.</p>
 
     <nav class="case-nav" aria-label="More work">
