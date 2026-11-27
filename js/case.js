@@ -356,6 +356,134 @@ run(() => {
   document.querySelectorAll(".demo :is(.gl, .sb)").forEach((el) => el.classList.add("is-lens"));
 });
 
+/* ── 6f2. 05: 박스마다 곡면 림 — 테마 ver2 header.liquid 의 모듈 스크립트를 옮김 ──
+   공용 박스 렌즈는 그라데이션 하나를 어떤 박스에든 늘려 써서 림이 납작한 띠다. 여기서는 박스마다 실제 px 크기로
+   맵을 그려(스퀘어클 단면 + 스넬 법칙, 굴절률 1.5 — Aceternity UI 의 Liquid Glass 방식) 박스의 --gl-box-filter 로 건다.
+   #LensBox[data-rim] 이 있는 페이지(05)에서만. 데모 박스는 바뀌지 않으니 테마의 MutationObserver 는 뺐다.
+   Per-box curved rim, ported from the theme's ver2 header.liquid module script. Each box gets a map drawn at its own pixel size
+   (Snell's law over a squircle profile, index 1.5 — Aceternity UI's Liquid Glass method), hung on the box as --gl-box-filter.
+   Only on a page whose #LensBox carries data-rim (05). Demo boxes never re-render, so the theme's MutationObserver is left out. */
+run(() => {
+  const template = document.querySelector("#LensBox[data-rim]");
+  const boxes = document.querySelectorAll(".demo .gl.is-lens .gl__box");
+  if (!template || !boxes.length) return;
+
+  const BEVEL = 14; // 림 폭(px) / rim width, px
+  const GAIN = 1.35; // 림의 변위 배율 / displacement gain at the rim
+  const SCALE = 44; // 박스 렌즈의 최대 채널 scale (40 + 4), 필터 여백용 / largest channel scale of the box lens, for the filter padding
+
+  // 원점 중심 둥근 사각형까지의 부호 거리, 안쪽 < 0 / signed distance to a rounded box centred on the origin, < 0 inside
+  const distance = (px, py, halfW, halfH, r) => {
+    const qx = Math.abs(px) - halfW + r;
+    const qy = Math.abs(py) - halfH + r;
+    return Math.min(Math.max(qx, qy), 0) + Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) - r;
+  };
+
+  // 깊이 x(0 림, 1 안쪽)에서 스퀘어클 돔의 굴절 / bend of a squircle dome at depth x (0 rim, 1 inside)
+  const bend = (x) => {
+    const u = 1 - Math.min(1, Math.max(0, x));
+    const denom = (1 - u ** 4) ** 0.75;
+    if (denom < 1e-6) return 0;
+    const incident = Math.atan(Math.min(u ** 3 / denom, 8));
+    return Math.sin(incident - Math.asin(Math.sin(incident) / 1.5));
+  };
+
+  // R = 가로, G = 세로 변위 (128 = 없음) / R = horizontal, G = vertical displacement (128 = none)
+  const drawMap = (w, h, radius) => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W = Math.round(w * dpr);
+    const H = Math.round(h * dpr);
+    const halfW = W / 2;
+    const halfH = H / 2;
+    const r = Math.min(radius * dpr, halfW, halfH);
+    const n = Math.ceil(Math.max(1, Math.min(BEVEL * dpr, halfW, halfH)));
+    const phi = new Float32Array(n + 1);
+    for (let d = 1; d <= n; d++) phi[d] = phi[d - 1] + bend(d / n);
+
+    const sd = new Float32Array(W * H);
+    const field = new Float32Array(W * H);
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const i = y * W + x;
+        const d = (sd[i] = distance(x - halfW + 0.5, y - halfH + 0.5, halfW, halfH, r));
+        const t = Math.min(n, -d);
+        const k = Math.floor(t);
+        field[i] = d > 0 ? 0 : k >= n ? phi[n] : phi[k] + (phi[k + 1] - phi[k]) * (t - k);
+      }
+    }
+
+    const data = new Uint8ClampedArray(W * H * 4).fill(128);
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const i = y * W + x;
+        if (sd[i] > 0) { data[i * 4 + 3] = 0; continue; }
+        const x0 = Math.max(0, x - 1);
+        const x1 = Math.min(W - 1, x + 1);
+        const y0 = Math.max(0, y - 1);
+        const y1 = Math.min(H - 1, y + 1);
+        // 림이 압축되되 겹쳐 접히지 않게 상한 / capped so the rim compresses but never folds over
+        const dx = Math.max(-1, Math.min(1, ((field[y * W + x1] - field[y * W + x0]) / (x1 - x0 || 1)) * GAIN));
+        const dy = Math.max(-1, Math.min(1, ((field[y1 * W + x] - field[y0 * W + x]) / (y1 - y0 || 1)) * GAIN));
+        data[i * 4] = 128 + dx * 127;
+        data[i * 4 + 1] = 128 + dy * 127;
+        data[i * 4 + 3] = 255;
+      }
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = W;
+    canvas.height = H;
+    canvas.getContext("2d").putImageData(new ImageData(data, W, H), 0, 0);
+    return new Promise((resolve) => canvas.toBlob((blob) => resolve(blob && URL.createObjectURL(blob)), "image/png"));
+  };
+
+  // 공용 박스 렌즈의 복사본: 맵을 박스 px 에 고정하고, 휜 빛이 밖에서 올 수 있게 둘레에 여백
+  // A copy of the shared box lens: the map pinned to the box's pixels, with room around it for the bend to reach outside
+  const state = new Map(); // box -> { w, h, timer, token, filter, url }
+  const build = async (box, s) => {
+    const token = (s.token = (s.token || 0) + 1);
+    const url = await drawMap(s.w, s.h, parseFloat(getComputedStyle(box).getPropertyValue("--gl-radius")) || 0);
+    if (!url) return;
+    // 필터를 걸기 전에 디코드 — 아니면 굴절 없이 깜빡임 / decode before the filter attaches, or the box flashes unrefracted
+    await new Promise((resolve) => { const img = new Image(); img.onload = img.onerror = resolve; img.src = url; });
+    if (token !== s.token) return URL.revokeObjectURL(url);
+    const filter = template.cloneNode(true);
+    filter.removeAttribute("data-rim");
+    // 매번 새 id — Chromium 은 필터 결과를 id 로 캐시함 / a new id every time: Chromium caches filter output by id
+    filter.id = `LensBox-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+    const padX = ((SCALE + 4) / s.w) * 100;
+    const padY = ((SCALE + 4) / s.h) * 100;
+    filter.setAttribute("x", `-${padX}%`);
+    filter.setAttribute("y", `-${padY}%`);
+    filter.setAttribute("width", `${100 + 2 * padX}%`);
+    filter.setAttribute("height", `${100 + 2 * padY}%`);
+    const map = filter.querySelector("feImage");
+    map.setAttribute("href", url);
+    map.setAttribute("x", 0);
+    map.setAttribute("y", 0);
+    map.setAttribute("width", s.w);
+    map.setAttribute("height", s.h);
+    template.parentNode.append(filter);
+    box.style.setProperty("--gl-box-filter", `url(#${filter.id})`);
+    s.filter?.remove();
+    if (s.url) URL.revokeObjectURL(s.url);
+    s.filter = filter;
+    s.url = url;
+  };
+
+  // 크기가 멈추고 150ms 뒤 다시 그림 (닫힌 박스는 보고되지 않다가 열릴 때 그려짐) / rebuild 150ms after a box stops changing size (a closed box reports nothing until it opens)
+  const resizes = new ResizeObserver((entries) => entries.forEach(({ target, borderBoxSize }) => {
+    const s = state.get(target);
+    const w = Math.round(borderBoxSize[0].inlineSize);
+    const h = Math.round(borderBoxSize[0].blockSize);
+    if (w <= 1 || h <= 1 || (w === s.w && h === s.h)) return;
+    s.w = w;
+    s.h = h;
+    clearTimeout(s.timer);
+    s.timer = setTimeout(() => build(target, s), 150);
+  }));
+  boxes.forEach((box) => { state.set(box, {}); resizes.observe(box); });
+});
+
 /* ── 6g. 04 Dec 04: 스크롤하면 스티키가 된다 — 테마 StickyHeader.onScroll 의 두 갈래 ──
    홈(투명 헤더)은 공지 바가 사라지는 지점(headerBounds.top)에서 붙고 200px 동안 0..1,
    상품 페이지(흰 헤더)는 헤더 바닥(headerBounds.bottom)에서 붙는다. 쓰는 값은 --p 와,

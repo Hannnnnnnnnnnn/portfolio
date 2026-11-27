@@ -35,17 +35,33 @@
   <symbol id="i-cart" viewBox="0 0 24 24" fill="none"><path d="M16 10V6a4 4 0 0 0-8 0v4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.46 15.44 18.39 21a1.39 1.39 0 0 1-1.27.93H6.88A1.39 1.39 0 0 1 5.61 21l-2.07-5.56-1.23-3.26c-.12-.34-.23-.62-.32-.85a17.28 17.28 0 0 1 20 0c-.09.23-.2.51-.32.85Z" stroke="currentColor" stroke-miterlimit="10"/></symbol>
   <symbol id="i-account" viewBox="0 0 14 18" fill="none"><path d="M7.34497 10.0933C4.03126 10.0933 1.34497 12.611 1.34497 15.7169C1.34497 16.4934 1.97442 17.1228 2.75088 17.1228H11.9391C12.7155 17.1228 13.345 16.4934 13.345 15.7169C13.345 12.611 10.6587 10.0933 7.34497 10.0933Z" stroke="currentColor"/><ellipse cx="7.34503" cy="5.02631" rx="3.63629" ry="3.51313" stroke="currentColor" stroke-linecap="square"/></symbol>
   <symbol id="i-close" viewBox="0 0 12 12" fill="none"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-linecap="round"/></symbol>
-  <!-- 테마의 두 렌즈를 그대로: 가장자리 변위 맵 + 블러 3 + 채도 1.8, 바 14 / 박스 40 (Chromium 전용) /
-       The theme's two lenses verbatim: edge displacement map + blur 3 + saturate 1.8, bar 14 / boxes 40 (Chromium only) -->
+  <!-- 테마(ver2)의 두 렌즈를 그대로: 가장자리 변위 맵을 R/G/B 마다 scale+4 / scale / scale−4 로 따로 휘어 screen 합성(색수차),
+       블러 3 + 채도 1.8, 바 14 / 박스 40 (Chromium 전용). data-rim = 박스마다 곡면 림 맵을 그리는 원본 (js/case.js 6f2)
+       The theme's two lenses (ver2) verbatim: the edge map bends red, green and blue by scale+4 / scale / scale-4, screen-blended
+       (chromatic aberration), then blur 3 + saturate 1.8, bar 14 / boxes 40 (Chromium only). data-rim = the template for the per-box curved rim (js/case.js 6f2) -->
   <filter id="LensBar" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
     <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='x'%3E%3Cstop offset='0' stop-color='rgb(255,0,0)'/%3E%3Cstop offset='.06' stop-color='rgb(128,0,0)'/%3E%3Cstop offset='.94' stop-color='rgb(128,0,0)'/%3E%3Cstop offset='1' stop-color='rgb(0,0,0)'/%3E%3C/linearGradient%3E%3ClinearGradient id='y' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='rgb(0,255,0)'/%3E%3Cstop offset='.25' stop-color='rgb(0,128,0)'/%3E%3Cstop offset='.75' stop-color='rgb(0,128,0)'/%3E%3Cstop offset='1' stop-color='rgb(0,0,0)'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23x)'/%3E%3Crect width='100' height='100' fill='url(%23y)' style='mix-blend-mode:screen'/%3E%3C/svg%3E" preserveAspectRatio="none" result="map"/>
-    <feDisplacementMap in="SourceGraphic" in2="map" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="18" xChannelSelector="R" yChannelSelector="G" result="dispR"/>
+    <feColorMatrix in="dispR" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="red"/>
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="14" xChannelSelector="R" yChannelSelector="G" result="dispG"/>
+    <feColorMatrix in="dispG" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="green"/>
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="10" xChannelSelector="R" yChannelSelector="G" result="dispB"/>
+    <feColorMatrix in="dispB" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="blue"/>
+    <feBlend in="red" in2="green" mode="screen" result="rg"/>
+    <feBlend in="rg" in2="blue" mode="screen"/>
     <feGaussianBlur stdDeviation="3"/>
     <feColorMatrix type="saturate" values="1.8"/>
   </filter>
-  <filter id="LensBox" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+  <filter id="LensBox" data-rim x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
     <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='x'%3E%3Cstop offset='0' stop-color='rgb(255,0,0)'/%3E%3Cstop offset='.06' stop-color='rgb(128,0,0)'/%3E%3Cstop offset='.94' stop-color='rgb(128,0,0)'/%3E%3Cstop offset='1' stop-color='rgb(0,0,0)'/%3E%3C/linearGradient%3E%3ClinearGradient id='y' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='rgb(0,255,0)'/%3E%3Cstop offset='.25' stop-color='rgb(0,128,0)'/%3E%3Cstop offset='.75' stop-color='rgb(0,128,0)'/%3E%3Cstop offset='1' stop-color='rgb(0,0,0)'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23x)'/%3E%3Crect width='100' height='100' fill='url(%23y)' style='mix-blend-mode:screen'/%3E%3C/svg%3E" preserveAspectRatio="none" result="map"/>
-    <feDisplacementMap in="SourceGraphic" in2="map" scale="40" xChannelSelector="R" yChannelSelector="G"/>
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="44" xChannelSelector="R" yChannelSelector="G" result="dispR"/>
+    <feColorMatrix in="dispR" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="red"/>
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="40" xChannelSelector="R" yChannelSelector="G" result="dispG"/>
+    <feColorMatrix in="dispG" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="green"/>
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="36" xChannelSelector="R" yChannelSelector="G" result="dispB"/>
+    <feColorMatrix in="dispB" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="blue"/>
+    <feBlend in="red" in2="green" mode="screen" result="rg"/>
+    <feBlend in="rg" in2="blue" mode="screen"/>
     <feGaussianBlur stdDeviation="3"/>
     <feColorMatrix type="saturate" values="1.8"/>
   </filter>
@@ -147,6 +163,7 @@
       <p><strong>Under the pointer, the glass thickens to 80%.</strong> Glass that is pleasant to look through can be unpleasant to read through, so the surface you are using gets more opaque, with a 250ms fade. The bar&rsquo;s tint already follows the scroll position with no transition, so the hover value is a registered <code>@property</code> that animates on its own: scroll stays instant, hover stays smooth.</p>
       <p><strong>Then I checked the edge case, and it failed.</strong> In Chromium the glass also refracts the page at its edges, through an SVG displacement lens inside <code>backdrop-filter</code>. To make that visible I had lowered the box tint to 45%. Over a black section, <code>#0c0c0c</code> text on that comes out at <strong>4.1:1</strong> &mdash; under the 4.5 that AA asks of small text. And a phone never hovers, so on phones the 80% would never arrive. <strong>Touch devices now hold every surface at 80%</strong>, which also takes the 45% boxes off the table on phones.</p>
       <p><strong>Trade-off.</strong> On desktop Chromium the resting boxes are still 45%, because that is where the refraction reads. Hover fixes it for the person using the box. The fallback matters too: <code>url()</code> in <code>backdrop-filter</code> renders only in Chromium and voids the whole declaration elsewhere, blur included, so the lens is gated behind a class that only Chromium gets.</p>
+      <p><strong>A second pass on the lens, after the test.</strong> In a later version of the theme, the lens bends red, green and blue by slightly different amounts, so the rim picks up a faint colour fringe. Each box also gets its own displacement map, drawn at its real pixel size, so its edge curves like a rounded slab of glass instead of a flat strip. The method follows Aceternity UI&rsquo;s Liquid Glass. The demo below runs this version; outside Chromium nothing changes.</p>
 
       <div class="demo demo--wide" data-demo-glass>
         <span class="demo__label label">Try it</span>
